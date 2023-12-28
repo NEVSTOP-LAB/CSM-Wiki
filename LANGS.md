@@ -1,5 +1,5 @@
-* [English](en)
-* [中文](zh)
+* [English](en/)
+* [中文](zh/)
 
 <!--
 * [Português](pt-br)
