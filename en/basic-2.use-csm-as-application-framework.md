@@ -1,5 +1,3 @@
-# Basic 2.Use CSM as Application Framework
-
 In this scenario, inter-module communication solely relies on message string queue operations. You can generate a Message string using the "**Build Message with Arguments++.vi**" function. Alternatively, if you are familiar with the rules, you can directly utilize message description strings.
 
 ```
@@ -35,4 +33,4 @@ In this scenario, inter-module communication solely relies on message string que
     // Another comment line
 ```
 
-Go to _**/Example/2. Caller is CSM Scenario**_ to find an example for this scenario.
+Go to ***/Example/2. Caller is CSM Scenario*** to find an example for this scenario.
