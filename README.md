@@ -3,9 +3,6 @@ layout: home
 title: Communicable State Machine(CSM)
 permalink: /
 ---
-# Communicable State Machine(CSM)
-
-[English](./README.md) | [中文](./README(CN).md)
 
 [![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)
 [![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=stars)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)
