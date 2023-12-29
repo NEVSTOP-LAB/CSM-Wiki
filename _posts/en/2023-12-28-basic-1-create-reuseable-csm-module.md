@@ -1,5 +1,5 @@
 ---
-title: Basic 1.Create Reuseable CSM Module
+title: Create Reuseable CSM Module
 author: nevstop
 date: 2023-12-28
 category: Basic

@@ -1,5 +1,5 @@
 ---
-title: Basic 4.CSM Arguments
+title: CSM Arguments
 author: nevstop
 date: 2023-12-28
 category: Basic

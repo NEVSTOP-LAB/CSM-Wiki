@@ -1,5 +1,5 @@
 ---
-title: Basic 3.Reuse CSM Module in another Application Framework
+title: 在其他框架中调用模块
 author: nevstop
 date: 2023-12-28
 category: Basic

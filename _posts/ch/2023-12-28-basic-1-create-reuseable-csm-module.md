@@ -1,5 +1,5 @@
 ---
-title: Basic 1.Create Reuseable CSM Module
+title: 创建基于 CSM 的可重用模块
 author: nevstop
 date: 2023-12-28
 category: Basic

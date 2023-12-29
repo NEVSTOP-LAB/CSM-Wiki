@@ -1,5 +1,5 @@
 ---
-title: Basic 2.Use CSM as application framework
+title: Use CSM as application framework
 author: nevstop
 date: 2023-12-28
 category: Basic
