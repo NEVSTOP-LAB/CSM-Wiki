@@ -1,3 +1,11 @@
+---
+title: Basic 2.Use CSM as application framework
+author: nevstop
+date: 2023-12-28
+category: Basic
+layout: post
+---
+
 In this scenario, inter-module communication solely relies on message string queue operations. You can generate a Message string using the "**Build Message with Arguments++.vi**" function. Alternatively, if you are familiar with the rules, you can directly utilize message description strings.
 
 ```

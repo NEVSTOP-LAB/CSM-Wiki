@@ -1,4 +1,10 @@
-# Basic 1.Create Resueable CSM Module
+---
+title: Basic 1.Create Reuseable CSM Module
+author: nevstop
+date: 2023-12-28
+category: Basic
+layout: post
+---
 
 Creating a reusable module typically does not require message interaction with other modules; it only needs to provide an external interface and publish the state of the module. Therefore, as long as these two aspects are clearly described, one can call the reusable module without understanding its internal implementation details.
 

@@ -1,4 +1,11 @@
-# Basic 3.Call CSM Module in other Framework
+---
+title: Basic 3.Reuse CSM Module in another Application Framework
+author: nevstop
+date: 2023-12-28
+category: Basic
+layout: post
+---
+
 
 In this scenario, inter-module communication solely relies on Post/Send Message API and module status change user event.
 

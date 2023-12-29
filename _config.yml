@@ -1,10 +1,10 @@
 # Configurations
 title:            CSM-Wiki
-longtitle:        Communicatable State Machine(CSM) Wiki
+longtitle:        Communicable State Machine(CSM) Wiki
 author:           nevstop
 email:            liyao.zheda@foxmail.com
 description: >
-  Build Jekyll site with the GitBook style.
+  Wiki website for Communicable State Machine(CSM) and its applications.
 
 version:          1.0
 gitbook_version:  3.2.3
