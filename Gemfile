@@ -8,9 +8,10 @@ gem 'jekyll-feed'
 gem 'jekyll-readme-index'
 gem 'jemoji'
 gem 'webrick'
+gem "jekyll-polyglot"
 
-group :jekyll_plugins do
-    gem "jekyll-polyglot"
-end
+# group :jekyll_plugins do
+#     gem "jekyll-polyglot"
+# end
 
 # gem "rails"
