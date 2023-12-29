@@ -1,2 +1,0 @@
-# Benchmark ‐ Compare with JKISM
-
