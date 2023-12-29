@@ -1,4 +1,12 @@
-# Basic 2.在CSM框架中调用模块
+---
+title: Basic 2.Use CSM as application framework
+author: nevstop
+date: 2023-12-28
+category: Basic
+layout: post
+lang: ch
+page_id: basic-2-use-csm-as-application-framework
+---
 
 在这种情况下，模块之间的通信完全依赖于消息字符串队列操作，你可以使用 **Build Message with Arguments++.vi** 函数生成一个 Message 字符串，或者，如果你熟悉规则，你可以直接使用编写用于描述通讯的字符串。
 
@@ -34,5 +42,5 @@
     // Another comment line
 
 ```
-
-可参考范例 _**/Example/2. Caller is CSM Scenario**_.&#x20;
+可参考范例 ***/Example/2. Caller is CSM Scenario***.
+![img](../assets/img/slides/Baisic-2.Call%20in%20CSM%20Framework(CN).png)

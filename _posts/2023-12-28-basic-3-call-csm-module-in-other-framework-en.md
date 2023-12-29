@@ -4,6 +4,8 @@ author: nevstop
 date: 2023-12-28
 category: Basic
 layout: post
+lang: en
+page_id: basic-3-call-csm-module-in-other-framework
 ---
 
 

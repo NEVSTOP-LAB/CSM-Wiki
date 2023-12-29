@@ -4,6 +4,8 @@ author: nevstop
 date: 2023-12-28
 category: Basic
 layout: post
+lang: en
+page_id: basic-4-csm-arguments
 ---
 
 CSM only supports the STRING TYPE as a parameter, but there is a wide variety of data that needs to be transmitted. Therefore, support for parameters is crucial. The table below lists some of the current ways in which different data types are supported, with some being built-in within CSM and others requiring additional installation through addons.

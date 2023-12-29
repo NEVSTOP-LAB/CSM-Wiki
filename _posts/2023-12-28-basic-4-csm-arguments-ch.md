@@ -1,3 +1,13 @@
+---
+title: Basic 4.CSM Arguments
+author: nevstop
+date: 2023-12-28
+category: Basic
+layout: post
+lang: ch
+page_id: basic-4-csm-arguments
+---
+
 JKISM 只支持 STRING TYPE 作为参数，但是需要传输的数据种类繁多。因此，对参数的支持至关重要。下表列出了当前支持不同数据类型的一些方法，其中一些是 CSM 内置的，而其他一些则需要安装额外的支持插件。
 
 <!--
@@ -12,4 +22,4 @@ JKISM 只支持 STRING TYPE 作为参数，但是需要传输的数据种类繁�
 
 -->
 
-![table](_img/slides/Baisic-4.Arguments(CN).png)
+![table](../assets/img/slides/Baisic-4.Arguments(CN).png)
