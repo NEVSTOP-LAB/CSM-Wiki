@@ -1,20 +1,20 @@
 # Configurations
-title:            Jekyll Gitbook
-longtitle:        Jekyll Gitbook
-author:           HE Tao
-email:            sighingnow@gmail.com
+title:            CSM-Wiki
+longtitle:        Communicatable State Machine(CSM) Wiki
+author:           nevstop
+email:            liyao.zheda@foxmail.com
 description: >
   Build Jekyll site with the GitBook style.
 
 version:          1.0
 gitbook_version:  3.2.3
 
-url:              'https://sighingnow.github.io'
-baseurl:          '/jekyll-gitbook'
-rss:              RSS
+# url:              'https://sighingnow.github.io'
+# baseurl:          '/jekyll-gitbook'
+# rss:              RSS
 
 # bootstrap: use the remote theme for the site itself
-# remote_theme: sighingnow/jekyll-gitbook
+remote_theme: sighingnow/jekyll-gitbook
 
 toc:
   enabled: true
