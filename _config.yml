@@ -64,9 +64,9 @@ plugins:
   - jekyll-feed
   - jekyll-readme-index
   - jemoji
-  - jekyll-multiple-languages-plugin
+  - jekyll-polyglot
 
-# The first item of languages will be used as the default.
-languages: ["en", "zh"]
-
-exclude_from_localizations: ["assets"]
+languages: ["en", "ch"]
+default_lang: "en"
+exclude_from_localization: ["javascript", "images", "css", "public"]
+parallel_localization: true
