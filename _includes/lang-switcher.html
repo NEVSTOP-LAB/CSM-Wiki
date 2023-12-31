@@ -3,16 +3,16 @@
 {{ ChooseLanguage }}: <a href="{{ page.url }}">English</a> | <a href="zh/{{ page.url }}">中文</a> -->
 
 {% assign ChooseLanguage = site.data[site.active_lang].l10n.ChooseLanguage %}
-{{ ChooseLanguage }}:
+{{ ChooseLanguage }}: |
 {% for lang in site.languages %}
     {% assign lang_name = site.data[lang].l10n.lang_name %}
     {% if lang == site.active_lang %}
-        {{ lang_name }}
+         {{ lang_name }} |
     {% else %}
         {% if lang == site.default_lang %}
-            <a href="{{ site.url }}/{{ page.url | split: '/' | last }}">{{ lang_name }}</a>
+            <a href="{{ site.url }}/{{ page.url | split: '/' | last }}"> {{ lang_name }}</a> |
         {% else %}
-            <a href="{{ site.url }}/{{ lang }}/{{ page.url | split: '/' | last }}">{{ lang_name }}</a>
+            <a href="{{ site.url }}/{{ lang }}/{{ page.url | split: '/' | last }}"> {{ lang_name }}</a> |
         {% endif %}
     {% endif %}
 {% endfor %}
