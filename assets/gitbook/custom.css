@@ -285,3 +285,17 @@ pre:has(code.language-mermaid[data-processed="true"]) {
     --c-danger-title: #c00;
     --font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 }
+
+.lang-switcher {
+    text-align: center;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.lang-switcher a{
+    color: #359469;
+}
+
+.lang-switcher a:visited{
+    color: #359469;
+}
