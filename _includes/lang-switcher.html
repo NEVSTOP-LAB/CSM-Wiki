@@ -1,6 +1,6 @@
 {% assign lang = site.active_lang %}
 {% assign ChooseLanguage = site.data[lang].l10n.ChooseLanguage %}
-{{ ChooseLanguage }}: <a href="{{ site.baseurl }}/{{ page.url }}">English</a> | <a href="{{ site.baseurl }}/zh/{{ page.url }}">中文</a>
+{{ ChooseLanguage }}: <a href="{{ page.url }}">English</a> | <a href="zh/{{ page.url }}">中文</a>
 
 <!-- {% for lang in site.languages %}
     {% assign lang_name = site.data[lang].l10n.lang_name %}
