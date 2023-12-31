@@ -9,31 +9,33 @@ page_id: release-notes-of-csm
 
 **v2023.Dec: 2023.12.25.111604 (Dec 25, 2023)**
 
-    #Core
-    [Critical] #207 "Target Busy Error" is obsolete. Now a sync-call message will not generate "Target Busy Error" but waiting until timeout.
-    [fix] #219 #225 #226 fix bug that the cache system is ineffective when CSMs start/exit in the same microsecond
-    [fix] #197 fix the bug of timeout behavior of CSM - Send Message and Wait for Reply.vi
-    [fix] #196 fix the bug that status of agent(worker Mode) could not trigger registered action
-    [fix] #215 now CSM - Module Turns Invalid (CSM) support Agent & Chain
-    [fix] #217 fix the bug that Single Character could not be used as module name
+```
+#Core
+[Critical] #207 "Target Busy Error" is obsolete. Now a sync-call message will not generate "Target Busy Error" but waiting until timeout.
+[fix] #219 #225 #226 fix bug that the cache system is ineffective when CSMs start/exit in the same microsecond
+[fix] #197 fix the bug of timeout behavior of CSM - Send Message and Wait for Reply.vi
+[fix] #196 fix the bug that status of agent(worker Mode) could not trigger registered action
+[fix] #215 now CSM - Module Turns Invalid (CSM) support Agent & Chain
+[fix] #217 fix the bug that Single Character could not be used as module name
 
-    #GlobalLog
-    [add] #214 add Error Handler which logs error in global log if any.
-    [update] #220 #221 Log Error Information in CSM - Generate User Global Log.vi
-    [fix] #212 Remove some meaningless items in log
+#GlobalLog
+[add] #214 add Error Handler which logs error in global log if any.
+[update] #220 #221 Log Error Information in CSM - Generate User Global Log.vi
+[fix] #212 Remove some meaningless items in log
 
-    #Utility
-    [add] #209 add Build Exit Messages of CSMs.vi
-    [add] #216 add two sync-up VI: CSM - Wait for All Modules to Exit.and CSM - Wait for All Modules to be Alive
-    [add] add Random Change Flag.vi for internal bug fix.
+#Utility
+[add] #209 add Build Exit Messages of CSMs.vi
+[add] #216 add two sync-up VI: CSM - Wait for All Modules to Exit.and CSM - Wait for All Modules to be Alive
+[add] add Random Change Flag.vi for internal bug fix.
 
-    #Installer
-    [improvement] #203 Change post-install action window to JKISM
-    [update] #228 show relative path in post-install action window
+#Installer
+[improvement] #203 Change post-install action window to JKISM
+[update] #228 show relative path in post-install action window
 
-    #Template
-    [add] add CSM - No-Event Structure Template - Tiny.vi
-    [minor update] #211 #223
+#Template
+[add] add CSM - No-Event Structure Template - Tiny.vi
+[minor update] #211 #223
+```
 
 **v2023.Nov: 2023.11.29.94143 (Nov 29, 2023)**
 
