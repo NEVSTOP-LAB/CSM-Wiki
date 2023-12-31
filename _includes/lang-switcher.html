@@ -1,5 +1,5 @@
-{% assign ChooseLanguage = site.data[lang].l10n.ChooseLanguage %}
 {% assign lang = site.active_lang %}
+{% assign ChooseLanguage = site.data[lang].l10n.ChooseLanguage %}
 {{ ChooseLanguage }}: <a href="{{ page.url }}">English</a> | <a href="{{ lang }}{{ page.url }}">中文</a>
 
 <!-- {% for lang in site.languages %}
