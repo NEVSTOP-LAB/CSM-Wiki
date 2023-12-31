@@ -4,9 +4,9 @@
 {{ lang_name }}
     {% else %}
         {% if lang == site.default_lang %}
-<a href="CSM-Wiki/{{ page.url }}">{{ lang_name }}</a>
+<a href="{ page.url }}">{{ lang_name }}</a>
         {% else %}
-<a href="CSM-Wiki/{{ lang }}{{ page.url }}">{{ lang_name }}</a>
+<a href="{{ lang }}{{ page.url }}">{{ lang_name }}</a>
         {% endif %}
     {% endif %}
 {% endfor %}

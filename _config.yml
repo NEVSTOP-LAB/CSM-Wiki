@@ -9,8 +9,8 @@ description: >
 version:          1.0
 gitbook_version:  3.2.3
 
-url:              'https://nevstop-lab.github.io'
-baseurl:          '/CSM-Wiki'
+url:              'https://nevstop-lab.github.io/CSM-Wiki'
+baseurl:          '/'
 rss:              RSS
 
 # bootstrap: use the remote theme for the site itself
