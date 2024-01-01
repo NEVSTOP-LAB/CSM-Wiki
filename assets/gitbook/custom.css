@@ -290,6 +290,7 @@ pre:has(code.language-mermaid[data-processed="true"]) {
     text-align: center;
     margin-left: 1%;
     margin-right: 1%;
+    margin-bottom: 200px;
 }
 
 .lang-switcher a{

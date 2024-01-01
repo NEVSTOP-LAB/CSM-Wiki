@@ -13,4 +13,4 @@ page_id: basic-1-create-reuseable-csm-module
 在CSM模块中，所有 case 分支都可以被视为调用的消息，但建议使用 API 分组作为外部接口。当发送状态更新时，通过发送 Status 或 Interrupt Status 来通知外部模块内部的状态变化。
 
 可参考范例 ***/Example/1. Create a reusable module***
-![img](../assets/img/slides/Baisic-1.Create%20Reuse%20Module(CN).png)
+![img](../img/slides/Baisic-1.Create%20Reuse%20Module(CN).png)

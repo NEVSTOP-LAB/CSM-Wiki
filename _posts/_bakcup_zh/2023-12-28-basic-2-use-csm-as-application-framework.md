@@ -43,4 +43,4 @@ page_id: basic-2-use-csm-as-application-framework
 
 ```
 可参考范例 ***/Example/2. Caller is CSM Scenario***.
-![img](../assets/img/slides/Baisic-2.Call%20in%20CSM%20Framework(CN).png)
+![img](../img/slides/Baisic-2.Call%20in%20CSM%20Framework(CN).png)

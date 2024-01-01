@@ -22,4 +22,4 @@ JKISM 只支持 STRING TYPE 作为参数，但是需要传输的数据种类繁�
 
 -->
 
-![table](../assets/img/slides/Baisic-4.Arguments(CN).png)
+![table](../img/slides/Baisic-4.Arguments(CN).png)
