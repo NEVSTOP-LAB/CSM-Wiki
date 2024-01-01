@@ -1,8 +1,8 @@
 ---
-title: Communicable State Machine(CSM)
-permalink: /
+title: 可通信状态机框架(CSM)
 layout: home
 lang: zh
+permalink: /
 ---
 
 [![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)
