@@ -9,8 +9,8 @@ description: >
 version:          1.0
 gitbook_version:  3.2.3
 
-url:              'https://nevstop-lab.github.io/CSM-Wiki'
-baseurl:          '/'
+url:              'https://nevstop-lab.github.io/'
+baseurl:          '/CSM-Wiki'
 rss:              RSS
 
 # bootstrap: use the remote theme for the site itself
@@ -31,7 +31,7 @@ kramdown:
   input:                  GFM
   math_engine:            mathjax
   smart_quotes:           lsquo,rsquo,ldquo,rdquo
-  toc_levels:             1..6
+  toc_levels:             1..2  #原本这里是1~6
   syntax_highlighter:     rouge
   syntax_highlighter_opts:
     guess_lang:           true
@@ -41,7 +41,7 @@ syntax_highlighter_style: colorful
 markdown_ext:             markdown,mkdown,mkdn,mkd,md
 
 # Permalinks
-permalink:                /:year-:month-:day-:title:output_ext
+permalink:                /:categories/:year-:month-:day-:title:output_ext
 
 # Disqus comments
 # disqushandler:            sighingnow
@@ -52,7 +52,7 @@ exclude:
 collections:
   pages:
     output: true
-    permalink: /:path/
+    permalink: /:collection/:path/
 
 page_width: 1200px
 
