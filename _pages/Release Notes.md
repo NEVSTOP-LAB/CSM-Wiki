@@ -1,5 +1,5 @@
 ---
-title: {{ site.data[lang].l10n.release_note }}
+title: Release Notes
 author: nevstop
 date: 2023-12-31
 layout: post
