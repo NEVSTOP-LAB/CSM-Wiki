@@ -10,12 +10,15 @@
     {% if lang == site.active_lang %}
         {{ lang_name }} |
     {% else %}
-        {% if lang == site.default_lang %}
-            <a href="{{ site.baseurl }}/{{ page.url | split: '/' | last | split: '/' | last }}"> {{ lang_name }}</a> |
+        {% if lang == 'zh' %}
+            <a href="{{ site.baseurl }}/{{ page.url | split: '/' | last }}"> {{ lang_name }}</a> |
         {% else %}
             <a href="{{ site.baseurl }}/{{ lang }}/{{ page.url | split: '/' | last }}"> {{ lang_name }}</a> |
         {% endif %}
     {% endif %}
 {% endfor %}
 
-<a href="{{ page.url }}">page.url</a> | <a href="{{ page.url | split: '/' | last }}">page.url.last</a> |
+<!--
+    <a href="{{ page.url }}">page.url</a>
+    <a href="{{ page.url | split: '/' | last }}">page.url.last</a>
+-->
