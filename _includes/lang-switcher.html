@@ -10,9 +10,9 @@
          {{ lang_name }} |
     {% else %}
         {% if lang == site.default_lang %}
-            <a href="{{ site.url }}/{{ page.url | split: '/' | last }}"> {{ lang_name }}</a> |
+            <a href="{{ site.baseurl}}/{{ page.url | split: '/' | last }}"> {{ lang_name }}</a> |
         {% else %}
-            <a href="{{ site.url }}/{{ lang }}/{{ page.url | split: '/' | last }}"> {{ lang_name }}</a> |
+            <a href="{{ site.baseurl}}/{{ lang }}/{{ page.url | split: '/' | last }}"> {{ lang_name }}</a> |
         {% endif %}
     {% endif %}
 {% endfor %}
