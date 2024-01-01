@@ -8,6 +8,12 @@
         />
     {% endif %}
 
+    <div class="wrapper">
+        {%- if page.lang != site.active_lang -%}
+            {%- include no-translation.html -%}
+        {%- endif -%}
+    </div>
+
     <div class="page-inner">
         <div id="book-search-results">
             <div class="search-noresults">
