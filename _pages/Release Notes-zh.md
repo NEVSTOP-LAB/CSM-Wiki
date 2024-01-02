@@ -3,7 +3,7 @@ title: 历史版本说明
 author: nevstop
 date: 2023-12-31
 layout: post
-lang: en
+lang: zh
 page_id: release-notes-of-csm
 ---
 
