@@ -4,6 +4,7 @@ author: nevstop
 date: 2023-12-29
 layout: post
 lang: zh
+mermaid: true
 page_id: communition-bwtween-modules
 ---
 
