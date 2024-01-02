@@ -4,9 +4,12 @@
 
 
 {% assign ChooseLanguage = site.data[site.active_lang].l10n.ChooseLanguage %}
+
+<!-- #github#2 切换到英文后，无法切换回中文 -->
 {% assign PageHTMLFileName = page.url | split: '/' | last %}
-{% assign zhPageURL = "/CSM-Wiki/"PageHTMLFileName %}
+{% assign zhPageURL = "/CSM-Wiki/"PageHTMLFileName | | replace: "/en", "/" %}
 {% assign enPageURL = "/CSM-Wiki/en/"PageHTMLFileName %}
+
 {{ ChooseLanguage }}: |
 {% for lang in site.languages %}
     {% assign lang_name = site.data[lang].l10n.lang_name %}
