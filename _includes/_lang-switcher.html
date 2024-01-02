@@ -2,6 +2,12 @@
 {% assign ChooseLanguage = site.data[lang2].l10n.ChooseLanguage %}
 {{ ChooseLanguage }}: <a href="/CSM-Wiki{{ page.url }}">中文</a> | <a href="/CSM-Wiki/en{{ page.url }}">English</a>
 
+{% if page.lang == "en" %}
+<a href="{{ page.url | prepend: '' }}">中文</a>
+{% else %}
+<a href="{{ page.url | prepend: '/en' }}">English</a>
+{% endif %}
+
 <!-- ------------- -->
 
 <!-- {% assign ChooseLanguage = site.data[site.active_lang].l10n.ChooseLanguage %}
