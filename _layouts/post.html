@@ -37,9 +37,9 @@
                 <div class="body-inner">
 
                     <div class="wrapper">
-                        {%- if page.lang != site.active_lang -%}
+                        {% if page.lang != site.active_lang %}
                             {%- include no-translation.html -%}
-                        {%- endif -%}
+                        {% endif %}
                     </div>
 
                     {%- include body.html -%}
