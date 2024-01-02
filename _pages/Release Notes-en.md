@@ -46,11 +46,11 @@ page_id: release-notes-of-csm
     [add] #161 Response/Async Response carry the Error information from target CSM module
     [add] Allowed Messages(Empty for all) terminal for Parse State Queue++.vi
     [improve] make Parse State Queue++.vi block diagram clear
-    [imporve] #140 Improve CSM - Send Message and Wait for Reply.vi and CSM - Post Message.vi
+    [improve] #140 Improve CSM - Send Message and Wait for Reply.vi and CSM - Post Message.vi
     [fix] #173 fix bug that sync message(-@) is blocking by mass of async message(->).
     [fix] fix No source module name for "Macro: Exit"
     [fix] show pre-state argument for Response(sync-call)
-    [fix] show pre-state/pre-argument for "Target Error","Target Timeout Error" or "Traget Busy Error"
+    [fix] show pre-state/pre-argument for "Target Error","Target Timeout Error" or "Target Busy Error"
 
     # Arguments
     [add] Convert Error with Argument API and example
@@ -59,7 +59,7 @@ page_id: release-notes-of-csm
     [critical] Change Error Status Arguments to SafeString as Default in template
     [add] add a stub string constant which is for exiting sub-modules
     [update] #186 show "Init State("Macro: Initialize")" control for templates
-    [update] init error shift resgister in front of loop
+    [update] init error shift register in front of loop
     [fix] #179 Show documentation case by default
 
     # documentation
@@ -73,7 +73,7 @@ page_id: release-notes-of-csm
     [add] #154 Create stub folder [labview]\templates\Communicable State Machine(CSM) for template VIs
     [add] Apache License 2.0 License
     [add] update More template palette tool
-    [add] Example of demostration of build-in error handling framework
+    [add] Example of demonstration of build-in error handling framework
     [improve] #160 improve debug tools of CSM
     [improve] #174 Show all keyword in template
     [improve] #168 template: add case in Response/Async Response
