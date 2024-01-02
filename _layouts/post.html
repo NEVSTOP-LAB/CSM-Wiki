@@ -4,6 +4,7 @@
 
         {%- include head.html -%}
 
+        <!-- 禁用上一篇和下一篇 -->
         <!-- {% if page.previous %}
             <link rel="prev" href="{{site.baseurl}}{{page.previous.url}}" />
         {% else %}
@@ -33,16 +34,18 @@
                     </h1>
                 </div>
 
-                <div class="wrapper">
-                    {%- if page.lang != site.active_lang -%}
-                        {%- include no-translation.html -%}
-                    {%- endif -%}
-                </div>
-
                 <div class="body-inner">
+
+                    <div class="wrapper">
+                        {%- if page.lang != site.active_lang -%}
+                            {%- include no-translation.html -%}
+                        {%- endif -%}
+                    </div>
+
                     {%- include body.html -%}
 
-                    {% if page.previous %}
+                    <!-- 禁用上一篇和下一篇 -->
+                    <!-- {% if page.previous %}
                         <a href="{{site.baseurl}}{{page.previous.url}}" class="navigation navigation-prev navigation-unique" aria-label="Previous page: {{page.previous.title}}">
                             <i class="fa fa-angle-left"></i>
                         </a>
@@ -56,7 +59,8 @@
                         <a href="{{site.baseurl}}{{page.next.url}}" class="navigation navigation-next navigation-unique" aria-label="Next page: {{page.next.title}}">
                             <i class="fa fa-angle-right"></i>
                         </a>
-                    {% endif %}
+                    {% endif %} -->
+
                 </div>
             </div>
 

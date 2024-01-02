@@ -6,6 +6,7 @@
 
         {% assign reversed_posts = site.posts | reverse %}
 
+        <!-- 禁用上一篇和下一篇 -->
         <!-- {% if reversed_posts %}
             <link rel="next" href="{{site.baseurl}}{{reversed_posts.first.url}}" />
         {% endif %} -->
@@ -32,7 +33,8 @@
                 <div class="body-inner">
                     {%- include body.html -%}
 
-                    <a href="{{site.baseurl}}/" class="navigation navigation-pre navigation-unique">
+                    <!-- 禁用上一篇和下一篇 -->
+                    <!-- <a href="{{site.baseurl}}/" class="navigation navigation-pre navigation-unique">
                         <i class="fa"></i>
                     </a>
 
@@ -40,7 +42,8 @@
                         <a href="{{site.baseurl}}{{reversed_posts.first.url}}" class="navigation navigation-next navigation-unique" aria-label="Next page: {{reversed_posts.first.title}}">
                             <i class="fa fa-angle-right"></i>
                         </a>
-                    {% endif %}
+                    {% endif %} -->
+
                 </div>
             </div>
 
