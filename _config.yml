@@ -66,7 +66,7 @@ plugins:
   - jemoji
   - jekyll-polyglot
 
-languages: ["en", "zh"]
-default_lang: "en"
+languages: ["zh", "en"]
+default_lang: "zh"
 exclude_from_localization: ["javascript", "images", "css", "public"]
 parallel_localization: true
