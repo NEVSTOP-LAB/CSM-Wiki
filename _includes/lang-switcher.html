@@ -1,8 +1,3 @@
-<!-- {% assign lang = site.active_lang %}
-{% assign ChooseLanguage = site.data[lang].l10n.ChooseLanguage %}
-{{ ChooseLanguage }}: <a href="/CSM-Wiki/en{{ page.url }}">English</a> | <a href=""/CSM-Wiki{{ page.url }}">中文</a> -->
-
-
 {% assign ChooseLanguage = site.data[site.active_lang].l10n.ChooseLanguage %}
 
 <!-- #github#2 切换到英文后，无法切换回中文 -->
@@ -32,3 +27,7 @@
     <a href="{{ page.url }}">page.url</a>
     <a href="{{ page.url | split: '/' | last }}">page.url | split: '/' | last</a>
 -->
+
+<!-- {% assign lang2 = site.active_lang %}
+{% assign ChooseLanguage = site.data[lang2].l10n.ChooseLanguage %}
+{{ ChooseLanguage }}: <a href="/CSM-Wiki/en{{ page.url }}">English</a> | <a href=""/CSM-Wiki{{ page.url }}">中文</a> -->
