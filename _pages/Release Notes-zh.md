@@ -1,5 +1,5 @@
 ---
-title: Release Notes
+title: 历史版本说明
 author: nevstop
 date: 2023-12-31
 layout: post
@@ -7,7 +7,7 @@ lang: en
 page_id: release-notes-of-csm
 ---
 
-**v2023.Dec: 2023.12.25.111604 (Dec 25, 2023)**
+[**v2023.Dec: 2023.12.25.111604 (Dec 25, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
 
 ```
 #Core
@@ -37,7 +37,7 @@ page_id: release-notes-of-csm
 [minor update] #211 #223
 ```
 
-**v2023.Nov: 2023.11.29.94143 (Nov 29, 2023)**
+[**v2023.Nov: 2023.11.29.94143 (Nov 29, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Nov)
 
     # Core
     [add] #144 add build-in chain of responsibility mode "$" as key words in module name.
@@ -65,7 +65,7 @@ page_id: release-notes-of-csm
     # documentation
     [fix] #180 Update description of quick-drop VIs in documentation palette
 
-**v2023.Oct: 2023.10.29.195953 (Oct 29, 2023)**
+[**v2023.Oct: 2023.10.29.195953 (Oct 29, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Oct)
 
     [critical]#169 show both source message and arguments for response/async response, which will broken old module but easy to fix.
     [add] #158 Add State Table - DebugTool
@@ -84,6 +84,6 @@ page_id: release-notes-of-csm
     [fix] #171 register status@* should exclude itself from list, to prevent recursive call.
 
 
-**v2023.Sep: 2023.10.2.123812 (Oct 03, 2023)**
+[**v2023.Sep: 2023.10.2.123812 (Oct 03, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.10.2.123812)
 
     Release to vipm.io

@@ -79,7 +79,7 @@ end
 `异步消息`也分为两种:
 
  - `有返回的异步消息`：通过 `->` 描述。被调用方完成`消息`处理后，将通知调用方
- - `无返回的异步消息`：通过 `->|` 描述，被调用方不会通知调用方
+ - `无返回的异步消息`：通过 `->\|` 描述，被调用方不会通知调用方
 
 一个 CSM模块通过`异步消息`对另一个模块的调用，叫做异步调用。
 
@@ -114,11 +114,11 @@ end
 
 ```
 
-### 无返回的异步消息 (->|)
+### 无返回的异步消息 (->\|)
 
 ``` mermaid
 sequenceDiagram
-Caller-CSM ->> Callee-CSM: API: DoSth >> Arguments ->| Callee-CSM
+Caller-CSM ->> Callee-CSM: API: DoSth >> Arguments ->\| Callee-CSM
 
 Caller-CSM ->> Caller-CSM: 进入 "Async Message Posted" 状态 <br/> State Arguments 为 "API: DoSth"
 
@@ -159,13 +159,13 @@ End
 在"Async Response"状态中处理同步消息的响应
 ![Alt text](assets/img/Response@MainModule2.png)
 
-#### 无返回的异步消息 (->|)
+#### 无返回的异步消息 (->\|)
 
- - **"MainModule" 模块通过 "API: EchoArguments >> xyz ->| SubModule" 也可以异步调用 SubModule 执行"API: EchoArguments" 状态。**
+ - **"MainModule" 模块通过 "API: EchoArguments >> xyz ->\| SubModule" 也可以异步调用 SubModule 执行"API: EchoArguments" 状态。**
  - **发送后立刻进入"Async Message Posted"。**
- - **因为使用的 ->| 为不带返回的异步消息符号，将不收到任何响应**
+ - **因为使用的 ->\| 为不带返回的异步消息符号，将不收到任何响应**
 
-按键中添加同步消息 "API: EchoArguments >> xyz ->| SubModule"
+按键中添加同步消息 "API: EchoArguments >> xyz ->\| SubModule"
 ![Alt text](assets/img/EchoArguments%20%20xyz%20asynccall%20without%20resp%20SubModule.png)
 
 **运行状态**
