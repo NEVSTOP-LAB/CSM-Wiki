@@ -1,6 +1,11 @@
-{% assign ChooseLanguage = site.data[site.active_lang].l10n.ChooseLanguage %}
+{% assign lang2 = site.active_lang %}
+{% assign ChooseLanguage = site.data[lang2].l10n.ChooseLanguage %}
+{{ ChooseLanguage }}: <a href=""/CSM-Wiki{{ page.url }}">中文</a> | <a href="/CSM-Wiki/en{{ page.url }}">English</a>
 
-<!-- #github#2 切换到英文后，无法切换回中文 -->
+<!-- ------------- -->
+
+<!-- {% assign ChooseLanguage = site.data[site.active_lang].l10n.ChooseLanguage %}
+
 {% assign PageHTMLFileName = page.url | split: '/' | last %}
 {% assign zhPageURL = "/CSM-Wiki/"PageHTMLFileName | replace: "/en", "/" %}
 {% assign enPageURL = "/CSM-Wiki/en/"PageHTMLFileName %}
@@ -17,7 +22,7 @@
             <a href="{{ enPageURL }}"> {{ lang_name }} </a> |
         {% endif %}
     {% endif %}
-{% endfor %}
+{% endfor %} -->
 
 <!--
     <a href="{{ PageHTMLFileName }}">PageHTMLFileName</a>
@@ -27,7 +32,3 @@
     <a href="{{ page.url }}">page.url</a>
     <a href="{{ page.url | split: '/' | last }}">page.url | split: '/' | last</a>
 -->
-
-<!-- {% assign lang2 = site.active_lang %}
-{% assign ChooseLanguage = site.data[lang2].l10n.ChooseLanguage %}
-{{ ChooseLanguage }}: <a href="/CSM-Wiki/en{{ page.url }}">English</a> | <a href=""/CSM-Wiki{{ page.url }}">中文</a> -->
