@@ -11,9 +11,9 @@
         {{ lang_name }} |
     {% else %}
         {% if lang == "zh" %}
-            <a href="{{ site.baseurl }}/{{ page.url | split: '/' | last }}"> {{ lang_name }}</a> |
+            <a href="{{ site.baseurl }}/{{ page.url | split: '/' | last }}"> {{ lang_name }} 1</a> |
         {% else %}
-            <a href="{{ site.baseurl }}/{{ lang }}/{{ page.url | split: '/' | last }}"> {{ lang_name }}</a> |
+            <a href="{{ site.baseurl }}/{{ lang }}/{{ page.url | split: '/' | last }}"> {{ lang_name }} 2</a> |
         {% endif %}
     {% endif %}
 {% endfor %}
