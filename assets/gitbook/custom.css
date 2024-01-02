@@ -303,7 +303,7 @@ pre:has(code.language-mermaid[data-processed="true"]) {
 
 div#no-translation-msg {
     text-align: center;
-    background: rgba(139, 0, 0, 0.253);
+    background: rgb(187, 10, 10);
     font-size: 24px;
     color: wheat;
     border-bottom: black;
