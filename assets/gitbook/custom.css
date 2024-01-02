@@ -300,3 +300,11 @@ pre:has(code.language-mermaid[data-processed="true"]) {
 .lang-switcher a:visited{
     color: #359469;
 }
+
+div#no-translation-msg {
+    text-align: center;
+    background: rgba(139, 0, 0, 0.253);
+    font-size: 24px;
+    color: wheat;
+    border-bottom: black;
+}
