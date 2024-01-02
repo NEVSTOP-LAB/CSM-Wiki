@@ -1,10 +1,10 @@
 # Configurations
-title:            CSM-Wiki
+title:            Communicable State Machine(CSM)
 longtitle:        Communicable State Machine(CSM) Wiki
 author:           nevstop
 email:            liyao.zheda@foxmail.com
 description: >
-  Wiki website for Communicable State Machine(CSM) and its applications.
+  Wiki website for Communicable State Machine(CSM) Framework and its applications.
 
 version:          1.0
 gitbook_version:  3.2.3
