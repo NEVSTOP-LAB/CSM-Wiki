@@ -11,9 +11,9 @@
         {{ lang_name }} |
     {% else %}
         {% if lang == site.default_lang %}
-            <a href="{{ page.url | split: '/' | last }}"> {{ lang_name }} 1</a> |
+            <a href="/CSM-Wiki/{{ page.url | split: '/' | last }}"> {{ lang_name }} </a> |
         {% else %}
-            <a href="/CSM-Wiki/{{ lang }}/{{ page.url | split: '/' | last }}"> {{ lang_name }} 2</a> |
+            <a href="/CSM-Wiki/{{ lang }}/{{ page.url | split: '/' | last }}"> {{ lang_name }} </a> |
         {% endif %}
     {% endif %}
 {% endfor %}
