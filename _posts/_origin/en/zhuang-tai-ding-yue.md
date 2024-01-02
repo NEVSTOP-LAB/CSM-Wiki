@@ -34,11 +34,11 @@
 I'm timeout >> statusArguments -> <all>
 ```
 
-### JIMSM++ 状态订阅
+### CSM 状态订阅
 
 通过 `AdvanceAPI\CSM Register Status Change.vi` 和 `AdvanceAPI\CSM Unregister Status Change.vi` 订阅和取消订阅。"\*" 可以代表所有模块，例如 CSM Template 都将发布 "Error Occured" 状态，如果订阅 "\*" 的"Error Occured" 状态，能够收到除自己外所有模块的错误发生。
 
-### JIMSM++ 举例
+### CSM 举例
 
 **`SubModule` 每 2000ms 发布 "I'm timout" 状态**
 
