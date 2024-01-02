@@ -4,6 +4,7 @@
 
 
 {% assign ChooseLanguage = site.data[site.active_lang].l10n.ChooseLanguage %}
+{% assign PageHTMLFileName = page.url | split: '/' | last %}
 {{ ChooseLanguage }}: |
 {% for lang in site.languages %}
     {% assign lang_name = site.data[lang].l10n.lang_name %}
@@ -11,14 +12,15 @@
         {{ lang_name }} |
     {% else %}
         {% if lang == site.default_lang %}
-            <a href="/CSM-Wiki/{{ page.url | split: '/' | last }}"> {{ lang_name }} </a> |
+            <a href="/CSM-Wiki/{{ PageHTMLFileName }}"> {{ lang_name }} </a> |
         {% else %}
-            <a href="/CSM-Wiki/{{ lang }}/{{ page.url | split: '/' | last }}"> {{ lang_name }} </a> |
+            <a href="/CSM-Wiki/{{ lang }}/{{ PageHTMLFileName }}"> {{ lang_name }} </a> |
         {% endif %}
     {% endif %}
 {% endfor %}
 
 <!--
+    <a href="{{ PageHTMLFileName }}">PageHTMLFileName</a>
     <a href="{{ site.baseurl }}">site.baseurl</a>
     <a href="{{ page.url }}">page.url</a>
     <a href="{{ page.url | split: '/' | last }}">page.url | split: '/' | last</a>
