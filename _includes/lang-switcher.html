@@ -7,7 +7,7 @@
 
 <!-- #github#2 切换到英文后，无法切换回中文 -->
 {% assign PageHTMLFileName = page.url | split: '/' | last %}
-{% assign zhPageURL = "/CSM-Wiki/"PageHTMLFileName | | replace: "/en", "/" %}
+{% assign zhPageURL = "/CSM-Wiki/"PageHTMLFileName | replace: "/en", "/" %}
 {% assign enPageURL = "/CSM-Wiki/en/"PageHTMLFileName %}
 
 {{ ChooseLanguage }}: |
