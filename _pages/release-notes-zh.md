@@ -1,9 +1,10 @@
 ---
-title: Release Notes
+title: 历史版本说明
 author: nevstop
 date: 2023-12-31
+category: information
 layout: post
-lang: en
+lang: zh
 page_id: release-notes-of-csm
 ---
 
