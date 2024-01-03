@@ -32,7 +32,7 @@
             <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}">
             {% endif %}
                 <a href="{{site.baseurl}}/" onclick="pageScrollToTop(this)">
-                    {{ site.title | escape }}
+                    {{ site.data[site.active_lang].l10n.title | escape }}
                 </a>
             </li>
 
