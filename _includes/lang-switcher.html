@@ -1,17 +1,19 @@
 | <a href="/CSM-Wiki/">中文</a> | <a href="/CSM-Wiki/en/">English</a> |
 
+<br>
+{% assign ChooseLanguage = site.data[page.lang].l10n.ChooseLanguage %}:|
+
 {% if page.lang == "en" %}
-<a href="{{ page.url | prepend: '' }}">中文</a>
+<a href="/CSM-Wiki{{ page.url | prepend: '' }}">中文</a>
 {% else %}
-<a href="{{ page.url | prepend: '/en' }}">English</a>
+中文
 {% endif %}
-
-<!-- Create a language switcher for jekyll site -->
-<!-- https://stackoverflow.com/questions/22111549/create-a-language-switcher-for-jekyll-site -->
-
-
-
-
-
+|
+{% if page.lang == "zh" %}
+<a href="{{ page.url | prepend: '/en' }}">English</a>
+{% else %}
+English
+{% endif %}
+|
 
 
