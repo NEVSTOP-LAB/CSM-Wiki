@@ -1,8 +1,8 @@
 # Configurations
 title:            Communicable State Machine(CSM)
 longtitle:        Communicable State Machine(CSM) Wiki
-author:           NEVSTOP-Lab
-github_username:  NEVSTOP-Lab
+author:           NEVSTOP-LAB
+github_username:  NEVSTOP-LAB
 email:            liyao.zheda@foxmail.com
 description: >
   Wiki website for Communicable State Machine(CSM) Framework and its applications.
@@ -32,10 +32,10 @@ kramdown:
   input:                  GFM
   math_engine:            mathjax
   smart_quotes:           lsquo,rsquo,ldquo,rdquo
-  toc_levels:             1..3  #原本这里是1~6
+  toc_levels:             1..6  #原本这里是1~6
   syntax_highlighter:     rouge
   syntax_highlighter_opts:
-    guess_lang:             true
+    guess_lang:           true
 
 syntax_highlighter_style: colorful
 

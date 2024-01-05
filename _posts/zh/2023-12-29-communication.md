@@ -8,6 +8,8 @@ mermaid: true
 page_id: communition-bwtween-modules
 ---
 
+{:toc}
+
 # 同步调用 (-@)
 
 `同步消息`是`消息`的一种。CSM 发出`同步消息`后，将暂停`状态`变化，等待被调用方完成`消息`处理。`同步消息`通过 -@ 描述。
