@@ -30,7 +30,7 @@
 1. 通过 `CSM Broadcast Status Change.vi` 发布状态，可携带`参数`
 2. 直接通过字符串描述, 以下描述完成和上截图相同的状态发布
 
-```
+``` c
 I'm timeout >> statusArguments -> <all>
 ```
 

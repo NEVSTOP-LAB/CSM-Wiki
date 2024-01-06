@@ -215,7 +215,7 @@ End
 
 2. 直接通过字符串描述, 以下描述完成和上截图相同的状态发布
 
-```
+``` c
 I'm timeout >> statusArguments -> <all>
 ```
 

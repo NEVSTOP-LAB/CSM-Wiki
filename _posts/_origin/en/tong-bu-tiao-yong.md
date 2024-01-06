@@ -34,7 +34,7 @@ end
 
 **"SubModule" 模块实现 "API: EchoArguments" 状态**
 
-```
+``` text
 功能：将参数作为响应返回。
 ```
 
