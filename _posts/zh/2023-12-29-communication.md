@@ -10,7 +10,7 @@ page_id: communition-bwtween-modules
 
 {:toc}
 
-# 同步调用 (-@)
+# 同步调用 (`-@`)
 
 `同步消息`是`消息`的一种。CSM 发出`同步消息`后，将暂停`状态`变化，等待被调用方完成`消息`处理。`同步消息`通过 -@ 描述。
 一个 CSM模块通过`同步消息`对另一个模块的调用，叫做`同步调用`。
@@ -41,9 +41,9 @@ end
 
 ```
 
-## 示例
+### 示例
 
-### 底层模块
+#### 底层模块
 
 **"SubModule" 模块实现 "API: EchoArguments" 状态**
 
@@ -52,7 +52,7 @@ end
 ![API: EchoArguments@Sub-Module](assets/img/265700817-2070416f-2f2d-4ba9-831b-b3b22540607c.png)
 
 
-### CSM 模块间的同步调用
+#### CSM 模块间的同步调用
 
 **"MainModule" 模块通过 "API: EchoArguments >> xyz -@ SubModule"同步调用SubModule执行"API: EchoArguments" 状态**
 
@@ -68,14 +68,14 @@ end
 
 ![Alt text](assets/img/SyncCall%20by%20CSM%20result.png)
 
-### 非 CSM 的调用
+#### 非 CSM 的调用
 
 可以使用 `AdvanceAPI\CSM Send Message and Wait for Reply.vi` 在非CSM的代码中调用 SubModule 的"API: EchoArguments" 状态
 
 ![Alt text](assets/img/SyncCall%20with%20advanceAPI.png)
 
 
-# 异步调用
+# 异步调用(`->` 或 `->\|`)
 
 `异步消息`是消息的一种。CSM发出`异步消息`后，不等待被调用方完成消息处理，继续进行`状态`变化。
 `异步消息`也分为两种:
@@ -137,9 +137,9 @@ Caller-CSM ->> Caller-CSM: 继续下一个状态
 End
 ```
 
-## 示例
+### 示例
 
-### 底层模块
+#### 底层模块
 
 **"SubModule" 模块实现 "API: EchoArguments" 状态**
 
@@ -185,17 +185,13 @@ End
 
 # 状态订阅
 
-## 设计说明
-
-### 原因
-
 `状态(Status)`是 CSM 通知外部自身状态变化的特殊消息。外部的模块需要注册状态后，才会处理对应的状态变化。
 
 `状态(Status)` 的设计加入，能够更好的实现不同功能模块的解耦，提高复用性。它能保证具有关联性的模块在设计时，不去关心与其他模块的交互，而是转换为自身状态变化的设计，从而实现更好的独立性。整体业务逻辑实现时，注册模块的状态，与具有交互关系的模块消息接口绑定，实现相关间的交换逻辑。
 
 状态的订阅、取消订阅能够动态完成，程序的灵活性更高。
 
-### 举例：实现音乐下载完毕后自动播放功能**
+**举例：实现音乐下载完毕后自动播放功能**
 
 根据场景，实现 `下载模块` `音乐播放模块` 两个模块，能够更好的复用，且逻辑划分清楚。
 
@@ -211,7 +207,6 @@ End
 　－　业务逻辑将`下载模块`的下载完成状态注册到`音乐播放模块`的播放接口，下载完成后自动会触发播放。
 　－　可以动态取消。如果下载的是视频文件，与`视频播放模块`的交互方法类似，模块间交互优雅简单。
 
-
 ## CSM 状态设计
 
 ### CSM 状态发布
@@ -220,7 +215,7 @@ End
 
 ![Alt text](assets/img/CSM%20Broadcast%20Status%20Change.png)
 
-1. 直接通过字符串描述, 以下描述完成和上截图相同的状态发布
+2. 直接通过字符串描述, 以下描述完成和上截图相同的状态发布
 
 ```
 I'm timeout >> statusArguments -> <all>
@@ -232,7 +227,7 @@ I'm timeout >> statusArguments -> <all>
 
 ![Alt text](assets/img/status%20register%20and%20unregister%20api.png)
 
-### CSM 举例
+#### 举例
 
 **`SubModule` 每 2000ms 发布 "I'm timout" 状态**
 
