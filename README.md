@@ -25,6 +25,10 @@ _**TODO LIST**_
   - [ ] JKISM的介绍(md-page[-]) - English[-] | Chinese [-]
   - [ ] JKISM的推荐用法(md-page[-]) - English[-] | Chinese [-]
 
+- CSM函数选板/Template
+  - [ ] CSM Palette - English[-] | Chinese [-]
+  - [ ] CSM Template - English[-] | Chinese [-]
+
 - 基础内容部分
   - [ ] CSM的基本概念(md-page[-]) - English[-] | Chinese [-]
   - [ ] CSM模块间的通讯(md-page[-]) - English[-] | Chinese [-]
