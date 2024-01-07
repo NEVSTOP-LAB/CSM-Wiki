@@ -100,6 +100,6 @@ _**TODO LIST**_
         说明INI/静态参数应用的场景, 链接到REPO
 
 - 应用列表
-  - [ ] Continuous Measurement and Logging Project(md-page[-]) - English[-] | Chinese [-]
+  - [√] Continuous Measurement and Logging Project(md-page[-]) - English[√] | Chinese [√]
   - [ ] <<补充其他的项目>>
 ```
