@@ -38,7 +38,9 @@
 
                     <div class="wrapper">
                         {% if page.lang != site.active_lang %}
-                            {%- include no-translation.html -%}
+                            {% if page.TranslationCheck != "False" %}
+                                {%- include no-translation.html -%}
+                            {% endif %}
                         {% endif %}
                     </div>
 
