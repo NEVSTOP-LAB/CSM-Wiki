@@ -4,7 +4,6 @@ author: nevstop
 date: 2024-01-02
 layout: post
 lang: en
-mermaid: true
 page_id: CSM-Continuous-Measurement-and-Logging
 ---
 
