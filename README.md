@@ -9,7 +9,8 @@ _**本仓库使用了以下的开源项目或服务**_：
 - 使用了[sighingnow/jekyll-gitbook](https://github.com/sighingnow/jekyll-gitbook)主题
 - 使用[untra/polyglot](https://github.com/untra/polyglot),一个Jekyll插件，用于多语言支持
 
-_**TODO**_
+``` text
+TODO LIST
 
 网站部分：
 - [ ] About 页面 - English[-] | Chinese [√]
@@ -51,5 +52,11 @@ _**TODO**_
 
 - Addon/Plugins
   - [ ] MassData参数支持 - English[-] | Chinese [-]
+  - [ ] Example位置 - English[-] | Chinese [-]
   - [ ] API String参数支持 - English[-] | Chinese [-]
   - [ ] INI/静态参数支持 - English[-] | Chinese [-]
+
+- 应用列表
+  - [ ] Continuous Measurement and Logging Project - English[-] | Chinese [-]
+  - [ ] <<补充其他的项目>>
+```
