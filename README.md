@@ -12,21 +12,21 @@ _**本仓库使用了以下的开源项目或服务**_：
 _**TODO**_
 
 网站部分：
-- [ ] About 页面 - English[ ] | Chinese [ ]
-- [ ] Contact 页面 - English[ ] | Chinese [ ]
-- [ ] Contributors 页面 - English[ ] | Chinese [ ]
-- [ ] Download 页面 - English[ ] | Chinese [ ]
-- [ ] 404 页面 - English[ ] | Chinese [ ]
+- [ ] About 页面 - English[_] | Chinese [√]
+- [ ] Contact 页面 - English[_] | Chinese [√]
+- [ ] Contributors 页面 - English[_] | Chinese [√]
+- [ ] Download 页面 - English[_] | Chinese [_]
+- [ ] 404 页面 - English[√] | Chinese [_]
 
 文档部分：
 - 基础内容部分
-    - [ ] CSM的基本概念 - English[ ] | Chinese [√]
-    - [ ] CSM模块间的通讯 - English[ ] | Chinese [√]
-    - [ ] 创建CSM的复用模块 - English[ ] | Chinese [ ]
-    - [ ] 调用CSM的模块 - English[ ] | Chinese [ ]
+    - [ ] CSM的基本概念 - English[_] | Chinese [√]
+    - [ ] CSM模块间的通讯 - English[_] | Chinese [√]
+    - [ ] 创建CSM的复用模块 - English[_] | Chinese [_]
+    - [ ] 调用CSM的模块 - English[_] | Chinese [_]
         - [ ] 被CSM框架调用
         - [ ] 被其他框架调用
-    - [ ] CSM的参数传递 - English[ ] | Chinese [ ]
+    - [ ] CSM的参数传递 - English[_] | Chinese [_]
 
 - 进阶内容部分
 
