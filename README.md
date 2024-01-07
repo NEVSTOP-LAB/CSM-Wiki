@@ -17,7 +17,7 @@ _**TODO LIST**_
 - [ ] Contact 页面(md-page[√]) - English[-] | Chinese [-]
 - [ ] Contributors 页面(md-page[√]) - English[-] | Chinese [-]
 - [ ] Download 页面(md-page[-]) - English[-] | Chinese [-]
-- [ ] 404 页面(md-page[√]) - English[√] | Chinese [-]
+- [√] 404 页面(md-page[√]) - English[√] | Chinese [√]
 - [ ] 和其他框架比较的页面(md-page[-]) - English[-] | Chinese [-]
 
 文档部分：
