@@ -1,6 +1,7 @@
 ---
 title: CSM 示例: 连续测量和记录应用程序
 author: nevstop
+date: 2024-01-02
 layout: post
 date: 2024-05-01
 lang: zh
@@ -78,11 +79,11 @@ API: Update Settings v2.0 >> Signal Type:Sine Wave -> Acquisition
 
 参考 [Workers Continuous Measurement and Logging Example](https://www.vipm.io/package/sc_workers_framework_core/) 创建用户界面.
 
-![Alt text](./2024-05-01-csm-cont-daq-logging-example/mainUI.png)
+![Alt text](assets/img/csm-cont-daq-logging-example/mainUI.png)
 
 使用 CSM 模板创建块图，将 "Logging Module" 和 "Acquisition Module" 作为子模块放置在VI后面板。
 
-![mainBD](./2024-05-01-csm-cont-daq-logging-example/MainBD.png)
+![mainBD](assets/img/csm-cont-daq-logging-example/MainBD.png)
 
 #### 启动过程 (Macro: Initialize)
 
@@ -99,7 +100,7 @@ Do: Update Settings
 DO: Update Status >> Ready...
 ```
 
-![Macro: Initialize](./2024-05-01-csm-cont-daq-logging-example/Initialize%20Process.png)
+![Macro: Initialize](assets/img/csm-cont-daq-logging-example/Initialize%20Process.png)
 
 #### 退出过程 (Macro: Exit)
 
@@ -135,7 +136,7 @@ API: Start ->| Logging
 API: Start ->| Acquisition
 ```
 
-![Macro: Start](./2024-05-01-csm-cont-daq-logging-example/Start%20Process.png)
+![Macro: Start](assets/img/csm-cont-daq-logging-example/Start%20Process.png)
 
 
 #### 停止采集过程 (Macro: Stop)
@@ -158,4 +159,4 @@ Acquired Waveform@Acquisition >> UI: Update Waveforms -><unregister>
 Power Spectrum@Algorithm >> UI: Update FFT -><unregister>
 ```
 
-![Macro: Stop](./2024-05-01-csm-cont-daq-logging-example/Stop%20Process.png)
+![Macro: Stop](assets/img/csm-cont-daq-logging-example/Stop%20Process.png)

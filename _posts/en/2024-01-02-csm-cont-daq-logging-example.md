@@ -1,7 +1,7 @@
 ---
 title: CSM Continuous Measurement and Logging Example
 author: nevstop
-date: 2024-05-01
+date: 2024-01-02
 layout: post
 lang: en
 mermaid: true
@@ -86,11 +86,11 @@ When you need to use real hardware for data acquisition, create another JKISM mo
 
 Create UI, which is similar as [Workers Continuous Measurement and Logging Example](https://www.vipm.io/package/sc_workers_framework_core/)
 
-![Alt text](./2024-05-01-csm-cont-daq-logging-example/mainUI.png)
+![Alt text](assets/img/csm-cont-daq-logging-example/mainUI.png)
 
 Create Block Diagram with CSM Template. Drop `Logging Module` and `Acquisition Module` as submodules.
 
-![mainBD](./2024-05-01-csm-cont-daq-logging-example/MainBD.png)
+![mainBD](assets/img/csm-cont-daq-logging-example/MainBD.png)
 
 #### Start-Up Process (Macro: Initialize)
 
@@ -107,7 +107,7 @@ Do: Update Settings
 DO: Update Status >> Ready...
 ```
 
-![Macro: Initialize](./2024-05-01-csm-cont-daq-logging-example/Initialize%20Process.png)
+![Macro: Initialize](assets/img/csm-cont-daq-logging-example/Initialize%20Process.png)
 
 #### Exit Process (Macro: Exit)
 
@@ -123,7 +123,7 @@ Events: Unregister
 Exits
 ```
 
-![Macro: Initialize](./2024-05-01-csm-cont-daq-logging-example/Exit%20Process.png)
+![Macro: Initialize](assets/img/csm-cont-daq-logging-example/Exit%20Process.png)
 
 #### Start Process (Macro: Start)
 
@@ -146,7 +146,7 @@ API: Start ->| Logging
 API: Start ->| Acquisition
 ```
 
-![Macro: Start](./2024-05-01-csm-cont-daq-logging-example/Start%20Process.png)
+![Macro: Start](assets/img/csm-cont-daq-logging-example/Start%20Process.png)
 
 
 #### Stop Process (Macro: Stop)
@@ -169,4 +169,4 @@ Acquired Waveform@Acquisition >> UI: Update Waveforms -><unregister>
 Power Spectrum@Algorithm >> UI: Update FFT -><unregister>
 ```
 
-![Macro: Stop](./2024-05-01-csm-cont-daq-logging-example/Stop%20Process.png)
+![Macro: Stop](assets/img/csm-cont-daq-logging-example/Stop%20Process.png)
