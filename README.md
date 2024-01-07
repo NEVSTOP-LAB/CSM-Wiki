@@ -11,6 +11,7 @@ _**本仓库使用了以下的开源项目或服务**_：
 - 使用 [untra/polyglot](https://github.com/untra/polyglot) ,一个Jekyll插件，用于多语言支持
 
 _**TODO LIST**_
+
 ``` text
 网站部分：
 - [ ] About 页面(md-page[√]) - English[-] | Chinese [-]

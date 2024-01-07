@@ -4,7 +4,6 @@ author: nevstop
 date: 2020-1-1
 category: information
 layout: post
-lang: en
 page_id: 404-page
 ---
 
@@ -25,6 +24,6 @@ page_id: 404-page
 <div class="container">
   <h1>404</h1>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+  <p><strong>{{ site.data[site.active_lang].l10n.PageNotFound }} :(</strong></p>
+  <p>{{ site.data[site.active_lang].l10n.TheRequestedPageCouldNotBeFound }}</p>
 </div>
