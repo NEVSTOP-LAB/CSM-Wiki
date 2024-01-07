@@ -47,7 +47,9 @@ end
 
 **"SubModule" 模块实现 "API: EchoArguments" 状态**
 
+``` text
     功能：将参数作为响应返回。
+```
 
 ![API: EchoArguments@Sub-Module](assets/img/265700817-2070416f-2f2d-4ba9-831b-b3b22540607c.png)
 
@@ -141,7 +143,9 @@ End
 
 **"SubModule" 模块实现 "API: EchoArguments" 状态**
 
+``` text
     功能：将参数作为响应返回。
+```
 
 ![API: EchoArguments@Sub-Module](assets/img/265700817-2070416f-2f2d-4ba9-831b-b3b22540607c.png)
 
@@ -210,7 +214,6 @@ End
 ### CSM 状态发布
 
 1. 通过 `CSM Broadcast Status Change.vi` 发布状态，可携带`参数`
-
 ![Alt text](assets/img/CSM%20Broadcast%20Status%20Change.png)
 
 2. 直接通过字符串描述, 以下描述完成和上截图相同的状态发布
