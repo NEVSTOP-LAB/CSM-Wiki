@@ -4,7 +4,7 @@ author: nevstop
 date: 2022-02-07
 category: information
 layout: post
-lang: zh
+lang: en
 page_id: framework-compare
 ---
 
