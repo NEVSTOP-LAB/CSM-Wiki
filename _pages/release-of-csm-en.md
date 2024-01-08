@@ -10,10 +10,12 @@ page_id: release-of-csm
 
 # Latest Release
 
-[**v2023.Dec Release: Improvement and Bug Fix: 2023.12.25.111604 (Dec 25, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
+_**v2023.Dec Release: Improvement and Bug Fix**_
 
-Download From GitHub: <https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec>
-Download From VIPM: <https://www.vipm.io/package/nevstop_lib_communicable_state_machine/>
+<!-- [**v2023.Dec Release: Improvement and Bug Fix: 2023.12.25.111604 (Dec 25, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec) -->
+
+- Download From GitHub: <https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec>
+- Download From VIPM: <https://www.vipm.io/package/nevstop_lib_communicable_state_machine/>
 
 ``` text
 #Core

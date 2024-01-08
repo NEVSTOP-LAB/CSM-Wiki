@@ -8,8 +8,6 @@ mermaid: true
 page_id: communication-between-modules
 ---
 
-{:toc}
-
 # 同步调用 (`-@`)
 
 `同步消息`是`消息`的一种。CSM 发出`同步消息`后，将暂停`状态`变化，等待被调用方完成`消息`处理。`同步消息`通过 -@ 描述。
@@ -18,7 +16,7 @@ page_id: communication-between-modules
 ## CSM `同步消息` 执行过程
 
 ``` mermaid
-sequenceDiagrams
+sequenceDiagram
 Caller-CSM ->> Callee-CSM: API: DoSth >> Arguments -@ Callee-CSM
 activate Callee-CSM
 Note left of Caller-CSM: 卡在 Parse State 等待
