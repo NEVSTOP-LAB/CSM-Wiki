@@ -6,6 +6,7 @@ layout: post
 lang: zh
 mermaid: true
 page_id: communication-between-modules
+toc: true
 ---
 
 # 同步调用 (`-@`)

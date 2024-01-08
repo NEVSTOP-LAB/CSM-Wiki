@@ -66,6 +66,7 @@ plugins:
   - jekyll-readme-index
   - jemoji
   - jekyll-polyglot
+  - jekyll-toc
 
 languages: ["zh", "en"]
 default_lang: "zh"

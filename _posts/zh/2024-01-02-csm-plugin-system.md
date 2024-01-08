@@ -5,6 +5,7 @@ date: 2024-01-01
 layout: post
 lang: zh
 page_id: CSM-Plugin-System
+toc: true
 ---
 
 - [ ] Addon 接口(md-page[-]) - English[-] | Chinese [-]

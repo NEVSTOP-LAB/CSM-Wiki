@@ -9,6 +9,7 @@ gem 'jekyll-readme-index'
 gem 'jemoji'
 gem 'webrick'
 gem "jekyll-polyglot"
+gem 'jekyll-toc'
 
 # group :jekyll_plugins do
 #     gem "jekyll-polyglot"

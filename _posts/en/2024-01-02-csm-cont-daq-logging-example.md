@@ -5,6 +5,7 @@ date: 2024-01-02
 layout: post
 lang: en
 page_id: CSM-Continuous-Measurement-and-Logging
+toc: true
 ---
 
 # CSM Continuous Measurement and Logging
