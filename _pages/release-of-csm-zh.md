@@ -10,7 +10,11 @@ page_id: release-of-csm
 
 # 最新版本
 
-[**v2023.Dec: 2023.12.25.111604 (Dec 25, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
+## v2023.Dec Release: Improvement and Bug Fix
+<!-- [**v2023.Dec Release: Improvement and Bug Fix: 2023.12.25.111604 (Dec 25, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec) -->
+
+- GitHub下载页面: <https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec>
+- VIPM下载页面: <https://www.vipm.io/package/nevstop_lib_communicable_state_machine/>
 
 ``` text
 #Core
