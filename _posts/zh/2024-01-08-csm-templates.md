@@ -129,7 +129,7 @@ Discard the event because we'll close the front panel ourselves in Macro: Exit
 
 ### "Async Message Posted"
 
-在异步调用消息发送后 (-> or ->| ), 此分支被执行, 用于处理消息发送后事件.
+在异步调用消息发送后 (-> or ->\| ), 此分支被执行, 用于处理消息发送后事件.
 可以使用 "Argument - State" 分辨发送的异步消息内容.
 
 ### "Initialize Core Data"

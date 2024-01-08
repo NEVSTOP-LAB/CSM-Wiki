@@ -130,7 +130,7 @@ After Message is executed, CSM goes to this state for receive the response.
 
 ### "Async Message Posted"
 
-After Async Message is posted (-> or ->| ), CSM goes to this state for post-action.
+After Async Message is posted (-> or ->\| ), CSM goes to this state for post-action.
 You can use Argument - State to tell which Async Message is called.
 
 ### "Initialize Core Data"

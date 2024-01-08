@@ -125,7 +125,7 @@ _**CSM 函数面板**_
 
 ### Build Message with Arguments++.vi
 
-Builds a message that contains arguments for CSM. This VI will parse "State with Arguments" for message type, message string, arguments and target module from input <b>State with Arguments</b> and replace corresponding parts in the message with input values. Different message type symbol(->|,->,-@) will be used in different Polymorphic Vi instance.
+Builds a message that contains arguments for CSM. This VI will parse "State with Arguments" for message type, message string, arguments and target module from input <b>State with Arguments</b> and replace corresponding parts in the message with input values. Different message type symbol(->\|,->,-@) will be used in different Polymorphic Vi instance.
 
 Polymorphic Option:
 
@@ -232,34 +232,34 @@ Then result string is "API: DoSth >> NewArguments -> Callee". Message Type Symbo
 
 #### Build No-Reply Asynchronous Message with Arguments.vi
 
-Builds a message that contains arguments for CSM. This VI will parse "State with Arguments" for message string, arguments and target module from input <b>State with Arguments</b> and replace corresponding parts in the message with input values with No-Reply async-message symbol "->|" if <b>Target Module ("")</b> is specified.
+Builds a message that contains arguments for CSM. This VI will parse "State with Arguments" for message string, arguments and target module from input <b>State with Arguments</b> and replace corresponding parts in the message with input values with No-Reply async-message symbol "->\|" if <b>Target Module ("")</b> is specified.
 
 <B>For Example:</B>
 
 If <b>State with Arguments</b> input is "API: DoSth"
 <b>Arguments ("")</b> input is "Arguments"
 <b>Target Module ("")</b> input is "Callee"
-Then result string is "API: DoSth >> Arguments ->| Callee". It's different with Build Message with Arguments(Auto Check).vi. Message Type Symbol is replaced with "->|".
+Then result string is "API: DoSth >> Arguments ->\| Callee". It's different with Build Message with Arguments(Auto Check).vi. Message Type Symbol is replaced with "->\|".
 
 If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
 <b>Arguments ("")</b> input is "NewArguments"
 <b>Target Module ("")</b> input is ""
-Then result string is "API: DoSth >> NewArguments ->| Callee". Message Type Symbol is replaced with "->|".
+Then result string is "API: DoSth >> NewArguments ->\| Callee". Message Type Symbol is replaced with "->\|".
 
 If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
 <b>Arguments ("")</b> input is "NewArguments"
 <b>Target Module ("")</b> input is "NewCallee"
-Then result string is "API: DoSth >> NewArguments ->| NewCallee". Message Type Symbol is replaced with "->|".
+Then result string is "API: DoSth >> NewArguments ->\| NewCallee". Message Type Symbol is replaced with "->\|".
 
 If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
 <b>Arguments ("")</b> input is ""
 <b>Target Module ("")</b> input is "NewCallee"
-Then result string is "API: DoSth ->| NewCallee". Message Type Symbol is replaced with "->|".
+Then result string is "API: DoSth ->\| NewCallee". Message Type Symbol is replaced with "->\|".
 
 If <b>State with Arguments</b> input is "API: DoSth >> Arguments -@ Callee"
 <b>Arguments ("")</b> input is "NewArguments"
 <b>Target Module ("")</b> input is ""
-Then result string is "API: DoSth >> NewArguments ->| Callee". Message Type Symbol is replaced with "->|".
+Then result string is "API: DoSth >> NewArguments ->\| Callee". Message Type Symbol is replaced with "->\|".
 
 <b>Inputs:</b>
 
@@ -280,12 +280,12 @@ Builds a message that contains arguments for CSM. This VI will parse "State with
 If <b>State with Arguments</b> input is "API: DoSth"
 <b>Arguments ("")</b> input is "Arguments"
 <b>Target Module ("")</b> input is "Callee"
-Then result string is "API: DoSth >> Arguments ->| Callee". It's different with Build Message with Arguments(Auto Check).vi. Message Type Symbol is replaced with "-@".
+Then result string is "API: DoSth >> Arguments ->\| Callee". It's different with Build Message with Arguments(Auto Check).vi. Message Type Symbol is replaced with "-@".
 
 If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
 <b>Arguments ("")</b> input is "NewArguments"
 <b>Target Module ("")</b> input is ""
-Then result string is "API: DoSth >> NewArguments ->| Callee". Message Type Symbol is replaced with "-@".
+Then result string is "API: DoSth >> NewArguments ->\| Callee". Message Type Symbol is replaced with "-@".
 
 If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
 <b>Arguments ("")</b> input is "NewArguments"
@@ -507,11 +507,11 @@ DownloadFinished@Downloader  -><unregister>
 
 ### CSM - Make String Arguments Safe.vi
 
-'->','->|','-@','-&','<-" 是关键字，不能出现在参数中。使用此 VI 保证参数安全。
+'->','->\|','-@','-&','<-" 是关键字，不能出现在参数中。使用此 VI 保证参数安全。
 
 <b>Inputs:</b>
 
-- <b>Argument String</b>: 可能包含关键字的参数 '->','->|','-@','-&','<-".
+- <b>Argument String</b>: 可能包含关键字的参数 '->','->\|','-@','-&','<-".
 
 <b>Outputs:</b>
 
@@ -519,7 +519,7 @@ DownloadFinished@Downloader  -><unregister>
 
 ### CSM - Revert Arguments-Safe String.vi
 
-'->','->|','-@','-&','<-" 是关键字，不能出现在参数中。使用<b>CSM Make String Arguments Safe.vi</b>保证参数安全。此VI用于将安全参数转换为原始参数。
+'->','->\|','-@','-&','<-" 是关键字，不能出现在参数中。使用<b>CSM Make String Arguments Safe.vi</b>保证参数安全。此VI用于将安全参数转换为原始参数。
 
 <b>Inputs:</b>
 
@@ -527,7 +527,7 @@ DownloadFinished@Downloader  -><unregister>
 
 <b>Outputs:</b>
 
-- <b>Origin Argument String</b>: 可能包含关键字的参数 '->','->|','-@','-&','<-".
+- <b>Origin Argument String</b>: 可能包含关键字的参数 '->','->\|','-@','-&','<-".
 
 ### CSM - Convert Data to HexStr.vi
 
@@ -954,7 +954,7 @@ Release CSM Global Log Event Reference.
 消息类型定义。
 
 - <b>Async:</b> 异步消息 (->)
-- <b>Async without Reply:</b> 无返回异步消息 (->|)
+- <b>Async without Reply:</b> 无返回异步消息 (->\|)
 - <b>Sync:</b> 同步消息 (-@)
 
 ### Global Log To String.vi
