@@ -36,7 +36,7 @@ _**TODO LIST**_
   - [ ] JKISM的推荐用法(md-page[-]) - English[-] | Chinese [-]
         介绍JKISM的Best Practice
 
-- 基础内容部分
+- 基础内容部分 - @KivenJia
   - [ ] CSM的基本概念(md-page[-]) - English[-] | Chinese [-]
         CSM 中所有的基本概念，其他地方用到的都是基于这里的概念来解释的
   - [ ] CSM模块间的通讯(md-page[-]) - English[-] | Chinese [-]
