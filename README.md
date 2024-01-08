@@ -14,6 +14,8 @@ _**TODO LIST**_
 
 ``` text
 网站部分：
+- [√] 404 页面(md-page[√]) - English[√] | Chinese [√]
+      404页面
 - [ ] About 页面(md-page[√]) - English[-] | Chinese [-]
       关于CSM框架的介绍; 关于NEVSTOP-Lab 介绍
 - [ ] Contact 页面(md-page[√]) - English[-] | Chinese [-]
@@ -22,10 +24,10 @@ _**TODO LIST**_
       如何参与到项目中来; 项目的贡献者列表
 - [ ] Download 页面(md-page[-]) - English[-] | Chinese [-]
       下载CSM框架的最新版本的链接; 历史版本的更新记录
-- [√] 404 页面(md-page[√]) - English[√] | Chinese [√]
-      404页面
 - [ ] 和其他框架比较的页面(md-page[-]) - English[-] | Chinese [-]
       和JKISM 的比较; 和DQMH/SMO/AFW等框架的比较
+- [ ] FAQ 页面(md-page[-]) - English[-] | Chinese [-]
+      常见问题的解答
 
 文档部分：
 - JKISM内容介绍
@@ -60,9 +62,6 @@ _**TODO LIST**_
         说明工作者模式设计的思路；举例说明如何使用工作者模式
   - [ ] 责任链模式(Chain Mode)(md-page[√]) - English[-] | Chinese [-]
         说明责任链模式设计的思路；举例说明如何使用责任链模式
-
-- [ ] FAQ 页面(md-page[-]) - English[-] | Chinese [-]
-      常见问题的解答
 
 - 预留的插件机制
   - [ ] Addon 接口(md-page[√]) - English[-] | Chinese [-]
