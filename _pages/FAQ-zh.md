@@ -6,6 +6,9 @@ category: information
 layout: post
 lang: zh
 page_id: csm-faq
+toc:
+  depth_from: 1
+  depth_to: 6
 ---
 
 
