@@ -18,7 +18,7 @@ page_id: communication-between-modules
 ## CSM `同步消息` 执行过程
 
 ``` mermaid
-sequenceDiagram
+sequenceDiagrams
 Caller-CSM ->> Callee-CSM: API: DoSth >> Arguments -@ Callee-CSM
 activate Callee-CSM
 Note left of Caller-CSM: 卡在 Parse State 等待

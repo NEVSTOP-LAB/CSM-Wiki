@@ -1,14 +1,20 @@
 ---
-title: Release Notes
+title: 下载
 author: nevstop
 date: 2022-02-06
 category: information
 layout: post
-lang: en
+lang: zh
 page_id: release-of-csm
 ---
 
-[**v2023.Dec: 2023.12.25.111604 (Dec 25, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
+# 最新版本
+
+## v2023.Dec Release: Improvement and Bug Fix
+<!-- [**v2023.Dec Release: Improvement and Bug Fix: 2023.12.25.111604 (Dec 25, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec) -->
+
+- GitHub下载页面: <https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec>
+- VIPM下载页面: <https://www.vipm.io/package/nevstop_lib_communicable_state_machine/>
 
 ``` text
 #Core
@@ -37,6 +43,8 @@ page_id: release-of-csm
 [add] add CSM - No-Event Structure Template - Tiny.vi
 [minor update] #211 #223
 ```
+
+# 历史版本
 
 [**v2023.Nov: 2023.11.29.94143 (Nov 29, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Nov)
 
@@ -91,5 +99,5 @@ page_id: release-of-csm
 [**v2023.Sep: 2023.10.2.123812 (Oct 03, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.10.2.123812)
 
 ``` text
-Release to vipm.io
+    Release to vipm.io
 ```

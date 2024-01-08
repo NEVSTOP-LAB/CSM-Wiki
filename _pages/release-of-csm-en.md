@@ -1,21 +1,26 @@
 ---
-title: 历史版本说明
+title: Download
 author: nevstop
 date: 2022-02-06
 category: information
 layout: post
-lang: zh
+lang: en
 page_id: release-of-csm
 ---
 
-[**v2023.Dec: 2023.12.25.111604 (Dec 25, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
+# Latest Release
+
+[**v2023.Dec Release: Improvement and Bug Fix: 2023.12.25.111604 (Dec 25, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
+
+Download From GitHub: <https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec>
+Download From VIPM: <https://www.vipm.io/package/nevstop_lib_communicable_state_machine/>
 
 ``` text
 #Core
 [Critical] #207 "Target Busy Error" is obsolete. Now a sync-call message will not generate "Target Busy Error" but waiting until timeout.
 [fix] #219 #225 #226 fix bug that the cache system is ineffective when CSMs start/exit in the same microsecond
 [fix] #197 fix the bug of timeout behavior of CSM - Send Message and Wait for Reply.vi
-[fix] #196 fix the bug that status of agent(worker Mode) could not trigger registered action
+[fix] #196 fix the bug that status of agent(Worker Mode) could not trigger registered action
 [fix] #215 now CSM - Module Turns Invalid (CSM) support Agent & Chain
 [fix] #217 fix the bug that Single Character could not be used as module name
 
@@ -37,6 +42,8 @@ page_id: release-of-csm
 [add] add CSM - No-Event Structure Template - Tiny.vi
 [minor update] #211 #223
 ```
+
+# History Release
 
 [**v2023.Nov: 2023.11.29.94143 (Nov 29, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Nov)
 
@@ -91,5 +98,5 @@ page_id: release-of-csm
 [**v2023.Sep: 2023.10.2.123812 (Oct 03, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.10.2.123812)
 
 ``` text
-    Release to vipm.io
+Release to vipm.io
 ```
