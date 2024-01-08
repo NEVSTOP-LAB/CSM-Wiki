@@ -64,11 +64,11 @@ _**TODO LIST**_
         说明责任链模式设计的思路；举例说明如何使用责任链模式
 
 - 预留的插件机制
-  - [ ] Addon 接口(md-page[-]) - English[-] | Chinese [-]
+  - [ ] Addon 接口(md-page[√]) - English[-] | Chinese [-]
         addon留下接口的位置；如何给CSM添加addon
-  - [ ] Template 接口(md-page[-]) - English[-] | Chinese [-]
+  - [ ] Template 接口(md-page[√]) - English[-] | Chinese [-]
         template留下接口的位置；如何给CSM添加template
-  - [ ] Tools 接口(md-page[-]) - English[-] | Chinese [-]
+  - [ ] Tools 接口(md-page[√]) - English[-] | Chinese [-]
         tools留下接口的位置；如何给CSM添加tools
 
 - (还未实现) LabVIEW的CSM Plugin
