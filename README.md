@@ -101,4 +101,5 @@ _**TODO LIST**_
   - [ ] CSM Palette(md-page[√]) - English[-] | Chinese [-]
         介绍所有CSM的函数
   - [ ] CSM Template(md-page[√]) - English[-] | Chinese [-]
-        介绍CSM的Event模板; 介绍CSM的No-Event模板``
+        介绍CSM的Event模板; 介绍CSM的No-Event模板
+```
