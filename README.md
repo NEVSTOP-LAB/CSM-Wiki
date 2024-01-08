@@ -52,16 +52,17 @@ _**TODO LIST**_
     - [ ] 被其他框架调用：使用CSM的API进行调用;指向用到的函数
   - [ ] CSM的参数传递(md-page[-]) - English[-] | Chinese [-]
         参数传递在CSM中的特殊性；不同场景目前应该使用的方式
-  - [ ] FAQ 页面(md-page[-]) - English[-] | Chinese [-]
-        常见问题的解答
 
 - 进阶内容部分
-  - [ ] CSM内置的错误处理机制(md-page[-]) - English[-] | Chinese [-]
+  - [ ] CSM内置的错误处理机制(md-page[√]) - English[-] | Chinese [-]
         举例说明如何使用CSM内置的错误处理机制
-  - [ ] 工作者模式(worker Mode)(md-page[-]) - English[-] | Chinese [-]
+  - [ ] 工作者模式(worker Mode)(md-page[√]) - English[-] | Chinese [-]
         说明工作者模式设计的思路；举例说明如何使用工作者模式
-  - [ ] 责任链模式(Chain Mode)(md-page[-]) - English[-] | Chinese [-]
+  - [ ] 责任链模式(Chain Mode)(md-page[√]) - English[-] | Chinese [-]
         说明责任链模式设计的思路；举例说明如何使用责任链模式
+
+- [ ] FAQ 页面(md-page[-]) - English[-] | Chinese [-]
+      常见问题的解答
 
 - 预留的插件机制
   - [ ] Addon 接口(md-page[√]) - English[-] | Chinese [-]
