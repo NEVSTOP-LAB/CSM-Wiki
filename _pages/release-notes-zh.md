@@ -1,11 +1,11 @@
 ---
 title: 历史版本说明
 author: nevstop
-date: 2023-12-31
+date: 2022-02-06
 category: information
 layout: post
 lang: zh
-page_id: release-notes-of-csm
+page_id: release-of-csm
 ---
 
 [**v2023.Dec: 2023.12.25.111604 (Dec 25, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
