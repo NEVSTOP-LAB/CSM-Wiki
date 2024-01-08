@@ -79,7 +79,7 @@ API: Update Settings v2.0 >> Signal Type:Sine Wave -> Acquisition
 User interface module is needed for Continuous Measurement and Logging application.
 To make it sample(and easy to compare with workers), UI Module is also acting as the controller of the application.
 
-When you need to use real hardware for data acquisition, create another JKISM module for your hardware with the same API/Status and replace the `Acquisition Module` in UI module.
+When you need to use real hardware for data acquisition, create another CSM module for your hardware with the same API/Status and replace the `Acquisition Module` in UI module.
 
 
 ### UI Module

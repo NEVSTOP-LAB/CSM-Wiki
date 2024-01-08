@@ -14,17 +14,3 @@ permalink: /
 
 - 关于 JKI State Machine(JKISM) 更多信息, 请访问: [http://jki.net/state-machine/](https://github.com/NEVSTOP-LAB)
 - 关于 Communicable State Machine(CSM) 更多信息, 请访问: [https://github.com/NEVSTOP-LAB](https://github.com/NEVSTOP-LAB)
-
-_**CSM 代码模板**_
-
-![image](assets/img/CSM%20Without%20Event%20Structure%20Template.png)
-
-<!-- CSM 代码模板介绍:
-[English](src/help/NEVSTOP/Communicable%20State%20Machine(CSM)/Template%20Description(EN).md) | [中文](src/help/NEVSTOP/Communicable%20State%20Machine(CSM)/Template%20Description(CN).md) -->
-
-_**CSM 函数面板**_
-
-![image](assets/img/CSM%20Palette.png)
-
-<!-- CSM API 介绍:
-[English](src/help/NEVSTOP/Communicable%20State%20Machine(CSM)/VI%20Description(EN).md) | [中文](src/help/NEVSTOP/Communicable%20State%20Machine(CSM)/VI%20Description(CN).md) -->

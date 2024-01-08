@@ -36,12 +36,6 @@ _**TODO LIST**_
   - [ ] JKISM的推荐用法(md-page[-]) - English[-] | Chinese [-]
         介绍JKISM的Best Practice
 
-- CSM函数选板/Template
-  - [ ] CSM Palette - English[-] | Chinese [-]
-        介绍所有CSM的函数
-  - [ ] CSM Template - English[-] | Chinese [-]
-        介绍CSM的Event模板; 介绍CSM的No-Event模板
-
 - 基础内容部分
   - [ ] CSM的基本概念(md-page[-]) - English[-] | Chinese [-]
         CSM 中所有的基本概念，其他地方用到的都是基于这里的概念来解释的
@@ -102,4 +96,9 @@ _**TODO LIST**_
 - 应用列表
   - [√] Continuous Measurement and Logging Project(md-page[-]) - English[√] | Chinese [√]
   - [ ] <<补充其他的项目>>
-```
+
+- References
+  - [ ] CSM Palette(md-page[√]) - English[-] | Chinese [-]
+        介绍所有CSM的函数
+  - [ ] CSM Template(md-page[√]) - English[-] | Chinese [-]
+        介绍CSM的Event模板; 介绍CSM的No-Event模板``
