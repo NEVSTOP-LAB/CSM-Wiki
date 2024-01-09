@@ -16,12 +16,12 @@ toc: true
 
 ### `Logging Module` : 将1D波形数据记录到TDMS文件中。
 
-| API | 描述 | 参数 |
-| --- | --- | --- |
-| `API: Update Settings` | 配置API | 数据文件夹的完整路径 <br/> (类型: 普通字符串)|
-| `API: Start` | 开始记录。在数据文件夹中创建基于时间的文件名的TDMS文件。 | N/A |
-| `API: Log` | 将数据记录到TDMS文件中。 | 1D波形数组。 <br/> (类型: (Type: [MassData参数](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
-| `API: Stop` | 停止记录。 | N/A |
+| API                    | 描述                                                   | 参数                                                                                                           |
+|------------------------|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| `API: Update Settings` | 配置API                                                | 数据文件夹的完整路径 <br/> (类型: 普通字符串)                                                                  |
+| `API: Start`           | 开始记录。在数据文件夹中创建基于时间的文件名的TDMS文件。 | N/A                                                                                                            |
+| `API: Log`             | 将数据记录到TDMS文件中。                                | 1D波形数组。 <br/> (类型: (Type: [MassData参数](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| `API: Stop`            | 停止记录。                                              | N/A                                                                                                            |
 
 **示例：（假设模块名称为“Logging”）**
 ```
@@ -33,17 +33,17 @@ API: Stop -> Logging
 
 ### `Acquisition Module` : 生成正弦/方波模拟信号数据。
 
-| API | 描述 | 参数 |
-| --- | --- | --- |
-| `API: Update Settings` | 配置API | Cluster:{HW(String),Signal Type(Enum)}  <br/> (类型: HexStr) |
-| `API: Update Settings v2.0` | Config API | HW:(string);Signal Type:(Sine Wave\|Square with Noise)  <br/> (类型: API String) |
-| `API: Start` | 开始每200毫秒生成数据。 | N/A |
-| `API: Stop` | Stop data generation. | N/A |
+| API                         | 描述                   | 参数                                                                             |
+|-----------------------------|------------------------|----------------------------------------------------------------------------------|
+| `API: Update Settings`      | 配置API                | Cluster:{HW(String),Signal Type(Enum)}  <br/> (类型: HexStr)                     |
+| `API: Update Settings v2.0` | Config API             | HW:(string);Signal Type:(Sine Wave\|Square with Noise)  <br/> (类型: API String) |
+| `API: Start`                | 开始每200毫秒生成数据。 | N/A                                                                              |
+| `API: Stop`                 | Stop data generation.  | N/A                                                                              |
 
 
-| Status | 描述 | 参数 |
-| --- | --- | --- |
-| Acquired Waveform | 模拟生成的数据  | 1D波形数组. <br/> (类型: [MassData参数](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| Status            | 描述           | 参数                                                                                                    |
+|-------------------|--------------|-------------------------------------------------------------------------------------------------------|
+| Acquired Waveform | 模拟生成的数据 | 1D波形数组. <br/> (类型: [MassData参数](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
 
 **示例：（假设模块名称为“Acquisition”）**
 ```
@@ -54,17 +54,17 @@ API: Update Settings v2.0 >> Signal Type:Sine Wave -> Acquisition
 ```
 ### `Algorithm Module` : 波形数据的分析模块
 
-| API | 描述 | 参数 |
-| --- | --- | --- |
-| `API: FFT(Peak)` | FFT(peak) 分析方法 | 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
-| `API: FFT(RMS)` | FFT(RMS) 分析方法 | HW:(string);Signal Type:(Sine Wave \| 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
-| `API: Power Spectrum` | Power Spectrum 分析方法 | 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| API                   | 描述                    | 参数                                                                                                                                                |
+|-----------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| `API: FFT(Peak)`      | FFT(peak) 分析方法      | 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support))                                       |
+| `API: FFT(RMS)`       | FFT(RMS) 分析方法       | HW:(string);Signal Type:(Sine Wave \| 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| `API: Power Spectrum` | Power Spectrum 分析方法 | 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support))                                       |
 
-| Status | 描述 | 参数 |
-| --- | --- | --- |
-| FFT(Peak) | FFT(peak) spectrum Data. | 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
-| FFT(RMS) | FFT(RMS) spectrum Data. | 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
-| Power Spectrum | Power Spectrum Data. | 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| Status         | 描述                     | 参数                                                                                                          |
+|----------------|--------------------------|-------------------------------------------------------------------------------------------------------------|
+| FFT(Peak)      | FFT(peak) spectrum Data. | 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| FFT(RMS)       | FFT(RMS) spectrum Data.  | 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| Power Spectrum | Power Spectrum Data.     | 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
 
 
 ## 连续测量和记录应用程序

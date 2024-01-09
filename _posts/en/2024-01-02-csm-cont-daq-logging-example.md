@@ -21,12 +21,12 @@ Accomplish application of Continuous Measurement and Logging with CSM. It's much
 
 ### `Logging Module` : Logging 1D Waveform Data to tdms file.
 
-| API | Description | Parameter |
-| --- | --- | --- |
-| `API: Update Settings` | Config API | Full path of data folder <br/> (Type: Plain String) |
-| `API: Start` | Start logging. Create the tdms file in data folder with time-based file name. | N/A |
-| `API: Log` | Log data to tdms file. | 1D Waveform array.  <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
-| `API: Stop` | Stop logging. | N/A |
+| API                    | Description                                                                   | Parameter                                                                                                             |
+|------------------------|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| `API: Update Settings` | Config API                                                                    | Full path of data folder <br/> (Type: Plain String)                                                                   |
+| `API: Start`           | Start logging. Create the tdms file in data folder with time-based file name. | N/A                                                                                                                   |
+| `API: Log`             | Log data to tdms file.                                                        | 1D Waveform array.  <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| `API: Stop`            | Stop logging.                                                                 | N/A                                                                                                                   |
 
 **Example: (Suppose module name is "Logging")**
 
@@ -39,17 +39,17 @@ API: Stop -> Logging
 
 ### `Acquisition Module` : Generate Sine/Square Simulated signal data.
 
-| API | Description | Parameter |
-| --- | --- | --- |
-| `API: Update Settings` | Config API | Cluster:{HW(String),Signal Type(Enum)}  <br/> (Type: HexStr) |
-| `API: Update Settings v2.0` | Config API | HW:(string);Signal Type:(Sine Wave \| Square with Noise)  <br/> (Type: API String) |
-| `API: Start` | Start data generation every 200ms. | N/A |
-| `API: Stop` | Stop data generation. | N/A |
+| API                         | Description                        | Parameter                                                                          |
+|-----------------------------|------------------------------------|------------------------------------------------------------------------------------|
+| `API: Update Settings`      | Config API                         | Cluster:{HW(String),Signal Type(Enum)}  <br/> (Type: HexStr)                       |
+| `API: Update Settings v2.0` | Config API                         | HW:(string);Signal Type:(Sine Wave \| Square with Noise)  <br/> (Type: API String) |
+| `API: Start`                | Start data generation every 200ms. | N/A                                                                                |
+| `API: Stop`                 | Stop data generation.              | N/A                                                                                |
 
 
-| Status | Description | Parameter |
-| --- | --- | --- |
-| Acquired Waveform | Simulated Data.  | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| Status            | Description     | Parameter                                                                                                            |
+|-------------------|-----------------|----------------------------------------------------------------------------------------------------------------------|
+| Acquired Waveform | Simulated Data. | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
 
 **Example: (Suppose module name is "Acquisition")**
 ```
@@ -61,17 +61,17 @@ API: Update Settings v2.0 >> Signal Type:Sine Wave -> Acquisition
 
 ### `Algorithm Module` : Algorithm on waveform data.
 
-| API | Description | Parameter |
-| --- | --- | --- |
-| `API: FFT(Peak)` | Analyze waveform with FFT(peak) method | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
-| `API: FFT(RMS)` | Analyze waveform with FFT(RMS) method | HW:(string);Signal Type:(Sine Wave \| 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
-| `API: Power Spectrum` | Get Power Spectrum of Waveform | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| API                   | Description                            | Parameter                                                                                                                                                  |
+|-----------------------|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `API: FFT(Peak)`      | Analyze waveform with FFT(peak) method | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support))                                       |
+| `API: FFT(RMS)`       | Analyze waveform with FFT(RMS) method  | HW:(string);Signal Type:(Sine Wave \| 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| `API: Power Spectrum` | Get Power Spectrum of Waveform         | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support))                                       |
 
-| Status | Description | Parameter |
-| --- | --- | --- |
-| FFT(Peak) | FFT(peak) spectrum Data. | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
-| FFT(RMS) | FFT(RMS) spectrum Data. | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
-| Power Spectrum | Power Spectrum Data. | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| Status         | Description              | Parameter                                                                                                            |
+|----------------|--------------------------|----------------------------------------------------------------------------------------------------------------------|
+| FFT(Peak)      | FFT(peak) spectrum Data. | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| FFT(RMS)       | FFT(RMS) spectrum Data.  | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
+| Power Spectrum | Power Spectrum Data.     | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
 
 ## Continuous Measurement and Logging Application
 
