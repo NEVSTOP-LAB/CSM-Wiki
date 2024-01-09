@@ -8,8 +8,6 @@ page_id: CSM-Continuous-Measurement-and-Logging
 toc: true
 ---
 
-# CSM Continuous Measurement and Logging
-
 基于 CSM 框架更简单、更直观，更优雅的实现连续测量和记录应用的示例。
 
 ## 可复用的底层模块
