@@ -14,7 +14,7 @@ toc: true
 
 ## 可复用的底层模块
 
-### `Logging Module` : 将1D波形数据记录到TDMS文件中。
+### `Logging Module` : 将1D波形数据记录到TDMS文件中
 
 | API                    | 描述                                                   | 参数                                                                                                           |
 |------------------------|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
@@ -24,14 +24,15 @@ toc: true
 | `API: Stop`            | 停止记录。                                              | N/A                                                                                                            |
 
 **示例：（假设模块名称为“Logging”）**
-```
+
+``` c
 API: Update Settings >> c:\_data -> Logging
 API: Log >> MassData-Start:89012,Size:1156 -> Logging
 API: Start -> Logging
 API: Stop -> Logging
 ```
 
-### `Acquisition Module` : 生成正弦/方波模拟信号数据。
+### `Acquisition Module` : 生成正弦/方波模拟信号数据
 
 | API                         | 描述                   | 参数                                                                             |
 |-----------------------------|------------------------|----------------------------------------------------------------------------------|
@@ -40,18 +41,19 @@ API: Stop -> Logging
 | `API: Start`                | 开始每200毫秒生成数据。 | N/A                                                                              |
 | `API: Stop`                 | Stop data generation.  | N/A                                                                              |
 
-
 | Status            | 描述           | 参数                                                                                                    |
 |-------------------|--------------|-------------------------------------------------------------------------------------------------------|
 | Acquired Waveform | 模拟生成的数据 | 1D波形数组. <br/> (类型: [MassData参数](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
 
 **示例：（假设模块名称为“Acquisition”）**
-```
+
+``` c
 API: Start -> Acquisition
 API: Stop -> Acquisition
 //使用CSM-API-String-Arguments-Support,通过字符描述'Signal Type'，更新模块配置
 API: Update Settings v2.0 >> Signal Type:Sine Wave -> Acquisition
 ```
+
 ### `Algorithm Module` : 波形数据的分析模块
 
 | API                   | 描述                    | 参数                                                                                                                                                |
@@ -66,13 +68,11 @@ API: Update Settings v2.0 >> Signal Type:Sine Wave -> Acquisition
 | FFT(RMS)       | FFT(RMS) spectrum Data.  | 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
 | Power Spectrum | Power Spectrum Data.     | 1D波形数组. <br/> (类型: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
 
-
 ## 连续测量和记录应用程序
 
 可以看出，"Logging Module" 和 "Acquisition Module" 设计完成时，完全不知道彼此的存在。为了创建连续测量和记录应用程序，除了需要一个用户界面模块。还需要调度这两个底层模块协同工作。为了简单，用户界面模块也作为 Controller，承担调度工作。
 
 当需要使用真实硬件进行数据采集时，可以创建另一个 CSM 模块，该模块具有相同的 API 和状态，然后将其替换掉 UI 模块中的 Acquisition Module。这将允许轻松地切换并集成不同的硬件模块，而不必更改 UI 模块的其余部分，因为它们遵循相同的 API 和状态接口。
-
 
 ### 用户界面模块
 
@@ -105,7 +105,7 @@ DO: Update Status >> Ready...
 
 停止子模块和用户界面模块本身。
 
-```
+``` c
 Macro: Exit -@ Acquisition
 Macro: Exit -@ Logging
 Macro: Exit -@ Algorithm
@@ -119,7 +119,7 @@ Exits
 
 更新用户界面(UI)并触发子模块以启动消息进行工作。将 "Acquisition" 模块的 "Acquired Waveform" 状态注册到 "Logging" 模块的 "API: Log" 状态。当 "Acquired Waveform" 状态发生时，"Logging" 模块将自动执行 "API: Log"。
 
-```
+``` c
 //Register Status
 Acquired Waveform@Acquisition >> API: Log@Logging -><register>
 Acquired Waveform@Acquisition >> API: Power Spectrum@Algorithm -><register>
@@ -137,12 +137,11 @@ API: Start ->| Acquisition
 
 ![Macro: Start](assets/img/csm-cont-daq-logging-example/Start%20Process.png)
 
-
 #### 停止采集过程 (Macro: Stop)
 
 更新用户界面(UI)并停止子模块。取消注册 "Acquisition" 模块的 "Acquired Waveform" 状态。
 
-```
+``` c
 //Local States
 DO: Update Status >> Stopping...
 UI: Update When Stop

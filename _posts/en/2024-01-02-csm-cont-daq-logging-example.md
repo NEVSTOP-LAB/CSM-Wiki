@@ -19,7 +19,7 @@ Accomplish application of Continuous Measurement and Logging with CSM. It's much
 
 ## Reusable Modules
 
-### `Logging Module` : Logging 1D Waveform Data to tdms file.
+### `Logging Module` : Logging 1D Waveform Data to tdms file
 
 | API                    | Description                                                                   | Parameter                                                                                                             |
 |------------------------|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
@@ -37,7 +37,7 @@ API: Start -> Logging
 API: Stop -> Logging
 ```
 
-### `Acquisition Module` : Generate Sine/Square Simulated signal data.
+### `Acquisition Module` : Generate Sine/Square Simulated signal data
 
 | API                         | Description                        | Parameter                                                                          |
 |-----------------------------|------------------------------------|------------------------------------------------------------------------------------|
@@ -46,20 +46,20 @@ API: Stop -> Logging
 | `API: Start`                | Start data generation every 200ms. | N/A                                                                                |
 | `API: Stop`                 | Stop data generation.              | N/A                                                                                |
 
-
 | Status            | Description     | Parameter                                                                                                            |
 |-------------------|-----------------|----------------------------------------------------------------------------------------------------------------------|
 | Acquired Waveform | Simulated Data. | 1D Waveform array. <br/> (Type: [MassData Arguments](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)) |
 
 **Example: (Suppose module name is "Acquisition")**
-```
+
+``` c
 API: Start -> Acquisition
 API: Stop -> Acquisition
 //With CSM-API-String-Arguments-Support, update 'Signal Type' with plain text description
 API: Update Settings v2.0 >> Signal Type:Sine Wave -> Acquisition
 ```
 
-### `Algorithm Module` : Algorithm on waveform data.
+### `Algorithm Module` : Algorithm on waveform data
 
 | API                   | Description                            | Parameter                                                                                                                                                  |
 |-----------------------|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -81,7 +81,6 @@ To make it sample(and easy to compare with workers), UI Module is also acting as
 
 When you need to use real hardware for data acquisition, create another CSM module for your hardware with the same API/Status and replace the `Acquisition Module` in UI module.
 
-
 ### UI Module
 
 Create UI, which is similar as [Workers Continuous Measurement and Logging Example](https://www.vipm.io/package/sc_workers_framework_core/)
@@ -96,7 +95,7 @@ Create Block Diagram with CSM Template. Drop `Logging Module` and `Acquisition M
 
 Initialize data and UI. Load configuration from xml file and send config to submodules. Register "Acquired Waveform" status of "Acquisition" to "UI: Update Waveforms" state of "UI". When "Acquired Waveform" status occurs, "UI" will go to "UI: Update Waveforms" automatically.
 
-```
+``` c
 Data: Initialize
 Initialize Core Data
 Data: Load Configuration From Ini
@@ -113,7 +112,7 @@ DO: Update Status >> Ready...
 
 Stop submodules and UI module itself then.
 
-```
+``` c
 Macro: Exit -@ Acquisition
 Macro: Exit -@ Logging
 Macro: Exit -@ Algorithm
@@ -129,8 +128,7 @@ Exits
 
 Update UI and trigger submodule to work with start message. Register "Acquired Waveform" status of "Acquisition" to "API: Log" state of "Logging". When "Acquired Waveform" status occurs, "logging" will go to "API: Log" automatically.
 
-
-```
+``` c
 //Register Status
 Acquired Waveform@Acquisition >> API: Log@Logging -><register>
 Acquired Waveform@Acquisition >> API: Power Spectrum@Algorithm -><register>
@@ -148,12 +146,11 @@ API: Start ->| Acquisition
 
 ![Macro: Start](assets/img/csm-cont-daq-logging-example/Start%20Process.png)
 
-
 #### Stop Process (Macro: Stop)
 
 Update UI and stop submodules. Unregister "Acquired Waveform" status of "Acquisition".
 
-```
+``` c
 //Local States
 DO: Update Status >> Stopping...
 UI: Update When Stop
