@@ -19,7 +19,7 @@ _**CSM Templates**_
 
 ## README FIRST
 
-Communicable State Machine(CSM) is a LabVIEW Application Framework extended from JKI State Machine(JKISM). It follows the JKSIM's pattern and extends the Key words to describe message communication between modules including the concepts of Sync-Message, Async-Message, Subscription/Unsubscription of status, which is essential elements for creating re-use code modules. More information, please visit wiki of CSM: <https://github.com/NEVSTOP-LAB/JKI-State-Machine-Plus-Plus/wiki>
+Communicable State Machine(CSM) is a LabVIEW Application Framework extended from JKI State Machine(JKISM). It follows the JKISM's pattern and extends the Key words to describe message communication between modules including the concepts of Sync-Message, Async-Message, Subscription/Unsubscription of status, which is essential elements for creating re-use code modules. More information, please visit wiki of CSM: <https://github.com/NEVSTOP-LAB/JKI-State-Machine-Plus-Plus/wiki>
 
 For instructions on JKI State Machine, visit: <http://jki.net/state-machine/>
 For information about CSM, visit: <https://github.com/NEVSTOP-LAB>
@@ -66,7 +66,7 @@ this is used to capture unhandled states and typos
 
 ## "Documentation"
 
-Case for holding CSM Documenation
+Case for holding CSM Documentation
 
 ### "Idle/Event Handler"
 
@@ -141,7 +141,7 @@ This is used to determine panel behavior on exit
 
 Case for exiting the loop. No errors that occur here will be handled.
 
-## "Category Seperator"
+## "Category Separator"
 
 Do not put any code in this frame.
 

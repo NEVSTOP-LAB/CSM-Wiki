@@ -8,6 +8,7 @@
         "HEXCODE",
         "jemoji",
         "JKISM",
+        "Kiven",
         "ldquo",
         "longtitle",
         "lsquo",
@@ -21,5 +22,6 @@
         "tdms",
         "Unsubscription",
         "untra"
-    ]
+    ],
+    "cmake.configureOnOpen": false
 }

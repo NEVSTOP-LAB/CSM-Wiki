@@ -14,3 +14,15 @@ Communicable State Machine(CSM) is a LabVIEW application framework that builds u
 
 - For instructions on JKI State Machine(JKISM), visit: [http://jki.net/state-machine/](http://jki.net/state-machine/)
 - For information on Communicable State Machine(CSM), visit: [https://github.com/NEVSTOP-LAB](https://github.com/NEVSTOP-LAB)
+
+---------------------------------------
+
+_**The following open source projects or services are used in this repository**:_
+
+- [visual-studio-code](https://code.visualstudio.com/) as an editor
+- [copilot](https://copilot.github.com/) as a hinting tool and to supplement some content
+- [GitHub Pages](https://pages.github.com/) as a service for publishing pages
+- [Jekyll](https://jekyllrb.com/) as a static website generator
+- [sighingnow/jekyll-gitbook](https://github.com/sighingnow/jekyll-gitbook) as a theme
+- [untra/polyglot](https://github.com/untra/polyglot), a Jekyll plugin for multilingual support
+- [markdownlint](https://github.com/markdownlint/markdownlint) for syntax checking of markdown files

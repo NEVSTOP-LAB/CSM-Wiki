@@ -14,3 +14,15 @@ permalink: /
 
 - 关于 JKI State Machine(JKISM) 更多信息, 请访问: [http://jki.net/state-machine/](https://github.com/NEVSTOP-LAB)
 - 关于 Communicable State Machine(CSM) 更多信息, 请访问: [https://github.com/NEVSTOP-LAB](https://github.com/NEVSTOP-LAB)
+
+---------------------------------------
+
+_**本仓库使用了以下的开源项目或服务**_：
+
+- 使用 [visual-studio-code](https://code.visualstudio.com/) 作为编辑器
+- 使用 [copilot](https://copilot.github.com/) 作为提示工具,并补充部分内容
+- 通过 [GitHub Pages](https://pages.github.com/) 服务发布页面
+- 使用 [Jekyll](https://jekyllrb.com/) 静态网站生成器
+- 使用 [sighingnow/jekyll-gitbook](https://github.com/sighingnow/jekyll-gitbook) 主题
+- 使用 [untra/polyglot](https://github.com/untra/polyglot) ,一个Jekyll插件，用于多语言支持
+- 使用 [markdownlint](https://github.com/markdownlint/markdownlint) 用于 markdown 文件的语法检查
