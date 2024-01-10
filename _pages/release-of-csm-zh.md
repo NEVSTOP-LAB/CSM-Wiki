@@ -18,6 +18,9 @@ page_id: release-of-csm
 https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain++
  -->
 
+> [!TIP]
+> Try this!
+
 # 最新版本
 
 _**v2023.Dec Release: Improvement and Bug Fix**_
