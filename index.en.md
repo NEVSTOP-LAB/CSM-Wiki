@@ -25,8 +25,9 @@ _**The following open source projects or services are used in this wiki website*
 
 - [visual-studio-code](https://code.visualstudio.com/) as an editor
 - [copilot](https://copilot.github.com/) as a hinting tool and to supplement some content
+- [markdownlint](https://github.com/markdownlint/markdownlint) for syntax checking of markdown files
 - [GitHub Pages](https://pages.github.com/) as a service for publishing pages
 - [Jekyll](https://jekyllrb.com/) as a static website generator
 - [sighingnow/jekyll-gitbook](https://github.com/sighingnow/jekyll-gitbook) as a theme
 - [untra/polyglot](https://github.com/untra/polyglot), a Jekyll plugin for multilingual support
-- [markdownlint](https://github.com/markdownlint/markdownlint) for syntax checking of markdown files
+- [gildesmarais/jekyll-loading-lazy](https://github.com/gildesmarais/jekyll-loading-lazy), a Jekyll plugin for lazy load support
