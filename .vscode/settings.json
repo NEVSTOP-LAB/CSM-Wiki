@@ -23,5 +23,7 @@
         "Unsubscription",
         "untra"
     ],
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "todo-tree.tree.disableCompactFolders": false,
+    "todo-tree.tree.showCountsInTree": true
 }

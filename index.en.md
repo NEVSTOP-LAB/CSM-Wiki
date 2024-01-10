@@ -12,10 +12,12 @@ permalink: /
 [![Build_VIPM_Library](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml/badge.svg?branch=main)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml)
 [![Check_Broken_VIs](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Check_Broken_VIs.yml/badge.svg?branch=main)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Check_Broken_VIs.yml)
 
-Communicable State Machine(CSM) is a LabVIEW application framework that builds upon JKI State Machine(JKISM). It follows the pattern of JKISM and extends the keywords to describe message communication between modules, including concepts such as Sync-Message, Async-Message, Subscription/Unsubscription of status - essential elements for creating reusable code modules. For more information, please visit the CSM wiki: <https://github.com/NEVSTOP-LAB/Communicable-State-Machine/wiki>
+# Brief of Communicable State Machine(CSM)
 
-- For instructions on JKI State Machine(JKISM), visit: [http://jki.net/state-machine/](http://jki.net/state-machine/)
-- For information on Communicable State Machine(CSM), visit: [https://github.com/NEVSTOP-LAB](https://github.com/NEVSTOP-LAB)
+Communicable State Machine(CSM) is a LabVIEW application framework that builds upon JKI State Machine(JKISM). It follows the pattern of JKISM and extends the keywords to describe message communication between modules, including concepts such as Sync-Message, Async-Message, Subscription/Unsubscription of status - essential elements for creating reusable code modules. For more information, please visit the CSM wiki: <https://nevstop-lab.github.io/CSM-Wiki/>
+
+- For instructions on JKI State Machine(JKISM), visit: <http://jki.net/state-machine/>
+- For information on Communicable State Machine(CSM), visit: <https://github.com/NEVSTOP-LAB>
 
 ---------------------------------------
 
