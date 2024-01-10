@@ -8,6 +8,12 @@ lang: zh
 page_id: release-of-csm
 ---
 
+<!-- Download 页面(md-page[√]) - English[100%] | Chinese [100%]
+- [ ] Beta 版本的下载链接
+- [x] 下载CSM框架的最新版本的链接
+- [x] 历史版本的更新记录
+ -->
+
 # 最新版本
 
 _**v2023.Dec Release: Improvement and Bug Fix**_

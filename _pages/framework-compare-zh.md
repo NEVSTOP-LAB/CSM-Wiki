@@ -8,6 +8,14 @@ lang: zh
 page_id: framework-compare
 ---
 
+<!-- 和其他框架比较的页面(md-page[√]) - English[-] | Chinese [-]
+- [-]本身的特点
+- [-]和JKISM的比较
+- [-]和DQMH/SMO/AFW等框架的比较
+ -->
+
 # Comparing with JKISM
+
+---------------------------------------
 
 # Comparing with DQMH/SMO/AF

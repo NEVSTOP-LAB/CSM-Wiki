@@ -10,4 +10,6 @@ page_id: framework-compare
 
 # Comparing with JKISM
 
+---------------------------------------
+
 # Comparing with DQMH/SMO/AF
