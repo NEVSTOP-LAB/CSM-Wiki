@@ -14,6 +14,10 @@ page_id: release-of-csm
 - [x] 历史版本的更新记录
  -->
 
+ <!--
+https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain++
+ -->
+
 # 最新版本
 
 _**v2023.Dec Release: Improvement and Bug Fix**_
@@ -50,6 +54,8 @@ _**v2023.Dec Release: Improvement and Bug Fix**_
 [add] add CSM - No-Event Structure Template - Tiny.vi
 [minor update] #211 #223
 ```
+
+---------------------------------------------------
 
 # 历史版本
 
