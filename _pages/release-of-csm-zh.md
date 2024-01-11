@@ -9,7 +9,7 @@ page_id: release-of-csm
 ---
 
 <!-- Download 页面(md-page[√]) - English[100%] | Chinese [100%]
-- [ ] Beta 版本的下载链接
+- [x] Beta 版本的下载链接
 - [x] 下载CSM框架的最新版本的链接
 - [x] 历史版本的更新记录
  -->
@@ -18,17 +18,26 @@ page_id: release-of-csm
 https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain++
  -->
 
-> [!TIP]
-> Try this!
-
 # 最新版本
+
+> {:.notice--info}
+>
+> 如果想要下载 Pre-release 版本, 请访问: </br>
+> [NEVSTOP-LAB/Communicable-State-Machine 的 Action 页面](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain)
+>
+> **下载步骤**：
+>
+> - Step 1. 点击最新的 Build_VIPM_Library 的 Action
+> - Step 2. 下拉到达 Artifacts 区域，点击 vip 文件下载
+> - Step 3. 解压下载的 zip 文件
+> - Step 4. 双击 vip 文件或通过 VIPM 打开安装
+>
 
 _**v2023.Dec Release: Improvement and Bug Fix**_
 
-<!-- [**v2023.Dec Release: Improvement and Bug Fix: 2023.12.25.111604 (Dec 25, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec) -->
-
-- GitHub下载页面: <https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec>
-- VIPM下载页面: <https://www.vipm.io/package/nevstop_lib_communicable_state_machine/>
+- VIPM下载页面: [![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)
+- GitHub下载页面:
+[![GitHub all releases](https://img.shields.io/github/downloads/NEVSTOP-LAB/Communicable-State-Machine/total)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
 
 ``` text
 #Core
