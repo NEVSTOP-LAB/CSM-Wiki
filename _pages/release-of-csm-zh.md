@@ -20,9 +20,11 @@ https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Buil
 
 # 最新版本
 
-> {:.notice--info}
+
+> {: .notice}
+> :rocket:
 >
-> 如果想要下载 Pre-release 版本, 请访问: </br>
+> 如果想要下载 Pre-release 版本, 请访问: <br/>
 > [NEVSTOP-LAB/Communicable-State-Machine 的 Action 页面](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain)
 >
 > **下载步骤**：
