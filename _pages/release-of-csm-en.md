@@ -12,7 +12,9 @@ page_id: release-of-csm
 
 _**v2023.Dec Release: Improvement and Bug Fix**_
 
-Download From VIPM -> [![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/) | Download From GitHub -> [![GitHub all releases](https://img.shields.io/github/downloads/NEVSTOP-LAB/Communicable-State-Machine/total)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
+Click badge to download :arrow_forward:
+[![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)
+[![GitHub all releases](https://img.shields.io/github/downloads/NEVSTOP-LAB/Communicable-State-Machine/total)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
 
 >
 > :rocket: If you want to download the pre-release version, please visit:
