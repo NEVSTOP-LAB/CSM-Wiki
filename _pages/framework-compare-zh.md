@@ -6,6 +6,7 @@ category: information
 layout: post
 lang: zh
 page_id: framework-compare
+permalink: /pros-and-cons
 ---
 
 <!-- 和其他框架比较的页面(md-page[√]) - English[-] | Chinese [-]

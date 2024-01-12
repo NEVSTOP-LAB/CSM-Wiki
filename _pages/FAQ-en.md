@@ -6,5 +6,6 @@ category: information
 layout: post
 lang: en
 page_id: csm-faq
+permalink: /FAQ
 ---
 

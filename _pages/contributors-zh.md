@@ -6,6 +6,7 @@ category: information
 layout: post
 page_id: contributors
 lang: zh
+permalink: /how-to-contribute
 ---
 
 <!-- Contributors 页面(md-page[√]) - English[10%] | Chinese [50%]

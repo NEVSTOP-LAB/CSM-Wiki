@@ -6,6 +6,7 @@ category: information
 layout: post
 lang: en
 page_id: framework-compare
+permalink: /pros-and-cons
 ---
 
 # Comparing with JKISM
