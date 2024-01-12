@@ -6,6 +6,7 @@ category: information
 layout: post
 lang: zh
 page_id: release-of-csm
+permalink: /release-of-csm
 ---
 
 <!-- Download 页面(md-page[√]) - English[100%] | Chinese [100%]

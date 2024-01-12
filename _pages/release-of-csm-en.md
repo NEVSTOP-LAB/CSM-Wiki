@@ -6,6 +6,7 @@ category: information
 layout: post
 lang: en
 page_id: release-of-csm
+permalink: /release-of-csm
 ---
 
 # Latest Release
