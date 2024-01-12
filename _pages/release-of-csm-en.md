@@ -10,6 +10,11 @@ page_id: release-of-csm
 
 # Latest Release
 
+_**v2023.Dec Release: Improvement and Bug Fix**_
+
+Download From VIPM -> [![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/) | Download From GitHub -> [![GitHub all releases](https://img.shields.io/github/downloads/NEVSTOP-LAB/Communicable-State-Machine/total)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
+
+>
 > :rocket: If you want to download the pre-release version, please visit:
 >
 > [NEVSTOP-LAB/Communicable-State-Machine’s Action page](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain) >
@@ -21,11 +26,6 @@ page_id: release-of-csm
 > - Step 3. Extract the downloaded zip file
 > - Step 4. Double-click the vip file or open the vip file through VIPM
 >
-
-:rocket: _**v2023.Dec Release: Improvement and Bug Fix**_
-
-- Download From VIPM: [![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)
-- Download From GitHub: [![GitHub all releases](https://img.shields.io/github/downloads/NEVSTOP-LAB/Communicable-State-Machine/total)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
 
 ``` text
 #Core
