@@ -6,13 +6,15 @@ layout: post
 lang: en
 page_id: CSM-Palette-APIs
 toc: true
-cover: assets/img/CSM%20Palette.png
+# cover: assets/img/CSM%20Palette.png
 ---
 
 _**CSM API**_
 
 <!-- API Description:
 [English](src/help/NEVSTOP/Communicable%20State%20Machine(CSM)/VI%20Description(EN).md) | [中文](src/help/NEVSTOP/Communicable%20State%20Machine(CSM)/VI%20Description(CN).md) -->
+
+![csm-palette](assets/img/CSM%20Palette.png)
 
 # CSM API
 
