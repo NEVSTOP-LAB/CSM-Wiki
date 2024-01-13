@@ -29,32 +29,6 @@ permalink: /
 
 ---------------------------------------
 
-{: .notice}
-Notice (Default) by placing `{: .notice}` above the text
-
-{: .notice--primary}
-Notice (Primary) by placing `{: .notice--primary}` above the text
-
-{: .notice--info}
-Notice (info) by placing `{: .notice--info}` above the text
-
-{: .notice--warning}
-Notice (warning) by placing `{: .notice--warning}` above the text
-
-{: .notice--success}
-Notice (success) by placing `{: .notice--success}` above the text
-
-{: .notice--danger}
-Notice (danger) by placing `{: .notice--danger}` above the text
-
-Placing the IAL immediately after the bolck element works, too.
-{: .notice}
-
-The IAL applies to the preceding element when it is placed immediately before and after a block element.
-{: .notice--danger}
-The IAL above will not be applied to this line of text, but the one on the bottom will.
-{: .notice}
-
 _**本站点使用了以下的开源项目或服务**_：
 
 - 使用 [visual-studio-code](https://code.visualstudio.com/) 作为编辑器
