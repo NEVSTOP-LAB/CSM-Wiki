@@ -9,7 +9,7 @@ permalink: /
 - [x] CSM框架的介绍
 - [ ] CSM框架的特点
 - [ ] CSM框架的应用场景
-- [ ] CSM框架的下载链接
+- [x] CSM框架的下载链接
 - [x] 开源资源使用说明
  -->
 
@@ -27,7 +27,27 @@ permalink: /
 - 关于 JKI State Machine(JKISM) 更多信息, 请访问: <http://jki.net/state-machine/>
 - 关于 Communicable State Machine(CSM) 更多信息, 请访问: <https://github.com/NEVSTOP-LAB>
 
----------------------------------------
+# 下载
+
+CSM 通过 VIPM Library 的形式发布，您可以通过以下方式下载：
+
+1. 🥇 推荐：通过 VIPM 应用搜索 CSM 获取 CSM 的最新发布版本，然后点击安装。
+<img src="assets/img/VIPM%20Search%20CSM.png" alt="vipm-search-csm" width="80%">
+
+2. 下载安装包(.vip 文件)，然后点击安装:
+
+- 通过 <https://www.vipm.io/> 下载 CSM 的最新发布版本，然后点击安装:<br/>
+<https://www.vipm.io/package/nevstop_lib_communicable_state_machine/>
+- 通过 GitHub 下载 CSM 的最新发布版本，然后点击安装:<br/>
+<https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases>
+
+> 📓
+> 更多信息，请参考页面 [下载](https://nevstop-lab.github.io/CSM-Wiki/release-of-csm)。
+>
+
+# 开源协议
+
+CSM 采用 Apache 2.0 开源协议，您可以在 [LICENSE](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/blob/main/LICENSE) 中查看 Apache 2.0 开源协议的详细信息。
 
 _**本站点使用了以下的开源项目或服务**_：
 
