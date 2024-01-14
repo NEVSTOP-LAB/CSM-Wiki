@@ -29,14 +29,14 @@ Communicable State Machine(CSM) is a LabVIEW application framework that builds u
 
 CSM is released as a VIPM Library, which you can download in the following ways:
 
-1. 🥇 Recommended: Search for CSM through the VIPM and install.
+- 🥇 **Recommended: Search for CSM through the VIPM and install**
 
 <img src="assets/img/VIPM%20Search%20CSM.png" alt="vipm-search-csm" width="60%">
 
-2. Download the package(.vip file) of CSM and click install:
+- **Download the package(.vip file) of CSM and click install**
 
-- Download the latest release of CSM from <https://www.vipm.io/> and click install:<br/> <https://www.vipm.io/package/nevstop_lib_communicable_state_machine/>
-- Download the latest release of CSM from GitHub and click install:<br/> <https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases>
+  - Download the latest release of CSM from <https://www.vipm.io/> and click install:<br/> <https://www.vipm.io/package/nevstop_lib_communicable_state_machine/>
+  - Download the latest release of CSM from GitHub and click install:<br/> <https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases>
 
 > 📓
 > For more information, please refer to the page [download](https://nevstop-lab.github.io/CSM-Wiki/release-of-csm).
