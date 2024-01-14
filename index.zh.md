@@ -7,7 +7,7 @@ permalink: /
 
 <!--  [50%] HOME 页面(md-page[x]) - English[√] | Chinese [√]
 - [x] CSM框架的介绍
-- [ ] CSM框架的特点
+- [x] CSM框架的特点
 - [ ] CSM框架的应用场景
 - [x] CSM框架的下载链接
 - [x] 开源资源使用说明
@@ -20,7 +20,7 @@ permalink: /
 [![Build_VIPM_Library](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml/badge.svg?branch=main)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml)
 [![Check_Broken_VIs](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Check_Broken_VIs.yml/badge.svg?branch=main)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Check_Broken_VIs.yml)
 
-# 可通信状态机（CSM）简介
+## 可通信状态机（CSM）简介
 
 可通信状态机（CSM）是一个基于JKI状态机（JKISM）的LabVIEW应用框架。它遵循 JKISM 的模式，扩展了关键词以描述模块之间的消息通信，包括同步消息、异步消息、状态订阅/取消订阅等概念-这些是创建可重用代码模块所必需的要素。请访问CSM Wiki页面了解更多信息: <https://nevstop-lab.github.io/CSM-Wiki/>
 
@@ -33,7 +33,24 @@ permalink: /
 > 如果想了解更多详细信息，请阅读 wiki 的技术细节章节
 >
 
-# 下载
+## CSM 的特点
+
+- :anchor: 完全继承了 JKISM 易扩展、字符串格式消息、状态机的特点
+- :anchor: 通过消息通信实现模块间的解耦，支持同步消息、异步消息、状态订阅/取消订阅
+- :anchor: 同步消息、异步消息均支持响应，并会返回执行时发生的错误
+- :anchor: CSM 编写的模块就是 VI，VI 就是模块，以子 VI 的方式进行调用
+- :anchor: CSM 编写的模块不仅可以在 CSM 框架中使用，也提供在非 CSM 框架中使用的方式
+- :anchor: 通过插件，增加参数传递能够携带的数据，以减弱 JKISM 只能携带 string 类型数据的限制
+- :anchor: 内置全局的错误处理机制
+- :anchor: 内置的协作者模式(worker mode), 能够很简单的实现任务并发机制
+- :anchor: 内置的责任链模式(chain mode), 能够很简单的实现责任链
+- :anchor: 提供了丰富的调试工具和接口，能够很方便的进行调试*
+
+>
+> 📓 说明：CSM 的调试工具，还有很多在开发中，敬请期待
+>
+
+## 下载
 
 CSM 通过 VIPM Library 的形式发布，您可以通过以下方式下载：
 
@@ -52,7 +69,7 @@ CSM 通过 VIPM Library 的形式发布，您可以通过以下方式下载：
 > 更多信息，请参考页面 [下载](https://nevstop-lab.github.io/CSM-Wiki/release-of-csm)。
 >
 
-# 开源协议
+## 开源协议
 
 CSM 采用 Apache 2.0 开源协议，您可以在 [LICENSE](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/blob/main/LICENSE) 中查看 Apache 2.0 开源协议的详细信息。
 
