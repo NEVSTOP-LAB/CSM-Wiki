@@ -30,6 +30,7 @@ Communicable State Machine(CSM) is a LabVIEW application framework that builds u
 CSM is released as a VIPM Library, which you can download in the following ways:
 
 1. 🥇 Recommended: Search for CSM through the VIPM and install.
+
 <img src="assets/img/VIPM%20Search%20CSM.png" alt="vipm-search-csm" width="60%">
 
 2. Download the package(.vip file) of CSM and click install:

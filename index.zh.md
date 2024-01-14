@@ -38,6 +38,7 @@ permalink: /
 CSM 通过 VIPM Library 的形式发布，您可以通过以下方式下载：
 
 1. 🥇 推荐：通过 VIPM 应用搜索 CSM 获取 CSM 的最新发布版本，然后点击安装。
+
 <img src="assets/img/VIPM%20Search%20CSM.png" alt="vipm-search-csm" width="60%">
 
 2. 下载安装包(.vip 文件)，然后点击安装:
