@@ -67,7 +67,7 @@ _**v2023.Dec Release: Improvement and Bug Fix**_
 
 ---------------------------------------------------
 
-# 历史版本
+# 历史更新记录
 
 [**v2023.Nov: 2023.11.29.94143 (Nov 29, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Nov)
 
