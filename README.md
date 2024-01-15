@@ -18,7 +18,7 @@ _**TODO LIST**_
 
 ``` text
 网站部分：- [@nevstop](https://github.com/nevstop)
-- HOME 页面(md-page[√]) - English[50%] | Chinese [50%]
+- [√] HOME 页面(md-page[√]) - English[100%] | Chinese [100%]
       CSM框架的介绍; CSM框架的特点; CSM框架的应用场景; CSM框架的下载链接; 开源资源使用说明
 - 404 页面(md-page[√]) - English[50%] | Chinese [50%]
       404页面
