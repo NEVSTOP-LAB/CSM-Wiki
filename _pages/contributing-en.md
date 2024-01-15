@@ -1,7 +1,7 @@
 ---
 title: Contributing
 author: nevstop
-date: 2022-02-05
+date: 2022-02-20
 category: information
 layout: post
 page_id: contributors

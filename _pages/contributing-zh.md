@@ -1,7 +1,7 @@
 ---
 title: 项目参与
 author: nevstop
-date: 2022-02-05
+date: 2022-02-20
 category: information
 layout: post
 page_id: contributors
@@ -27,8 +27,8 @@ permalink: /how-to-contribute
 
 #### 参与 CSM 框架的开发
 
-- 认领标记为 `help wanted` 的 Issue
-- Fork CSM 仓库 [NEVSTOP-LAB/Communicable-State-Machine](https://github.com/NEVSTOP-LAB/Communicable-State-Machine)
+- 认领标记为 `help wanted` 的  [Issue](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+- Fork [CSM 仓库](https://github.com/NEVSTOP-LAB/Communicable-State-Machine)
 - 本地修改，提交 Pull Request
 
 #### 开源分享 CSM 的插件、模板、工具、示例和复用模块
