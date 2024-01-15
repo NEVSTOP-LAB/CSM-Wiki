@@ -115,11 +115,11 @@ end
 
 ```
 
-### 无返回的异步消息 (->\|)
+### 无返回的异步消息 (->|)
 
 ``` mermaid
 sequenceDiagram
-Caller-CSM ->> Callee-CSM: API: DoSth >> Arguments ->\| Callee-CSM
+Caller-CSM ->> Callee-CSM: API: DoSth >> Arguments ->| Callee-CSM
 
 Caller-CSM ->> Caller-CSM: 进入 "Async Message Posted" 状态 <br/> State Arguments 为 "API: DoSth"
 
