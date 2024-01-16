@@ -9,7 +9,7 @@ page_id: release-of-csm
 permalink: /release-of-csm
 ---
 
-# Latest Release
+## Latest Release
 
 _**v2023.Dec Release: Improvement and Bug Fix**_
 
@@ -58,9 +58,7 @@ Click badge to download :arrow_forward:
 [minor update] #211 #223
 ```
 
----------------------------------------------------
-
-# Release Notes
+## Release Notes
 
 [**v2023.Nov: 2023.11.29.94143 (Nov 29, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Nov)
 

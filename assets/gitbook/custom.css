@@ -308,3 +308,13 @@ div#no-translation-msg {
     color: wheat;
     border-bottom: black;
 }
+
+h2 {
+    border-bottom-color: #1c1f2b;
+    border-bottom-style: groove;
+    border-bottom-width: thin;
+}
+
+h3 {
+    background-color:#f4f4f4;
+}

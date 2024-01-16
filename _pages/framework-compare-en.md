@@ -9,8 +9,6 @@ page_id: framework-compare
 permalink: /pros-and-cons
 ---
 
-# Comparing with JKISM
+## Comparing with JKISM
 
----------------------------------------
-
-# Comparing with DQMH/SMO/AF
+## Comparing with DQMH/SMO/AF
