@@ -24,7 +24,7 @@ _**TODO LIST**_
       404页面
 - [HIDE] About 页面(md-page[√]) - English[-] | Chinese [-]  ??? 和HOME页面重复了, 是否需要保留
       关于CSM框架的介绍
-- Contributors 页面(md-page[√]) - English[10%] | Chinese [100%]
+- Contributors 页面(md-page[√]) - English[100%] | Chinese [100%]
       如何参与到项目中来; 项目的贡献者列表
 - [√] Download 页面(md-page[√]) - English[100%] | Chinese [100%]
       下载CSM框架的最新版本的链接; 历史版本的更新记录

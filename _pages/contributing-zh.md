@@ -9,7 +9,7 @@ lang: zh
 permalink: /how-to-contribute
 ---
 
-<!-- Contributors 页面(md-page[√]) - English[10%] | Chinese [100%]
+<!-- Contributors 页面(md-page[√]) - English[100%] | Chinese [100%]
 - [x] 如何参与到项目中来
 - [x] 项目的贡献者列表
  -->
