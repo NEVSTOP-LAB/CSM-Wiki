@@ -11,4 +11,6 @@ permalink: /pros-and-cons
 
 ## Comparing with JKISM
 
+
+
 ## Comparing with DQMH/SMO/AF

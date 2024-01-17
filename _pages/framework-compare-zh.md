@@ -9,14 +9,18 @@ page_id: framework-compare
 permalink: /pros-and-cons
 ---
 
-<!-- 和其他框架比较的页面(md-page[√]) - English[-] | Chinese [-]
+<!-- 和其他框架比较的页面(md-page[√]) - English[-] | Chinese [20%]
 - [-]本身的特点
 - [-]和JKISM的比较
 - [-]和DQMH/SMO/AFW等框架的比较
  -->
 
-# Comparing with JKISM
+## CSM vs JKISM vs JKI State Machine Object(SMO)
 
----------------------------------------
+- JKISM 是一个单功能开发的模板，用于开发某个界面或功能，不是程序框架；
+- SMO 是 JKI 基于 JKI-SM + OOP 设计的程序框架
+- CSM 是根据 JKI-SM 拓展的编程框架，依然延续 JKI-SM 没有类的设计，通过添加一些新的字符串规则，实现不同模块之间的消息交互
 
-# Comparing with DQMH/SMO/AF
+## Comparing with DQMH/SMO/AF
+
+![Compare-LabVIEW-Framework](assets/images/slides/Compare-LabVIEW-Framework.png)
