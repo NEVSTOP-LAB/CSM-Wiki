@@ -51,6 +51,28 @@ CSM 是基于 JKISM 开发的程序框架，JKISM 提供了JKI State Machine Edi
 
 ### :question: 如何退出CSM模块?
 
+通常，如果希望退出 CSM 模块，可以通过对 CSM 模块发送 "Macro: Exit" 消息来实现。
+
+- 如果是多个模块需要退出，通常我们需要控制退出的顺序，这个时候可以使用同步消息，保证按照给定的顺序退出模块。
+- 如果多个模块需要退出，且不需要控制退出的顺序，可以使用异步消息，这样可以保证退出的效率。
+
+``` c
+
+// 假如有两个模块需要退出，分别是 Module A 和 Module B
+
+// 同步退出方式
+Macro: Exit -@ Module A
+Macro: Exit -@ Module B
+
+// 异步退出方式
+Macro: Exit -> Module A
+Macro: Exit -> Module B
+```
+
+e.g. 范例:
+
+![How-to-Exit-Example](assets/images/How-to-Exit-Example.png)
+
 <!-- ----------------------------------------------- -->
 ## 辅助工具
 
