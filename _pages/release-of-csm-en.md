@@ -20,7 +20,7 @@ Click badge to download :arrow_forward:
 >
 > :rocket: If you want to download the pre-release version, please visit:
 >
-> [NEVSTOP-LAB/Communicable-State-Machine’s Action page](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain) >
+> [NEVSTOP-LAB/Communicable-State-Machine’s Action page](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain)
 >
 > **Download steps**:
 >

@@ -16,7 +16,7 @@ welcome to participate in the development of CSM! Effective contributors will be
 ### :one: Provide Feedback
 
 - Start Issue to address your problem, suggestion and feature requirement. [CSM Issue](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/issues)
-- Join Discussion. [CSM 讨论区](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/discussions)
+- Join Discussion. [CSM Forum](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/discussions)
 
 ### :two: Contribute to CSM Code
 
@@ -50,7 +50,7 @@ CSM provides interface of Add-on, Template, Tool, Example. Welcome to share your
 
 ## CSM Contributors
 
-|                                                                     贡献者                                                                     | 贡献内容                   |
+|                                                                     ID                                                                     | Contribution                   |
 |:----------------------------------------------------------------------------------------------------------------------------------------------:|------------------------|
 | [<img src="https://avatars.githubusercontent.com/u/8196752?v=4"  width="60px" height="60px"><br/>@NEVSTOP-LAB](https://github.com/NEVSTOP-LAB) | CSM Design amd implementation        |
 | [<img src="https://avatars.githubusercontent.com/u/28539123?v=4"  width="60px" height="60px"><br/>@KivenJia](https://github.com/KivenJia)  | CSM Wiki Maintenance, CSM Test  |
