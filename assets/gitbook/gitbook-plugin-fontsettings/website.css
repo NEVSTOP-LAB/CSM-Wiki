@@ -17,6 +17,11 @@
 .color-theme-1 .dropdown-menu .button:hover {
   color: #73553c;
 }
+
+.color-theme-1 .book-body .page-wrapper .page-inner section.normal .highlight {
+  background-color: #e9e0bf;
+}
+
 /*
  * Theme 2
  */
@@ -97,6 +102,19 @@
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal h2 {
   border-color: inherit;
 }
+
+.book.color-theme-1 .book-body .page-wrapper .page-inner section.normal h2
+{
+  border-bottom-color: #1c1f2b;
+  border-bottom-style: groove;
+  border-bottom-width: thin;
+}
+
+.book.color-theme-1 .book-body .page-wrapper .page-inner section.normal h3
+{
+  background-color:#dbd0a7;
+}
+
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal h6 {
   color: inherit;
 }
@@ -108,7 +126,7 @@
 }
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code {
-  background: #fdf6e3;
+  /* background: #fdf6e3; */
   color: #657b83;
   border-color: #f8df9c;
 }
@@ -145,6 +163,19 @@
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal h2 {
   border-color: #373b4e;
 }
+
+.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal h2
+{
+  border-bottom-color: #8288a2;
+  border-bottom-style: groove;
+  border-bottom-width: thin;
+}
+
+.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal h3
+{
+  background-color:#343745;
+}
+
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal h6 {
   color: #373b4e;
 }
@@ -157,7 +188,7 @@
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code {
   color: #9dbed8;
-  background: #2d3143;
+  /* background: #2d3143; */
   border-color: #2d3143;
 }
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal .highlight {
