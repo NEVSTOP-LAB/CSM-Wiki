@@ -28,9 +28,9 @@ _**TODO LIST**_
       如何参与到项目中来; 项目的贡献者列表
 - [√] Download 页面(md-page[√]) - English[100%] | Chinese [100%]
       下载CSM框架的最新版本的链接; 历史版本的更新记录
-- 和其他框架比较的页面(md-page[√]) - English[-] | Chinese [-]
+- 和其他框架比较的页面(md-page[√]) - English[-] | Chinese [50%]
       本身的特点; 和JKISM的比较; 和DQMH/SMO/AFW等框架的比较
-- FAQ 页面(md-page[√]]) - English[-] | Chinese [1%]
+- FAQ 页面(md-page[√]]) - English[-] | Chinese [100%]
       常见问题的解答
 
 文档部分：

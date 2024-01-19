@@ -44,7 +44,21 @@ CSM 是基于 JKISM 开发的程序框架，JKISM 提供了JKI State Machine Edi
 
 ### :question: CSM 和 JKISM 的区别是什么?
 
+JKI State Machine 是由[JKI](http://jki.net/)公司开发维护的 LabVIEW 开源项目。由事件结构、字符串消息队列和循环结构组成的状态机模板。JKISM 不是程序框架，主要用于开发 LabVIEW 界面逻辑。
+CSM 是基于 JKISM 拓展的编程框架，依然延续 JKISM 的字符串消息设计，通过添加一些新的字符串规则，实现不同模块之间的消息交互。
+
+更多的信息，请参考 [CSM vs JKISM vs SMO](https://nevstop-lab.github.io/CSM-Wiki/pros-and-cons#csm-vs-jkism-vs-smo)。
+
+> 📓:
+>
+> - JKISM 虽然叫做状态机，但是它更像一个字符串为消息队列的生产者消费者结构。通常停留在 IDLE 状态等待用户事件，当消息队列中有消息时，优先处理消息。
+> - JKISM 和生产者消费者模板(QMH)相比，由于它只有一个循环，所以消息处理不能有持续时间长的处理，否则用户会感知到卡顿。这也是选择 QMH 和 JKISM 的一个重要的考虑因素。
+>
+
 ### :question: LabVIEW不同的框架 CSM/DQMH/AF/SMO 有没有各自非常适合的应用场景?
+
+CSM/DQMH/AF/SMO 都是 LabVIEW 的编程框架，通常没有特别的应用场景区分。但是，由于每个框架的设计思想不同，所以在不同的场景下，可能会有不同的选择。
+具体的选择，可以参考 [CSM vs DQMH/SMO/AF](https://nevstop-lab.github.io/CSM-Wiki/pros-and-cons#csm-vs-dqmhsmoaf)。
 
 <!-- ----------------------------------------------- -->
 ## 使用方法
@@ -77,3 +91,5 @@ e.g. 范例:
 ## 辅助工具
 
 ### :question: CSM 模块设计如何和需求映射?
+
+- [ ] TO BE EDITED

@@ -18,8 +18,8 @@ permalink: /pros-and-cons
 ## CSM vs JKISM vs SMO
 
 - JKISM 是一个单功能开发的模板，用于开发某个界面或功能，不是程序框架；
-- SMO 是 JKI 基于 JKI-SM + OOP 设计的程序框架
-- CSM 是根据 JKI-SM 拓展的编程框架，依然延续 JKI-SM 没有类的设计，通过添加一些新的字符串规则，实现不同模块之间的消息交互
+- SMO 是 JKI 基于 JKISM + OOP 设计的程序框架
+- CSM 是根据 JKISM 拓展的编程框架，依然延续 JKISM 没有类的设计，通过添加一些新的字符串规则，实现不同模块之间的消息交互
 
 ## CSM vs DQMH/SMO/AF
 
