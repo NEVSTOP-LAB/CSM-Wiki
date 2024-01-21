@@ -76,15 +76,15 @@ _**TODO LIST**_
         (待功能实现后补充)
 
 - 调试工具/调试方法
-  - CSM内置的全局事件(md-page[-]) - English[-] | Chinese [-]
+  - CSM内置的全局事件(md-page[-]) - English[-] | Chinese [10%]
         说明CSM内置的全局事件包含的功能；如何使用全局事件；介绍函数
-  - JKISM State Editor(md-page[-]) - English[-] | Chinese [-]
+  - JKISM State Editor(md-page[-]) - English[-] | Chinese [0%]
         介绍JKISM State Editor的功能；介绍如何使用JKISM State Editor
-  - CSM Global Log Window(md-page[-]) - English[-] | Chinese [-]
+  - CSM Global Log Window(md-page[-]) - English[-] | Chinese [50%]
         介绍CSM Global Log Window的功能
-  - CSM State Dashboard Window(md-page[-]) - English[-] | Chinese [-]
+  - CSM State Dashboard Window(md-page[-]) - English[-] | Chinese [50%]
         介绍CSM State Dashboard Window的功能
-  - CSM State Table Window(md-page[-]) - English[-] | Chinese [-]
+  - CSM State Table Window(md-page[-]) - English[-] | Chinese [50%]
         介绍CSM State Table Window的功能
   - (TODO) CSM Test Panel(md-page[-]) - English[-] | Chinese [-]
         (待功能实现后补充)

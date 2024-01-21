@@ -6,6 +6,7 @@ layout: post
 lang: zh
 page_id: CSM-Plugin-System
 toc: true
+permalink: /csm-plugin-system
 ---
 
 # Addon 接口
