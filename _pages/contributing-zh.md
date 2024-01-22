@@ -60,4 +60,4 @@ CSM 提供了插件、模板、工具、示例和复用模块的开发接口，�
 |:----------------------------------------------------------------------------------------------------------------------------------------------:|------------------------|
 | [<img src="https://avatars.githubusercontent.com/u/8196752?v=4"  width="60px" height="60px"><br/>@NEVSTOP-LAB](https://github.com/NEVSTOP-LAB) | CSM框架的设计和实现        |
 | [<img src="https://avatars.githubusercontent.com/u/28539123?v=4"  width="60px" height="60px"><br/>@KivenJia](https://github.com/KivenJia)  | CSM Wiki 维护, CSM框架测试 |
-| [<img src="https://avatars.githubusercontent.com/u/22453277?v=4"  width="60px" height="60px"><br/>@Leo452379](https://github.com/Leo452379)  | CSM Wiki 内测, CSM框架测试 |
+| [<img src="https://avatars.githubusercontent.com/u/22453277?v=4"  width="60px" height="60px"><br/>@Leo452379](https://github.com/Leo452379)  | CSM 内测, CSM框架测试 |
