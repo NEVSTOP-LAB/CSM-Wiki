@@ -85,7 +85,7 @@ Macro: Exit -> Module B
 
 e.g. 范例:
 
-![How-to-Exit-Example](assets/img/QA/How-to-Exit-Example.png)
+![How-to-Exit-Example](https://nevstop-lab.github.io/CSM-Wiki/assets/img/QA/How-to-Exit-Example.png)
 
 <!-- ----------------------------------------------- -->
 ## 辅助工具

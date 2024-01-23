@@ -27,7 +27,7 @@ permalink: /
 - 关于 JKI State Machine(JKISM) 更多信息, 请访问: <http://jki.net/state-machine/>
 - 关于 Communicable State Machine(CSM) 更多信息, 请访问: <https://github.com/NEVSTOP-LAB>
 
-![CSM Async Call](assets/img/Homepage%20Image.png)
+![CSM Async Call](https://nevstop-lab.github.io/CSM-Wiki/assets/img/Homepage%20Image.png)
 
 > 📓
 > 如果想了解更多详细信息，请阅读 wiki 的技术细节章节

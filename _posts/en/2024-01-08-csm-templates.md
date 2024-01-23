@@ -14,7 +14,7 @@ _**CSM Templates**_
 <!-- Template Description:
 [English](src/help/NEVSTOP/Communicable%20State%20Machine(CSM)/Template%20Description(EN).md) | [中文](src/help/NEVSTOP/Communicable%20State%20Machine(CSM)/Template%20Description(CN).md) -->
 
-![csm-template](assets/img/CSM%20Without%20Event%20Structure%20Template.png)
+![csm-template](https://nevstop-lab.github.io/CSM-Wiki/assets/img/CSM%20Without%20Event%20Structure%20Template.png)
 
 # Template Description
 

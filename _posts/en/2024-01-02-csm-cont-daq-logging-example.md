@@ -83,11 +83,11 @@ When you need to use real hardware for data acquisition, create another CSM modu
 
 Create UI, which is similar as [Workers Continuous Measurement and Logging Example](https://www.vipm.io/package/sc_workers_framework_core/)
 
-![Alt text](assets/img/csm-cont-daq-logging-example/mainUI.png)
+![Alt text](https://nevstop-lab.github.io/CSM-Wiki/assets/img/csm-cont-daq-logging-example/mainUI.png)
 
 Create Block Diagram with CSM Template. Drop `Logging Module` and `Acquisition Module` as submodules.
 
-![mainBD](assets/img/csm-cont-daq-logging-example/MainBD.png)
+![mainBD](https://nevstop-lab.github.io/CSM-Wiki/assets/img/csm-cont-daq-logging-example/MainBD.png)
 
 #### Start-Up Process (Macro: Initialize)
 
@@ -104,7 +104,7 @@ Do: Update Settings
 DO: Update Status >> Ready...
 ```
 
-![Macro: Initialize](assets/img/csm-cont-daq-logging-example/Initialize%20Process.png)
+![Macro: Initialize](https://nevstop-lab.github.io/CSM-Wiki/assets/img/csm-cont-daq-logging-example/Initialize%20Process.png)
 
 #### Exit Process (Macro: Exit)
 
@@ -120,7 +120,7 @@ Events: Unregister
 Exits
 ```
 
-![Macro: Initialize](assets/img/csm-cont-daq-logging-example/Exit%20Process.png)
+![Macro: Initialize](https://nevstop-lab.github.io/CSM-Wiki/assets/img/csm-cont-daq-logging-example/Exit%20Process.png)
 
 #### Start Process (Macro: Start)
 
@@ -142,7 +142,7 @@ API: Start ->| Logging
 API: Start ->| Acquisition
 ```
 
-![Macro: Start](assets/img/csm-cont-daq-logging-example/Start%20Process.png)
+![Macro: Start](https://nevstop-lab.github.io/CSM-Wiki/assets/img/csm-cont-daq-logging-example/Start%20Process.png)
 
 #### Stop Process (Macro: Stop)
 
@@ -164,4 +164,4 @@ Acquired Waveform@Acquisition >> UI: Update Waveforms -><unregister>
 Power Spectrum@Algorithm >> UI: Update FFT -><unregister>
 ```
 
-![Macro: Stop](assets/img/csm-cont-daq-logging-example/Stop%20Process.png)
+![Macro: Stop](https://nevstop-lab.github.io/CSM-Wiki/assets/img/csm-cont-daq-logging-example/Stop%20Process.png)

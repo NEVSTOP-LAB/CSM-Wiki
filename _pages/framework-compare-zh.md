@@ -23,4 +23,4 @@ permalink: /pros-and-cons
 
 ## CSM vs DQMH/SMO/AF
 
-![Compare-LabVIEW-Framework](assets/img/slides/Compare-LabVIEW-Framework.png)
+![Compare-LabVIEW-Framework](https://nevstop-lab.github.io/CSM-Wiki/assets/img/slides/Compare-LabVIEW-Framework.png)
