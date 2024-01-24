@@ -129,6 +129,7 @@
   /* background: #fdf6e3; */
   color: #657b83;
   border-color: #f8df9c;
+  background-color: #fdf6e3;
 }
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal .highlight {
   background-color: inherit;
@@ -190,6 +191,7 @@
   color: #9dbed8;
   /* background: #2d3143; */
   border-color: #2d3143;
+  background-color: #3d3d3d;
 }
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal .highlight {
   background-color: #282a39;
