@@ -37,6 +37,33 @@ _**v2023.Dec Release: Improvement and Bug Fix**_
 > - Step 4. 双击 vip 文件或通过 VIPM 打开安装
 >
 
+[**V2024.Jan Release: Global Event, Utility and bug fix**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2024.Jan)
+
+``` text
+#Core
+[update] #242 For async-message, if target turned invalid before response, no ¡°target error¡± throw out
+[fix] Clear Last Message's Error before new remote message, to avoid some misinformation
+
+#Arguments
+[fix] Fix the error input of "CSM - Convert HexStr to Data.vi"
+[fix] minor fix #237
+
+#Global Event
+[add] #240 add "Module Created" and "Module Destroyed" log to global log system
+[fix] #238 Align global event ref lifecycle with a background thread, rather than the caller VI
+
+#Utility
+[add] Add "CSM - Remove Duplicated Following Messages.vi", to remove duplicated message
+[add] Add "CSM - Replace Substitution Marks in Messages.vi", to help build multiple-line states easily
+
+#Documentation
+[add] Create web wiki for CSM: https://nevstop-lab.github.io/CSM-Wiki/
+```
+
+## 历史更新记录
+
+[**v2023.Dec Release: Improvement and Bug Fix**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
+
 ``` text
 #Core
 [Critical] #207 "Target Busy Error" is obsolete. Now a sync-call message will not generate "Target Busy Error" but waiting until timeout.
@@ -64,8 +91,6 @@ _**v2023.Dec Release: Improvement and Bug Fix**_
 [add] add CSM - No-Event Structure Template - Tiny.vi
 [minor update] #211 #223
 ```
-
-## 历史更新记录
 
 [**v2023.Nov: 2023.11.29.94143 (Nov 29, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Nov)
 
