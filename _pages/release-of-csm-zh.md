@@ -37,6 +37,27 @@ _**v2023.Dec Release: Improvement and Bug Fix**_
 > - Step 4. 双击 vip 文件或通过 VIPM 打开安装
 >
 
+[**v2024.Feb Release: Toolbar Entry for CSM Tools**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2024.Feb)
+
+``` text
+#GlobalEvent
+[improve] improve release logic. Use watchdog for background thread exit
+[improve] minor fix #254
+
+#Utility
+[add] #251 add "CSM - Filter Messages to Non-Existing Modules.vi"
+
+#Tool
+[add] #252 add a toolbar entry to launcher CSM tools
+
+#Documentation
+[fix] #246 fix vipm.io links
+[improve] #245 improve user experience
+[improve] Update example VIs' icons/Palette icons
+```
+
+## 历史更新记录
+
 [**V2024.Jan Release: Global Event, Utility and bug fix**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2024.Jan)
 
 ``` text
@@ -59,8 +80,6 @@ _**v2023.Dec Release: Improvement and Bug Fix**_
 #Documentation
 [add] Create web wiki for CSM: https://nevstop-lab.github.io/CSM-Wiki/
 ```
-
-## 历史更新记录
 
 [**v2023.Dec Release: Improvement and Bug Fix**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
 
