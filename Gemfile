@@ -2,14 +2,17 @@
 
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
-
-gem "jekyll", "~> 4.3"
-gem "jekyll-last-modified-at", git: "https://github.com/maximevaillancourt/jekyll-last-modified-at", branch: "add-support-for-files-in-git-submodules"
-gem "webrick", "~> 1.9"
-gem "nokogiri"
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+gem "jekyll"
+gem 'jekyll-feed'
+gem 'jekyll-readme-index'
+gem 'jemoji'
+gem 'webrick'
+gem "jekyll-polyglot"
 gem 'jekyll-loading-lazy'
 
-group :jekyll_plugins do
-    gem "jekyll-polyglot"
-end
+# group :jekyll_plugins do
+#     gem "jekyll-polyglot"
+# end
+
+# gem "rails"
