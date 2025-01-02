@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+lang: zh-cn
 permalink: /about
 ---
 

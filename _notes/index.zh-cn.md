@@ -2,6 +2,7 @@
 layout: page
 title: Home
 id: home
+lang: zh-cn
 permalink: /
 ---
 
