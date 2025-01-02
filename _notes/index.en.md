@@ -8,12 +8,14 @@ permalink: /
 # Welcome! 🌱
 
 <p style="padding: 3em 1em; background: #f5f7ff; border-radius: 4px;">
-  Take a look at <span style="font-weight: bold">[[Your first note]]</span> to get started on your exploration.
+
+Communicable State Machine(CSM) is a LabVIEW application framework that builds upon JKI State Machine(JKISM). It follows the pattern of JKISM and extends the keywords to describe message communication between modules, including concepts such as Sync-Message, Async-Message, Subscription/Unsubscription of status - essential elements for creating reusable code modules. For more information, please visit the CSM wiki: <https://nevstop-lab.github.io/CSM-Wiki/>
+
+- For instructions on JKI State Machine(JKISM), visit: <http://jki.net/state-machine/>
+- For information on NEVSTOP-LAB, visit: <https://github.com/NEVSTOP-LAB>
+
 </p>
 
-This digital garden template is free, open-source, and [available on GitHub here](https://github.com/maximevaillancourt/digital-garden-jekyll-template).
-
-The easiest way to get started is to read this [step-by-step guide explaining how to set this up from scratch](https://maximevaillancourt.com/blog/setting-up-your-own-digital-garden-with-jekyll).
 
 <style>
   .wrapper {
