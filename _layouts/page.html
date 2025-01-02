@@ -1,0 +1,12 @@
+---
+layout: default
+---
+
+<content>
+  {{ content }}
+</content>
+
+<!-- introduce per-page mermaid support -->
+{% if page.mermaid %}
+    {% include mermaid.html %}
+{% endif %}

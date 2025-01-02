@@ -1,72 +1,50 @@
-<meta charset="UTF-8">
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<head>
+  <meta charset="UTF-8">
 
-{%- if page.title -%}
-    <title>{{ page.title | escape }} · {{ site.title | escape }}</title>
-{%- else -%}
-    <title>{{ site.title | escape }}</title>
-{%- endif -%}
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="description" content="{{site.description}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{%- if site.gitbook_version -%}
-    <meta name="generator" content="Jekyll (using style of GitBook {{ site.gitbook_version | escape }})">
-{%- else -%}
-    <meta name="generator" content="Jekyll (using style of GitBook)">
-{%- endif -%}
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.title }}{% endif %}">
 
-{%- if site.author -%}
-    <meta name="author" content="{{ site.author | escape }}">
-{%- endif -%}
+  <meta property="og:site_name" content="{{ site.title }}">
 
-<link rel="stylesheet" href="{{site.baseurl}}/assets/gitbook/style.css">
-<link rel="stylesheet" href="{{site.baseurl}}/assets/gitbook/gitbook-plugin-back-to-top-button/plugin.css">
-<link rel="stylesheet" href="{{site.baseurl}}/assets/gitbook/gitbook-plugin-expandable-chapters-small2/expandable-chapters-small.css">
-<link rel="stylesheet" href="{{site.baseurl}}/assets/gitbook/gitbook-plugin-fontsettings/website.css">
-<link rel="stylesheet" href="{{site.baseurl}}/assets/gitbook/gitbook-plugin-search-pro/search.css">
-<link rel="stylesheet" href="{{site.baseurl}}/assets/gitbook/gitbook-plugin-splitter/splitter.css">
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
 
-<link rel="stylesheet" href="{{site.baseurl}}/assets/gitbook/rouge/{{ site.syntax_highlighter_style | default: 'colorful' }}.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/styles.css">
 
-<link rel="stylesheet" href="{{site.baseurl}}/assets/gitbook/custom.css">
-<link rel="stylesheet" href="{{site.baseurl}}/assets/gitbook/custom-local.css">
+  {% if page.excerpt %}
+  <meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}"/>
+  {% else %}
+  <meta property="og:description" content="{{ site.title | strip_html | strip_newlines | truncate: 160 }}"/>
+  {% endif %}
 
-<meta name="HandheldFriendly" content="true"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{site.baseurl}}/assets/gitbook/images/apple-touch-icon-precomposed-152.png">
-<link rel="shortcut icon" href="{{site.baseurl}}/{{site.favicon_path}}" type="image/x-icon">
+  {% if page.title %}
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:type" content="article">
+  {% else %}
+  <meta property="og:title" content="{{ site.title }}">
+  <meta property="og:type" content="website">
+  {% endif %}
 
-{% if site.extra_css %}
-    {%- for extra_css in site.extra_css -%}
-        {%- assign starts_with = extra_css | slice: 0,4 -%}
-        {% if starts_with == "http" %}
-<link rel="stylesheet" href="{{ extra_css }}">
-        {%- else -%}
-<link rel="stylesheet" href="{{site.baseurl}}/{{ extra_css }}">
-        {%- endif -%}
-    {%- endfor -%}
-{% endif %}
+  {% if page.date %}
+  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+  <meta property="article:author" content="{{ site.url }}/">
+  {% endif %}
 
-{% if site.extra_header_js %}
-    {%- for extra_js in site.extra_header_js -%}
-        {%- assign starts_with = extra_js | slice: 0,4  -%}
-        {% if starts_with == "http" %}
-<script src="{{ extra_js }}"></script>
-        {%- else -%}
-<script src="{{site.baseurl}}/{{ extra_js }}"></script>
-        {%- endif -%}
-    {%- endfor -%}
-{% endif %}
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
 
-{%- if site.tracker -%}
-    <!-- trackers -->
+  {% if page.image %}
+  <meta property="og:image" content="{{ site.url }}{{ page.image }}">
+  {% endif %}
 
-    {%- if site.tracker.application_insights -%}
-        <!-- application insights -->
-        {%- include application-insights.html -%}
-    {%- endif -%}
+  <script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
 
-{%- endif -%}
+  <title>
+    {% if page.id == "home" %}
+      {{ site.title }}
+    {% else %}
+      {{ page.title }} &mdash; {{ site.title }}
+    {% endif %}
+  </title>
+</head>
