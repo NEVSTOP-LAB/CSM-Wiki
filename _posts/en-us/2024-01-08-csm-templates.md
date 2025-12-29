@@ -3,7 +3,7 @@ title: CSM Templates
 author: nevstop
 date: 2024-01-08
 layout: post
-lang: us-en
+lang: en-us
 page_id: CSM-Templates
 toc: true
 # cover: assets/img/CSM%20Without%20Event%20Structure%20Template.png

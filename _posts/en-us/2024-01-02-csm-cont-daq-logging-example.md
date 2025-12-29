@@ -3,7 +3,7 @@ title: CSM Continuous Measurement and Logging Example
 author: nevstop
 date: 2024-01-02
 layout: post
-lang: us-en
+lang: en-us
 page_id: CSM-Continuous-Measurement-and-Logging
 toc: true
 ---

@@ -1,4 +1,4 @@
-{{ site.data[site.active_lang].l10n.ChooseLanguage }}: | <a href="/CSM-Wiki/">中文</a> | <a href="/CSM-Wiki/us-en/">English</a> |
+{{ site.data[site.active_lang].l10n.ChooseLanguage }}: | <a href="/CSM-Wiki/">中文</a> | <a href="/CSM-Wiki/en-us/">English</a> |
 
 
 
@@ -6,14 +6,14 @@
 
 {% assign ChooseLanguage = site.data[page.lang].l10n.ChooseLanguage %}:|
 
-{% if page.lang == "us-en" %}
+{% if page.lang == "en-us" %}
 <a href="/CSM-Wiki{{ page.url | prepend: '' }}">中文</a>
 {% else %}
 中文
 {% endif %}
 |
 {% if page.lang == "zh-cn" %}
-<a href="{{ page.url | prepend: '/us-en' }}">English</a>
+<a href="{{ page.url | prepend: '/en-us' }}">English</a>
 {% else %}
 English
 {% endif %}

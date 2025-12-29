@@ -15,8 +15,8 @@
 <!-- {% assign ChooseLanguage = site.data[site.active_lang].l10n.ChooseLanguage %}
 
 {% assign PageHTMLFileName = page.url | split: '/' | last %}
-{% assign zhPageURL = "/CSM-Wiki/"PageHTMLFileName | replace: "/us-en", "/" %}
-{% assign enPageURL = "/CSM-Wiki/us-en/"PageHTMLFileName %}
+{% assign zhPageURL = "/CSM-Wiki/"PageHTMLFileName | replace: "/en-us", "/" %}
+{% assign enPageURL = "/CSM-Wiki/en-us/"PageHTMLFileName %}
 
 {{ ChooseLanguage }}: |
 {% for lang in site.languages %}
