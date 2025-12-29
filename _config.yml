@@ -23,7 +23,7 @@ toc:
   h_max: 2
 
 # customize the link favicon in header, will be {{site.baseurl}}/{{site.favicon_path}}
-favicon_path:     /assets/gitbook/images/favicon.ico
+favicon_path:     assets/gitbook/images/favicon.ico
 
 # markdown render engine.
 markdown:         kramdown
@@ -70,5 +70,5 @@ plugins:
 
 languages: ["zh-cn", "en-us"]
 default_lang: "zh-cn"
-exclude_from_localization: ["javascript", "images", "css", "public"]
+exclude_from_localization: ["javascript", "images", "css", "public", "assets"]
 parallel_localization: true
