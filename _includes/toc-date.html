@@ -26,12 +26,14 @@
             <a href="{{site.baseurl}}/assets/search.html">Click to Search</a>
         </div>
         <ul class="summary">
-            {% if page.url == "/index.html" or page.url == "/" %}
-            <li class="chapter active" data-level="1.1" data-path="{{site.baseurl}}">
+            {% assign home_url = site.baseurl | append: '/' | append: site.active_lang %}
+            {% assign home_url_with_slash = home_url | append: '/' %}
+            {% if page.url == "/index.html" or page.url == "/" or page.url == home_url or page.url == home_url_with_slash %}
+            <li class="chapter active" data-level="1.1" data-path="{{home_url}}">
             {% else %}
-            <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}">
+            <li class="chapter" data-level="1.1" data-path="{{home_url}}">
             {% endif %}
-                <a href="{{site.baseurl}}/" onclick="pageScrollToTop(this)">
+                <a href="{{home_url}}/" onclick="pageScrollToTop(this)">
                     {{ site.data[site.active_lang].l10n.title | escape }}
                 </a>
             </li>
