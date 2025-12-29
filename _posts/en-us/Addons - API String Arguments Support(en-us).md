@@ -1,5 +1,53 @@
 # CSM API String Arguments Support
 
+## Overview
+
+API String argument support is used to enhance the API parameter functionality of the Communicable State Machine (CSM), supporting the transfer of various data types in plain text format, with special optimization for manual input experience. API String does not define an Argument Type, and the result obtained through the CSM - Argument Type VI is empty, usually handled in the default branch. Supported data types include:
+- String
+- Path
+- Boolean
+- Tag
+- Refnum (including IVI/VISA/UserDefinedRefnumTag)
+- Integer (I8, I16, I32, I64, U8, U16, U32, U64)
+- Floating point (DBL/SGL)
+- Complex number (DBL/SGL)
+- Timestamp
+- Enum
+- Array
+- Cluster
+- Other types (represented using CSM-Hexstr)
+
+More detailed information can be found at: https://github.com/NEVSTOP-LAB/CSM-API-String-Arguments-Support
+
+Or refer to the examples, which provide detailed explanations and examples for all data types.
+
+### Default Strings for TRUE Values
+
+Supports `1`, `Active`, `Enable`, `Non-null`, `On`, `T`, `True`, `valid`, `yes`
+Case-insensitive
+
+### Default Strings for FALSE Values
+
+Supports `0`, `Disable`, `F`, `False`, `Inactive`, `Invalid`, `No`, `Off`, `Void`, `null`
+Case-insensitive
+
+### Default Format for Floating Points
+
+The default format for floating points is `%.6p`.
+
+### Indexed Enum
+
+The format is `[index][separator][enum string]`, where the index supports multiple numeric representations
+
+Example with `==` separator:
+`1 == boolean | 2 == string | 4 == dbl | 8 == number`
+
+Example with `--` separator:
+`0x01 -- boolean | 0x02 -- string | 0x04 -- dbl | 0x08 -- number`
+
+Example with `__` separator:
+`0b0001 __ boolean | 0b0100 __ dbl | 0b1000 __ number`
+
 ## 1. Empty String to Typical data types.vi
 
 ### Overview

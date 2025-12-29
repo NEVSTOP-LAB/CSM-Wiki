@@ -1,5 +1,22 @@
 # CSM MassData Support Addon
 
+## Overview
+
+CSM Massdata argument support provides an efficient parameter transfer mechanism for passing large amounts of data in CSM, such as arrays, waveform data, etc. It is also used for lossless transfer of complex data types and other scenarios.
+
+### Key Features
+
+1. **Efficient Transfer**: Improves the efficiency and performance of parameter transfer by using an efficient memory reference mechanism instead of directly transferring data.
+2. **Lossless Transfer**: CSM Massdata data transfer is completely lossless, suitable for transferring complex data types.
+3. **Shared Cache**: All CSM modules within the same application share the same Massdata buffer space.
+4. **Circular Buffer**: Uses a circular buffer mechanism internally; when the buffer is full, new data will overwrite old data starting from the beginning.
+5. **Type Support**: Supports multiple data types, including arrays, waveform data, and other complex data types.
+6. **Debug Support**: Provides debugging tools for monitoring cache usage, helping with optimization and configuration.
+
+### Massdata Parameter Type
+
+The parameter type defined by CSM Massdata is `<MassData>`, which can be obtained through the CSM - Argument Type VI.
+
 ## MassData Argument Format (1. MassData Argument Format.vi)
 
 ### Overview

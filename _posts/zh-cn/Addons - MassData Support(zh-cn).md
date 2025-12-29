@@ -1,6 +1,23 @@
 # CSM MassData Support Addon    
 
-## MassData参数格式 (1. MassData Argument Format.vi)
+## 概述
+
+CSM Massdata参数支持提供了一种高效的参数传递机制，用于在CSM中传递大量数据，例如：数组、波形数据等。也用于无损的传递复杂数据类型数据等场景。
+
+### 主要特点
+
+1. **高效传输**：通过使用内存高效的引用机制而非直接传输数据，从而提高了参数传递的效率和性能。
+2. **无损传输**：CSM Massdata数据传输是完全无损的，适合传递复杂数据类型。
+3. **共享缓存**：同一应用程序内的所有CSM模块共享相同的Massdata缓冲区空间。
+4. **循环缓冲区**：内部使用循环缓冲区机制，当缓冲区满时，新数据将从开始位置覆盖旧数据。
+5. **类型支持**：支持多种数据类型，包括数组、波形数据等复杂数据类型。
+6. **调试支持**：提供了调试工具，用于监控缓存使用情况，帮助优化配置。
+
+### Massdata参数类型
+
+CSM Massdata定义的参数类型为`<MassData>`，可以通过CSM - Argument Type VI获取。
+
+### MassData参数格式 (1. MassData Argument Format.vi)
 
 ### Overview
 

@@ -1,21 +1,41 @@
 # CSM INI-Variable Support
 
+## 概述
+
+CSM INI-Variable Support是CSM框架的一个插件，为CSM提供简单易用的配置文件支持功能，使用户能够配置应用程序而无需显式读写配置文件。
+
+### 主要特点
+
+1. **默认配置处理**：首次调用库函数时自动加载默认配置文件，无需用户显式加载。
+2. **多文件支持**：通过专用函数支持加载多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+3. **内存缓存**：在内存中维护一个缓存副本，应用程序从该缓存中获取配置信息。
+4. **INI格式兼容**：配置文件和内存副本均采用标准INI格式，支持节和键值对。
+5. **高效缓存机制**：使用全局修改标记优化性能，仅在配置发生修改时才重新读取内存副本。
+6. **嵌套变量支持**：支持变量的嵌套引用，实现灵活的配置定义。
+7. **配置文件引用**：支持通过`[__include]`节引用其他配置文件，实现分布式配置文件系统。
+
+### 变量格式
+
+格式定义: `${section.variable:defaultValue}`
+- `${}`: 变量引用语法。
+- `section`(可选): 配置文件中的节名。省略时，使用默认配置段 `SectionName=LabVIEW`。
+- `variable`: 配置文件中的变量名。
+- `defaultValue`(可选): 默认值，当变量不存在时使用。未指定时默认为空字符串("")。
+
+### 配置文件路径
+
+- **开发状态**：Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+- **编译后**：可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW编译后会自动生成此文件。
+
 ## CSM 可解析参数(1. Used as parameters parsed by CSM.vi)
 
 ### Overview
-
-CSM INI Variable Support为CSM提供简单易用的配置文件支持功能，使用户能够配置应用程序而无需显式读写配置文件。
 
 本范例用于展示如何在CSM中使用INI Variable Support可解析参数的功能。
 
 ### Introduction
 
 展示如何使用CSM INI Variable Support功能将参数信息固化在INI配置文件中。INI变量使用CSM API String的格式。
-
-变量：${section.variable:defaultValue}
- - section：配置文件中的节名。section参数为可选。省略时，使用默认配置段SectionName=LabVIEW。
- - variable：配置文件中的变量名。
- - defaultValue：默认值，当配置文件中未定义该变量时使用。默认值为可选，未指定时默认为空字符串("")。
 
 ### Steps
 
