@@ -2,7 +2,7 @@
 title: Communicable State Machine(CSM) Framework
 layout: home
 lang: us-en
-permalink: /
+permalink: /us-en/
 ---
 
 [![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)

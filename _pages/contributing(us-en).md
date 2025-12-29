@@ -31,7 +31,7 @@ welcome to participate in the development of CSM! Effective contributors will be
 CSM provides interface of Add-on, Template, Tool, Example. Welcome to share your code of CSM.
 
 > 🔗:
-> For interface of Add-on, Template, Tool, Example，Ref to [CSM Plugins](https://nevstop-lab.github.io/CSM-Wiki/en/2024-01-01-csm-plugin-system.html)
+> For interface of Add-on, Template, Tool, Example，Ref to [CSM Plugins](https://nevstop-lab.github.io/CSM-Wiki/us-en/2024-01-01-csm-plugin-system.html)
 >
 
 ### :three: Wiki maintenance

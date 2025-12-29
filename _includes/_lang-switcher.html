@@ -1,14 +1,22 @@
-{% assign lang2 = site.active_lang %}
-{% assign ChooseLanguage = site.data[lang2].l10n.ChooseLanguage %}
-{{ ChooseLanguage }}: <a href="/CSM-Wiki{{ page.url }}">中文</a> | <a href="/CSM-Wiki/en{{ page.url }}">English</a>
+{% assign ChooseLanguage = site.data[site.active_lang].l10n.ChooseLanguage %}
+{{ ChooseLanguage }}: |
+{% for lang in site.languages %}
+    {% assign lang_name = site.data[lang].l10n.lang_name %}
+    {% if lang == site.active_lang %}
+        {{ lang_name }} |
+    {% else %}
+        {% capture new_url %}{{ site.baseurl }}{% if site.active_lang != site.default_lang %}{{ page.url | replace: '/' | append: site.active_lang | append: '/', '/' | append: lang | append: '/' }}{% else %}/{{ lang }}{{ page.url }}{% endif %}{% endcapture %}
+        <a href="{{ new_url }}"> {{ lang_name }} </a> |
+    {% endif %}
+{% endfor %}
 
 <!-- ------------- -->
 
 <!-- {% assign ChooseLanguage = site.data[site.active_lang].l10n.ChooseLanguage %}
 
 {% assign PageHTMLFileName = page.url | split: '/' | last %}
-{% assign zhPageURL = "/CSM-Wiki/"PageHTMLFileName | replace: "/en", "/" %}
-{% assign enPageURL = "/CSM-Wiki/en/"PageHTMLFileName %}
+{% assign zhPageURL = "/CSM-Wiki/"PageHTMLFileName | replace: "/us-en", "/" %}
+{% assign enPageURL = "/CSM-Wiki/us-en/"PageHTMLFileName %}
 
 {{ ChooseLanguage }}: |
 {% for lang in site.languages %}

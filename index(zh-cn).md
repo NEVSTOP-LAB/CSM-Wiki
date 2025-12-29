@@ -2,7 +2,7 @@
 title: 可通信状态机框架(CSM)
 layout: home
 lang: zh-cn
-permalink: /
+permalink: /zh-cn/
 ---
 
 <!--  [50%] HOME 页面(md-page[x]) - English[√] | Chinese [√]
