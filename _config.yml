@@ -68,7 +68,7 @@ plugins:
   - jekyll-polyglot
   - jekyll-loading-lazy
 
-languages: ["zh", "en"]
-default_lang: "zh"
+languages: ["zh-cn", "us-en"]
+default_lang: "zh-cn"
 exclude_from_localization: ["javascript", "images", "css", "public"]
 parallel_localization: true

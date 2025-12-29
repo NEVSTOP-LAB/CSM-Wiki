@@ -1,7 +1,7 @@
 ---
 title: 可通信状态机框架(CSM)
 layout: home
-lang: zh
+lang: zh-cn
 permalink: /
 ---
 

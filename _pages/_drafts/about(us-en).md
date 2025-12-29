@@ -4,7 +4,7 @@ author: nevstop
 date: 2022-02-04
 category: information
 layout: post
-lang: en
+lang: us-en
 page_id: about-us
 permalink: /about
 ---

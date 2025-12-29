@@ -3,7 +3,7 @@ title: CSM 示例-连续测量和记录应用程序
 author: nevstop
 date: 2024-01-02
 layout: post
-lang: zh
+lang: zh-cn
 page_id: CSM-Continuous-Measurement-and-Logging
 toc: true
 ---

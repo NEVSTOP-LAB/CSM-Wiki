@@ -3,7 +3,7 @@ title: CSM Palette
 author: nevstop
 date: 2024-01-08
 layout: post
-lang: en
+lang: us-en
 page_id: CSM-Palette-APIs
 toc: true
 # cover: assets/img/CSM%20Palette.png

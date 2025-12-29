@@ -5,7 +5,7 @@ date: 2022-02-20
 category: information
 layout: post
 page_id: contributors
-lang: zh
+lang: zh-cn
 permalink: /how-to-contribute
 ---
 

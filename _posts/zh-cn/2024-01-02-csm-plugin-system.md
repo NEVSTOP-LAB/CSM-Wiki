@@ -1,21 +1,22 @@
 ---
-title: Advanced Mode
+title: CSM插件机制
 author: nevstop
-date: 2023-12-31
+date: 2024-01-01
 layout: post
-lang: en
-page_id: advance-of-csm
+lang: zh-cn
+page_id: CSM-Plugin-System
 toc: true
+permalink: /csm-plugin-system
 ---
 
-# Built-in Error Handling Mechanism
+# Addon 接口
 
 **This Wiki page is still under construction.**
 
-# Worker Mode
+# Template 接口
 
 **This Wiki page is still under construction.**
 
-# Chain of Responsibility Mode
+# Tools 接口
 
 **This Wiki page is still under construction.**

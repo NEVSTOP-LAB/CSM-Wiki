@@ -1,40 +1,31 @@
 ---
-title: 下载
+title: Download
 author: nevstop
 date: 2022-02-06
 category: information
 layout: post
-lang: zh
+lang: us-en
 page_id: release-of-csm
 permalink: /release-of-csm
 ---
 
-<!-- Download 页面(md-page[√]) - English[100%] | Chinese [100%]
-- [x] Beta 版本的下载链接
-- [x] 下载CSM框架的最新版本的链接
-- [x] 历史版本的更新记录
- -->
+## Latest Release
 
- <!--
-https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain++
- -->
-
-## 最新版本
-
-_**v2023.Dec Release: Improvement and Bug Fix**_
-
-点击下载 :arrow_forward:
-[![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/) [![GitHub all releases](https://img.shields.io/github/downloads/NEVSTOP-LAB/Communicable-State-Machine/total)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
+Click badge to download :arrow_forward:
+[![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)
+[![GitHub all releases](https://img.shields.io/github/downloads/NEVSTOP-LAB/Communicable-State-Machine/total)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.Dec)
 
 >
-> :rocket: 如果想要下载 Pre-release 版本, 请访问: [NEVSTOP-LAB/Communicable-State-Machine 的 Action 页面](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain)
+> :rocket: If you want to download the pre-release version, please visit:
 >
-> **下载步骤**：
+> [NEVSTOP-LAB/Communicable-State-Machine’s Action page](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain)
 >
-> - Step 1. 点击最新的 Build_VIPM_Library 的 Action
-> - Step 2. 下拉到达 Artifacts 区域，点击 vip 文件下载
-> - Step 3. 解压下载的 zip 文件
-> - Step 4. 双击 vip 文件或通过 VIPM 打开安装
+> **Download steps**:
+>
+> - Step 1. Click the Action for the latest Build_VIPM_Library
+> - Step 2. Scroll down to the Artifacts section and click on the vip file to download
+> - Step 3. Extract the downloaded zip file
+> - Step 4. Double-click the vip file or open the vip file through VIPM
 >
 
 [**v2024.Feb Release: Toolbar Entry for CSM Tools**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2024.Feb)
@@ -56,7 +47,7 @@ _**v2023.Dec Release: Improvement and Bug Fix**_
 [improve] Update example VIs' icons/Palette icons
 ```
 
-## 历史更新记录
+## Release Notes
 
 [**V2024.Jan Release: Global Event, Utility and bug fix**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2024.Jan)
 
@@ -88,7 +79,7 @@ _**v2023.Dec Release: Improvement and Bug Fix**_
 [Critical] #207 "Target Busy Error" is obsolete. Now a sync-call message will not generate "Target Busy Error" but waiting until timeout.
 [fix] #219 #225 #226 fix bug that the cache system is ineffective when CSMs start/exit in the same microsecond
 [fix] #197 fix the bug of timeout behavior of CSM - Send Message and Wait for Reply.vi
-[fix] #196 fix the bug that status of agent(worker Mode) could not trigger registered action
+[fix] #196 fix the bug that status of agent(Worker Mode) could not trigger registered action
 [fix] #215 now CSM - Module Turns Invalid (CSM) support Agent & Chain
 [fix] #217 fix the bug that Single Character could not be used as module name
 
@@ -164,5 +155,5 @@ _**v2023.Dec Release: Improvement and Bug Fix**_
 [**v2023.Sep: 2023.10.2.123812 (Oct 03, 2023)**](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases/tag/v2023.10.2.123812)
 
 ``` text
-    Release to vipm.io
+Release to vipm.io
 ```

@@ -3,7 +3,7 @@ title: 模块间通讯
 author: nevstop
 date: 2023-12-29
 layout: post
-lang: zh
+lang: zh-cn
 mermaid: true
 page_id: communication-between-modules
 toc: true
