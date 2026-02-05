@@ -1,8 +1,8 @@
 ---
 title:
 layout: home
-lang: zh-cn
-permalink: /404.html
+lang: en-us
+permalink: /en-us/404.html
 TranslationCheck: False
 ---
 
