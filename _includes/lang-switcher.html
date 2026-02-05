@@ -1,22 +1,14 @@
-{{ site.data[site.active_lang].l10n.ChooseLanguage }}: | <a href="/CSM-Wiki/">中文</a> | <a href="/CSM-Wiki/en-us/">English</a> |
-
-
-
-<!-- <br>
-
-{% assign ChooseLanguage = site.data[page.lang].l10n.ChooseLanguage %}:|
-
-{% if page.lang == "en-us" %}
-<a href="/CSM-Wiki{{ page.url | prepend: '' }}">中文</a>
-{% else %}
-中文
-{% endif %}
-|
-{% if page.lang == "zh-cn" %}
-<a href="{{ page.url | prepend: '/en-us' }}">English</a>
-{% else %}
-English
-{% endif %}
-| -->
-
-
+{% assign ChooseLanguage = site.data[site.active_lang].l10n.ChooseLanguage %}
+{{ ChooseLanguage }}: |
+{% for lang in site.languages %}
+  {% assign lang_name = site.data[lang].l10n.lang_name %}
+  {% if lang == site.active_lang %}
+    {{ lang_name }} |
+  {% else %}
+    {% if lang == site.default_lang %}
+      <a href="{{ site.baseurl }}{{ page.url }}">{{ lang_name }}</a> |
+    {% else %}
+      <a href="{{ site.baseurl }}/{{ lang }}{{ page.url }}">{{ lang_name }}</a> |
+    {% endif %}
+  {% endif %}
+{% endfor %}

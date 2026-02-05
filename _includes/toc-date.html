@@ -23,7 +23,7 @@
             <input type="text" placeholder="Type to search" />
         </div>
         <div id="book-search-input-link" role="search">
-            <a href="{{site.baseurl}}/assets/search.html">Click to Search</a>
+            <a href="{{ '/assets/search.html' | relative_url }}">Click to Search</a>
         </div>
         <ul class="summary">
             {% assign home_url = site.baseurl | append: '/' | append: site.active_lang %}
