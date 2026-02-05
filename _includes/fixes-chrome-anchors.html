@@ -14,6 +14,7 @@
     function fixAnchorNavigation() {
         // Handle hash on page load
         if (window.location.hash) {
+            // Short delay to ensure page has finished rendering and all elements have their IDs set
             setTimeout(function() {
                 var hash = window.location.hash;
                 // Decode the hash to handle Chinese and other Unicode characters
