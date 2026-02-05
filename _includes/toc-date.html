@@ -12,7 +12,13 @@
             $(element).closest('li.chapter').find('ul>li').removeClass('active');
             $(element).parent().addClass('active');
             if ($(document).width() <= 1240) {
-                $('div.body-inner').animate({scrollTop: $($(element).attr('href')).get(0).offsetTop});
+                var href = $(element).attr('href');
+                // Decode URL-encoded anchor to handle Chinese and other Unicode characters
+                var targetId = decodeURIComponent(href);
+                var targetElement = $(targetId);
+                if (targetElement.length > 0) {
+                    $('div.body-inner').animate({scrollTop: targetElement.get(0).offsetTop});
+                }
             }
             return true;
         }

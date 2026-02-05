@@ -10,11 +10,56 @@
         }
     }
 
+    // Fix anchor navigation for all links, including those with Chinese characters
+    function fixAnchorNavigation() {
+        // Handle hash on page load
+        if (window.location.hash) {
+            // Short delay to ensure page has finished rendering and all elements have their IDs set
+            setTimeout(function() {
+                var hash = window.location.hash;
+                // Decode the hash to handle Chinese and other Unicode characters
+                var targetId = decodeURIComponent(hash);
+                var targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
+
+        // Handle anchor clicks
+        document.addEventListener('click', function(e) {
+            var target = e.target;
+            // Find the anchor element (in case user clicked on child element)
+            while (target && target.tagName !== 'A') {
+                target = target.parentElement;
+            }
+            
+            if (target && target.tagName === 'A' && target.hash) {
+                var href = target.getAttribute('href');
+                // Only handle same-page anchors
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    var targetId = decodeURIComponent(href);
+                    var targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Update URL without triggering scroll
+                        history.pushState(null, null, href);
+                    }
+                }
+            }
+        });
+    }
+
     if (document.readyState === "loading") {
         // Loading hasn't finished yet
-        document.addEventListener("DOMContentLoaded", fixes_chrome_anchors);
+        document.addEventListener("DOMContentLoaded", function() {
+            fixes_chrome_anchors();
+            fixAnchorNavigation();
+        });
     } else {
         // `DOMContentLoaded` has already fired
         fixes_chrome_anchors();
+        fixAnchorNavigation();
     }
 </script>
