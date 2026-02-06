@@ -36,14 +36,6 @@
 
                 <div class="body-inner">
 
-                    <div class="wrapper">
-                        {% if page.lang != site.active_lang %}
-                            {% if page.TranslationCheck != "False" %}
-                                {%- include no-translation.html -%}
-                            {% endif %}
-                        {% endif %}
-                    </div>
-
                     {%- include body.html -%}
 
                     <!-- 禁用上一篇和下一篇 -->

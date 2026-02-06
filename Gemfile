@@ -8,11 +8,6 @@ gem 'jekyll-feed'
 gem 'jekyll-readme-index'
 gem 'jemoji'
 gem 'webrick'
-gem "jekyll-polyglot"
 gem 'jekyll-loading-lazy'
-
-# group :jekyll_plugins do
-#     gem "jekyll-polyglot"
-# end
 
 # gem "rails"

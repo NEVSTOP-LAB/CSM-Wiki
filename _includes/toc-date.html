@@ -32,7 +32,7 @@
             <a href="{{ '/assets/search.html' | relative_url }}">Click to Search</a>
         </div>
         <ul class="summary">
-            {% assign home_url = site.baseurl | append: '/' | append: site.active_lang %}
+            {% assign home_url = site.baseurl %}
             {% assign home_url_with_slash = home_url | append: '/' %}
             {% if page.url == "/index.html" or page.url == "/" or page.url == home_url or page.url == home_url_with_slash %}
             <li class="chapter active" data-level="1.1" data-path="{{home_url}}">
@@ -40,7 +40,7 @@
             <li class="chapter" data-level="1.1" data-path="{{home_url}}">
             {% endif %}
                 <a href="{{home_url}}/" onclick="pageScrollToTop(this)">
-                    {{ site.data[site.active_lang].l10n.title | escape }}
+                    {{ site.title | escape }}
                 </a>
             </li>
 
@@ -78,10 +78,6 @@
                 {% endif %}
             {% endfor %}
         </ul>
-
-        <div class="lang-switcher">
-            {%- include lang-switcher.html -%}
-        </div>
 
     </nav>
 </div>

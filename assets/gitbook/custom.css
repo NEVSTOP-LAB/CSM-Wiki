@@ -286,29 +286,6 @@ pre:has(code.language-mermaid[data-processed="true"]) {
     --font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
-.lang-switcher {
-    text-align: center;
-    margin-left: 1%;
-    margin-right: 1%;
-    margin-bottom: 200px;
-}
-
-.lang-switcher a{
-    color: #359469;
-}
-
-.lang-switcher a:visited{
-    color: #359469;
-}
-
-div#no-translation-msg {
-    text-align: center;
-    background: rgb(187, 10, 10);
-    font-size: 24px;
-    color: wheat;
-    border-bottom: black;
-}
-
 h2 {
     border-bottom-color: #1c1f2b;
     border-bottom-style: groove;
