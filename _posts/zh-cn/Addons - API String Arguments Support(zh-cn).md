@@ -2,7 +2,74 @@
 
 ## 概述
 
-API String参数支持用于增强通信状态机(CSM)的API参数功能，支持以纯文本格式传递各种数据类型，并特别优化了手动输入体验。API String未定义参数类型(Argument Type)，通过CSM - Argument Type VI获取的结果为空，通常在默认分支中处理。
+API String参数支持是CSM框架的一个强大插件，增强了通信状态机(CSM)的API参数功能，支持以纯文本格式传递各种数据类型，并特别优化了手动输入体验。
+
+### 设计目标
+
+API String Addon旨在解决以下问题：
+1. **参数可读性**：直接在字符串中看到参数值，便于调试
+2. **手动输入友好**：支持在调试控制台中手动输入参数
+3. **多参数传递**：用一个字符串传递多个参数
+4. **类型灵活性**：支持多种数据类型的文本表示
+
+### 主要特点
+
+1. **纯文本格式**：所有参数以纯文本形式表示，易于阅读和编辑
+2. **多类型支持**：支持22种以上的数据类型
+3. **灵活解析**：支持多种格式表示同一数据
+4. **自动类型转换**：根据参考数据类型自动转换
+5. **无参数类型标记**：通过`CSM - Argument Type VI`返回空，在默认分支处理
+6. **手动输入优化**：支持多种便捷的输入格式
+
+### 工作原理
+
+API String不使用参数类型标记，而是：
+1. 接收纯文本字符串作为参数
+2. 根据参考数据类型（Prototype）解析
+3. 自动转换为目标数据类型
+4. 支持部分参数输入（缺失部分使用默认值）
+
+### 与其他参数方式对比
+
+| 特性 | API String | HEXSTR | MassData |
+|------|------------|--------|----------|
+| 可读性 | 高（纯文本） | 低（十六进制） | 低（地址引用） |
+| 手动输入 | 容易 | 困难 | 不可能 |
+| 数据量 | 小到中 | 小 | 大 |
+| 性能 | 中 | 中 | 高 |
+| 调试友好 | 高 | 中 | 低 |
+| 适用场景 | API参数、配置 | 复杂结构 | 大数组 |
+
+### 使用场景选择
+
+**使用API String的场景**：
+- 需要手动输入参数（调试、测试）
+- 参数值需要可读性
+- 配置文件中的参数
+- 多参数API调用
+
+**使用HEXSTR的场景**：
+- 复杂数据结构
+- 二进制数据
+- 不需要可读性
+
+**使用MassData的场景**：
+- 大数据量（>1KB）
+- 数组、波形、图像
+
+## 参数类型识别
+
+API String未定义参数类型标记，通过`CSM - Argument Type VI`获取的结果为空，通常在默认分支中处理。
+
+```labview
+CSM - Argument Type.vi
+  Arguments: "ip:192.168.1.100;port:8080"
+  → Type: ""  // 空字符串
+  
+// 在默认分支处理
+Case: Default
+  → 使用API String解析
+```
 
 ### 支持的数据类型
 
@@ -387,3 +454,420 @@ Cluster是一种复杂类型，它由其他的普通数据类型组成。本范�
 #### Overview
 
 通常Array/Cluster的嵌套是一个复杂的情况，本范例将展示2D Cluster Array的CSM API String表达字符串。但是这并不是一个典型的推荐使用场景。
+
+## 核心API
+
+### 转换API
+
+**Convert API String to Cluster.vim**
+- 多态VI，自动适应Cluster类型
+- 根据Prototype解析字符串
+- 支持部分参数输入
+
+**Convert Cluster to API String.vim**
+- 多态VI，自动生成API String
+- 支持标签-数据对模式
+- 便于生成可读字符串
+
+### Float精度设置
+
+**API String - Set Float Precision.vi**
+- 设置浮点数的精度
+- 默认6位有效数字
+- 影响Float到String的转换
+
+## 应用场景
+
+### 场景1：调试和测试
+
+**需求**：
+- 在开发阶段测试API
+- 手动输入不同参数
+- 快速验证功能
+
+**方案**：
+```labview
+// 使用CSM Debug Console
+Module: DataProcessor
+API: Configure
+Arguments: "sampleRate:1000; channels:AI0,AI1,AI2; trigger:External"
+
+// 模块内处理
+API: Configure >> {
+    // 解析参数
+    Convert API String to Cluster.vim
+      Arguments: API String
+      Prototype: Config Cluster
+      → Config
+    
+    // 应用配置
+    Apply Configuration(Config)
+}
+```
+
+**优势**：
+- 无需编译，直接测试
+- 参数一目了然
+- 快速迭代验证
+
+### 场景2：配置文件
+
+**需求**：
+- 从配置文件读取参数
+- 用户可编辑配置
+- 参数可读性好
+
+**方案**：
+```ini
+[NetworkModule]
+connection = "ip:192.168.1.100; port:8080; timeout:5000"
+retry = "maxAttempts:3; interval:1000"
+```
+
+```labview
+// 读取并应用配置
+Read INI String
+  Section: NetworkModule
+  Key: connection
+  → Connection String
+
+// 解析并连接
+API: Connect >> Connection String -@ NetworkModule
+```
+
+**优势**：
+- 配置文件可读
+- 用户可以手动修改
+- 无需二进制解析
+
+### 场景3：多参数API
+
+**需求**：
+- API需要多个参数
+- 参数类型不同
+- 便于调用
+
+**方案**：
+```labview
+// 定义API
+API: CreateReport >> {
+    // 参数Cluster
+    {
+        Title: String
+        StartDate: Timestamp
+        EndDate: Timestamp
+        Format: Enum {PDF, Excel, HTML}
+        IncludeImages: Boolean
+    }
+    
+    // 解析API String
+    Convert API String to Cluster.vim
+      → Report Config
+    
+    // 生成报告
+    Generate Report(Report Config)
+}
+
+// 调用示例
+API: CreateReport >> "Title:Monthly Report; StartDate:2024-01-01T00:00:00Z; EndDate:2024-01-31T23:59:59Z; Format:PDF; IncludeImages:True" -@ ReportModule
+```
+
+**优势**：
+- 一次传递多个参数
+- 参数名称明确
+- 便于维护和修改
+
+### 场景4：与INI-Variable结合
+
+**需求**：
+- 配置固化在INI文件
+- 运行时动态加载
+- 可部分覆盖
+
+**方案**：
+```ini
+[DAQ]
+channels = AI0,AI1,AI2,AI3
+sampleRate = 1000
+samples = 1000
+```
+
+```labview
+// 使用INI-Variable Support
+Convert API String to Cluster(Default in Session).vim
+  Section: DAQ
+  Arguments: "channels:AI0,AI1"  // 只覆盖channels
+  Prototype: DAQ Config
+  → Config  // sampleRate和samples从INI文件读取
+```
+
+**优势**：
+- 配置管理灵活
+- 支持部分覆盖
+- 三级优先级：参数 > INI > 默认值
+
+### 场景5：Web接口
+
+**需求**：
+- Web前端发送参数
+- JSON格式转换
+- 传递给CSM模块
+
+**方案**：
+```labview
+// Web请求: {"ip": "192.168.1.100", "port": 8080}
+Parse JSON
+  → ip, port
+
+// 构建API String
+Format String: "ip:%s;port:%d"
+  → API String: "ip:192.168.1.100;port:8080"
+
+// 发送到CSM
+API: Configure >> API String -@ NetworkModule
+```
+
+**优势**：
+- 与Web技术集成
+- 格式转换简单
+- 保持可读性
+
+## 最佳实践
+
+### 1. 参数命名规范
+
+**建议**：
+```labview
+// 好的命名
+"sampleRate:1000; channelCount:4"
+"ipAddress:192.168.1.100; port:8080"
+
+// 避免的命名
+"sr:1000; cnt:4"  // 缩写不清晰
+"1000;4"  // 无标签，不清晰
+```
+
+**原则**：
+- 使用完整单词
+- 驼峰命名法或下划线
+- 见名知意
+
+### 2. 使用标签-数据对模式
+
+**优势**：
+- 参数顺序无关
+- 只需提供需要的参数
+- 易于维护
+
+**示例**：
+```labview
+// 推荐：标签-数据对
+"ip:192.168.1.100; port:8080"
+
+// 可以只提供部分
+"port:9090"  // 只修改port
+
+// 顺序无关
+"port:8080; ip:192.168.1.100"  // 同样有效
+```
+
+### 3. 处理空字符串
+
+**行为**：
+- 空字符串 → Prototype值
+- Timestamp例外 → 当前时间
+
+**应用**：
+```labview
+// 利用空字符串获取默认值
+API: Configure >> "" -@ Module
+// 将使用Prototype中的所有默认值
+```
+
+### 4. 复杂数据类型处理
+
+**Cluster嵌套**：
+```labview
+// 使用点号表示嵌套
+"config.network.ip:192.168.1.100"
+
+// 如果名称唯一，可省略父级
+"ip:192.168.1.100"  // 如果只有一个ip
+```
+
+**Array**：
+```labview
+// 使用逗号分隔元素
+"channels:AI0,AI1,AI2"
+
+// 二维数组使用分号分隔行
+"data:1,2,3;4,5,6;7,8,9"  // 3x3数组
+```
+
+### 5. 性能考虑
+
+**解析开销**：
+- 字符串解析有开销
+- 复杂Cluster解析较慢
+- 频繁调用考虑缓存
+
+**优化**：
+```labview
+// 缓存解析结果
+Static Variable: Parsed Config
+
+If (Config String Changed?) {
+    Convert API String to Cluster.vim
+      → Config
+    Parsed Config = Config
+} else {
+    Config = Parsed Config
+}
+```
+
+### 6. 错误处理
+
+**验证输入**：
+```labview
+// 检查关键参数
+Convert API String to Cluster.vim
+  → Config
+
+If (Config.IP = "") {
+    // 使用默认IP
+    Config.IP = "127.0.0.1"
+}
+
+If (Config.Port < 1024 OR Config.Port > 65535) {
+    // 无效端口
+    Error...
+}
+```
+
+### 7. 调试技巧
+
+**查看原始值**：
+```labview
+// 在开发时显示
+Display: Arguments String
+Convert API String to Cluster.vim
+  → Config
+Display: Config
+```
+
+**使用日志**：
+```labview
+// 记录API调用
+Log: "API: Configure >> " + Arguments
+```
+
+### 8. 文档化
+
+**在代码中说明**：
+```labview
+// API: Configure
+// 参数格式：
+//   sampleRate (I32): 采样率，1-10000 Hz
+//   channels (String): 通道列表，如"AI0,AI1,AI2"
+//   trigger (Enum): 触发方式，Internal/External
+// 示例：
+//   "sampleRate:1000; channels:AI0,AI1; trigger:External"
+```
+
+## 常见问题
+
+### Q1: 如何处理包含特殊字符的字符串？
+
+**问题**：参数值中包含冒号、分号等特殊字符
+
+**解决方案**：
+1. 使用引号包围：`"text:\"value:with:colons\""`
+2. 使用转义：`"text:value\:with\:colons"`
+3. 使用HEXSTR：`"<HEXSTR>..."`
+
+### Q2: 性能与HEXSTR比较？
+
+**API String**：
+- 解析开销较大
+- 适合小到中等数据
+- 调试友好
+
+**HEXSTR**：
+- 编解码开销
+- 适合复杂结构
+- 性能相近
+
+**建议**：
+- 可读性重要 → API String
+- 二进制数据 → HEXSTR
+- 大数据 → MassData
+
+### Q3: 如何传递null或空值？
+
+**方法**：
+```labview
+// 省略该参数（使用默认值）
+"ip:192.168.1.100"  // port使用默认值
+
+// 显式传递空字符串
+"ip:192.168.1.100; description:\"\""
+
+// Boolean的false
+"enabled:false"
+"enabled:0"
+"enabled:F"
+```
+
+### Q4: 与CSM INI-Variable结合使用？
+
+**完美结合**：
+```labview
+// INI文件
+[Module]
+ip = 192.168.1.100
+port = 8080
+
+// 代码中
+Convert API String to Cluster(Default in Session).vim
+  Section: Module
+  Arguments: "${Module.ip}; port:9090"  // INI变量 + 覆盖
+  → Config
+```
+
+**优势**：
+- 配置灵活
+- 支持变量引用
+- 三级优先级
+
+## 示例范例说明
+
+本Addon包含丰富的示例范例，涵盖各种数据类型和使用场景。
+
+## 总结
+
+CSM API String Arguments Support Addon提供了友好的参数传递方式：
+
+### 核心优势
+- **可读性强**：纯文本，易于理解
+- **易于使用**：手动输入友好
+- **灵活性高**：支持多种数据类型
+- **调试方便**：参数值清晰可见
+
+### 使用建议
+1. **调试测试**：首选API String
+2. **配置参数**：使用标签-数据对
+3. **多参数API**：减少参数数量
+4. **与INI结合**：实现灵活配置
+
+### 典型应用
+- 手动测试和调试
+- 配置文件参数
+- Web接口集成
+- 多参数API调用
+
+### 更多资源
+- **GitHub**: https://github.com/NEVSTOP-LAB/CSM-API-String-Arugments-Support
+- **示例代码**：参考本文档中的丰富示例
+- **与INI结合**：查看INI-Variable Support文档
+
+通过合理使用API String Addon，可以大大提高CSM应用的可读性和可维护性，特别是在开发和调试阶段。
