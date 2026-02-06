@@ -35,39 +35,37 @@ _**TODO LIST**_
 
 文档部分：
 - JKISM内容介绍
-  - JKISM的介绍(md-page[√]) - English[-] | Chinese [1%]
+  - [√] JKISM的介绍(md-page[√]) - English[-] | Chinese [95%]
         介绍JKISM的概念和用法; 介绍 JKISM 的优势；介绍 JKISM 的不足; 介绍 JKISM 的应用场景
-  - JKISM的推荐用法(md-page[√]) - English[-] | Chinese [1%]
+  - [√] JKISM的推荐用法(md-page[√]) - English[-] | Chinese [95%]
         介绍JKISM的Best Practice
 
 - 基础内容部分 - [@KivenJia](https://github.com/KivenJia)
-  - CSM的基本概念(md-page[-]) - English[-] | Chinese [80%]
+  - [√] CSM的基本概念(md-page[√]) - English[-] | Chinese [100%]
         CSM 中所有的基本概念，其他地方用到的都是基于这里的概念来解释的
-  - CSM模块间的通讯(md-page[-]) - English[-] | Chinese [60%]
+  - [√] CSM模块间的通讯(md-page[√]) - English[-] | Chinese [90%]
         模块间的同步消息；模块间的异步消息；模块间的状态
-  - 创建CSM的复用模块(md-page[-]) - English[-] | Chinese [60%]
+  - [√] 创建CSM的复用模块(md-page[√]) - English[-] | Chinese [95%]
         创建CSM的复用模块的方法
-  - 调用CSM的模块(md-page[-]) - English[-] | Chinese [60%]
+  - [√] 调用CSM的模块(md-page[√]) - English[-] | Chinese [95%]
     - 被CSM框架调用: 使用字符串方式进行调用；使用CSM的API进行调用；指向用到的函数
     - 被其他框架调用：使用CSM的API进行调用;指向用到的函数
-  - CSM的参数传递(md-page[-]) - English[-] | Chinese [40%]
+  - [√] CSM的参数传递(md-page[√]) - English[-] | Chinese [95%]
         参数传递在CSM中的特殊性；不同场景目前应该使用的方式
 
 - 进阶内容部分
-  - CSM内置的错误处理机制(md-page[√]) - English[-] | Chinese [1%]
-        举例说明如何使用CSM内置的错误处理机制
-  - 工作者模式(worker Mode)(md-page[√]) - English[-] | Chinese [1%]
-        说明工作者模式设计的思路；举例说明如何使用工作者模式
-  - 责任链模式(Chain Mode)(md-page[√]) - English[-] | Chinese [1%]
-        说明责任链模式设计的思路；举例说明如何使用责任链模式
+  - [√] CSM高级模式与特性(md-page[√]) - English[-] | Chinese [95%]
+        CSM内置的错误处理机制；系统级模块；子模块；工作者模式；责任链模式；多循环模式支持
+  - [√] CSM全局日志系统(md-page[√]) - English[-] | Chinese [100%]
+        全局日志功能、API详解、过滤机制、应用场景、最佳实践
 
 - 预留的插件机制
-  - Addon 接口(md-page[√]) - English[-] | Chinese [-]
-        addon留下接口的位置；如何给CSM添加addon
-  - Template 接口(md-page[√]) - English[-] | Chinese [-]
-        template留下接口的位置；如何给CSM添加template
-  - Tools 接口(md-page[√]) - English[-] | Chinese [-]
-        tools留下接口的位置；如何给CSM添加tools
+  - [√] Addon 接口(md-page[√]) - English[-] | Chinese [95%]
+        addon留下接口的位置；如何给CSM添加addon；内置Addon详解
+  - [√] Template 接口(md-page[√]) - English[-] | Chinese [95%]
+        template留下接口的位置；如何给CSM添加template；模板开发指南
+  - [√] Tools 接口(md-page[√]) - English[-] | Chinese [95%]
+        tools留下接口的位置；如何给CSM添加tools；工具开发指南
 
 - (还未实现) LabVIEW的CSM Plugin
   - (TODO) STRING右键：弹出模块、消息列表，并快速填写(md-page[-]) - English[-] | Chinese [-]
@@ -76,34 +74,32 @@ _**TODO LIST**_
         (待功能实现后补充)
 
 - 调试工具/调试方法
-  - CSM内置的全局事件(md-page[-]) - English[-] | Chinese [10%]
-        说明CSM内置的全局事件包含的功能；如何使用全局事件；介绍函数
-  - JKISM State Editor(md-page[-]) - English[-] | Chinese [0%]
-        介绍JKISM State Editor的功能；介绍如何使用JKISM State Editor
-  - CSM Global Log Window(md-page[-]) - English[-] | Chinese [50%]
+  - [√] CSM调试与开发工具(md-page[√]) - English[-] | Chinese [95%]
+        运行时调试工具；开发辅助工具；接口管理工具；示例工具；JKISM State Editor集成
+  - [√] CSM Global Log Window(md-page[√]) - English[-] | Chinese [100%]
         介绍CSM Global Log Window的功能
-  - CSM State Dashboard Window(md-page[-]) - English[-] | Chinese [50%]
+  - [√] CSM State Dashboard Window(md-page[√]) - English[-] | Chinese [95%]
         介绍CSM State Dashboard Window的功能
-  - CSM State Table Window(md-page[-]) - English[-] | Chinese [50%]
+  - [√] CSM State Table Window(md-page[√]) - English[-] | Chinese [95%]
         介绍CSM State Table Window的功能
   - (TODO) CSM Test Panel(md-page[-]) - English[-] | Chinese [-]
         (待功能实现后补充)
 
 - Addon/Plugins
-  - MassData参数支持(md-page[-]) - English[-] | Chinese [-]
-        说明MassData应用的场景, 链接到REPO
-  - API String参数支持(md-page[-]) - English[-] | Chinese [-]
-        说明API String应用的场景, 链接到REPO
-  - INI/静态参数支持(md-page[-]) - English[-] | Chinese [-]
-        说明INI/静态参数应用的场景, 链接到REPO
+  - [√] MassData参数支持(md-page[√]) - English[-] | Chinese [95%]
+        说明MassData应用的场景、核心API、最佳实践、常见问题
+  - [√] API String参数支持(md-page[√]) - English[-] | Chinese [95%]
+        说明API String应用的场景、核心API、最佳实践、常见问题
+  - [√] INI/静态参数支持(md-page[√]) - English[-] | Chinese [95%]
+        说明INI/静态参数应用的场景、核心API、最佳实践、常见问题
 
 - 应用列表
   - Continuous Measurement and Logging Project(md-page[-]) - English[90%] | Chinese [90%]
   - <<补充其他的项目>>
 
 - References - [@nevstop](https://github.com/nevstop)
-  - CSM Palette(md-page[√]) - English[60%] | Chinese [60%]
-        介绍所有CSM的函数
-  - CSM Template(md-page[√]) - English[60%] | Chinese [60%]
-        介绍CSM的Event模板; 介绍CSM的No-Event模板
+  - [√] CSM Palette APIs(md-page[√]) - English[-] | Chinese [95%]
+        介绍所有CSM的函数；API分类；使用最佳实践；快速参考表
+  - [√] CSM Templates(md-page[√]) - English[-] | Chinese [95%]
+        介绍CSM的Event模板; 介绍CSM的No-Event模板; 模板开发流程; 使用最佳实践
 ```
