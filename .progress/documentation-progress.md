@@ -4,7 +4,7 @@
 
 本文件用于跟踪CSM-Wiki文档的完善进度，作为项目的"记忆"，帮助理解当前状态和下一步工作。
 
-## 已完成的工作（第一阶段）
+## 已完成的工作（第一和第二阶段）
 
 ### 1. 进阶内容部分 - 已完成 ✓
 - [x] **CSM高级模式与特性** (`_posts/zh-cn/2023-12-31-advance.md`) - 1% → 95%
@@ -29,61 +29,110 @@
   - 新增CSM属性完整说明
   - 增加概念总结章节
 
+### 4. 模块间通讯部分 - 已完成 ✓
+- [x] **CSM模块间通讯** (`_posts/zh-cn/2023-12-29-communication.md`) - 60% → 90%
+  - 新增通讯方式对比表格
+  - 详细的超时配置和错误处理说明
+  - 完整的消息构建API文档（8个多态VI详解）
+  - Parse State Queue++.vi详细说明
+  - 消息过滤机制说明
+  - 通讯性能优化建议
+  - 通讯模式选择指南
+  - 调试技巧和常见问题排查
+
+### 5. 创建复用模块部分 - 已完成 ✓
+- [x] **创建CSM的复用模块** (`_posts/zh-cn/2023-12-30-basic.md`) - 60% → 95%
+  - **Step1大幅扩充**：
+    - 4个核心模块设计原则
+    - API接口设计指南（命名规范、分类、文档化）
+    - 状态广播设计详解
+    - 完整的模块测试方法（单元测试、集成测试、性能测试）
+    - 模块文档化要求
+    - 模块版本管理建议
+  - **Step2扩充**：
+    - CSM框架内调用最佳实践
+    - 消息调用流程详解
+    - 同步/异步调用流程对比
+  - **Step3扩充**：
+    - 3个核心调用API详解
+    - 3种非CSM框架集成模式
+    - 集成最佳实践（5条建议）
+  - **Step4参数传递大幅扩充**（内容扩充10倍）：
+    - 参数传递特殊性说明
+    - 完整的参数类型对比表（6种类型）
+    - 4种内置参数类型详解（纯字符串、SAFESTR、HEXSTR、ERRSTR）
+    - 8个参数处理工具VI详解
+    - 4个参数使用场景指南
+    - 参数传递最佳实践（4个方面）
+    - CSM消息关键字完整列表
+    - 2个完整的参数传递示例
+
 ## 当前状态总结
 
 ### 文档完成度统计
 - 新建完整文档：1个
-- 大幅扩充文档：3个
-- 总新增内容：约25,000字
-- 新增章节数：约20个
+- 大幅扩充文档：5个（新增2个）
+- 总新增内容：约50,000字
+- 新增章节数：约40个
 
 ### 参考资料覆盖情况
 已完全覆盖的参考文件：
 - ✓ `.ref/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 07. Global Log.md` (100%)
 - ✓ `.ref/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 08. Advanced Modes.md` (100%)
-- ✓ `.ref/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 12. Debug,Doc,Tools.md` (80%)
+- ✓ `.ref/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 02. Core Functions.md` (80%)
+- ✓ `.ref/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 03. Arguments.md` (90%)
+
+大部分覆盖的参考文件：
+- ○ `.ref/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 12. Debug,Doc,Tools.md` (80%)
+- ○ `.ref/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 05. Module Operation API.md` (70%)
 
 部分覆盖的参考文件：
 - ○ `.ref/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 01. Templates.md` (30%)
 - ○ `.ref/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 04 .Management API.md` (20%)
+- ○ `.ref/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 06. Broadcast Registration.md` (70%)
 
 ## 待完成的工作（按优先级）
 
-### 优先级1：基础内容部分补充
+### 优先级1：基础内容部分补充 - 已完成 ✓
 
-#### 1.1 CSM模块间的通讯 - 待完善 🔄
+#### 1.1 CSM模块间的通讯 - 已完善 ✓
 - 文件：`_posts/zh-cn/2023-12-29-communication.md`
-- 当前进度：60%
-- 需要补充：
-  - [ ] 更详细的消息传递流程说明
-  - [ ] 补充同步调用的超时处理
-  - [ ] 补充异步调用的错误处理
-  - [ ] 增加更多的实际应用示例
-- 参考资料：
-  - `.ref/VI Description/VI Description(zh-cn) - 02. Core Functions.md`
-  - `.ref/VI Description/VI Description(zh-cn) - 05. Module Operation API.md`
+- 完成进度：60% → 90%
+- 已完成内容：
+  - [x] 通讯方式对比表格
+  - [x] 详细的超时配置机制
+  - [x] 完整的错误类型详解（4种错误）
+  - [x] 消息构建API完整文档
+  - [x] Parse State Queue++.vi详解
+  - [x] 消息过滤机制
+  - [x] 通讯性能优化建议
+  - [x] 通讯模式选择指南
+  - [x] 调试技巧和问题排查
 
-#### 1.2 创建CSM的复用模块 - 待完善 🔄
+#### 1.2 创建CSM的复用模块 - 已完善 ✓
 - 文件：`_posts/zh-cn/2023-12-30-basic.md`
-- 当前进度：60%
-- 需要补充：
-  - [ ] 模块设计的最佳实践
-  - [ ] API接口的命名规范
-  - [ ] 模块测试方法
-  - [ ] 模块文档化建议
-- 参考资料：
-  - `.ref/VI Description/VI Description(zh-cn) - 01. Templates.md`
-  - `.ref/Examples/CSM Basic Example(zh-cn).md`
+- 完成进度：60% → 95%
+- 已完成内容：
+  - [x] 模块设计的4个核心原则
+  - [x] API接口设计完整指南
+  - [x] 状态广播设计规范
+  - [x] 模块测试方法（单元、集成、性能）
+  - [x] 模块文档化和版本管理
+  - [x] CSM框架内调用详解
+  - [x] 其他框架调用详解（3种模式）
+  - [x] 参数传递完整扩充（10倍内容）
 
-#### 1.3 CSM的参数传递 - 待扩充 📝
-- 当前状态：在basic.md的Step4中，约40%完成
-- 需要补充：
-  - [ ] 参数传递的特殊性详解
-  - [ ] 不同场景下的参数传递方式
-  - [ ] 参数编码解码的详细说明
-  - [ ] HEXSTR、ERRSTR等内置格式详解
-- 参考资料：
-  - `.ref/VI Description/VI Description(zh-cn) - 03. Arguments.md`
+#### 1.3 CSM的参数传递 - 已扩充 ✓
+- 文件：整合在`_posts/zh-cn/2023-12-30-basic.md`的Step4
+- 完成进度：40% → 95%
+- 已完成内容：
+  - [x] 参数传递特殊性和编码-解码机制
+  - [x] 6种参数类型详细对比
+  - [x] 4种内置参数类型详解
+  - [x] 8个参数处理VI详解
+  - [x] 4个使用场景指南
+  - [x] 参数传递最佳实践
+  - [x] 完整示例代码
 
 ### 优先级2：插件机制和Addon文档
 
@@ -225,6 +274,13 @@
 15. VI Description(zh-cn) - Addon Massdata.md
 
 ## 版本历史
+
+### v0.3 - 2026-02-06（第二阶段完成）
+- 完成基础内容部分的全面扩充
+- communication.md: 60% → 90%
+- basic.md: 60% → 95%
+- 新增约25,000字高质量内容
+- 总计完成约50,000字的文档扩充
 
 ### v0.2 - 2026-02-06
 - 创建进度跟踪文件
