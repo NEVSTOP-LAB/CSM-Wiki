@@ -6,1042 +6,641 @@ layout: post
 lang: zh-cn
 page_id: CSM-Palette-APIs
 toc: true
-# cover: assets/img/CSM%20Palette.png
 ---
 
 _**CSM 函数面板**_
 
 ![csm-palette](https://nevstop-lab.github.io/CSM-Wiki/assets/img/CSM%20Palette.png)
 
-<!-- CSM API 介绍:
-[English](src/help/NEVSTOP/Communicable%20State%20Machine(CSM)/VI%20Description(EN).md) | [中文](src/help/NEVSTOP/Communicable%20State%20Machine(CSM)/VI%20Description(CN).md) -->
-
 # CSM API参考手册
 
 ## 概述
 
-CSM（Communicable State Machine）提供了一套完整的API函数面板，用于实现模块间通讯、状态管理、参数处理等功能。本文档详细介绍所有CSM API的功能、参数和使用方法。
+这是CSM（Communicable State Machine）的完整API手册，涵盖模块通讯、状态管理、参数处理等所有功能。
 
 ### API分类
 
-CSM API按功能分为以下几大类：
-
-1. **模板面板（Template Palette）**
-   - 用于创建CSM模块的各种模板
-   - 包括无事件结构、带事件结构、DQMH风格等
-
-2. **核心功能（Core Functions）**
-   - Parse State Queue++.vi：状态队列解析
-   - Build Message系列：消息构建API
-
-3. **参数处理（Arguments）**
-   - 各类参数编码解码API
-   - HEXSTR、ERRSTR、SAFESTR等格式支持
-
-4. **管理接口（Management API）**
-   - 模块存在检查、列表查询
-   - 模块状态获取、超时设置
-
-5. **模块操作（Module Operation API）**
-   - 消息发送和等待API
-   - 异步启动、同步调用
-
-6. **广播管理（Broadcast Registration）**
-   - 状态订阅和注销
-   - 广播注册管理
-
-7. **全局日志（Global Log）**
-   - 日志记录和获取
-   - 日志过滤和订阅
-
-8. **高级模式（Advanced Modes）**
-   - 协作者模式API
-   - 责任链模式API
-
-9. **调试工具（Debug & Tools）**
-   - 调试辅助工具
-   - 开发支持VI
-
-10. **实用工具（Utility VIs）**
-    - 字符串处理
-    - 队列操作等辅助功能
+1. **模板面板** - 创建CSM模块的各种模板
+2. **核心功能** - Parse State Queue++.vi、Build Message系列
+3. **参数处理** - 编码解码API（HEXSTR、ERRSTR、SAFESTR等）
+4. **管理接口** - 模块检查、列表查询、状态获取、超时设置
+5. **模块操作** - 消息发送、等待、异步启动、同步调用
+6. **广播管理** - 状态订阅和注销
+7. **全局日志** - 日志记录、过滤、订阅
+8. **高级模式** - 协作者、责任链模式
+9. **调试工具** - 调试辅助、开发支持
+10. **实用工具** - 字符串处理、队列操作
 
 ### 使用说明
 
-#### 关于消息拼接API
-
-> **注意**：消息拼接API不会直接发送消息，仅用于拼接消息字符串。需将字符串并入CSM的状态队列后，在Parse State Queue++ VI中发送消息并执行操作。在熟悉CSM规则的情况下，可不必使用此类API，直接在字符串中键入对应的消息字符串或操作字符串。
-
-#### 关于CSM状态队列操作API
-
-> **注意**：该类型API不会直接发送消息，只是拼接消息字符串。在Parse State Queue++.vi中发送消息、执行操作。与消息拼接API不同的是，此类API会包含CSM的状态队列字符串输入，相当于在状态队列中插入消息。
+> **注意**：消息拼接类API只负责构建消息字符串，不会直接发送。消息需并入CSM状态队列，由Parse State Queue++.vi处理。熟悉CSM后可直接键入消息字符串，无需使用这些API。状态队列操作API与之类似，但包含队列输入，相当于直接插入消息到队列中。
 
 ### API快速参考
 
-以下是最常用的CSM API及其用途：
+最常用的CSM API：
 
 | API | 用途 | 分类 |
 |-----|------|------|
 | Parse State Queue++.vi | 解析状态队列，CSM核心 | 核心功能 |
 | Build Message with Arguments++.vi | 构建消息字符串（多态VI） | 核心功能 |
-| CSM - Send Message and Wait for Reply.vi | 发送同步消息并等待响应 | 模块操作 |
-| CSM - Post Message.vi | 发送异步消息 | 模块操作 |
+| CSM - Send Message and Wait for Reply.vi | 同步消息，等待响应 | 模块操作 |
+| CSM - Post Message.vi | 异步消息 | 模块操作 |
 | CSM - List Modules.vi | 列出所有活动模块 | 管理接口 |
-| CSM - Check If Module Exists.vi | 检查模块是否存在 | 管理接口 |
+| CSM - Check If Module Exists.vi | 检查模块存在 | 管理接口 |
 | CSM - Register State.vi | 注册状态订阅 | 广播管理 |
 | CSM - Unregister State.vi | 注销状态订阅 | 广播管理 |
 
 ## 模板面板（Template Palette）
 
-模板面板提供了创建CSM模块所需的各种模板，详细说明请参考[CSM开发模板](/2024/01/08/csm-templates.html)文档。
+模板面板提供创建CSM模块所需的各种模板，详见[CSM开发模板](/2024/01/08/csm-templates.html)。
 
 ### CSM - No-Event Structure Template.vi
 
-用于创建具有无用户界面的 CSM 模块的模板
+创建无用户界面的CSM模块模板。
 
-<b>输入控件:</b>
-
-- <b>Name("" to use uuid)</b>: CSM 模块名称
-  - 如果输入为 ""，将使用 UUID 作为模块名称。该模块被标记为独立模式，不会包含在模块列表中。
-  - 如果输入以 '#' 结尾，则该模块将在工作模式下运行。具有相同名称的模块将共享同一消息队列。任何外部消息将由其中一个模块处理，取决于哪个模块空闲。
-  - 否则，输入字符串将被用作模块名称，该名称应在系统中保持唯一。如果在系统中使用重复的模块名称，CSM 将进入 "Critical Error" 状态。
-
-<b>输出控件:</b>
-
-- 无
+**输入**：
+- **Name("" to use uuid)**：模块名称
+  - 空字符串 → 使用UUID，独立模式，不在模块列表中
+  - '#'结尾 → 工作模式，相同名称模块共享消息队列，空闲的模块处理消息
+  - 其他 → 作为模块名称，需保持唯一，重名会进入"Critical Error"
 
 ### CSM - With Event Structure Template.vi
 
-用于创建具有用户界面的 CSM 模块的模板，模板中包含用户事件结构用于响应用户操作。
-
-<b>输入控件:</b>
-
-- <b>Name("" to use uuid)</b>: CSM 模块名称
-  - 如果输入为 ""，将使用 UUID 作为模块名称。该模块被标记为独立模式，不会包含在模块列表中。
-  - 如果输入以 '#' 结尾，则该模块将在工作模式下运行。具有相同名称的模块将共享同一消息队列。任何外部消息将由其中一个模块处理，取决于哪个模块空闲。
-  - 否则，输入字符串将被用作模块名称，该名称应在系统中保持唯一。如果在系统中使用重复的模块名称，CSM 将进入 "Critical Error" 状态。
-
-<b>输出控件:</b>
-
-- 无
+创建带用户界面的CSM模块模板，包含用户事件结构。参数同上。
 
 ### CSM - With Event Structure Template - Tiny.vi
 
-用于创建具有用户界面的 CSM 模块的模板，模板中包含用户事件结构用于响应用户操作。此模板的代码比较紧凑。
-
-<b>输入控件:</b>
-
-- <b>Name("" to use uuid)</b>: CSM 模块名称
-  - 如果输入为 ""，将使用 UUID 作为模块名称。该模块被标记为独立模式，不会包含在模块列表中。
-  - 如果输入以 '#' 结尾，则该模块将在工作模式下运行。具有相同名称的模块将共享同一消息队列。任何外部消息将由其中一个模块处理，取决于哪个模块空闲。
-  - 否则，输入字符串将被用作模块名称，该名称应在系统中保持唯一。如果在系统中使用重复的模块名称，CSM 将进入 "Critical Error" 状态。
-
-<b>输出控件:</b>
-
-- 无
+带用户界面的紧凑版CSM模板。参数同上。
 
 ### Parse State Queue++.vi
 
 解析JKI状态机状态队列，返回将执行的下一个当前状态、参数等信息。
 
-<b>输入控件:</b>
+**输入**：
 
-- <b>State Queue</b>: 整个状态队列被连接到此输入。这应该来自 CSM 的移位寄存器。
-- <b>Error In (no error)</b>: 来自JKI状态机的错误簇被连接到此输入。如果发生错误并出现在此输入上，则当前状态输出将返回 "Error Handler" 状态。
-- <b>Name("" to use uuid)</b>: CSM 模块名称
-  - 如果输入为 ""，将使用 UUID 作为模块名称。该模块被标记为独立模式，不会包含在模块列表中。
-  - 如果输入以 '#' 结尾，则该模块将在工作模式下运行。具有相同名称的模块将共享同一消息队列。任何外部消息将由其中一个模块处理，取决于哪个模块空闲。
-  - 否则，输入字符串将被用作模块名称，该名称应在系统中保持唯一。如果在系统中使用重复的模块名称，CSM 将进入 "Critical Error" 状态。
-- <b>Response Timeout(5000ms)</b>:同步调用时的响应超时设置，默认 5000 ms.
-- <b>Dequeue Timeout(0ms)</b>: 检查 CSM 消息队列的超时设置，默认为0，不进行等待。
-- <b>Response Arguments</b>: 来自上一个状态的响应参数。它应该来连接 CSM 的移位寄存器，用于传递外部调用的返回值。
+- **State Queue**: 整个状态队列，应来自CSM的移位寄存器
+- **Error In (no error)**: 错误簇。如果有错误，当前状态输出将返回"Error Handler"状态
+- **Name("" to use uuid)**: CSM模块名称
+  - 空字符串 → 使用UUID，独立模式，不在模块列表中
+  - '#'结尾 → 工作模式，相同名称模块共享消息队列
+  - 其他 → 作为模块名称，需保持唯一，重名进入"Critical Error"
+- **Response Timeout(5000ms)**: 同步调用时的响应超时设置，默认5000ms
+- **Dequeue Timeout(0ms)**: 检查CSM消息队列的超时设置，默认0（不等待）
+- **Response Arguments**: 来自上一个状态的响应参数，应连接CSM的移位寄存器
 
-<b>输出控件:</b>
+**输出**：
 
-- <b>Remaining States</b>:  返回继续执行的所有状态及参数。 These should be passed through the current state in the state machine. These can also be modified or augmented within the current state if necessary.
-- <b>Arguments</b>: 返回可能在当前状态字符串中使用的任何参数。这些参数位于“>>”字符之后。<b>注意：</b>参数变量不得包含任何不可打印的字符，比如换行符或回车符。
-- <b>Current State</b>: 将执行的下一个当前状态
-- <b>Name Used</b>: 分配给此CSM模块的实际名称
-- <b>Argument - State</b>: 如果是 CSM 定义的内置状态，此参数表示此状态的前状态
-- <b>From Who</b>: 如果<b>Current State</b> 是由外部发送的，则这是源CSM模块名称。
+- **Remaining States**: 继续执行的所有状态及参数
+- **Arguments**: 当前状态字符串中的参数（'>>'之后）
+- **Current State**: 将执行的下一个状态
+- **Name Used**: 分配给此CSM模块的实际名称
+- **Argument - State**: 如果是CSM定义的内置状态，此参数表示前一状态
+- **From Who**: 如果状态由外部发送，这是源CSM模块名称
 
 ### Build State String with Arguments++.vi
 
-构建一个包含JKI状态机参数的状态字符串。
+构建包含JKI状态机参数的状态字符串。
 
-<B>例如:</B>
+**示例**：
 
-发送给本地状态机时, <b>Target Module ("")</b> 应该为空.
+发送给本地状态机时，**Target Module ("")**应为空：
+- `State = A` 无参数 → `A`
+- `State = A, Arguments = B` → `A >> B`
 
-      If State = A 并且没有参数, 那么 <b>State with Arguments</b> = A
-      If State = A , Arguments = B 那么 <b>State with Arguments</b> = A >> B
+发送给其他CSM（假设**Target Module**是"Target"）：
+- 同步调用（等待返回）：
+  - `State = A` → `A -@target`
+  - `State = A, Arguments = B` → `A >> B -@target`
+- 异步调用（收到"Async Response"）：
+  - `State = A` → `A ->target`
+  - `State = A, Arguments = B` → `A >> B ->target`
 
-在发送给其他CSM的情况下, 假设 <b>Target Module ("")</b> 的名称是 "Target"
+**输入**：
 
-- 同步调用，发送的消息后等待返回:
+- **State**: 状态或消息名称字符串
+- **Arguments ("")**: 状态的参数
+- **Target Module ("")**: 目标CSM模块名称
+- **Sync-Call(-@) T By Default/Async-Call(->) F**: TRUE=同步调用，FALSE=异步调用
 
-         If State = A 并且没有参数, 那么 <b>State with Arguments</b> = A -@target
-         If State = A , Arguments = B 那么 <b>State with Arguments</b> = A >> B -@target
+**输出**：
 
-- 异步调用，发送消息后，将进入"Async Message Posted" 状态，当外部模块处理完毕后，本地模块将收到 "Async Response" 消息:
-
-         If State = A 并且没有参数, 那么 <b>State with Arguments</b> = A ->target
-         If State = A , Arguments = B 那么 <b>State with Arguments</b> = A >> B ->target
-
-<b>输入控件:</b>
-
-- <b>State</b>: 状态或消息名称字符串
-- <b>Arguments ("")</b>: <b>State</b> 的参数
-- <b>Target Module ("")</b>: 此消息发送的目标 CSM 模块名称
-- <b>Sync-Call(-@) T By Default/Async-Call(->) F</b>: 同步调用输入"TRUE"; 异步调用输入"FALSE"
-
-<b>输出控件:</b>
-
-- <b>State with Arguments</b>: 包含 JKI 状态机状态、参数等信息的字符串
+- **State with Arguments**: 包含状态、参数等信息的完整字符串
 
 ### Build Message with Arguments++.vi
 
-Builds a message that contains arguments for CSM. This VI will parse "State with Arguments" for message type, message string, arguments and target module from input <b>State with Arguments</b> and replace corresponding parts in the message with input values. Different message type symbol(->\|,->,-@) will be used in different Polymorphic Vi instance.
+构建包含参数的CSM消息。该VI会解析输入消息的类型、消息字符串、参数和目标模块，并用新值替换相应部分。不同多态VI实例使用不同消息符号（`->|`, `->`, `-@`）。
 
-Polymorphic Option:
+**多态版本**：
 
-- Build Message with Arguments(Auto Check).vi
-- Build Asynchronous Message with Arguments.vi
-- Build No-Reply Asynchronous Message with Arguments.vi
-- Build Synchronous Message with Arguments.vi
+- Build Message with Arguments(Auto Check).vi - 自动检测消息类型
+- Build Asynchronous Message with Arguments.vi - 异步消息（->）
+- Build No-Reply Asynchronous Message with Arguments.vi - 无返回异步（->|）
+- Build Synchronous Message with Arguments.vi - 同步消息（-@）
 
-<b>Inputs:</b>
+**公共参数**：
 
-- <b>State with Arguments</b>: Input Message which might contain Arguments or target Module
-- <b>Arguments ("")</b>: The arguments which will be used to replace arguments in <b>State with Arguments</b>. if empty, no arguments will be included in output strings.
-- <b>Target Module ("")</b>: The target which will be used to replace target in <b>State with Arguments</b>. if empty, target in <b>State with Arguments</b> will be used.
-
-<b>Outputs:</b>
-
-- <b>State with Arguments</b>: String stands for state with arguments
-
-<b>Inputs:</b>
-
-<b>Outputs:</b>
+- **State with Arguments**: 输入消息（可能包含参数或目标模块）
+- **Arguments ("")**: 新参数（空则不包含参数）
+- **Target Module ("")**: 新目标（空则使用原目标）
+- **输出**: **State with Arguments** - 替换后的消息字符串
 
 #### Build Message with Arguments(Auto Check).vi
 
-Builds a message that contains arguments for CSM. This VI will parse "State with Arguments" for message type, message string, arguments and target module from input <b>State with Arguments</b> and replace corresponding parts in the message with input values. The message type from input <b>State with Arguments</b> will be used.
+自动检测并保持输入消息的类型。
 
-<B>For Example:</B>
+**示例**：
 
-If <b>State with Arguments</b> input is "API: DoSth"
-<b>Arguments ("")</b> input is "Arguments"
-<b>Target Module ("")</b> input is "Callee"
-Then result string is "API: DoSth >> Arguments" as no message symbol is detected.
+```
+输入: "API: DoSth" + Args: "Arguments" + Target: "Callee"
+输出: "API: DoSth >> Arguments"（无符号）
 
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-<b>Arguments ("")</b> input is "NewArguments"
-<b>Target Module ("")</b> input is ""
-Then result string is "API: DoSth >> NewArguments -> Callee"
+输入: "API: DoSth >> Arguments -> Callee" + Args: "NewArguments"
+输出: "API: DoSth >> NewArguments -> Callee"（保持->）
 
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-<b>Arguments ("")</b> input is "NewArguments"
-<b>Target Module ("")</b> input is "NewCallee"
-Then result string is "API: DoSth >> NewArguments -> NewCallee"
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-<b>Arguments ("")</b> input is ""
-<b>Target Module ("")</b> input is "NewCallee"
-Then result string is "API: DoSth -> NewCallee"
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -@ Callee"
-<b>Arguments ("")</b> input is "NewArguments"
-<b>Target Module ("")</b> input is ""
-Then result string is "API: DoSth >> NewArguments -@ Callee"
-
-<b>Inputs:</b>
-
-- <b>State with Arguments</b>: Input Message which might contain Arguments or target Module
-- <b>Arguments ("")</b>: The arguments which will be used to replace arguments in <b>State with Arguments</b>. if empty, no arguments will be included in output strings.
-- <b>Target Module ("")</b>: The target which will be used to replace target in <b>State with Arguments</b>. if empty, target in <b>State with Arguments</b> will be used.
-
-<b>Outputs:</b>
-
-- <b>State with Arguments</b>: String stands for state with arguments
+输入: "API: DoSth >> Arguments -@ Callee" + Args: "NewArguments"
+输出: "API: DoSth >> NewArguments -@ Callee"（保持-@）
+```
 
 #### Build Asynchronous Message with Arguments.vi
 
-Builds a message that contains arguments for CSM. This VI will parse "State with Arguments" for message string, arguments and target module from input <b>State with Arguments</b> and replace corresponding parts in the message with input values with async-message symbol "->" if <b>Target Module ("")</b> is specified.
-
-<B>For Example:</B>
-
-If <b>State with Arguments</b> input is "API: DoSth"
-<b>Arguments ("")</b> input is "Arguments"
-<b>Target Module ("")</b> input is "Callee"
-Then result string is "API: DoSth >> Arguments -> Callee". It's different with Build Message with Arguments(Auto Check).vi. . Message Type Symbol is replaced with "->".
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-<b>Arguments ("")</b> input is "NewArguments"
-<b>Target Module ("")</b> input is ""
-Then result string is "API: DoSth >> NewArguments -> Callee"
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-<b>Arguments ("")</b> input is "NewArguments"
-<b>Target Module ("")</b> input is "NewCallee"
-Then result string is "API: DoSth >> NewArguments -> NewCallee"
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-<b>Arguments ("")</b> input is ""
-<b>Target Module ("")</b> input is "NewCallee"
-Then result string is "API: DoSth -> NewCallee"
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -@ Callee"
-<b>Arguments ("")</b> input is "NewArguments"
-<b>Target Module ("")</b> input is ""
-Then result string is "API: DoSth >> NewArguments -> Callee". Message Type Symbol is replaced with "->".
-
-<b>Inputs:</b>
-
-- <b>State with Arguments</b>: Input Message which might contain Arguments or target Module
-- <b>Arguments ("")</b>: The arguments which will be used to replace arguments in <b>State with Arguments</b>. if empty, no arguments will be included in output strings.
-- <b>Target Module ("")</b>: The target which will be used to replace target in <b>State with Arguments</b>. if empty, target in <b>State with Arguments</b> will be used.
-
-<b>Outputs:</b>
-
-- <b>State with Arguments</b>: String stands for state with arguments
+强制使用异步符号`->`（有返回）。会将输入消息的符号替换为`->`。
 
 #### Build No-Reply Asynchronous Message with Arguments.vi
 
-Builds a message that contains arguments for CSM. This VI will parse "State with Arguments" for message string, arguments and target module from input <b>State with Arguments</b> and replace corresponding parts in the message with input values with No-Reply async-message symbol "->\|" if <b>Target Module ("")</b> is specified.
-
-<B>For Example:</B>
-
-If <b>State with Arguments</b> input is "API: DoSth"
-<b>Arguments ("")</b> input is "Arguments"
-<b>Target Module ("")</b> input is "Callee"
-Then result string is "API: DoSth >> Arguments ->\| Callee". It's different with Build Message with Arguments(Auto Check).vi. Message Type Symbol is replaced with "->\|".
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-<b>Arguments ("")</b> input is "NewArguments"
-<b>Target Module ("")</b> input is ""
-Then result string is "API: DoSth >> NewArguments ->\| Callee". Message Type Symbol is replaced with "->\|".
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-<b>Arguments ("")</b> input is "NewArguments"
-<b>Target Module ("")</b> input is "NewCallee"
-Then result string is "API: DoSth >> NewArguments ->\| NewCallee". Message Type Symbol is replaced with "->\|".
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-<b>Arguments ("")</b> input is ""
-<b>Target Module ("")</b> input is "NewCallee"
-Then result string is "API: DoSth ->\| NewCallee". Message Type Symbol is replaced with "->\|".
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -@ Callee"
-<b>Arguments ("")</b> input is "NewArguments"
-<b>Target Module ("")</b> input is ""
-Then result string is "API: DoSth >> NewArguments ->\| Callee". Message Type Symbol is replaced with "->\|".
-
-<b>Inputs:</b>
-
-- <b>State with Arguments</b>: Input Message which might contain Arguments or target Module
-- <b>Arguments ("")</b>: The arguments which will be used to replace arguments in <b>State with Arguments</b>. if empty, no arguments will be included in output strings.
-- <b>Target Module ("")</b>: The target which will be used to replace target in <b>State with Arguments</b>. if empty, target in <b>State with Arguments</b> will be used.
-
-<b>Outputs:</b>
-
-- <b>State with Arguments</b>: String stands for state with arguments
+强制使用无返回异步符号`->|`。会将输入消息的符号替换为`->|`。
 
 #### Build Synchronous Message with Arguments.vi
 
-Builds a message that contains arguments for CSM. This VI will parse "State with Arguments" for message string, arguments and target module from input <b>State with Arguments</b> and replace corresponding parts in the message with input values with sync-message symbol "-@" if <b>Target Module ("")</b> is specified.
-
-<B>For Example:</B>
-
-If <b>State with Arguments</b> input is "API: DoSth"
-<b>Arguments ("")</b> input is "Arguments"
-<b>Target Module ("")</b> input is "Callee"
-Then result string is "API: DoSth >> Arguments ->\| Callee". It's different with Build Message with Arguments(Auto Check).vi. Message Type Symbol is replaced with "-@".
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-<b>Arguments ("")</b> input is "NewArguments"
-<b>Target Module ("")</b> input is ""
-Then result string is "API: DoSth >> NewArguments ->\| Callee". Message Type Symbol is replaced with "-@".
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-<b>Arguments ("")</b> input is "NewArguments"
-<b>Target Module ("")</b> input is "NewCallee"
-Then result string is "API: DoSth >> NewArguments -@ NewCallee". Message Type Symbol is replaced with "-@".
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-<b>Arguments ("")</b> input is ""
-<b>Target Module ("")</b> input is "NewCallee"
-Then result string is "API: DoSth -@ NewCallee". Message Type Symbol is replaced with "-@".
-
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -@ Callee"
-<b>Arguments ("")</b> input is "NewArguments"
-<b>Target Module ("")</b> input is ""
-Then result string is "API: DoSth >> NewArguments -@ Callee".
-
-<b>Inputs:</b>
-
-- <b>State with Arguments</b>: Input Message which might contain Arguments or target Module
-- <b>Arguments ("")</b>: The arguments which will be used to replace arguments in <b>State with Arguments</b>. if empty, no arguments will be included in output strings.
-- <b>Target Module ("")</b>: The target which will be used to replace target in <b>State with Arguments</b>. if empty, target in <b>State with Arguments</b> will be used.
-
-<b>Outputs:</b>
-
-- <b>State with Arguments</b>: String stands for state with arguments
+强制使用同步符号`-@`。会将输入消息的符号替换为`-@`。
 
 #### Build Interrupt Status Message.vi
 
-Builds a message that contains arguments for CSM. This VI will parse "State with Arguments" for message type, message string, arguments and target module from input <b>State with Arguments</b> and replace corresponding parts in the message with input values. The message type from input <b>State with Arguments</b> will be used.
-<B>For Example:</B>
-If <b>State with Arguments</b> input is "API: DoSth"
-Then result string is "API: DoSth >> Arguments" as no message symbol is detected.
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-Then result string is "API: DoSth >> NewArguments -> Callee"
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-Then result string is "API: DoSth >> NewArguments -> NewCallee"
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-Then result string is "API: DoSth -> NewCallee"
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -@ Callee"
-Then result string is "API: DoSth >> NewArguments -@ Callee"
+构建中断状态消息，保持原消息类型。
 
-- <b>State with Arguments</b>: Input Message which might contain Arguments or target Module
-- <b>Arguments ("")</b>: The arguments which will be used to replace arguments in <b>State with Arguments</b>. if empty, no arguments will be included in output strings.
-- <b>Target Module ("")</b>: The target which will be used to replace target in <b>State with Arguments</b>. if empty, target in <b>State with Arguments</b> will be used.
-- <b>State with Arguments</b>: String stands for state with arguments
+**输入**：
+- **State with Arguments**: 包含参数和目标的消息
+- **Arguments ("")**: 新参数
 
-<b>Inputs:</b>
-
-- <b>State with Arguments</b>:
-- <b>Arguments ("")</b>:
-
-<b>Outputs:</b>
-
-- <b>State with Arguments</b>:
+**输出**：
+- **State with Arguments**: 完整消息字符串
 
 #### Build Normal Status Message.vi
 
-Builds a message that contains arguments for CSM. This VI will parse "State with Arguments" for message type, message string, arguments and target module from input <b>State with Arguments</b> and replace corresponding parts in the message with input values. The message type from input <b>State with Arguments</b> will be used.
-<B>For Example:</B>
-If <b>State with Arguments</b> input is "API: DoSth"
-Then result string is "API: DoSth >> Arguments" as no message symbol is detected.
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-Then result string is "API: DoSth >> NewArguments -> Callee"
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-Then result string is "API: DoSth >> NewArguments -> NewCallee"
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
-Then result string is "API: DoSth -> NewCallee"
-If <b>State with Arguments</b> input is "API: DoSth >> Arguments -@ Callee"
-Then result string is "API: DoSth >> NewArguments -@ Callee"
-
-- <b>State with Arguments</b>: Input Message which might contain Arguments or target Module
-- <b>Arguments ("")</b>: The arguments which will be used to replace arguments in <b>State with Arguments</b>. if empty, no arguments will be included in output strings.
-- <b>Target Module ("")</b>: The target which will be used to replace target in <b>State with Arguments</b>. if empty, target in <b>State with Arguments</b> will be used.
-- <b>State with Arguments</b>: String stands for state with arguments
-
-<b>Inputs:</b>
-
-- <b>State with Arguments</b>:
-- <b>Arguments ("")</b>:
-
-<b>Outputs:</b>
-
-- <b>State with Arguments</b>:
+构建普通状态消息，保持原消息类型。参数同上。
 
 #### Build Register Status Message.vi
 
-Builds register status message. The message looks like:
-[source-state]@[source-module] >> [response-message]@[response-module] -><register>
-For examples:
+构建状态注册消息。
+
+**格式**：`[源状态]@[源模块] >> [响应消息]@[响应模块] -><register>`
+
+**示例**：
+```
 DownloadFinished@Downloader >> StartPlay@Player -><register>
-DownloadFinished@Downloader >> StartPlay -><register> // response-module is current module
-DownloadFinished@Downloader  -><register> // response-module is current module. response-message is DownloadFinished
-DownloadFinished@* >> StartPlay@Player -><register> // Any Module's DownloadFinished is registered to Player's StartPlay state.
+DownloadFinished@Downloader >> StartPlay -><register>  // 响应模块为当前模块
+DownloadFinished@Downloader -><register>  // 响应消息同源状态
+DownloadFinished@* >> StartPlay@Player -><register>  // 任意模块的状态
+```
 
-<b>Inputs:</b>
+**输入**：
+- **Source CSM Name (* as Default)**: 源模块名（*表示任意）
+- **CSM Name**: 响应模块名
+- **Status**: 状态名
+- **Response Message (if "", same as Source Message)**: 响应消息（空则同源消息）
 
-- <b>Source CSM Name (* as Default)</b>:
-- <b>CSM Name</b>:
-- <b>Status</b>:
-- <b>Response Message (if "", same as Source Message)</b>:
-
-<b>Outputs:</b>
-
-- <b>State with Arguments</b>:
+**输出**：
+- **State with Arguments**: 注册消息
 
 #### Build Unregister Status Message.vi
 
-Builds unregister status message. The message looks like:
-[source-state]@[source-module] >> [response-module] -><unregister>
-For examples:
-DownloadFinished@Downloader >> StartPlay -><unregister>
-DownloadFinished@Downloader  -><unregister>
+构建状态注销消息。
 
-<b>Inputs:</b>
+**格式**：`[源状态]@[源模块] >> [响应模块] -><unregister>`
 
-- <b>Source CSM Name (* as Default)</b>:
-- <b>CSM Name</b>:
-- <b>Status</b>:
+**输入**：
+- **Source CSM Name (* as Default)**: 源模块名
+- **CSM Name**: 响应模块名
+- **Status**: 状态名
 
-<b>Outputs:</b>
-
-- <b>State with Arguments</b>:
+**输出**：
+- **State with Arguments**: 注销消息
 
 ### Add State(s) to Queue By BOOL++.vi
 
-根据高优先级和Bool输入，此VI生成TRUE/False和剩余状态的连接状态。High Priority输入决定是否在剩余状态之前或之后连接TRUE或False字符串。Bool输入决定要连接的字符串是TRUE还是False。
+根据Bool值和优先级插入状态到队列。多态VI支持不同数据类型。
 
-<b>Inputs:</b>
+**公共参数**：
+- **State Queue("")**: 状态队列
+- **TRUE("")**: Bool为True时插入的状态
+- **False("")**: Bool为False时插入的状态
+- **Bool**: 选择分支的标志
+- **High Priority(FALSE)**: True=插入队列头部，False=追加尾部
 
-- <b>State Queue("")</b>: 整个状态队列被连接到此输入
-- <b>TRUE("")</b>: <b>Bool</b> 为 True 时插入的状态字符串
-- <b>False("")</b>: <b>Bool</b> 为 False 时插入的状态字符串
-- <b>Bool</b>: 选择连接到TRUE终端或False终端的状态字符串的标志。
-- <b>High Priority(FALSE)</b>: 如果为True，状态将被插入到<b>State Queue("")</b>的顶部。如果为False，它被附加到尾部。
+**输出**：
+- **State Queue Out**: 更新后的状态队列
 
-<b>Outputs:</b>
-
-- <b>State Queue Out</b>: 返回继续执行的所有状态及参数。
-
-#### Add State(s) to Queue By BOOL(Element).vi
-
-根据高优先级和Bool输入，此VI生成TRUE/False和剩余状态的连接状态。High Priority输入决定是否在剩余状态之前或之后连接TRUE或False字符串。Bool输入决定要连接的字符串是TRUE还是False。
-
-<b>Inputs:</b>
-
-- <b>State Queue("")</b>: 整个状态队列被连接到此输入
-- <b>TRUE("")</b>: <b>Bool</b> 为 True 时插入的状态字符串
-- <b>False("")</b>: <b>Bool</b> 为 False 时插入的状态字符串
-- <b>Bool</b>: 选择连接到TRUE终端或False终端的状态字符串的标志。
-- <b>High Priority(FALSE)</b>: 如果为True，状态将被插入到<b>State Queue("")</b>的顶部。如果为False，它被附加到尾部。
-
-<b>Outputs:</b>
-
-- <b>State Queue Out</b>: 返回继续执行的所有状态及参数。
-
-#### Add State(s) to Queue By BOOL(Array Left).vi
-
-根据高优先级和Bool输入，此VI生成TRUE/False和剩余状态的连接状态。High Priority输入决定是否在剩余状态之前或之后连接TRUE或False字符串。Bool输入决定要连接的字符串是TRUE还是False。
-
-<b>Inputs:</b>
-
-- <b>State Queue("")</b>: 整个状态队列被连接到此输入
-- <b>TRUE("")</b>: <b>Bool</b> 为 True 时插入的状态字符串
-- <b>False("")</b>: <b>Bool</b> 为 False 时插入的状态字符串
-- <b>Bool</b>: 选择连接到TRUE终端或False终端的状态字符串的标志。
-- <b>High Priority(FALSE)</b>: 如果为True，状态将被插入到<b>State Queue("")</b>的顶部。如果为False，它被附加到尾部。
-
-<b>Outputs:</b>
-
-- <b>State Queue Out</b>: 返回继续执行的所有状态及参数。
-
-#### Add State(s) to Queue By BOOL(Array Right).vi
-
-根据高优先级和Bool输入，此VI生成TRUE/False和剩余状态的连接状态。High Priority输入决定是否在剩余状态之前或之后连接TRUE或False字符串。Bool输入决定要连接的字符串是TRUE还是False。
-
-<b>Inputs:</b>
-
-- <b>State Queue("")</b>: 整个状态队列被连接到此输入
-- <b>TRUE("")</b>: <b>Bool</b> 为 True 时插入的状态字符串
-- <b>False("")</b>: <b>Bool</b> 为 False 时插入的状态字符串
-- <b>Bool</b>: 选择连接到TRUE终端或False终端的状态字符串的标志。
-- <b>High Priority(FALSE)</b>: 如果为True，状态将被插入到<b>State Queue("")</b>的顶部。如果为False，它被附加到尾部。
-
-<b>Outputs:</b>
-
-- <b>State Queue Out</b>: 返回继续执行的所有状态及参数。
-
-#### Add State(s) to Queue By BOOL(Array All).vi
-
-根据高优先级和Bool输入，此VI生成TRUE/False和剩余状态的连接状态。High Priority输入决定是否在剩余状态之前或之后连接TRUE或False字符串。Bool输入决定要连接的字符串是TRUE还是False。
-
-<b>Inputs:</b>
-
-- <b>State Queue("")</b>: 整个状态队列被连接到此输入
-- <b>TRUE("")</b>: <b>Bool</b> 为 True 时插入的状态字符串
-- <b>False("")</b>: <b>Bool</b> 为 False 时插入的状态字符串
-- <b>Bool</b>: 选择连接到TRUE终端或False终端的状态字符串的标志。
-- <b>High Priority(FALSE)</b>: 如果为True，状态将被插入到<b>State Queue("")</b>的顶部。如果为False，它被附加到尾部。
-
-<b>Outputs:</b>
-
-- <b>State Queue Out</b>: 返回继续执行的所有状态及参数。
+**多态版本**：
+- **Element**: 单个状态字符串
+- **Array Left**: TRUE为数组，False为字符串
+- **Array Right**: TRUE为字符串，False为数组
+- **Array All**: TRUE和FALSE都是数组
 
 ### CSM - Broadcast Status Change.vi
 
-向系统广播状态更改。已注册状态的 CSM 模块将接收到状态更改。
+向系统广播状态更改。已注册状态的CSM模块将接收到状态更改。
 
-<b>输入控件:</b>
+**输入**：
+- **Status with Arguments**: 将被广播的状态及参数
+- **State Queue("")**: 状态队列
+- **Broadcast(T)**: 控制是否广播的开关
 
-- <b>Status with Arguments</b>: 将被广播的状态及参数
-- <b>State Queue("")</b>: 整个状态队列被连接到此输入
-- <b>Broadcast(T)</b>: 控制是否广播的开关输入
+**输出**：
+- **Remaining States**: 更新后的状态队列
 
-<b>输出控件:</b>
-
-- <b>Remaining States</b>: 返回继续执行的所有状态及参数。
-
-## Arguments
+## 参数处理（Arguments）
 
 ### CSM - Make String Arguments Safe.vi
 
-'->','->\|','-@','-&','<-" 是关键字，不能出现在参数中。使用此 VI 保证参数安全。
+'->','->\|','-@','-&','<-' 是关键字，不能出现在参数中。使用此VI保证参数安全。
 
-<b>Inputs:</b>
+**输入**：
+- **Argument String**: 可能包含关键字的参数
 
-- <b>Argument String</b>: 可能包含关键字的参数 '->','->\|','-@','-&','<-".
-
-<b>Outputs:</b>
-
-- <b>Safe Argument String</b>: 安全参数
+**输出**：
+- **Safe Argument String**: 安全参数
 
 ### CSM - Revert Arguments-Safe String.vi
 
-'->','->\|','-@','-&','<-" 是关键字，不能出现在参数中。使用<b>CSM Make String Arguments Safe.vi</b>保证参数安全。此VI用于将安全参数转换为原始参数。
+将安全参数转换为原始参数。
 
-<b>Inputs:</b>
+**输入**：
+- **Safe Argument String**: 安全参数
 
-- <b>Safe Argument String</b>: 安全参数
-
-<b>Outputs:</b>
-
-- <b>Origin Argument String</b>: 可能包含关键字的参数 '->','->\|','-@','-&','<-".
+**输出**：
+- **Origin Argument String**: 原始参数
 
 ### CSM - Convert Data to HexStr.vi
 
-将复杂参数（变体）转换为十六进制字符串，该字符串可以安全地用作状态参数，而不会破坏字符串队列逻辑。
+将复杂参数（变体）转换为十六进制字符串，可安全用作状态参数。
 
-<b>输入控件:</b>
+**输入**：
+- **Variant**: 数据（变体格式）
 
-- <b>Variant</b>: 数据，保存为变体(variant)格式
-
-<b>输出控件:</b>
-
-- <b>HEX String (0-9,A-F)</b>: Hex字符串格式，不包含不可见字符，符合 CSM 的参数要求
+**输出**：
+- **HEX String (0-9,A-F)**: 十六进制字符串，不包含不可见字符
 
 ### CSM - Convert HexStr to Data.vi
 
 将十六进制字符串参数转换回变体数据。
 
-<b>输入控件:</b>
+**输入**：
+- **HEX String**: 十六进制字符串
 
-- <b>HEX String</b>: Hex字符串格式，不包含不可见字符，符合 CSM 的参数要求
+**输出**：
+- **Variant**: 原始数据（变体格式）
+- **error out**: 错误簇
 
-<b>输出控件:</b>
-
-- <b>Variant</b>: 数据，保存为变体(variant)格式
-- <b>error out</b>: 错误簇
-
-## Advance APIs
+## 高级功能（Advance APIs）
 
 ### CSM - Start Async Call.vi
 
-异步调用模板代码的VI片段
-
-<b>输入控件:</b>
-
-- 无
-
-<b>输出控件:</b>
-
-- 无
+异步调用模板代码的VI片段。直接拖拽到程序框图使用。
 
 ### CSM - Synchronized Call.vi
 
-同步调用模板代码的VI片段
-
-<b>输入控件:</b>
-
-- 无
- -
-
-<b>输出控件:</b>
-
- - 无
+同步调用模板代码的VI片段。直接拖拽到程序框图使用。
 
 ### CSM - Mark As Worker Module.vi
 
-在CSM名称后添加“＃”，以标记此模块为工作者，其与具有相同名称的其他工作者共享相同的消息队列。一个带有生成的UUID的实际名称将被分配给此CSM模块。
+在CSM名称后添加"#"，标记为工作者模式。相同名称的工作者共享消息队列，实际名称为带UUID的唯一名称。
 
-<b>输入控件:</b>
+**输入**：
+- **CSM Name**: CSM模块名称
 
- - <b>CSM Name</b>: CSM 模块名称
-
-<b>输出控件:</b>
-
- - <b>CSM Name(marked as worker)</b>: 添加“＃”标记 的CSM 模块名称
+**输出**：
+- **CSM Name(marked as worker)**: 带"#"标记的CSM模块名称
 
 ### CSM - Compact Multiple States.vi
 
-将多个状态紧凑成单个字符串以供输入使用
+将多个状态合并为单个字符串。
 
-<b>输入控件:</b>
+**输入**：
+- **States in Lines**: 多个状态的字符串数组
 
- - <b>States in Lines</b>: 多个状态的字符串数组
-
-<b>输出控件:</b>
-
- - <b>States</b>: 包含所有输入状态的字符串
+**输出**：
+- **States**: 包含所有输入状态的字符串
 
 ### CSM - Check If Module Exists.vi
 
-检查 CSM 模块是否存在
+检查CSM模块是否存在。
 
-<b>输入控件:</b>
+**输入**：
+- **CSM Name**: CSM模块名称
+- **Error in**: 错误簇
 
- - <b>CSM Name</b>: CSM 模块名称
- - <b>Error in</b>: 错误簇
-
-<b>输出控件:</b>
-
- - <b>Exist?</b>: 返回模式是否存在，存在返回True，不存在返回False
- - <b>CSM Name(dup)</b>: 返回 <b>CSM Name</b>
- - <b>Error out</b>: 错误簇
+**输出**：
+- **Exist?**: True=存在，False=不存在
+- **CSM Name(dup)**: 返回CSM Name
+- **Error out**: 错误簇
 
 ### CSM - List Modules.vi
 
 列出系统中所有活动的CSM模块。
 
-<b>输入控件:</b>
+**输入**：
+- **Exclude Standalone CSM(T)**: 是否排除独立工作模式的模块
+- **Error in**: 错误簇
 
- - <b>Exclude Standalone CSM(T)</b>: 是否包含独立工作模式的模块
- - <b>Error in</b>: 错误簇
-
-<b>输出控件:</b>
-
- - <b>Module Names</b>: 模块名称列表
- - <b>Error out</b>: 错误簇
+**输出**：
+- **Module Names**: 模块名称列表
+- **Error out**: 错误簇
 
 ### CSM - Module Status.vi
 
-获取CSM模块的状态
+获取CSM模块的工作状态。
 
-<b>输入控件:</b>
+**输入**：
+- **CSM Name**: CSM模块名称
+- **Error in**: 错误簇
 
- - <b>CSM Name</b>: CSM 模块名称.
- - <b>Error in</b>: 错误簇
-
-<b>输出控件:</b>
-
- - <b>Mode</b>: 返回模块的工作模式："Stand-alone", "CSM" 或 "Action Worker".
- - <b>#As Worker</b>: 工作者模式下，此模块的工作者数量
- - <b>#msg to be processed</b>: CSM消息队列中的待处理消息个数
- - <b>CSM Name(dup)</b>: 返回 <b>CSM Name</b>
- - <b>Error out</b>: 错误簇
+**输出**：
+- **Mode**: 工作模式（"Stand-alone"、"CSM"或"Action Worker"）
+- **#As Worker**: 工作者模式下的工作者数量
+- **#msg to be processed**: CSM消息队列中的待处理消息数
+- **CSM Name(dup)**: 返回CSM Name
+- **Error out**: 错误簇
 
 ### CSM - Register Status Change.vi
 
-注册以接收其他CSM模块状态更改的通知。如果未连接 “Response Message” 或输入为空，则将使用相同的<b>Status</b> 名称作为响应消息。
+注册以接收其他CSM模块状态更改的通知。
 
-<b>输入控件:</b>
+**输入**：
+- **CSM Name**: CSM模块名称
+- **Source CSM Name (* as Default)**: 源CSM模块（"*"表示所有模块）
+- **Status**: 状态字符串
+- **Response Message (if "", same as Source Message)**: 响应消息（空则同Status）
+- **Priority(T:As Status,F:As Interrupt)**: False=插入队列前面，True=追加尾部
+- **Error in**: 错误簇
 
- - <b>CSM Name</b>: CSM 模块名称.
- - <b>Source CSM Name (* as Default)</b>: 生成状态的CSM模块。您可以使用“*”来表示所有生成相同状态的模块。
- - <b>Status</b>: 状态字符串
- - <b>Response Message (if "", same as Source Message)</b>: 注册后，如果状态发生变化，将接收到此消息。
- - <b>Priority(T:As Status,F:As Interrupt)</b>: 如果响应消息为False，则将其插入到状态队列的前面；否则，将其附加到队列的尾部。
- - <b>Error in</b>: 错误簇
-
-<b>输出控件:</b>
-
- - <b>CSM Name(dup)</b>: 返回 <b>CSM Name</b>
- - <b>Error out</b>: 错误簇
+**输出**：
+- **CSM Name(dup)**: 返回CSM Name
+- **Error out**: 错误簇
 
 ### CSM - Unregister Status Change.vi
 
-取消注册其他 CSM 模块状态更改的通知。
+取消注册其他CSM模块状态更改的通知。
 
-<b>输入控件:</b>
+**输入**：
+- **CSM Name**: CSM模块名称
+- **Source CSM Name**: 源CSM模块（"*"表示所有模块）
+- **Status**: 状态字符串
+- **Error in**: 错误簇
 
- - <b>CSM Name</b>: CSM 模块名称.
- - <b>Source CSM Name</b>: 生成状态的CSM模块。您可以使用“*”来表示所有生成相同状态的模块。
- - <b>Status</b>: 状态字符串
- - <b>Error in</b>: 错误簇
-
-<b>输出控件:</b>
-
- - <b>CSM Name(dup)</b>: 返回 <b>CSM Name</b>
- - <b>Error out</b>: 错误簇
+**输出**：
+- **CSM Name(dup)**: 返回CSM Name
+- **Error out**: 错误簇
 
 ### CSM - Get New State Notifier Event.vi
 
-<b>输入控件:</b>
+获取新消息通知事件，用于中断事件结构等待。
 
- - <b>Name("" to use uuid) in</b>: CSM 模块名称
- - <b>Error in</b>: 错误簇
+**输入**：
+- **Name("" to use uuid) in**: CSM模块名称
+- **Error in**: 错误簇
 
-<b>输出控件:</b>
-
- - <b>New State Notifier Event</b>: 用户事件句柄，用来当收到消息时，使用CSM模块中断在事件结构中的等待
- - <b>Error out</b>: 错误簇
+**输出**：
+- **New State Notifier Event**: 用户事件句柄
+- **Error out**: 错误簇
 
 ## Non-CSM Support
 
 ### CSM - Post Message.vi
 
-向指定的CSM发布一条消息，相当于异步调用，但不等待返回参数。
+向指定CSM发送异步消息，不等待返回。
 
-<b>输入控件:</b>
+**输入**：
+- **Target Module**: 目标CSM模块名称
+- **State**: 消息字符串
+- **Arguments ("")**: 消息参数
+- **Error In (no error)**: 错误簇
 
- - <b>Target Module</b>:目标 CSM 模块名称
- - <b>State</b>: 消息字符串
- - <b>Arguments ("")</b>: 消息参数
- - <b>Error In (no error)</b>: 错误簇
-
-<b>输出控件:</b>
-
- - <b>error out</b>: 错误簇
+**输出**：
+- **error out**: 错误簇
 
 ### CSM - Send Message and Wait for Reply.vi
 
-向指定的CSM发布一条消息并等待回复，相当于同步调用，在指定超时内没有收到返回，将返回超时错误。
+向指定CSM发送同步消息并等待回复，超时返回错误。
 
-<b>输入控件:</b>
+**输入**：
+- **Target Module**: 目标CSM模块名称
+- **State**: 消息字符串
+- **Arguments ("")**: 消息参数
+- **Response Timeout(5000ms)**: 等待返回的超时（默认5000ms）
+- **Error In (no error)**: 错误簇
 
- - <b>Target Module</b>: 目标 CSM 模块名称
- - <b>State</b>: 消息字符串
- - <b>Arguments ("")</b>: 消息参数
- - <b>Response Timeout(5000ms)</b>: 等待返回的超时设置，默认 5000ms.
- - <b>Error In (no error)</b>: 错误簇
-
-<b>输出控件:</b>
-
- - <b>Arguments</b>: Response returned.
- - <b>error out</b>: 错误簇
+**输出**：
+- **Arguments**: 响应返回值
+- **error out**: 错误簇
 
 ### CSM - Status Change Event.vi
 
-Obtain CSM Global Log Event Reference.
+获取CSM全局日志事件引用。
 
-- <b>Error in</b>: Error cluster
-- <b>CSM Global Log Event</b>: User event reference for CSM global log.
-- <b>Error out</b>: Error cluster
+**输入**：
+- **Error in**: 错误簇
+- **Name("" to use uuid) in**: 模块名称
 
-<b>Inputs:</b>
-
- - <b>Error in</b>:
- - <b>Name("" to use uuid) in</b>:
-
-<b>Outputs:</b>
-
- - <b>Error out</b>:
- - <b>Status Change Event</b>:
+**输出**：
+- **Status Change Event**: 状态变化事件引用
+- **Error out**: 错误簇
 
 ### CSM - Destroy Status Change Event.vi
 
-Release CSM Global Log Event Reference.
+释放CSM全局日志事件引用。
 
-- <b>CSM Global Log Event</b>:
-- <b>Error in</b>: Error cluster
-- <b>Error out</b>: Error cluster
+**输入**：
+- **Status Change Event**: 状态变化事件引用
+- **Error in**: 错误簇
 
-<b>Inputs:</b>
-
- - <b>Error in</b>:
- - <b>Status Change Event</b>:
-
-<b>Outputs:</b>
-
- - <b>Error out</b>:
+**输出**：
+- **Error out**: 错误簇
 
 ## Side-Loop Support
 
 ### CSM - Request CSM to Post Message.vi
 
-申请 CSM 发送消息。通常用于和CSM并行的功能循环，这些功能循环和 CSM 一起完成完整模块功能。
+申请CSM发送消息。用于与CSM并行的功能循环，这些循环与CSM一起完成完整模块功能。
 
-<b>Inputs:</b>
+**输入**：
+- **Module Name**: 发送状态的CSM
+- **Status**: 将被广播的状态
+- **Arguments ("")**: 状态参数
+- **Target Module**: 目标模块
+- **Error In (no error)**: 错误簇
 
- - <b>Module Name</b>:发送状态的CSM
- - <b>Status</b>: 将被广播的状态
- - <b>Arguments ("")</b>: 将被广播的状态参数
- - <b>Target Module</b>:目标模块
- - <b>Error In (no error)</b>: 错误簇
- -
-
-<b>Outputs:</b>
-
- - <b>error out</b>: 错误簇
+**输出**：
+- **error out**: 错误簇
 
 ### CSM - Request CSM to Broadcast Status Change.vi
 
-申请 CSM 发布状态。通常用于和CSM并行的功能循环，这些功能循环和 CSM 一起完成完整模块功能。
+申请CSM广播状态。用于与CSM并行的功能循环。
 
-<b>Inputs:</b>
+**输入**：
+- **Module Name**: 发送状态的CSM
+- **Status**: 将被广播的状态
+- **Arguments ("")**: 状态参数
+- **Broadcast(T)**: 控制是否广播
+- **Error In (no error)**: 错误簇
 
- - <b>Module Name</b>:发送状态的CSM
- - <b>Status</b>: 将被广播的状态
- - <b>Arguments ("")</b>: 将被广播的状态参数
- - <b>Broadcast(T)</b>: 控制是否广播的开关输入
- - <b>Error In (no error)</b>: 错误簇
-
-<b>Outputs:</b>
-
- - <b>error out</b>: 错误簇
+**输出**：
+- **error out**: 错误簇
 
 ### CSM - Module Turns Invalid.vi
 
-检查CSM是否已经退出。通常用于和CSM并行的功能循环，这些功能循环和 CSM 一起完成完整模块功能。 本VI用于并行循环的退出条件。
+检查CSM是否已经退出。用于并行功能循环的退出条件。
 
-<b>Inputs:</b>
+**输入**：
+- **CSM Name**: 模块名称
 
- - <b>CSM Name</b>: 模块名称
+**输出**：
+- **Turn Invalid(Exit)?**: 是否已退出
 
-<b>Outputs:</b>
-
- - <b>Turn Invalid(Exit)?</b>: 是否已经退出
-
-## Global Log Event
+## 全局日志（Global Log Event）
 
 ### CSM - Global Log Event.vi
 
-获取 CSM 全局状态用户事件句柄
+获取CSM全局状态用户事件句柄。
 
-<b>输入控件:</b>
+**输入**：
+- **Error in**: 错误簇
 
- - <b>Error in</b>: 错误簇
-
-<b>输出控件:</b>
-
- - <b>CSM Global Log Event</b>: CSM 全局状态用户事件句柄
- - <b>Error out</b>: 错误簇
+**输出**：
+- **CSM Global Log Event**: 全局日志事件句柄
+- **Error out**: 错误簇
 
 ### CSM - Destroy Global Log Event.vi
 
-释放 CSM 全局状态用户事件句柄
+释放CSM全局状态用户事件句柄。
 
-<b>输入控件:</b>
+**输入**：
+- **CSM Global Log Event**: 全局日志事件句柄
+- **Error in**: 错误簇
 
- - <b>CSM Global Log Event</b>: CSM 全局状态用户事件句柄
- - <b>Error in</b>: 错误簇
-
-<b>输出控件:</b>
-
- - <b>Error out</b>: 错误簇
+**输出**：
+- **Error out**: 错误簇
 
 ### CSM - Generate User Global Log.vi
 
-<b>Inputs:</b>
+生成用户全局日志。
 
- - <b>Error in</b>:
- - <b>From Who</b>:
- - <b>ModuleName</b>:
- - <b>Log</b>:
- - <b>Arguments</b>:
+**输入**：
+- **Error in**: 错误簇
+- **From Who**: 发送者
+- **ModuleName**: 模块名称
+- **Log**: 日志内容
+- **Arguments**: 参数
 
-<b>Outputs:</b>
+**输出**：
+- **error out**: 错误簇
 
- - <b>error out</b>:
-
-## Utility VIs
+## 实用工具（Utility VIs）
 
 ### Build Error Cluster.vi
 
-创建一个错误簇（error cluster），以标准 LabVIEW 的方式从调用 VI 的调用链中构建源字符串。构建的源字符串形式为：
-"<B>调用的 VI</B> 在 <B>调用 VI 的调用者</B>-><B>调用 VI 的调用者的调用者</B>->等等...->等等..."
-可选的 'String to Prepend to source ("")' 字符串输入可用于在源字符串中添加额外的描述信息。如果存在这个字符串，它将用括号括起来，并添加到源字符串之前。
+创建错误簇，以标准LabVIEW方式从调用链构建源字符串。
 
-<b>输入控件:</b>
+格式："**调用的VI** 在 **调用VI的调用者**->**调用VI的调用者的调用者**->..."
 
- - <b>code</b>: 错误码
- - <b>String to Prepend to source ("")</b>: 错误信息字符串
+可选的'String to Prepend to source ("")'可添加额外描述信息。
 
-<b>输出控件:</b>
+**输入**：
+- **code**: 错误码
+- **String to Prepend to source ("")**: 错误信息字符串
 
- - <b>error out</b>: 错误簇
+**输出**：
+- **error out**: 错误簇
 
 ### Build Internal State String.vi
 
-构建包含 JKI 状态机状态、参数等信息的字符串。
+构建包含JKI状态机状态、参数等信息的字符串。
 
-<b>输入控件:</b>s
+**输入**：
+- **State**: 状态字符串
+- **Arguments ("")**: 状态的参数
+- **Arg-State ("")**: 发送此消息时的状态
+- **Source ("")**: 发送此消息的模块名称
 
- - <b>State</b>: 状态字符串
- - <b>Arguments ("")</b>: <b>State</b>的参数
- - <b>Arg-State ("")</b>: 发送此消息的模块在发送此消息时处于的状态
- - <b>Source ("")</b>: 发送此消息的模块名称
-
-<b>输出控件:</b>
-
- - <b>State with Arguments</b>: 包含 JKI 状态机状态、参数等信息的字符串
+**输出**：
+- **State with Arguments**: 完整的状态字符串
 
 ### String History Cacher.vi
 
-保存当前输入的字符串到缓存，缓存的历史字符串，当超出最大长度限制时，最先进入的缓存字符串将被覆盖。用于调试CSM的历史状态。
+保存当前输入字符串到缓存，用于调试CSM历史状态。超出最大长度时，最先进入的字符串被覆盖。
 
-<b>输入控件:</b>
+**输入**：
+- **String**: 待缓存字符串
+- **length**: 缓存的最大字符串长度
+- **Include Timestamp(F)**: 是否包含时间戳
 
- - <b>String</b>: 待缓存字符串
- - <b>length</b>: 缓存的历史字符串最大字符串长度
- - <b>Include Timestamp(F)</b>: 是否在每行开头包含时间戳。
-
-<b>输出控件:</b>
-
- - <b>String Cache</b>: 缓存的历史字符串
+**输出**：
+- **String Cache**: 缓存的历史字符串
 
 ### Timeout Selector.vi
 
-用于包含用户事件结构的模板中
+用于包含用户事件结构的模板中。
 
-<b>输入控件:</b>
+**输入**：
+- **Timeout Expected**: 预期的超时设置
+- **Remaining States**: 剩余状态
 
- - <b>Timeout Expected</b>: 预期的超时设置
- - <b>Remaining States</b>: 如果还有剩余的状态，输出将为 0，否则输出为预期值
-
-<b>输出控件:</b>
-
- - <b>Timeout</b>: 仲裁后使用的超时设置
+**输出**：
+- **Timeout**: 仲裁后使用的超时设置（有剩余状态时为0，否则为预期值）
 
 ### Trim Both Whitespace.vi
 
-从 <B>string</B> 的开头、结尾或两者同时移除所有 ASCII 空白字符（空格、制表符、回车和换行）。
+从字符串开头、结尾或两者移除所有ASCII空白字符（空格、制表符、回车和换行）。
 
-<b>输入控件:</b>
+**输入**：
+- **string**: 待处理字符串
 
- - <b>string</b>: 待处理字符串
-
-<b>输出控件:</b>
-
- - <b>trimmed string</b>: 处理后的字符串
+**输出**：
+- **trimmed string**: 处理后的字符串
 
 ### uuid.vi
 
-根据标准方法生成 <b>Universally Unique Identifier(UUID)</b>。 例如:
+根据标准方法生成**Universally Unique Identifier(UUID)**。
 
-     - 59703F3AD837
-     - 106A470BA5EC
-     - 9B781DB313AF
+例如：59703F3AD837、106A470BA5EC、9B781DB313AF
 
-<b>输入控件:</b>
+**输入**：无
 
- - 无
-
-<b>输出控件:</b>
-
- - <b>UUID</b>: 生成的 UUID
+**输出**：
+- **UUID**: 生成的UUID
 
 ### CSM - Broadcast Message Type.ctl
 
 广播消息类型定义。
 
-- <b>Interrupt:</b> 高优先级，作为中端
-- <b>Status:</b> 普通优先级，作为消息
+- **Interrupt**: 高优先级，作为中断
+- **Status**: 普通优先级，作为消息
 
 ### CSM - Message Type.ctl
 
 消息类型定义。
 
-- <b>Async:</b> 异步消息 (->)
-- <b>Async without Reply:</b> 无返回异步消息 (->\|)
-- <b>Sync:</b> 同步消息 (-@)
+- **Async**: 异步消息（->）
+- **Async without Reply**: 无返回异步消息（->|）
+- **Sync**: 同步消息（-@）
 
 ### Global Log To String.vi
 
-<b>Inputs:</b>
+将全局日志转换为字符串。
 
- - <b>Log</b>:
+**输入**：
+- **Log**: 日志数据
 
-<b>Outputs:</b>
-
- - <b>String</b>:
+**输出**：
+- **String**: 字符串格式的日志
 
 ## API使用最佳实践
 
@@ -1049,18 +648,17 @@ Release CSM Global Log Event Reference.
 
 **推荐做法**：
 - 使用`Build Message with Arguments++.vi`多态VI构建消息
-- 自动检测版本可以根据输入自动确定消息类型
-- 对于明确的消息类型，使用对应的特定版本提高性能
+- 自动检测版本根据输入自动确定消息类型
+- 明确消息类型时使用特定版本提高性能
 
 **示例**：
 ```
-// 使用自动检测版本
+// 自动检测版本
 Build Message with Arguments(Auto Check).vi
 State with Arguments: "API: GetData"
 Target Module: "DataProcessor"
-// 自动识别为同步调用
 
-// 使用特定版本（性能更好）
+// 特定版本（性能更好）
 Build Synchronous Message with Arguments.vi
 State with Arguments: "API: GetData"
 Target Module: "DataProcessor"
@@ -1070,7 +668,6 @@ Target Module: "DataProcessor"
 
 **检查模块存在性**：
 ```
-// 在发送消息前检查模块是否存在
 CSM - Check If Module Exists.vi
 CSM Name: "TargetModule"
 Exist?: TRUE/FALSE
@@ -1078,37 +675,33 @@ Exist?: TRUE/FALSE
 
 **获取模块列表**：
 ```
-// 列出所有活动模块（不包含系统级）
 CSM - List Modules.vi
-Scope: Normal
-With Nodes?: FALSE
+Exclude Standalone CSM: TRUE
 ```
 
 **获取模块状态**：
 ```
-// 查看模块工作模式和队列状态
 CSM - Module Status.vi
 CSM Name: "MyModule"
-// 返回：Mode, #Nodes, #Elements In Queue
+// 返回：Mode, #As Worker, #msg to be processed
 ```
 
 ### 3. 消息发送
 
 **同步消息**：
-- 用于需要立即获得响应的场景
+- 需要立即获得响应的场景
 - 设置合理的超时时间
 - 处理超时错误
 
 ```
 CSM - Send Message and Wait for Reply.vi
-Current Module: "Caller"
 Target CSM: "Server"
 Message: "API: Calculate >> 100"
 Response Timeout: 5000ms
 ```
 
 **异步消息**：
-- 用于不需要立即响应的场景
+- 不需要立即响应的场景
 - 在"Async Response"状态处理响应
 - 使用"Async Message Posted"跟踪发送状态
 
@@ -1141,22 +734,9 @@ Response Message: "Error Handler"
 
 **选择合适的参数格式**：
 - **纯字符串**：简单数据，易于调试
-- **HEXSTR**：小型数据结构（<4KB）
-- **MassData**：大型数据（>4KB）
+- **HEXSTR**：小于4KB的数据结构
+- **MassData**：大于4KB的数据（如图像、大数组）
 - **API String**：可读配置参数
-
-**参数编解码示例**：
-```
-// 编码Cluster到HEXSTR
-Arguments:HEXSTR Converter.vi
-Variant: MyDataCluster
-String: "0A1B2C3D..."
-
-// 从HEXSTR解码
-Arguments:HEXSTR Converter.vi
-String: "0A1B2C3D..."
-Variant: MyDataCluster
-```
 
 ### 6. 错误处理
 
@@ -1165,17 +745,6 @@ Variant: MyDataCluster
 2. 使用ERRSTR格式传递错误信息
 3. 广播关键错误到所有模块
 4. 记录错误到全局日志
-
-```
-// 在API中处理错误
-Case: "API: MyAPI"
-  If Error Occurred Then
-    Build Asynchronous Message with Arguments.vi
-    State: "Error Occurred"
-    Arguments: ERRSTR格式的错误
-    Target: "<all>"  // 广播到所有订阅者
-  End If
-```
 
 ### 7. 性能优化
 
@@ -1191,20 +760,19 @@ Case: "API: MyAPI"
 
 **超时设置**：
 ```
-// 设置合理的全局超时
+// 设置全局超时
 CSM - Set TMO of Sync-Reply.vi
-TMO: 5000ms  // 根据实际响应时间调整
+TMO: 5000ms
 
-// 对于特定API使用自定义超时
+// 特定API使用自定义超时
 Parse State Queue++.vi
-Response Timeout: 10000ms  // 针对耗时操作
+Response Timeout: 10000ms
 ```
 
 ### 8. 调试技巧
 
 **使用全局日志**：
 ```
-// 记录关键操作
 CSM - Global Log.vi
 CSM Name: "MyModule"
 Message: "Processing started"
@@ -1213,7 +781,6 @@ Arguments: "Parameter details"
 
 **监控模块状态**：
 ```
-// 定期检查模块队列
 CSM - Module Status.vi
 #Elements In Queue: ?
 // 如果持续增长，说明处理速度不足
@@ -1252,18 +819,16 @@ CSM - Module Status.vi
 
 ### Q1: Parse State Queue++.vi中的Response Timeout设置为-2是什么意思？
 
-**答案**：`-2`表示使用全局超时设置。可以通过`CSM - Set TMO of Sync-Reply.vi`设置全局超时时间。这样可以统一管理所有模块的超时设置，便于调整和维护。
+`-2`表示使用全局超时设置。可以通过`CSM - Set TMO of Sync-Reply.vi`设置全局超时时间。这样可以统一管理所有模块的超时设置，便于调整和维护。
 
 ### Q2: 何时使用同步消息，何时使用异步消息？
 
-**答案**：
 - **同步消息（-@）**：需要立即获得响应的场景，如查询数据、执行计算
 - **异步消息（->）**：不需要立即响应的场景，如日志记录、状态更新
 - **异步无返回（->|）**：完全不需要响应的场景，如触发通知
 
 ### Q3: 如何处理消息超时？
 
-**答案**：
 1. 在Parse State Queue++.vi后检查当前状态
 2. 如果状态为"Target Timeout Error"，实现重试或错误报告逻辑
 3. 考虑增加超时时间或优化目标模块的响应速度
@@ -1271,7 +836,6 @@ CSM - Module Status.vi
 
 ### Q4: MassData和HEXSTR如何选择？
 
-**答案**：
 - **HEXSTR**：小于4KB的数据，简单数据结构
 - **MassData**：大于4KB的数据，如图像、大数组
 - **性能**：MassData通过共享内存避免数据复制，大数据场景性能更好
@@ -1279,7 +843,6 @@ CSM - Module Status.vi
 
 ### Q5: 如何避免消息队列堵塞？
 
-**答案**：
 1. **设计**：避免在状态中执行耗时操作，将耗时操作移到独立的子模块
 2. **监控**：使用`CSM - Module Status.vi`监控队列长度
 3. **优先级**：使用高优先级队列处理紧急消息
@@ -1288,7 +851,6 @@ CSM - Module Status.vi
 
 ### Q6: 协作者模式和责任链模式有什么区别？
 
-**答案**：
 - **协作者模式（Worker Mode）**：
   - 多个工作者共享一个消息队列
   - 任意一个空闲的工作者处理消息
@@ -1301,7 +863,6 @@ CSM - Module Status.vi
 
 ### Q7: 如何实现模块的优雅关闭？
 
-**答案**：
 1. 设计专门的关闭API：`API: Shutdown`
 2. 在关闭API中执行清理操作
 3. 发送`Macro: Exit`状态退出主循环
@@ -1310,7 +871,7 @@ CSM - Module Status.vi
 
 ### Q8: 为什么不建议使用CSM - Flush Queue.vi？
 
-**答案**：清空队列会丢失消息，可能导致：
+清空队列会丢失消息，可能导致：
 - 同步调用者永远等待响应
 - 重要的状态变化被忽略
 - 系统行为不可预测
