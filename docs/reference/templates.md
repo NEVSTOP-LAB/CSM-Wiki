@@ -407,11 +407,11 @@ CSM Module Template中的调试事件循环应在调试完成或部署前删除�
 
 ### 相关资源
 
-- [CSM基本概念](/2023/12/28/concepts.html)
-- [CSM模块间通讯](/2023/12/29/communication.html)
-- [创建CSM复用模块](/2023/12/30/basic.html)
-- [CSM高级模式](/2023/12/31/advance.html)
-- [CSM Palette APIs](/2024/01/08/csm-palette-apis.html)
+- [CSM基本概念](/docs/basic/concepts)
+- [CSM模块间通讯](/docs/basic/communication)
+- [创建CSM复用模块](/docs/basic/usage)
+- [CSM高级模式](/docs/basic/advance)
+- [CSM Palette APIs](/docs/reference/palette-apis)
 - [CSM GitHub仓库](https://github.com/NEVSTOP-LAB/Communicable-State-Machine)
 - [CSM示例项目](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/tree/main/examples)
 - [JKI State Machine文档](http://jki.net/state-machine/)

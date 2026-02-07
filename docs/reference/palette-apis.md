@@ -60,7 +60,7 @@ _**CSM 函数面板**_
 
 ## 模板面板（Template Palette）
 
-模板面板提供创建CSM模块所需的各种模板，详见[CSM开发模板](/2024/01/08/csm-templates.html)。
+模板面板提供创建CSM模块所需的各种模板，详见[CSM开发模板](/docs/reference/templates)。
 
 ### CSM - No-Event Structure Template.vi
 
@@ -893,14 +893,14 @@ CSM - Module Status.vi
 
 ### 相关文档
 
-- [CSM开发模板](/2024/01/08/csm-templates.html) - 详细的模板使用指南
-- [CSM基本概念](/2023/12/28/concepts.html) - 理解CSM的核心概念
-- [CSM模块间通讯](/2023/12/29/communication.html) - 通讯机制详解
-- [创建CSM复用模块](/2023/12/30/basic.html) - 模块开发指南
-- [CSM高级模式](/2023/12/31/advance.html) - 协作者、责任链等高级特性
-- [CSM插件机制](/2024/01/02/csm-plugin-system.html) - Addon和Template开发
-- [CSM调试工具](/2024/01/03/csm-Tools.html) - 调试和开发工具
-- [CSM全局日志](/2024/01/04/csm-global-log.html) - 日志系统详解
+- [CSM开发模板](/docs/reference/templates) - 详细的模板使用指南
+- [CSM基本概念](/docs/basic/concepts) - 理解CSM的核心概念
+- [CSM模块间通讯](/docs/basic/communication) - 通讯机制详解
+- [创建CSM复用模块](/docs/basic/usage) - 模块开发指南
+- [CSM高级模式](/docs/basic/advance) - 协作者、责任链等高级特性
+- [CSM插件机制](/docs/plugins/plugin-system) - Addon和Template开发
+- [CSM调试工具](/docs/plugins/tools) - 调试和开发工具
+- [CSM全局日志](/docs/basic/global-log) - 日志系统详解
 
 ### 外部资源
 
@@ -980,9 +980,9 @@ CSM API提供了完整的函数接口，用于构建模块化、可通讯的LabV
 
 ### 下一步
 
-- 深入学习[CSM高级模式](/2023/12/31/advance.html)
-- 探索[CSM插件机制](/2024/01/02/csm-plugin-system.html)
-- 实践[创建CSM复用模块](/2023/12/30/basic.html)
-- 使用[CSM调试工具](/2024/01/03/csm-Tools.html)优化开发流程
+- 深入学习[CSM高级模式](/docs/basic/advance)
+- 探索[CSM插件机制](/docs/plugins/plugin-system)
+- 实践[创建CSM复用模块](/docs/basic/usage)
+- 使用[CSM调试工具](/docs/plugins/tools)优化开发流程
 
 通过系统学习和实践，您将能够充分发挥CSM的强大功能，构建高质量的LabVIEW应用！

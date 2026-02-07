@@ -30,7 +30,7 @@ CSM 是 Communicable State Machine 的缩写，简单说就是"会通讯的状�
 - `#`结尾（如`Worker#`）：协作者模式节点
 - `$`加数字（如`Handler$1`）：责任链模式节点
 
-更多高级模式说明请看[这里](./2023-12-31-advance.html)。
+更多高级模式说明请看[这里](/docs/basic/advance)。
 
 ### 模块接口
 
@@ -150,7 +150,7 @@ interrupt@SourceModule >> API@TargetModule -><register as status>
 - 属性有明确的数据类型（LabVIEW数据类型）
 - 常用于存配置参数、状态数据等
 
-详细用法看[CSM函数面板](./2024-01-08-csm-palette-apis.html)。
+详细用法看[CSM函数面板](](./2024-01-08-csm-palette-apis.html))。
 
 ## 概念小结
 
