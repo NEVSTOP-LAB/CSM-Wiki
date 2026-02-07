@@ -11,7 +11,7 @@ baseurl: '/CSM-Wiki'
 theme: just-the-docs
 
 # Color scheme supports "light" or "dark"
-color_scheme: nil
+color_scheme: light
 
 # Enable or disable the site search
 search_enabled: true
