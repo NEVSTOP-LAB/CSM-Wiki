@@ -1,0 +1,87 @@
+<div class="book-summary">
+    <script type="text/javascript">
+        // Fixes the page links scroll problem on both desktop and mobile browsers
+        function pageScrollToTop(element) {
+            // both mobile and non-mobile
+            $('div.body-inner').animate({scrollTop: 0});
+            $(element).parent().find('li>ul>li').removeClass('active');
+            return true;  // propagate
+        }
+        // Fixes the anchor links scroll problem on mobile browsers
+        function mobilePageScrollToAnchor(element) {
+            $(element).closest('li.chapter').find('ul>li').removeClass('active');
+            $(element).parent().addClass('active');
+            if ($(document).width() <= 1240) {
+                var href = $(element).attr('href');
+                // Decode URL-encoded anchor to handle Chinese and other Unicode characters
+                var targetId = decodeURIComponent(href);
+                var targetElement = $(targetId);
+                if (targetElement.length > 0) {
+                    $('div.body-inner').animate({scrollTop: targetElement.get(0).offsetTop});
+                }
+            }
+            return true;
+        }
+    </script>
+
+    <nav role="navigation">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="Type to search" />
+        </div>
+        <div id="book-search-input-link" role="search">
+            <a href="{{ '/assets/search.html' | relative_url }}">Click to Search</a>
+        </div>
+        <ul class="summary">
+            {% assign home_url = site.baseurl | append: '/' | append: site.active_lang %}
+            {% assign home_url_with_slash = home_url | append: '/' %}
+            {% if page.url == "/index.html" or page.url == "/" or page.url == home_url or page.url == home_url_with_slash %}
+            <li class="chapter active" data-level="1.1" data-path="{{home_url}}">
+            {% else %}
+            <li class="chapter" data-level="1.1" data-path="{{home_url}}">
+            {% endif %}
+                <a href="{{home_url}}/" onclick="pageScrollToTop(this)">
+                    {{ site.data[site.active_lang].l10n.title | escape }}
+                </a>
+            </li>
+
+            <li class="divider"></li>
+
+            {% for collection in site.collections %}
+                <!-- <p>{{ collection.label }}</p> -->
+                {% if collection.output %}
+                    {% if collection.label == "posts" %}
+                        {% assign reversed_posts = site[collection.label] | reverse %}
+                    {% else %}
+                        {% assign reversed_posts = site[collection.label] %}
+                    {% endif %}
+
+                    {% for post in reversed_posts %}
+                        {% if page.url == post.url %}
+                        <li class="chapter active" data-level="1.2" data-path="{{site.baseurl}}{{post.url}}">
+                        {% else %}
+                        <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}{{post.url}}">
+                        {% endif %}
+                            <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">
+                                {{ post.title | escape }}
+                            </a>
+                            {% if site.toc.enabled %}
+                                {% if page.url == post.url %}
+                                    {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+
+                    {% if reversed_posts.size > 0 %}
+                        <li class="divider"></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <div class="lang-switcher">
+            {%- include lang-switcher.html -%}
+        </div>
+
+    </nav>
+</div>

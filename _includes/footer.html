@@ -1,0 +1,41 @@
+<script src="{{ '/assets/gitbook/gitbook.js' | relative_url }}"></script>
+<script src="{{ '/assets/gitbook/theme.js' | relative_url }}"></script>
+
+<script src="{{ '/assets/gitbook/gitbook-plugin-back-to-top-button/plugin.js' | relative_url }}"></script>
+<script src="{{ '/assets/gitbook/gitbook-plugin-copy-code-button/toggle.js' | relative_url }}"></script>
+<script src="{{ '/assets/gitbook/gitbook-plugin-expandable-chapters-small2/expandable-chapters-small.js' | relative_url }}"></script>
+<script src="{{ '/assets/gitbook/gitbook-plugin-fontsettings/fontsettings.js' | relative_url }}"></script>
+<script src="{{ '/assets/gitbook/gitbook-plugin-search-pro/jquery.mark.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/gitbook/gitbook-plugin-search-pro/search.js' | relative_url }}"></script>
+<script src="{{ '/assets/gitbook/gitbook-plugin-sharing/buttons.js' | relative_url }}"></script>
+<script src="{{ '/assets/gitbook/gitbook-plugin-splitter/splitter.js' | relative_url }}"></script>
+
+<!--
+<script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+<script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+<script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+<script src="../gitbook/gitbook-plugin-search/search.js"></script>
+-->
+
+{% if site.extra_footer_js %}
+    {%- for extra_js in site.extra_header_js -%}
+        {%- assign starts_with = extra_js | slice: 0,4  -%}
+        {% if starts_with == "http" %}
+<script src="{{ extra_js }}"></script>
+        {%- else -%}
+<script src="{{ extra_js | prepend: '/' | relative_url }}"></script>
+        {%- endif -%}
+    {%- endfor -%}
+{% endif %}
+
+{%- if site.tracker -%}
+    <!-- trackers -->
+    {%- if site.tracker.google_analytics -%}
+        <!-- google analytics -->
+        {%- include google-analytics.html -%}
+    {%- endif -%}
+    {%- if site.tracker.cnzz -%}
+        <!-- cnzz -->
+        {%- include cnzz.html -%}
+    {%- endif -%}
+{%- endif -%}
