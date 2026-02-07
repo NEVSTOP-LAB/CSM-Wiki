@@ -1,43 +1,43 @@
-# ÄÚ²¿Ê¹ÓÃµÄÒ»Ð©°ïÖúVI£¬¿Í»§²»¿É¼û
+# å†…éƒ¨ä½¿ç”¨çš„ä¸€äº› VI åŠå…¶è¯´æ˜Ž
 
 ## Build Error Cluster.vi
 
-´´½¨Ò»¸ö´íÎó´Ø(error cluster)£¬ÒÔ±ê×¼ LabVIEW µÄ·½Ê½´Óµ÷ÓÃ VI µÄµ÷ÓÃÁ´ÖÐ¹¹½¨Ô´×Ö·û´®¡£¹¹½¨µÄÔ´×Ö·û´®ÐÎÊ½Îª£º
-"<B>µ÷ÓÃµÄ VI</B> ÔÚ <B>µ÷ÓÃ VI µÄµ÷ÓÃÕß</B>-><B>µ÷ÓÃ VI µÄµ÷ÓÃÕßµÄµ÷ÓÃÕß</B>->µÈµÈ...->µÈµÈ..."
-¿ÉÑ¡µÄ 'String to Prepend to source ("")' ×Ö·û´®ÊäÈë¿ÉÓÃÓÚÔÚÔ´×Ö·û´®ÖÐÌí¼Ó¶îÍâµÄÃèÊöÐÅÏ¢¡£Èç¹û´æÔÚÕâ¸ö×Ö·û´®£¬Ëü½«ÓÃÀ¨ºÅÀ¨ÆðÀ´£¬²¢Ìí¼Óµ½Ô´×Ö·û´®Ö®Ç°¡£
+åˆ›å»ºä¸€ä¸ªé”™è¯¯ç°‡(error cluster)ï¼Œä»¥æ ‡å‡† LabVIEW çš„æ–¹å¼ä»Žè°ƒç”¨ VI çš„è°ƒç”¨é“¾ä¸­æž„å»ºæºå­—ç¬¦ä¸²ã€‚æž„å»ºçš„æºå­—ç¬¦ä¸²å½¢å¼ä¸ºï¼š
+"<B>è°ƒç”¨çš„ VI</B> åœ¨ <B>è°ƒç”¨ VI çš„è°ƒç”¨è€…</B>-><B>è°ƒç”¨ VI çš„è°ƒç”¨è€…çš„è°ƒç”¨è€…</B>->ç­‰ç­‰...->ç­‰ç­‰..."
+å¯é€‰çš„ 'String to Prepend to source ("")' å­—ç¬¦ä¸²è¾“å…¥å¯ç”¨äºŽåœ¨æºå­—ç¬¦ä¸²ä¸­æ·»åŠ é¢å¤–çš„æè¿°ä¿¡æ¯ã€‚å¦‚æžœå­˜åœ¨è¿™ä¸ªå­—ç¬¦ä¸²ï¼Œå®ƒå°†ç”¨æ‹¬å·æ‹¬èµ·æ¥ï¼Œå¹¶æ·»åŠ åˆ°æºå­—ç¬¦ä¸²ä¹‹å‰ã€‚
 
--- <b>Controls(ÊäÈë¿Ø¼þ)</b> --
-- <b>code</b>: ´íÎóÂë
-- <b>String to Prepend to source ("")</b>: ´íÎóÐÅÏ¢×Ö·û´®
+-- <b>Controls(è¾“å…¥æŽ§ä»¶)</b> --
+- <b>code</b>: é”™è¯¯ç 
+- <b>String to Prepend to source ("")</b>: é”™è¯¯ä¿¡æ¯å­—ç¬¦ä¸²
 
 ## Build Internal State String.vi
 
-¹¹½¨°üº¬ JKI ×´Ì¬»ú×´Ì¬¡¢²ÎÊýµÈÐÅÏ¢µÄ×Ö·û´®¡£
+æž„å»ºåŒ…å« JKI çŠ¶æ€æœºçŠ¶æ€ã€å‚æ•°ç­‰ä¿¡æ¯çš„å­—ç¬¦ä¸²ã€‚
 
--- <b>Controls(ÊäÈë¿Ø¼þ)</b> --
-- <b>State</b>: ×´Ì¬×Ö·û´®
-- <b>Arguments ("")</b>: <b>State</b>µÄ²ÎÊý
-- <b>Arg-State ("")</b>: ·¢ËÍ´ËÏûÏ¢µÄÄ£¿éÔÚ·¢ËÍ´ËÏûÏ¢Ê±´¦ÓÚµÄ×´Ì¬
-- <b>Source ("")</b>: ·¢ËÍ´ËÏûÏ¢µÄÄ£¿éÃû³Æ
+-- <b>Controls(è¾“å…¥æŽ§ä»¶)</b> --
+- <b>State</b>: çŠ¶æ€å­—ç¬¦ä¸²
+- <b>Arguments ("")</b>: <b>State</b>çš„å‚æ•°
+- <b>Arg-State ("")</b>: å‘é€æ­¤æ¶ˆæ¯çš„æ¨¡å—åœ¨å‘é€æ­¤æ¶ˆæ¯æ—¶å¤„äºŽçš„çŠ¶æ€
+- <b>Source ("")</b>: å‘é€æ­¤æ¶ˆæ¯çš„æ¨¡å—åç§°
 
--- <b>Indicators(Êä³ö¿Ø¼þ)</b> --
-- <b>CSM Message String</b>: Æ´½ÓÉú³ÉµÄ CSM ÏûÏ¢×Ö·û´®
+-- <b>Indicators(è¾“å‡ºæŽ§ä»¶)</b> --
+- <b>CSM Message String</b>: æ‹¼æŽ¥ç”Ÿæˆçš„ CSM æ¶ˆæ¯å­—ç¬¦ä¸²
 - <b>>> Response Source Message >></b>:Controls
 - <b>State With Arguments</b>:Indicators
 
 ### Trim Both Whitespace.vi
 
-¿ªÍ·¡¢½áÎ²»òÁ½ÕßÍ¬Ê±ÒÆ³ýËùÓÐ ASCII ¿Õ°××Ö·û(¿Õ¸ñ¡¢ÖÆ±í·û¡¢»Ø³µºÍ»»ÐÐ)¡£
+å¼€å¤´ã€ç»“å°¾æˆ–ä¸¤è€…åŒæ—¶ç§»é™¤æ‰€æœ‰ ASCII ç©ºç™½å­—ç¬¦(ç©ºæ ¼ã€åˆ¶è¡¨ç¬¦ã€å›žè½¦å’Œæ¢è¡Œ)ã€‚
 
--- <b>Controls(ÊäÈë¿Ø¼þ)</b> --
-- <b>string</b>: ´ý´¦Àí×Ö·û´®
+-- <b>Controls(è¾“å…¥æŽ§ä»¶)</b> --
+- <b>string</b>: å¾…å¤„ç†å­—ç¬¦ä¸²
 
--- <b>Indicators(Êä³ö¿Ø¼þ)</b> --
-- <b>trimmed string</b>: ´¦ÀíºóµÄ×Ö·û´®
+-- <b>Indicators(è¾“å‡ºæŽ§ä»¶)</b> --
+- <b>trimmed string</b>: å¤„ç†åŽçš„å­—ç¬¦ä¸²
 
 ### Replace Tag with Array.vi
 
-´ËVI½«²»ÔÚÎ¬»¤£¬ÇëÊ¹ÓÃCSM - Replace Mark with String Array.vi
+æ­¤VIå°†ä¸åœ¨ç»´æŠ¤ï¼Œè¯·ä½¿ç”¨CSM - Replace Mark with String Array.vi
 
 > - Ref: CSM - Replace Mark with String Array.vi
 
