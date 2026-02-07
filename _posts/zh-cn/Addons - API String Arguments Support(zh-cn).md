@@ -79,9 +79,9 @@ String、Path、Boolean、Tag、Refnum、整数(I8/I16/I32/I64/U8/U16/U32/U64)�
 
 示例：
 ```
-Enum = {1-AAA, 5-BBBB, 9-CCCC}
-"AAA" → Enum(1-AAA)，值为0
-"5" → Enum(5-BBBB)，值为1
+Enum = {1==AAA, 5--BBBB, 9-CCCC}
+"AAA" → Enum(1==AAA)，值为0
+"5" → Enum(5--BBBB)，值为1
 "9-CCCC" → Enum(9-CCCC)，值为2
 ```
 
