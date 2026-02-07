@@ -49,6 +49,16 @@ permalink:                /:categories/:year-:month-:day-:title:output_ext
 
 exclude:
   - _drafts
+  - "*.backup"
+  - "*.bak"
+  - "**/_internal"
+  - "_internal"
+  - "**/_origin"
+  - "_origin"
+  - "**/_drafts"
+  - "**/_design"
+  - .ref
+  - _gitbook_readme_backup.md
 
 collections:
   pages:

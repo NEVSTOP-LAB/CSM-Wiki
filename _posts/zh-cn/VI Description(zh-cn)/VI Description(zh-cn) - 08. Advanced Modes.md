@@ -1,3 +1,13 @@
+---
+title: CSM API
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn-08-advanced-modes
+toc: true
+---
+
 # CSM API
 
 > [!NOTE]

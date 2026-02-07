@@ -1,3 +1,13 @@
+---
+title: 广播订阅管理(Broadcast Registration)
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn-06-broadcast-registration
+toc: true
+---
+
 # 广播订阅管理(Broadcast Registration)
 
 ## CSM - Register Broadcast.vi

@@ -1,3 +1,13 @@
+---
+title: CSM Advance Example Description
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: csm-advance-example-zh-cn
+toc: true
+---
+
 # CSM Advance Example Description
 
 ## 工作者模式范例

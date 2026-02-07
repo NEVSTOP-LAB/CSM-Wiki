@@ -1,3 +1,13 @@
+---
+title: CSM API String Addon
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn-addon-api-string
+toc: true
+---
+
 # CSM API String Addon
 
 > [!NOTE]

@@ -1,3 +1,13 @@
+---
+title: 全局日志(Global Log)
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn-07-global-log
+toc: true
+---
+
 # 全局日志(Global Log)
 
 > [!NOTE]

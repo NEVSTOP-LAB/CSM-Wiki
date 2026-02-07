@@ -1,3 +1,13 @@
+---
+title: 内置插件(Build-in Addons)
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn-09-build-in-addons
+toc: true
+---
+
 # 内置插件(Build-in Addons)
 
 ## CSM WatchDog Addon

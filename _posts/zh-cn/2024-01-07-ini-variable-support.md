@@ -1,3 +1,13 @@
+---
+title: CSM INI-Variable Support
+author: nevstop
+date: 2024-01-07
+layout: post
+lang: zh-cn
+page_id: ini-variable-support
+toc: true
+---
+
 # CSM INI-Variable Support
 
 ## 概述

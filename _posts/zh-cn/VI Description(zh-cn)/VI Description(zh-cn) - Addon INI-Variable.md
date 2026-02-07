@@ -1,3 +1,13 @@
+---
+title: CSM INI-Variable Addon
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn-addon-ini-variable
+toc: true
+---
+
 # CSM INI-Variable Addon
 
 > [!NOTE]

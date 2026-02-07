@@ -1,3 +1,13 @@
+---
+title: CSM Massdata Addon
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn-addon-massdata
+toc: true
+---
+
 # CSM Massdata Addon
 
 ## API
