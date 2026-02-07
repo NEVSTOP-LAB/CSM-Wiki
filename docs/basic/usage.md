@@ -71,7 +71,7 @@ CSM模块名称不能包含这些特殊字符: `~!@%^&*()\[\]{}+=|\\/?'"<>,.\t\r
 
 系统级模块名字前面加个"."，比如 `.SchedulerModule`。它们不会出现在活动模块列表中，只能通过显式消息调用，一般用来做全局后台功能。
 
-更多信息见[CSM高级模式与特性](/docs/basic/advance#系统级模块)。
+更多信息见[CSM高级模式与特性](./advance#系统级模块)。
 
 ### CSM Attribute
 
@@ -369,6 +369,6 @@ API: LoadFile >> <SAFESTR>... -@ Module
 这些是开发 CSM 应用的基础。掌握后，你就能写出模块化、可重用、易维护的 LabVIEW 系统了。
 
 更多高级内容见：
-- [CSM高级模式与特性](/docs/basic/advance)
-- [CSM模块间通讯](/docs/basic/communication)
-- [CSM调试与开发工具](/docs/plugins/tools)
+- [CSM高级模式与特性](./advance)
+- [CSM模块间通讯](./communication)
+- [CSM调试与开发工具](../plugins/tools)
