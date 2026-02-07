@@ -231,7 +231,7 @@ Template让你快速创建标准化的CSM模块，提高开发效率和代码一
 4. 添加业务逻辑
 5. 测试验证
 
-更多详情参考[CSM模板文档](](./2024-01-08-csm-templates.html))。
+更多详情参考[CSM模板文档](/docs/reference/templates)。
 
 # Tools 接口
 
@@ -291,7 +291,7 @@ CSM - Destroy Global Log Queue.vi
 - 批量更新UI
 - 根据日志量动态调整策略
 
-更多详情参考[CSM调试与开发工具](](./2024-01-03-csm-Tools.html))。
+更多详情参考[CSM调试与开发工具](/docs/plugins/tools)。
 
 # 插件开发完整指南
 

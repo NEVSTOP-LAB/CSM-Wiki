@@ -65,7 +65,7 @@ nav_order: 4
 
 CSM模块名称不能包含这些特殊字符: `~!@%^&*()\[\]{}+=|\\/?'"<>,.\t\r\n`，这些是CSM框架的保留字符。
 
-详细规则见[CSM基本概念](./2023-12-28-concepts.html#csm模块命名规则)。
+详细规则见[CSM基本概念](./concepts#csm模块命名规则)。
 
 ### 系统级模块
 
@@ -79,7 +79,7 @@ Attribute 是用来存模块配置的，有两个用处：
 - 让外部不用发消息就能读写模块的属性值
 - Worker 模式、Chain 模式里不同节点之间共享数据
 
-详细用法见[CSM基本概念](./2023-12-28-concepts.html#csm属性csm-attribute)。
+详细用法见[CSM基本概念](./concepts#csm属性csm-attribute)。
 
 ## Step2. 在CSM框架中调用模块
 
@@ -370,5 +370,5 @@ API: LoadFile >> <SAFESTR>... -@ Module
 
 更多高级内容见：
 - [CSM高级模式与特性](/docs/basic/advance)
-- [CSM模块间通讯](](./2023-12-29-communication.html))
-- [CSM调试与开发工具](](./2024-01-03-csm-Tools.html))
+- [CSM模块间通讯](/docs/basic/communication)
+- [CSM调试与开发工具](/docs/plugins/tools)

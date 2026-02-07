@@ -139,7 +139,7 @@ interrupt@SourceModule >> API@TargetModule -><register as status>
 - 属性有明确的数据类型（LabVIEW数据类型）
 - 常用于存配置参数、状态数据等
 
-详细用法看[CSM函数面板](](./2024-01-08-csm-palette-apis.html))。
+详细用法看[CSM函数面板](/docs/reference/palette-apis)。
 
 ## 概念小结
 
