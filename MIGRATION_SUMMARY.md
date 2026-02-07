@@ -11,7 +11,7 @@ Successfully migrated the CSM-Wiki from the `sighingnow/jekyll-gitbook` theme to
 - **Before**: Used `jekyll-gitbook` remote theme via `sighingnow/jekyll-gitbook`
 - **After**: Uses `just-the-docs` gem (~> 0.8.0)
 - Removed: `jekyll-loading-lazy` plugin (not needed)
-- Added: Jekyll version pinning (~> 4.3.0)
+- Added: Jekyll version pinning (~> 4.4.0)
 
 #### _config.yml
 - **Before**: Configuration for jekyll-gitbook (gitbook_version, page_width, etc.)
