@@ -16,17 +16,6 @@ nav_order: 2
 
 ---
 
-# 基本概念
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 ## `CSM模块` (CSM Module)
 
 CSM 是 Communicable State Machine 的缩写，简单说就是"会通讯的状态机"。在 LabVIEW 里，CSM模块就是一个 vi 文件，本质上是个状态机，只是加上了模块间通讯的能力。

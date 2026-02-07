@@ -17,17 +17,6 @@ nav_order: 5
 ---
 
 # CSM INI-Variable Support
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
-# CSM INI-Variable Support
 
 ## 概述
 

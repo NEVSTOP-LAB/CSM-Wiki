@@ -16,17 +16,6 @@ nav_order: 3
 
 ---
 
-# 模块间通讯
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 # 模块间通讯概述
 
 CSM 支持三种通讯方式：同步调用、异步调用和状态订阅。选择哪种方式取决于你的需求。

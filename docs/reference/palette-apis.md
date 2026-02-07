@@ -16,17 +16,6 @@ nav_order: 1
 
 ---
 
-# CSM 函数面板
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 _**CSM 函数面板**_
 
 ![csm-palette](https://nevstop-lab.github.io/CSM-Wiki/assets/img/CSM%20Palette.png)

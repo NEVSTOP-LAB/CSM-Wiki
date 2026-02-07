@@ -16,17 +16,6 @@ nav_order: 1
 
 ---
 
-# CSM 示例-连续测量和记录应用程序
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 基于 CSM 框架更简单、更直观，更优雅的实现连续测量和记录应用的示例。
 
 ## 可复用的底层模块

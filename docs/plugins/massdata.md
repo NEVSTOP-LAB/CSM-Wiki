@@ -17,17 +17,6 @@ nav_order: 4
 ---
 
 # CSM MassData Support Addon
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
-# CSM MassData Support Addon
 
 ## 概述
 
