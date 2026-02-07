@@ -3,16 +3,11 @@
 source "https://rubygems.org"
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
-gem "jekyll"
+gem "jekyll", "~> 4.4.0"
+gem "just-the-docs", "~> 0.8.0"
 gem 'jekyll-feed'
 gem 'jekyll-readme-index'
 gem 'jemoji'
 gem 'webrick'
-gem "jekyll-polyglot"
-gem 'jekyll-loading-lazy'
-
-# group :jekyll_plugins do
-#     gem "jekyll-polyglot"
-# end
 
 # gem "rails"

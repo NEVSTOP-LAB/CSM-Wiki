@@ -1,12 +1,9 @@
 ---
 title: 下载
-author: nevstop
-date: 2022-02-06
-category: information
-layout: post
-lang: zh-cn
-page_id: release-of-csm
+layout: default
+nav_order: 2
 permalink: /release-of-csm
+has_children: false
 ---
 
 <!-- Download 页面(md-page[√]) - English[100%] | Chinese [100%]

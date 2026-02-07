@@ -2,3 +2,6 @@ _site/
 _draft/
 .jekyll-cache/
 *.lnk
+*.backup
+*.bak
+*/_internal/
