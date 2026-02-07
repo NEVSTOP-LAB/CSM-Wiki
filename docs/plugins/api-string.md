@@ -5,17 +5,6 @@ parent: 插件系统
 nav_order: 3
 ---
 
-# API String参数支持
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 # CSM API String Arguments Support
 
 ## 概述

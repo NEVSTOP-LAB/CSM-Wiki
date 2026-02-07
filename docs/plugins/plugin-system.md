@@ -5,17 +5,6 @@ parent: 插件系统
 nav_order: 1
 ---
 
-# 插件系统概述
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 # CSM插件机制
 
 CSM提供三种插件接口来扩展功能：**Addon** 扩展核心能力，**Template** 提供模块模板，**Tools** 提供调试工具。通过这三个接口，你可以给CSM加上各种新功能，定制开发模板，还能开发调试工具。

@@ -6,17 +6,6 @@ permalink: /FAQ
 has_children: false
 ---
 
-# 常见问题解答
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 <!-- ----------------------------------------------- -->
 ## 下载/安装
 

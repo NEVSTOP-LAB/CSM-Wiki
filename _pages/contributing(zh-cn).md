@@ -6,17 +6,6 @@ permalink: /how-to-contribute
 has_children: false
 ---
 
-# 项目参与
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 <!-- Contributors 页面(md-page[√]) - English[100%] | Chinese [100%]
 - [x] 如何参与到项目中来
 - [x] 项目的贡献者列表

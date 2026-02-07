@@ -5,17 +5,6 @@ parent: 基础文档
 nav_order: 6
 ---
 
-# 全局日志系统
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 CSM全局日志系统是框架内置的调试和监控机制，记录系统运行时的各类事件，帮你快速了解模块交互、状态变化和错误信息。
 
 ## 功能概述

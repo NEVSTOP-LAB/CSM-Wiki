@@ -5,17 +5,6 @@ parent: 基础文档
 nav_order: 4
 ---
 
-# 创建CSM模块
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 ## Step1. 创建基于 CSM 的可重用模块
 
 一个可重用模块只需要做好两件事：提供外部接口（API）和发布状态变化（Status/Interrupt）。把这两点说清楚了，别人就能用你的模块，不用管内部怎么实现的。

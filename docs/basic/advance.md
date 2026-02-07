@@ -5,17 +5,6 @@ parent: 基础文档
 nav_order: 5
 ---
 
-# 高级模式与特性
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 本文介绍CSM的高级特性：错误处理、系统级模块、子模块、工作者模式、责任链模式和多循环支持。
 
 ## 内置的错误处理机制

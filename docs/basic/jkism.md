@@ -5,17 +5,6 @@ parent: 基础文档
 nav_order: 1
 ---
 
-# JKI State Machine
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 # JKI State Machine(JKISM)简介
 
 ## 什么是JKISM

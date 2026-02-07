@@ -5,17 +5,6 @@ parent: 示例应用
 nav_order: 1
 ---
 
-# 连续测量与记录项目
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 基于 CSM 框架更简单、更直观，更优雅的实现连续测量和记录应用的示例。
 
 ## 可复用的底层模块

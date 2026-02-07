@@ -5,17 +5,6 @@ parent: 插件系统
 nav_order: 5
 ---
 
-# INI/静态参数支持
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 # CSM INI-Variable Support
 
 ## 概述

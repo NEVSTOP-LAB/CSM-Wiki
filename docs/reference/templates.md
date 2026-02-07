@@ -5,17 +5,6 @@ parent: 参考文档
 nav_order: 2
 ---
 
-# CSM 模板
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 _**CSM 代码模板**_
 
 ![csm-template](https://nevstop-lab.github.io/CSM-Wiki/assets/img/CSM%20Without%20Event%20Structure%20Template.png)

@@ -6,17 +6,6 @@ permalink: /release-of-csm
 has_children: false
 ---
 
-# 下载
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 <!-- Download 页面(md-page[√]) - English[100%] | Chinese [100%]
 - [x] Beta 版本的下载链接
 - [x] 下载CSM框架的最新版本的链接

@@ -6,17 +6,6 @@ permalink: /pros-and-cons
 has_children: false
 ---
 
-# 常见框架比较
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 <!-- 和其他框架比较的页面(md-page[√]) - English[-] | Chinese [20%]
 - [-]本身的特点
 - [-]和JKISM的比较
