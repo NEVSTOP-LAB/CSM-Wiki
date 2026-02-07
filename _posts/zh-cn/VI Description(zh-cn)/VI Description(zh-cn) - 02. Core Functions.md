@@ -1,3 +1,13 @@
+---
+title: CSM API
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn-02-core-functions
+toc: true
+---
+
 # CSM API
 
 > [!NOTE]

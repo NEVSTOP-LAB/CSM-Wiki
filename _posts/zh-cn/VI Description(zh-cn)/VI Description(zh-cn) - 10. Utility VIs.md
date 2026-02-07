@@ -1,3 +1,13 @@
+---
+title: CSM API
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn-10-utility-vis
+toc: true
+---
+
 # CSM API
 
 ## 工具VI(Utility VIs)

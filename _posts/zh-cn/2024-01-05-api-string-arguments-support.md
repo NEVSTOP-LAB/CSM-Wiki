@@ -1,3 +1,13 @@
+---
+title: CSM API String Arguments Support
+author: nevstop
+date: 2024-01-05
+layout: post
+lang: zh-cn
+page_id: api-string-arguments-support
+toc: true
+---
+
 # CSM API String Arguments Support
 
 ## 概述

@@ -1,3 +1,13 @@
+---
+title: CSM API
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn-04-management-api
+toc: true
+---
+
 # CSM API
 
 ## 管理接口(Management API)

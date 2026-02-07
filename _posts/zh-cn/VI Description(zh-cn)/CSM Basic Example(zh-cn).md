@@ -1,3 +1,13 @@
+---
+title: CSM Basic Example Description
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: csm-basic-example-zh-cn
+toc: true
+---
+
 # CSM Basic Example Description
 
 ## Basic Concepts

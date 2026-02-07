@@ -1,3 +1,13 @@
+---
+title: CSM API
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn
+toc: true
+---
+
 # CSM API
 
 - [01. 模板(Templates)](./VI%20Description(zh-cn)%20-%2001.%20Templates.md)

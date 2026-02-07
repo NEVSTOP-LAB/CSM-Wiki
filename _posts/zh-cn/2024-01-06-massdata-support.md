@@ -1,3 +1,13 @@
+---
+title: CSM MassData Support Addon
+author: nevstop
+date: 2024-01-06
+layout: post
+lang: zh-cn
+page_id: massdata-support
+toc: true
+---
+
 # CSM MassData Support Addon
 
 ## 概述

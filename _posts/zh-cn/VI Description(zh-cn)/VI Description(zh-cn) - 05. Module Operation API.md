@@ -1,3 +1,13 @@
+---
+title: CSM API
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn-05-module-operation-api
+toc: true
+---
+
 # CSM API
 
 ## 模块操作接口(Module Operation API)

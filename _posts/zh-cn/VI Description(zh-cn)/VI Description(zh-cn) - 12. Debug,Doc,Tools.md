@@ -1,64 +1,74 @@
+---
+title: CSM API
+author: nevstop
+date: 2024-01-09
+layout: post
+lang: zh-cn
+page_id: vi-description-zh-cn-12-debug-doc-tools
+toc: true
+---
+
 # CSM API
 
 ## CSM Debug Tools
 
-### ɨ������"VI Reference" ��֧(CSM - Add VI Reference Case to CSMs.vi)
+### 扫描添加"VI Reference" 分支(CSM - Add VI Reference Case to CSMs.vi)
 
-CSM ģ���б������"VI Reference" ��֧�������ⲿ��ȡVI�����á������ڵ�ģ���в���������case���˹���������������
+CSM 模板中必须包含"VI Reference" 分支，用于外部获取VI的引用。在早期的模板中并不包含此case，此工具用于添加它。
 
-�˹��߻�ɨ�� lvproj Ŀ¼�����е� VI�������� VI ���� CSM ģ�飬���������г�����Ȼ�������ѡ������������ "VI Reference" ��֧��
+此工具会扫描 lvproj 目录中所有的 VI，如果这个 VI 包含 CSM 模块，它将被罗列出来，然后你可以选择批量的添加 "VI Reference" 分支。
 
-### CSM���Կ���̨(CSM - Debug Console - DebugTool.vi)
+### CSM调试控制台(CSM - Debug Console - DebugTool.vi)
 
-CSM ���Կ���̨�������ʹ�ô˹��ߣ�
+CSM 调试控制台，你可以使用此工具：
 
-1. ѡ�����е� CSM ʵ������ǰ��塢����塣
-2. ɨ�����е� CSM ʵ����API�ӿڡ�
-3. ѡ��һ��API�ӿڣ�ͬ�����첽���ã��鿴����ֵ��
-4. �鿴��������������־��
+1. 选择已有的 CSM 实例，打开前面板、后面板。
+2. 扫描已有的 CSM 实例的API接口。
+3. 选择一个API接口，同步、异步调用，查看返回值。
+4. 查看整体程序的运行日志。
 
-### CSM���Կ���̨2(CSM - Debug Console 2.vi)
+### CSM调试控制台2(CSM - Debug Console 2.vi)
 
-���º��CSM ���Կ���̨�������ʹ�ô˹��ߣ�
+更新后的CSM 调试控制台，你可以使用此工具：
 
-1. ѡ�����е� CSM ʵ������ǰ��塢����塣
-2. ɨ�����е� CSM ʵ����API�ӿڡ�
-3. ѡ��һ��API�ӿڣ�ͬ�����첽���ã��鿴����ֵ��
-4. �鿴��������������־��
-5. ���� Scripts��
+1. 选择已有的 CSM 实例，打开前面板、后面板。
+2. 扫描已有的 CSM 实例的API接口。
+3. 选择一个API接口，同步、异步调用，查看返回值。
+4. 查看整体程序的运行日志。
+5. 运行 Scripts。
 
-### �Ƴ� CSM ģ�������е���ǩ(CSM - Remove all CSM Bookmarks.vi)
+### 移除 CSM 模块中所有的书签(CSM - Remove all CSM Bookmarks.vi)
 
-�Ƴ� CSM ģ�������е���ǩ��
+移除 CSM 模块中所有的书签。
 
-### ��־ʵʱ�鿴����(CSM - Running Log - DebugTool.vi)
+### 日志实时查看工具(CSM - Running Log - DebugTool.vi)
 
-CSM��������������־ʵʱ�鿴���ߡ�
+CSM整体程序的运行日志实时查看工具。
 
-### ʵʱ״̬���(CSM - State Dashboard - DebugTool.vi)
+### 实时状态面板(CSM - State Dashboard - DebugTool.vi)
 
-CSM�������ģ���ʵʱ״̬��塣
+CSM整体程序模块的实时状态面板。
 
-### ʵʱ״̬��(CSM - State Table - DebugTool.vi)
+### 实时状态表(CSM - State Table - DebugTool.vi)
 
-<������> CSM�������ģ���ʵʱ״̬����
+<开发中> CSM整体程序模块的实时状态表。
 
-### �л� CSM ģ�� VI������ע�͵�����(CSM - Switch Language Tool.vi)
+### 切换 CSM 模块 VI描述、注释的语言(CSM - Switch Language Tool.vi)
 
-�л� CSM ģ�� VI������ע�͵����ԡ�Ŀǰ֧�����ġ�Ӣ�ġ�
+切换 CSM 模块 VI描述、注释的语言。目前支持中文、英文。
 
-### �޸� JKISM State Editor �Ҽ������˵�(CSM - Fix JKISM Editor RCM Entry.vi)
+### 修复 JKISM State Editor 右键弹出菜单(CSM - Fix JKISM Editor RCM Entry.vi)
 
-�޸� JKISM State Editor �Ҽ������˵��� CSM�в��ܵ��������⡣
+修复 JKISM State Editor 右键弹出菜单在 CSM中不能弹出的问题。
 
-### ����Ŀ��Ŀ¼���� CSM ģ��ĺ���ѡ��(CSM - Create CSM Palette at Root.vi)
+### 在项目根目录创建 CSM 模块的函数选板(CSM - Create CSM Palette at Root.vi)
 
-����Ŀ��Ŀ¼���� CSM ģ��ĺ���ѡ�塣
+在项目根目录创建 CSM 模块的函数选板。
 
-### CSM ʾ�������(CSM - Example Browser.vi)
+### CSM 示例浏览器(CSM - Example Browser.vi)
 
-CSM ʾ���������������������� CSM ʾ������
+CSM 示例浏览器，允许您轻松浏览 CSM 示例程序。
 
-## CSM�ӿ������(CSM - Interface Browser.vi)
+## CSM接口浏览器(CSM - Interface Browser.vi)
 
-������� CSM ģ��ӿڵĹ��ߣ����������ٲ鿴��������Ŀ�� CSM ģ��� API �ӿڡ�
+用于浏览 CSM 模块接口的工具，允许您快速查看和搜索项目中 CSM 模块的 API 接口。
