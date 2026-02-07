@@ -53,6 +53,10 @@ exclude:
   - "*.bak"
   - "**/_internal"
   - "_internal"
+  - "**/_origin"
+  - "_origin"
+  - "**/_drafts"
+  - "**/_design"
   - .ref
   - _gitbook_readme_backup.md
 
