@@ -1,12 +1,9 @@
 ---
 title: 常见框架比较
-author: nevstop
-date: 2022-02-07
-category: information
-layout: post
-lang: zh-cn
-page_id: framework-compare
+layout: default
+nav_order: 12
 permalink: /pros-and-cons
+has_children: false
 ---
 
 <!-- 和其他框架比较的页面(md-page[√]) - English[-] | Chinese [20%]

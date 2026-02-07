@@ -1,8 +1,20 @@
 ---
 title: 可通信状态机框架(CSM)
-layout: home
-lang: zh-cn
+layout: default
+nav_order: 1
+description: "Communicable State Machine(CSM) - 基于JKI状态机的LabVIEW应用框架"
 permalink: /
+---
+
+# 可通信状态机框架(CSM)
+{: .fs-9 }
+
+基于JKI状态机（JKISM）的LabVIEW应用框架，扩展了关键词以描述模块之间的消息通信
+{: .fs-6 .fw-300 }
+
+[快速开始](#下载){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[View on GitHub](https://github.com/NEVSTOP-LAB/Communicable-State-Machine){: .btn .fs-5 .mb-4 .mb-md-0 }
+
 ---
 
 <!--  [50%] HOME 页面
@@ -80,5 +92,4 @@ _**本站点使用了以下的开源项目或服务**_：
 - 使用 [markdownlint](https://github.com/markdownlint/markdownlint) 用于 markdown 文件的语法检查
 - 通过 [GitHub Pages](https://pages.github.com/) 服务发布页面
 - 使用 [Jekyll](https://jekyllrb.com/) 静态网站生成器
-- 使用 [sighingnow/jekyll-gitbook](https://github.com/sighingnow/jekyll-gitbook) 主题
-- 使用 [gildesmarais/jekyll-loading-lazy](https://github.com/gildesmarais/jekyll-loading-lazy) ,一个Jekyll插件，用于惰性加载图片资源，提高网页相应速度
+- 使用 [just-the-docs/just-the-docs](https://github.com/just-the-docs/just-the-docs) 主题

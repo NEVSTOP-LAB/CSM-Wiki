@@ -1,51 +1,67 @@
 # Configurations
-title:            Communicable State Machine(CSM)
-longtitle:        Communicable State Machine(CSM) Wiki
-author:           NEVSTOP-LAB
-github_username:  NEVSTOP-LAB
-email:            liyao.zheda@foxmail.com
-description: >
-  Wiki website for Communicable State Machine(CSM) Framework and its applications.
+title: CSM
+description: Wiki website for Communicable State Machine(CSM) Framework and its applications.
+author: NEVSTOP-LAB
+email: liyao.zheda@foxmail.com
 
-version:          1.0
-gitbook_version:  3.2.3
+url: 'https://nevstop-lab.github.io/'
+baseurl: '/CSM-Wiki'
 
-url:              'https://nevstop-lab.github.io/'
-baseurl:          '/CSM-Wiki'
-rss:              RSS
+# Just the Docs theme configuration
+theme: just-the-docs
 
-# bootstrap: use the remote theme for the site itself
-remote_theme: sighingnow/jekyll-gitbook
+# Color scheme supports "light" or "dark"
+color_scheme: nil
 
-toc:
-  enabled: true
-  h_min: 1
-  h_max: 2
+# Enable or disable the site search
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: false
 
-# customize the link favicon in header, will be {{site.baseurl}}/{{site.favicon_path}}
-favicon_path:     assets/gitbook/images/favicon.ico
+# Enable or disable heading anchors
+heading_anchors: true
 
-# markdown render engine.
-markdown:         kramdown
+# Aux links for the upper right navigation
+aux_links:
+  "CSM on GitHub":
+    - "https://github.com/NEVSTOP-LAB/Communicable-State-Machine"
+
+# Makes Aux links open in a new tab
+aux_links_new_tab: true
+
+# Footer content
+footer_content: "Copyright &copy; 2024 NEVSTOP-LAB. Distributed under the <a href=\"https://github.com/NEVSTOP-LAB/Communicable-State-Machine/blob/main/LICENSE\">Apache 2.0 License</a>."
+
+# Footer last edit timestamp
+last_edit_timestamp: true
+last_edit_time_format: "%b %e %Y at %I:%M %p"
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Markdown render engine
+markdown: kramdown
 kramdown:
-  auto_ids:               true
-  input:                  GFM
-  math_engine:            mathjax
-  smart_quotes:           lsquo,rsquo,ldquo,rdquo
-  toc_levels:             1..6  #原本这里是1~6
-  syntax_highlighter:     rouge
+  auto_ids: true
+  input: GFM
+  math_engine: mathjax
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  toc_levels: 1..6
+  syntax_highlighter: rouge
   syntax_highlighter_opts:
-    guess_lang:           true
+    guess_lang: true
 
-syntax_highlighter_style: colorful
-
-markdown_ext:             markdown,mkdown,mkdn,mkd,md
+markdown_ext: markdown,mkdown,mkdn,mkd,md
 
 # Permalinks
-permalink:                /:categories/:year-:month-:day-:title:output_ext
-
-# Disqus comments
-# disqushandler:            sighingnow
+permalink: /:categories/:year-:month-:day-:title:output_ext
 
 exclude:
   - _drafts
@@ -59,20 +75,24 @@ exclude:
   - "**/_design"
   - .ref
   - _gitbook_readme_backup.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
 
 collections:
   pages:
     output: true
     permalink: /:collection/:path/
 
-page_width: 1200px
-
-destination:      ./_site
-incremental:      false
-regenerate:       true
+destination: ./_site
+incremental: false
+regenerate: true
 
 plugins:
   - jekyll-feed
   - jekyll-readme-index
   - jemoji
-  - jekyll-loading-lazy

@@ -3,6 +3,82 @@
 - [可通讯状态机(CSM)框架源码](https://github.com/NEVSTOP-LAB/Communicable-State-Machine)
 - [Wiki地址](https://nevstop-lab.github.io/CSM-Wiki/)
 
+## 如何为Wiki添加新内容
+
+本Wiki使用 [Just the Docs](https://just-the-docs.com/) 主题构建。以下是添加新内容的指南：
+
+### 添加新的文档页面
+
+1. **选择合适的目录**
+   - 基础教程 → `docs/basic/`
+   - API参考 → `docs/reference/`
+   - 插件说明 → `docs/plugins/`
+   - 示例应用 → `docs/examples/`
+
+2. **创建Markdown文件**，包含以下前置信息（front matter）：
+
+   ```yaml
+   ---
+   title: 页面标题
+   layout: default
+   parent: 基础文档  # 父页面的标题
+   nav_order: 7      # 在父页面下的显示顺序
+   ---
+   ```
+
+3. **编写内容**
+   - 直接开始写内容，无需手动添加目录
+   - Just the Docs会自动在右侧生成浮动目录
+   - 使用标准Markdown语法
+
+### 添加顶级页面
+
+如需添加像"FAQ"这样的顶级导航页面：
+
+```yaml
+---
+title: 新页面标题
+layout: default
+nav_order: 13     # 在主导航中的位置
+permalink: /new-page
+has_children: false
+---
+```
+
+### 添加新的文档分类
+
+如需添加新的主分类（如"高级主题"）：
+
+1. 创建父页面 `docs/advanced.md`：
+   ```yaml
+   ---
+   title: 高级主题
+   layout: default
+   nav_order: 60
+   has_children: true
+   permalink: /docs/advanced
+   ---
+
+   # 高级主题
+   
+   这个分类的描述。
+   ```
+
+2. 在 `docs/advanced/` 目录下创建子页面
+
+### 本地预览
+
+```bash
+bundle install
+bundle exec jekyll serve
+```
+
+访问 `http://localhost:4000/CSM-Wiki/` 预览效果。
+
+更多详情请参考 [Just the Docs 文档](https://just-the-docs.com/) 或查看 `.progress/theme-migration.md`。
+
+---
+
 _**本仓库使用了以下的开源项目或服务**_：
 
 - 使用 [visual-studio-code](https://code.visualstudio.com/) 作为编辑器
@@ -10,8 +86,7 @@ _**本仓库使用了以下的开源项目或服务**_：
 - 使用 [markdownlint](https://github.com/markdownlint/markdownlint) 用于 markdown 文件的语法检查
 - 通过 [GitHub Pages](https://pages.github.com/) 服务发布页面
 - 使用 [Jekyll](https://jekyllrb.com/) 静态网站生成器
-- 使用 [sighingnow/jekyll-gitbook](https://github.com/sighingnow/jekyll-gitbook) 主题
-- 使用 [gildesmarais/jekyll-loading-lazy](https://github.com/gildesmarais/jekyll-loading-lazy) ,一个Jekyll插件，用于惰性加载图片资源，提高网页相应速度
+- 使用 [just-the-docs/just-the-docs](https://github.com/just-the-docs/just-the-docs) 主题
 
 _**TODO LIST**_
 

@@ -1,12 +1,9 @@
 ---
 title: 常见问题解答
-author: nevstop
-date: 2022-02-10
-category: information
-layout: post
-lang: zh-cn
-page_id: csm-faq
+layout: default
+nav_order: 10
 permalink: /FAQ
+has_children: false
 ---
 
 <!-- ----------------------------------------------- -->
