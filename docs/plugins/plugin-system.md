@@ -1,9 +1,19 @@
 ---
-title: CSM插件机制
+title: 插件系统概述
 layout: default
-nav_order: 40
 parent: 插件系统
-has_toc: true
+nav_order: 1
+---
+
+# 插件系统概述
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # CSM插件机制

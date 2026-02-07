@@ -1,9 +1,19 @@
 ---
 title: 模块间通讯
 layout: default
-nav_order: 22
 parent: 基础文档
-has_toc: true
+nav_order: 3
+---
+
+# 模块间通讯
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # 模块间通讯

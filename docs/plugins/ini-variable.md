@@ -1,9 +1,19 @@
 ---
-title: CSM INI-Variable Support
+title: INI/静态参数支持
 layout: default
-nav_order: 100
-parent: 示例应用
-has_toc: true
+parent: 插件系统
+nav_order: 5
+---
+
+# INI/静态参数支持
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # CSM INI-Variable Support

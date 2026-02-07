@@ -1,9 +1,19 @@
 ---
 title: 基本概念
 layout: default
-nav_order: 21
 parent: 基础文档
-has_toc: true
+nav_order: 2
+---
+
+# 基本概念
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # 基本概念

@@ -1,8 +1,20 @@
 ---
 title: 可通信状态机框架(CSM)
-layout: home
-lang: zh-cn
+layout: default
+nav_order: 1
+description: "Communicable State Machine(CSM) - 基于JKI状态机的LabVIEW应用框架"
 permalink: /
+---
+
+# 可通信状态机框架(CSM)
+{: .fs-9 }
+
+基于JKI状态机（JKISM）的LabVIEW应用框架，扩展了关键词以描述模块之间的消息通信
+{: .fs-6 .fw-300 }
+
+[快速开始](#下载){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[View on GitHub](https://github.com/NEVSTOP-LAB/Communicable-State-Machine){: .btn .fs-5 .mb-4 .mb-md-0 }
+
 ---
 
 <!--  [50%] HOME 页面

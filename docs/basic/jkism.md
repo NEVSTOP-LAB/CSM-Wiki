@@ -1,9 +1,19 @@
 ---
-title: JKI State Machine(JKISM)
+title: JKI State Machine
 layout: default
-nav_order: 20
 parent: 基础文档
-has_toc: true
+nav_order: 1
+---
+
+# JKI State Machine
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # JKI State Machine(JKISM)

@@ -1,12 +1,20 @@
 ---
 title: 项目参与
-author: nevstop
-date: 2022-02-20
-category: information
-layout: post
-page_id: contributors
-lang: zh-cn
+layout: default
+nav_order: 11
 permalink: /how-to-contribute
+has_children: false
+---
+
+# 项目参与
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 <!-- Contributors 页面(md-page[√]) - English[100%] | Chinese [100%]

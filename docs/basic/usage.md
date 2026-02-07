@@ -1,9 +1,19 @@
 ---
-title: 基础用法
+title: 创建CSM模块
 layout: default
-nav_order: 23
 parent: 基础文档
-has_toc: true
+nav_order: 4
+---
+
+# 创建CSM模块
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # 基础用法

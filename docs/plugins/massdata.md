@@ -1,9 +1,19 @@
 ---
-title: CSM MassData Support Addon
+title: MassData参数支持
 layout: default
-nav_order: 43
 parent: 插件系统
-has_toc: true
+nav_order: 4
+---
+
+# MassData参数支持
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # CSM MassData Support Addon

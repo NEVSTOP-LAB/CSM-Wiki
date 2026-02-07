@@ -1,9 +1,19 @@
 ---
-title: CSM 开发模板
+title: CSM 模板
 layout: default
-nav_order: 31
 parent: 参考文档
-has_toc: true
+nav_order: 2
+---
+
+# CSM 模板
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # CSM 开发模板

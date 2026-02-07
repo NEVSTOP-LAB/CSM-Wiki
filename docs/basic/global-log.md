@@ -1,9 +1,19 @@
 ---
-title: CSM全局日志系统
+title: 全局日志系统
 layout: default
-nav_order: 25
 parent: 基础文档
-has_toc: true
+nav_order: 6
+---
+
+# 全局日志系统
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # CSM全局日志系统

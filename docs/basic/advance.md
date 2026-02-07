@@ -1,9 +1,19 @@
 ---
-title: CSM高级模式与特性
+title: 高级模式与特性
 layout: default
-nav_order: 24
 parent: 基础文档
-has_toc: true
+nav_order: 5
+---
+
+# 高级模式与特性
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # CSM高级模式与特性

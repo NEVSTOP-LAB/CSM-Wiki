@@ -1,9 +1,19 @@
 ---
 title: CSM 函数面板
 layout: default
-nav_order: 30
 parent: 参考文档
-has_toc: true
+nav_order: 1
+---
+
+# CSM 函数面板
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # CSM 函数面板

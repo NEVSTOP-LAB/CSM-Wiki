@@ -1,9 +1,19 @@
 ---
-title: CSM API String Arguments Support
+title: API String参数支持
 layout: default
-nav_order: 42
 parent: 插件系统
-has_toc: true
+nav_order: 3
+---
+
+# API String参数支持
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # CSM API String Arguments Support

@@ -1,9 +1,19 @@
 ---
-title: CSM调试与开发工具
+title: 调试工具
 layout: default
-nav_order: 41
 parent: 插件系统
-has_toc: true
+nav_order: 2
+---
+
+# 调试工具
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # CSM调试与开发工具

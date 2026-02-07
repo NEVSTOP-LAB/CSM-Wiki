@@ -1,9 +1,19 @@
 ---
-title: CSM 示例-连续测量和记录应用程序
+title: 连续测量与记录项目
 layout: default
-nav_order: 50
 parent: 示例应用
-has_toc: true
+nav_order: 1
+---
+
+# 连续测量与记录项目
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 # CSM 示例-连续测量和记录应用程序
