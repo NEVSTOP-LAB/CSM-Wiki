@@ -34,12 +34,12 @@ Then result string is "API: DoSth >> NewArguments -@ Callee"
 If <b>State with Arguments</b> input is "API: DoSth"
 - <b>Arguments ("")</b> input is "Arguments"
 - <b>Target Module ("")</b> input is "Callee"
-Then result string is "API: DoSth >> Arguments ->| Callee". It's different with Build Message with Arguments(Auto Check).vi. Message Type Symbol is replaced with "-@".
+Then result string is "API: DoSth >> Arguments -@ Callee". It's different with Build Message with Arguments(Auto Check).vi. Message Type Symbol is replaced with "-@".
 
 If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
 - <b>Arguments ("")</b> input is "NewArguments"
 - <b>Target Module ("")</b> input is ""
-Then result string is "API: DoSth >> NewArguments ->| Callee". Message Type Symbol is replaced with "-@".
+Then result string is "API: DoSth >> NewArguments -@ Callee". Message Type Symbol is replaced with "-@".
 
 If <b>State with Arguments</b> input is "API: DoSth >> Arguments -> Callee"
 - <b>Arguments ("")</b> input is "NewArguments"
