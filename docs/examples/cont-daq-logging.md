@@ -11,6 +11,84 @@ nav_order: 1
 
 > 项目仓库：[https://github.com/NEVSTOP-LAB/CSM-Continuous-Meausrement-and-Logging](https://github.com/NEVSTOP-LAB/CSM-Continuous-Meausrement-and-Logging)
 
+## 需求映射
+
+在开始编码之前，我们首先要将应用需求分解并映射到CSM模块和接口设计。这是CSM应用开发的关键步骤。
+
+### 应用需求分析
+
+这个连续测量和记录应用的核心需求包括：
+
+1. **数据采集**：持续采集波形数据
+2. **数据记录**：将采集的数据保存到TDMS文件
+3. **数据分析**：对采集的数据进行实时分析（FFT、功率谱等）
+4. **用户界面**：显示数据和分析结果，控制采集和记录的启停
+5. **配置管理**：管理采集参数和文件保存路径
+
+### 需求到模块的映射
+
+根据单一职责原则，我们将需求映射到独立的CSM模块：
+
+| 需求领域 | CSM模块 | 职责 |
+|---------|---------|------|
+| 数据采集 | `Acquisition Module` | 按设定的采样率生成或采集波形数据 |
+| 数据记录 | `Logging Module` | 将数据写入TDMS文件 |
+| 数据分析 | `Algorithm Module` | 执行FFT、功率谱等分析算法 |
+| 用户界面与控制 | `UI Module` | 显示数据、响应用户操作、协调其他模块 |
+
+### 功能到API的映射
+
+每个模块的功能需求转化为清晰的API接口：
+
+**Acquisition Module 的 API 设计**：
+- 需求：开始采集 → API: `API: Start`
+- 需求：停止采集 → API: `API: Stop`
+- 需求：数据就绪通知 → 状态广播: `Acquired Waveform`
+
+**Logging Module 的 API 设计**：
+- 需求：配置保存路径 → API: `API: Update Settings`
+- 需求：开始记录 → API: `API: Start`
+- 需求：记录数据 → API: `API: Log`
+- 需求：停止记录 → API: `API: Stop`
+
+**Algorithm Module 的 API 设计**：
+- 需求：FFT(Peak)分析 → API: `API: FFT(Peak)`
+- 需求：FFT(RMS)分析 → API: `API: FFT(RMS)`
+- 需求：功率谱分析 → API: `API: Power Spectrum`
+
+**UI Module 的状态设计**：
+- 需求：初始化 → 宏状态: `Macro: Initialize`
+- 需求：启动采集和记录 → 宏状态: `Macro: Start`
+- 需求：停止采集和记录 → 宏状态: `Macro: Stop`
+- 需求：更新显示 → 状态: `UI: Update Waveforms`, `UI: Update FFT`
+- 需求：退出应用 → 宏状态: `Macro: Exit`
+
+### 数据流映射
+
+需求中的数据流通过状态订阅机制实现：
+
+| 数据流需求 | CSM实现方式 |
+|-----------|------------|
+| 采集数据 → 记录到文件 | `Acquired Waveform@Acquisition >> API: Log@Logging -><register>` |
+| 采集数据 → 分析 | `Acquired Waveform@Acquisition >> API: Power Spectrum@Algorithm -><register>` |
+| 采集数据 → 界面显示 | `Acquired Waveform@Acquisition >> UI: Update Waveforms -><register>` |
+| 分析结果 → 界面显示 | `Power Spectrum@Algorithm >> UI: Update FFT -><register>` |
+
+这种映射方式的优势：
+- **模块解耦**：数据生产者不需要知道数据消费者是谁
+- **灵活配置**：可以动态注册/取消订阅，改变数据流向
+- **易于扩展**：添加新的数据消费者只需注册订阅，无需修改生产者代码
+
+### 设计总结
+
+通过上述需求映射过程，我们：
+1. 将应用需求分解为独立的功能模块
+2. 为每个模块定义清晰的API接口
+3. 使用状态订阅机制连接数据流
+4. 实现了松耦合、高内聚的模块化架构
+
+这种设计方法可以应用到任何CSM应用中，帮助开发者从需求出发，系统地构建CSM应用架构。
+
 ## 可复用模块
 
 ### `Logging Module` : 将1D波形数据记录到TDMS文件中
