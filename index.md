@@ -29,7 +29,7 @@ permalink: /
 
 [![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)
 [![Image](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=stars)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![GitHub all releases](https://img.shields.io/github/downloads/NEVSTOP-LAB/Communicable-State-Machine/total)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases)
 [![Build_VIPM_Library](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml/badge.svg?branch=main)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml)
 [![Check_Broken_VIs](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Check_Broken_VIs.yml/badge.svg?branch=main)](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Check_Broken_VIs.yml)
@@ -98,10 +98,12 @@ CSM 通过 VIPM Library 的形式发布，您可以通过以下方式下载：
 
 - **下载安装包(.vip 文件)，然后点击安装**
 
-  - 通过 <https://www.vipm.io/> 下载 CSM 的最新发布版本，然后点击安装:<br/>
+  - 通过 VIPM.io 下载 CSM 的最新发布版本，然后点击安装:<br/>
     <https://www.vipm.io/package/nevstop_lib_communicable_state_machine/>
   - 通过 GitHub 下载 CSM 的最新发布版本，然后点击安装:<br/>
     <https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases>
+  - 通过 Gitee 下载 CSM 的最新发布版本，然后点击安装:<br/>
+    <https://gitee.com/nevstop-lab/Communicable-State-Machine/releases>
 
 > 📓
 > 更多信息，请参考页面 [下载](https://nevstop-lab.github.io/CSM-Wiki/release-of-csm)。
@@ -109,7 +111,7 @@ CSM 通过 VIPM Library 的形式发布，您可以通过以下方式下载：
 
 ## 开源协议
 
-CSM 采用 Apache 2.0 开源协议，您可以在 [LICENSE](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/blob/main/LICENSE) 中查看 Apache 2.0 开源协议的详细信息。
+CSM 采用 MIT 开源协议，您可以在 [LICENSE](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/blob/main/LICENSE) 中查看 MIT 开源协议的详细信息。
 
 ## CSM公开演讲资料
 
