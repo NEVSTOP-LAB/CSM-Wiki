@@ -96,9 +96,3 @@ plugins:
   - jekyll-feed
   - jekyll-readme-index
   - jemoji
-
-# Mermaid diagram support
-mermaid:
-  # Version of mermaid library
-  # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
-  version: "10.9.1"
