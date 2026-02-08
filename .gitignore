@@ -5,3 +5,4 @@ _draft/
 *.backup
 *.bak
 */_internal/
+vendor/

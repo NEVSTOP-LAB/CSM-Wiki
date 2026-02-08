@@ -1,0 +1,37 @@
+<!-- Mermaid.js for diagram rendering -->
+<script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+  // Initialize mermaid with configuration
+  mermaid.initialize({ 
+    startOnLoad: false,
+    theme: 'default',
+    securityLevel: 'loose',
+    flowchart: {
+      useMaxWidth: true,
+      htmlLabels: true
+    }
+  });
+
+  // Convert code blocks with class="language-mermaid" to mermaid diagrams
+  document.addEventListener('DOMContentLoaded', function() {
+    // Find all code blocks with language-mermaid class
+    const mermaidCodeBlocks = document.querySelectorAll('pre > code.language-mermaid');
+    
+    mermaidCodeBlocks.forEach((codeBlock, index) => {
+      // Get the mermaid code content
+      const mermaidCode = codeBlock.textContent;
+      
+      // Create a new div element for mermaid
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = mermaidCode;
+      
+      // Replace the pre element with the mermaid div
+      const preElement = codeBlock.parentElement;
+      preElement.parentElement.replaceChild(mermaidDiv, preElement);
+    });
+    
+    // Initialize mermaid after converting all code blocks
+    mermaid.run();
+  });
+</script>
