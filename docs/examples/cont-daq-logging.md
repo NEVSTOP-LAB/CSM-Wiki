@@ -19,7 +19,7 @@ nav_order: 1
 | --- | --- | --- | --- |
 | `API: Update Settings` | 配置API | 数据文件夹的完整路径 <br/> (类型: 普通字符串) | N/A |
 | `API: Start` | 开始记录。在数据文件夹中创建基于时间的文件名的TDMS文件。 | N/A | N/A |
-| `API: Log` | 将数据记录到TDMS文件中。 | 1D波形数组。 <br/> (类型: `massdata`) | N/A |
+| `API: Log` | 将数据记录到TDMS文件中。 | 1D波形数组。 <br/> (类型: `MassData`) | N/A |
 | `API: Stop` | 停止记录。 | N/A | N/A |
 
 **示例：（假设模块名称为"Logging"）**
