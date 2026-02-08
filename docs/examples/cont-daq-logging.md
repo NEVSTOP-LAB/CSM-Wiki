@@ -183,8 +183,7 @@ Power Spectrum@Algorithm >> UI: Update FFT -><unregister>
 
 ## 依赖项
 
-- Communicable State Machine(CSM) - NEVSTOP
-- CSM MassData Parameter Support - NEVSTOP
+- CSM Framework - NEVSTOP
 
 ## 架构优势
 
