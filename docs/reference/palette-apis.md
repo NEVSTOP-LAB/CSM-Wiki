@@ -906,7 +906,7 @@ CSM - Module Status.vi
 |----|------|----------|
 | Build Synchronous Message | 同步消息 | -@ |
 | Build Asynchronous Message | 异步消息 | -> |
-| Build No-Reply Async Message | 异步无返回 | ->\| |
+| Build No-Reply Async Message | 异步无返回 | ->&#124; |
 | Build Status Broadcast | 状态广播 | -><all> |
 | Build Interrupt Broadcast | 中断广播 | -><interrupt> |
 
