@@ -11,6 +11,84 @@ nav_order: 1
 
 > 项目仓库：[https://github.com/NEVSTOP-LAB/CSM-Continuous-Meausrement-and-Logging](https://github.com/NEVSTOP-LAB/CSM-Continuous-Meausrement-and-Logging)
 
+## 需求映射
+
+在开始编码之前，我们首先要将应用需求分解并映射到CSM模块和接口设计。这是CSM应用开发的关键步骤。
+
+### 需求分析与映射思路
+
+这个连续测量和记录应用需要实现数据采集、记录、分析和显示的完整流程。根据CSM框架的单一职责原则，我们将功能需求拆分为独立的模块，每个模块负责一个明确的职责。
+
+``` mermaid
+graph TB
+    subgraph "应用需求"
+        R1[数据采集<br/>持续采集波形数据]
+        R2[数据记录<br/>保存到TDMS文件]
+        R3[数据分析<br/>FFT、功率谱等]
+        R4[用户界面<br/>显示和控制]
+        R5[配置管理<br/>参数配置]
+    end
+    
+    subgraph "CSM模块设计"
+        M1[Acquisition Module<br/>数据采集模块]
+        M2[Logging Module<br/>数据记录模块]
+        M3[Algorithm Module<br/>数据分析模块]
+        M4[UI Module<br/>界面控制模块]
+    end
+    
+    R1 --> M1
+    R2 --> M2
+    R3 --> M3
+    R4 --> M4
+    R5 --> M4
+    
+    style R1 fill:#e1f5ff
+    style R2 fill:#e1f5ff
+    style R3 fill:#e1f5ff
+    style R4 fill:#e1f5ff
+    style R5 fill:#e1f5ff
+    style M1 fill:#fff4e6
+    style M2 fill:#fff4e6
+    style M3 fill:#fff4e6
+    style M4 fill:#fff4e6
+```
+
+### 从需求到API设计
+
+每个模块的功能需求自然转化为API接口。以Acquisition Module为例，"开始采集"和"停止采集"的需求直接映射为`API: Start`和`API: Stop`接口。当采集到数据后，通过`Acquired Waveform`状态广播通知其他模块，这种设计使得数据生产者无需关心数据的消费者是谁。
+
+Logging Module提供数据记录能力，通过`API: Update Settings`配置保存路径，`API: Start`和`API: Stop`控制记录的开始和停止，`API: Log`接收并写入数据。Algorithm Module则提供多种分析方法的API接口，如`API: FFT(Peak)`、`API: FFT(RMS)`和`API: Power Spectrum`，每个API接收波形数据并返回分析结果。
+
+UI Module作为协调者，实现用户交互和流程控制。通过`Macro: Initialize`完成初始化，`Macro: Start`和`Macro: Stop`控制整个应用的启停流程，并通过`UI: Update Waveforms`和`UI: Update FFT`等状态更新界面显示。
+
+### 数据流的订阅机制
+
+CSM框架的状态订阅机制是实现数据流的关键。下图展示了数据如何从采集模块流向记录、分析和显示模块：
+
+``` mermaid
+graph LR
+    Acq[Acquisition Module<br/>采集数据]
+    Log[Logging Module<br/>记录到文件]
+    Alg[Algorithm Module<br/>数据分析]
+    UI[UI Module<br/>界面显示]
+    
+    Acq -->|Acquired Waveform<br/>状态订阅| Log
+    Acq -->|Acquired Waveform<br/>状态订阅| Alg
+    Acq -->|Acquired Waveform<br/>状态订阅| UI
+    Alg -->|Power Spectrum<br/>状态订阅| UI
+    
+    style Acq fill:#e8f5e9
+    style Log fill:#fff3e0
+    style Alg fill:#e3f2fd
+    style UI fill:#fce4ec
+```
+
+当Acquisition Module采集到数据时，它发布`Acquired Waveform`状态。Logging Module订阅了这个状态并映射到`API: Log`，自动触发数据记录。Algorithm Module同样订阅该状态并映射到`API: Power Spectrum`，自动执行分析。UI Module订阅后更新波形显示。这种发布-订阅模式实现了模块间的完全解耦，数据生产者不需要知道有多少消费者，也不需要在代码中显式调用它们。
+
+### 设计优势
+
+这种需求映射方法带来了清晰的架构：应用需求被分解为独立的功能模块，每个模块通过明确的API接口对外提供服务，模块间通过状态订阅机制连接数据流。这样的设计实现了松耦合、高内聚的模块化架构，使得每个模块都可以独立开发、测试和复用。当需要添加新功能时，只需创建新模块并注册相应的状态订阅，无需修改现有代码。
+
 ## 可复用模块
 
 ### `Logging Module` : 将1D波形数据记录到TDMS文件中
