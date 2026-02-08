@@ -15,79 +15,79 @@ nav_order: 1
 
 在开始编码之前，我们首先要将应用需求分解并映射到CSM模块和接口设计。这是CSM应用开发的关键步骤。
 
-### 应用需求分析
+### 需求分析与映射思路
 
-这个连续测量和记录应用的核心需求包括：
+这个连续测量和记录应用需要实现数据采集、记录、分析和显示的完整流程。根据CSM框架的单一职责原则，我们将功能需求拆分为独立的模块，每个模块负责一个明确的职责。
 
-1. **数据采集**：持续采集波形数据
-2. **数据记录**：将采集的数据保存到TDMS文件
-3. **数据分析**：对采集的数据进行实时分析（FFT、功率谱等）
-4. **用户界面**：显示数据和分析结果，控制采集和记录的启停
-5. **配置管理**：管理采集参数和文件保存路径
+``` mermaid
+graph TB
+    subgraph "应用需求"
+        R1[数据采集<br/>持续采集波形数据]
+        R2[数据记录<br/>保存到TDMS文件]
+        R3[数据分析<br/>FFT、功率谱等]
+        R4[用户界面<br/>显示和控制]
+        R5[配置管理<br/>参数配置]
+    end
+    
+    subgraph "CSM模块设计"
+        M1[Acquisition Module<br/>数据采集模块]
+        M2[Logging Module<br/>数据记录模块]
+        M3[Algorithm Module<br/>数据分析模块]
+        M4[UI Module<br/>界面控制模块]
+    end
+    
+    R1 --> M1
+    R2 --> M2
+    R3 --> M3
+    R4 --> M4
+    R5 --> M4
+    
+    style R1 fill:#e1f5ff
+    style R2 fill:#e1f5ff
+    style R3 fill:#e1f5ff
+    style R4 fill:#e1f5ff
+    style R5 fill:#e1f5ff
+    style M1 fill:#fff4e6
+    style M2 fill:#fff4e6
+    style M3 fill:#fff4e6
+    style M4 fill:#fff4e6
+```
 
-### 需求到模块的映射
+### 从需求到API设计
 
-根据单一职责原则，我们将需求映射到独立的CSM模块：
+每个模块的功能需求自然转化为API接口。以Acquisition Module为例，"开始采集"和"停止采集"的需求直接映射为`API: Start`和`API: Stop`接口。当采集到数据后，通过`Acquired Waveform`状态广播通知其他模块，这种设计使得数据生产者无需关心数据的消费者是谁。
 
-| 需求领域 | CSM模块 | 职责 |
-|---------|---------|------|
-| 数据采集 | `Acquisition Module` | 按设定的采样率生成或采集波形数据 |
-| 数据记录 | `Logging Module` | 将数据写入TDMS文件 |
-| 数据分析 | `Algorithm Module` | 执行FFT、功率谱等分析算法 |
-| 用户界面与控制 | `UI Module` | 显示数据、响应用户操作、协调其他模块 |
+Logging Module提供数据记录能力，通过`API: Update Settings`配置保存路径，`API: Start`和`API: Stop`控制记录的开始和停止，`API: Log`接收并写入数据。Algorithm Module则提供多种分析方法的API接口，如`API: FFT(Peak)`、`API: FFT(RMS)`和`API: Power Spectrum`，每个API接收波形数据并返回分析结果。
 
-### 功能到API的映射
+UI Module作为协调者，实现用户交互和流程控制。通过`Macro: Initialize`完成初始化，`Macro: Start`和`Macro: Stop`控制整个应用的启停流程，并通过`UI: Update Waveforms`和`UI: Update FFT`等状态更新界面显示。
 
-每个模块的功能需求转化为清晰的API接口：
+### 数据流的订阅机制
 
-**Acquisition Module 的 API 设计**：
-- 需求：开始采集 → API: `API: Start`
-- 需求：停止采集 → API: `API: Stop`
-- 需求：数据就绪通知 → 状态广播: `Acquired Waveform`
+CSM框架的状态订阅机制是实现数据流的关键。下图展示了数据如何从采集模块流向记录、分析和显示模块：
 
-**Logging Module 的 API 设计**：
-- 需求：配置保存路径 → API: `API: Update Settings`
-- 需求：开始记录 → API: `API: Start`
-- 需求：记录数据 → API: `API: Log`
-- 需求：停止记录 → API: `API: Stop`
+``` mermaid
+graph LR
+    Acq[Acquisition Module<br/>采集数据]
+    Log[Logging Module<br/>记录到文件]
+    Alg[Algorithm Module<br/>数据分析]
+    UI[UI Module<br/>界面显示]
+    
+    Acq -->|Acquired Waveform<br/>状态订阅| Log
+    Acq -->|Acquired Waveform<br/>状态订阅| Alg
+    Acq -->|Acquired Waveform<br/>状态订阅| UI
+    Alg -->|Power Spectrum<br/>状态订阅| UI
+    
+    style Acq fill:#e8f5e9
+    style Log fill:#fff3e0
+    style Alg fill:#e3f2fd
+    style UI fill:#fce4ec
+```
 
-**Algorithm Module 的 API 设计**：
-- 需求：FFT(Peak)分析 → API: `API: FFT(Peak)`
-- 需求：FFT(RMS)分析 → API: `API: FFT(RMS)`
-- 需求：功率谱分析 → API: `API: Power Spectrum`
+当Acquisition Module采集到数据时，它发布`Acquired Waveform`状态。Logging Module订阅了这个状态并映射到`API: Log`，自动触发数据记录。Algorithm Module同样订阅该状态并映射到`API: Power Spectrum`，自动执行分析。UI Module订阅后更新波形显示。这种发布-订阅模式实现了模块间的完全解耦，数据生产者不需要知道有多少消费者，也不需要在代码中显式调用它们。
 
-**UI Module 的状态设计**：
-- 需求：初始化 → 宏状态: `Macro: Initialize`
-- 需求：启动采集和记录 → 宏状态: `Macro: Start`
-- 需求：停止采集和记录 → 宏状态: `Macro: Stop`
-- 需求：更新显示 → 状态: `UI: Update Waveforms`, `UI: Update FFT`
-- 需求：退出应用 → 宏状态: `Macro: Exit`
+### 设计优势
 
-### 数据流映射
-
-需求中的数据流通过状态订阅机制实现：
-
-| 数据流需求 | CSM实现方式 |
-|-----------|------------|
-| 采集数据 → 记录到文件 | `Acquired Waveform@Acquisition >> API: Log@Logging -><register>` |
-| 采集数据 → 分析 | `Acquired Waveform@Acquisition >> API: Power Spectrum@Algorithm -><register>` |
-| 采集数据 → 界面显示 | `Acquired Waveform@Acquisition >> UI: Update Waveforms -><register>` |
-| 分析结果 → 界面显示 | `Power Spectrum@Algorithm >> UI: Update FFT -><register>` |
-
-这种映射方式的优势：
-- **模块解耦**：数据生产者不需要知道数据消费者是谁
-- **灵活配置**：可以动态注册/取消订阅，改变数据流向
-- **易于扩展**：添加新的数据消费者只需注册订阅，无需修改生产者代码
-
-### 设计总结
-
-通过上述需求映射过程，我们：
-1. 将应用需求分解为独立的功能模块
-2. 为每个模块定义清晰的API接口
-3. 使用状态订阅机制连接数据流
-4. 实现了松耦合、高内聚的模块化架构
-
-这种设计方法可以应用到任何CSM应用中，帮助开发者从需求出发，系统地构建CSM应用架构。
+这种需求映射方法带来了清晰的架构：应用需求被分解为独立的功能模块，每个模块通过明确的API接口对外提供服务，模块间通过状态订阅机制连接数据流。这样的设计实现了松耦合、高内聚的模块化架构，使得每个模块都可以独立开发、测试和复用。当需要添加新功能时，只需创建新模块并注册相应的状态订阅，无需修改现有代码。
 
 ## 可复用模块
 

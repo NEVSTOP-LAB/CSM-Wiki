@@ -13,106 +13,115 @@ CSM-TCP-Router 演示如何通过创建一个可复用的TCP通讯层，将本�
 
 ## 需求映射
 
-在设计CSM-TCP-Router时，我们需要将远程控制的需求映射到CSM的模块和消息系统中。
+在设计CSM-TCP-Router时，我们需要将远程控制的需求映射到CSM的模块和消息系统中。这个案例展示了如何通过分层架构和CSM隐形总线实现无侵入式的远程控制功能。
 
-### 应用需求分析
+### 需求分析与架构设计
 
-这个TCP路由应用的核心需求包括：
+CSM-TCP-Router的核心挑战是为现有的CSM应用添加远程控制能力，但不能修改原有代码。这要求我们设计一个独立的通讯层，能够透明地转发客户端命令到CSM模块，并将响应返回给客户端。
 
-1. **TCP服务器管理**：启动/停止TCP服务器，管理客户端连接
-2. **消息路由**：将TCP客户端的命令转换为CSM消息，发送给目标模块
-3. **响应返回**：将CSM模块的响应返回给TCP客户端
-4. **模块管理**：列出活动模块、查询模块API、获取模块帮助信息
-5. **客户端交互**：支持客户端连接、断开、切换工作模式
-
-### 需求到模块的映射
-
-| 需求领域 | CSM模块 | 职责 |
-|---------|---------|------|
-| TCP通讯层 | `TCP-Router Module` | 处理TCP连接、解析数据包、路由消息 |
-| 业务逻辑 | `AI Module`、`Controller` 等 | 提供实际的业务功能API |
-| 全局消息总线 | CSM隐形总线 | 连接所有模块，实现透明的消息传递 |
-
-### 需求到指令集的映射
-
-CSM-TCP-Router 的设计特点是分层指令集，将不同层次的需求映射到相应的指令层：
-
-**第1层：CSM消息指令集**（业务需求）
-- 需求：调用业务模块的功能 → 直接使用CSM消息格式
-- 示例：`Read >> ch0 -@ AI` （读取AI模块的ch0通道）
-- 实现方式：利用CSM框架的隐形总线，TCP-Router只需转发即可
-
-**第2层：Router指令集**（管理需求）
-- 需求：列出所有模块 → 指令: `List`
-- 需求：查询模块API → 指令: `List API`
-- 需求：查询模块状态 → 指令: `List State`
-- 需求：获取模块帮助 → 指令: `Help`
-- 需求：刷新缓存 → 指令: `Refresh lvcsm`
-
-**第3层：Client指令集**（客户端交互需求）
-- 需求：断开连接 → 指令: `Bye`
-- 需求：切换工作模块 → 指令: `Switch`
-- 需求：快速输入 → 快捷键: `TAB`
-
-### 通讯协议映射
-
-将TCP通讯需求映射到数据包格式：
-
-| 需求 | 协议类型 | 说明 |
-|-----|---------|------|
-| 发送信息 | `0x00 - info` | 服务器通知信息 |
-| 报告错误 | `0x01 - error` | 错误信息返回 |
-| 发送指令 | `0x02 - cmd` | 客户端发送的指令 |
-| 同步响应 | `0x03 - resp` | CSM同步调用的响应 |
-| 异步响应 | `0x04 - async-resp` | CSM异步调用的响应 |
-| 状态订阅 | `0x05 - status` | 订阅的状态广播 |
-
-### 消息流映射
-
-```
-客户端指令 → TCP数据包 → Router解析 → CSM消息 → 目标模块
-目标模块 → CSM响应 → Router封装 → TCP数据包 → 客户端
+``` mermaid
+graph TB
+    subgraph "需求层"
+        direction TB
+        N1[TCP服务器管理<br/>启动/停止/连接管理]
+        N2[消息路由<br/>命令到CSM消息转换]
+        N3[响应返回<br/>CSM响应到客户端]
+        N4[模块管理<br/>列表/查询/帮助]
+        N5[客户端交互<br/>连接/断开/切换]
+    end
+    
+    subgraph "实现层"
+        direction TB
+        I1[TCP-Router Module<br/>CSM模块]
+        I2[隐形总线<br/>消息透明传递]
+        I3[分层指令集<br/>3层架构]
+    end
+    
+    N1 --> I1
+    N2 --> I2
+    N3 --> I2
+    N4 --> I3
+    N5 --> I3
+    
+    style N1 fill:#e1f5ff
+    style N2 fill:#e1f5ff
+    style N3 fill:#e1f5ff
+    style N4 fill:#e1f5ff
+    style N5 fill:#e1f5ff
+    style I1 fill:#fff4e6
+    style I2 fill:#fff4e6
+    style I3 fill:#fff4e6
 ```
 
-具体映射示例：
+### 分层指令集设计思路
 
-| 客户端输入 | TCP数据包 | CSM消息 | 目标模块处理 |
-|-----------|----------|---------|-------------|
-| `Read >> ch0 -@ AI` | cmd类型数据包 | `Read >> ch0 -@ AI` | AI模块执行读取操作 |
-| `List` | cmd类型数据包 | 查询CSM模块列表 | Router内部处理 |
-| `Help -@ AI` | cmd类型数据包 | 读取AI模块文档 | Router读取VI文档 |
+解决方案的关键是采用三层指令集架构，每层处理不同类别的需求。第一层是CSM消息指令集，直接复用框架现有的消息系统，使得所有业务模块的API自动可以通过TCP访问，无需编写额外代码。第二层是Router指令集，提供模块发现和管理功能，让远程客户端能够了解系统中有哪些模块和API。第三层是Client指令集，在客户端软件中实现，提供更好的交互体验。
 
-### 关键设计决策
+``` mermaid
+graph TB
+    Client[TCP客户端]
+    
+    subgraph "指令集层次"
+        direction TB
+        L3[第3层：Client指令<br/>Bye, Switch, TAB<br/>客户端软件实现]
+        L2[第2层：Router指令<br/>List, List API, Help<br/>Router模块实现]
+        L1[第1层：CSM消息<br/>Read, Start, Stop...<br/>业务模块API]
+    end
+    
+    subgraph "CSM系统"
+        Router[TCP-Router<br/>Module]
+        Bus[隐形总线]
+        Modules[业务模块<br/>AI, Controller...]
+    end
+    
+    Client --> L3
+    Client --> L2
+    Client --> L1
+    
+    L3 -.->|客户端处理| Client
+    L2 --> Router
+    L1 --> Bus
+    Bus --> Modules
+    
+    style L1 fill:#e8f5e9
+    style L2 fill:#fff3e0
+    style L3 fill:#e3f2fd
+    style Bus fill:#fce4ec
+```
 
-**为什么采用三层指令集架构？**
+### 通讯协议设计
 
-1. **第1层（CSM消息）**：充分利用现有CSM消息系统，无需重复造轮子
-   - 优势：所有CSM模块的API自动可用，无需额外代码
-   - 实现：TCP-Router通过隐形总线透明转发
+TCP通讯协议需要支持不同类型的消息交互。协议定义了6种数据包类型：info用于服务器通知，error用于错误返回，cmd承载客户端指令，resp和async-resp分别对应同步和异步响应，status用于订阅消息的推送。每个数据包包含8字节的包头（数据长度、版本、标志位、类型）加上可变长度的文本数据，这种设计既保证了结构化的解析，又保持了文本内容的可读性。
 
-2. **第2层（Router指令）**：提供管理和查询功能
-   - 优势：远程客户端可以发现和了解可用的模块和API
-   - 实现：Router模块实现这些管理指令
+### 消息流转过程
 
-3. **第3层（Client指令）**：改善用户体验
-   - 优势：简化客户端操作，提供快捷功能
-   - 实现：在客户端软件中实现
+当客户端发送`Read >> ch0 -@ AI`命令时，整个处理流程如下：
 
-**为什么选择无侵入式设计？**
-- 需求：为现有CSM应用添加远程控制能力，但不修改原有代码
-- 实现：利用CSM的隐形总线特性，TCP-Router作为独立模块接入
-- 优势：现有应用无需任何修改即可支持远程控制
+``` mermaid
+sequenceDiagram
+    participant C as TCP客户端
+    participant R as TCP-Router
+    participant B as CSM隐形总线
+    participant M as AI模块
+    
+    C->>R: cmd数据包<br/>Read >> ch0 -@ AI
+    Note over R: 解析为CSM同步消息
+    R->>B: 转发到隐形总线
+    B->>M: 路由到AI模块
+    activate M
+    M->>M: 处理Read请求
+    M-->>B: 返回通道数据
+    deactivate M
+    B-->>R: 接收响应
+    Note over R: 封装为resp数据包
+    R-->>C: TCP响应<br/>通道数据
+```
 
-### 设计总结
+这个流程展示了TCP-Router的核心价值：作为一个透明的桥梁，它不需要理解业务逻辑，只需要进行消息格式转换和路由。客户端使用标准的CSM消息语法，Router通过隐形总线将消息传递给目标模块，响应按原路返回。这种设计使得任何现有的CSM应用都可以通过添加TCP-Router模块立即获得远程控制能力。
 
-通过需求映射，CSM-TCP-Router实现了：
+### 设计优势体现
 
-1. **分层设计**：三层指令集各司其职，清晰明确
-2. **无侵入集成**：利用CSM隐形总线，无需修改现有代码
-3. **协议规范**：明确的数据包格式，支持多种消息类型
-4. **易于扩展**：添加新指令或业务模块无需修改通讯层
-
-这种需求映射方法体现了CSM框架的核心优势：通过隐形总线实现模块间的松耦合通讯，使得功能扩展变得简单自然。
+这种需求映射方法充分体现了CSM框架的核心优势。通过隐形总线，TCP-Router模块与业务模块完全解耦，实现了无侵入式的集成。分层指令集架构既保留了CSM消息系统的完整功能，又提供了额外的管理和交互能力。整个设计具有很强的可扩展性，添加新的业务模块时，Router无需任何修改就能自动支持远程调用。
 
 ## 系统架构
 
