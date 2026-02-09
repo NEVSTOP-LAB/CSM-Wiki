@@ -49,7 +49,7 @@ Error Occurred@* >> Error Handler -><register>
 
 名称以`.`开头，例如：`.MainApp`、`.BackgroundTask`、`.Logger`、`.TCPDispatcher`。
 
-使用`CSM - Mark As System-Level Module.vi`生成，或直接在名称前加`.`。其他功能与普通模块完全相同。
+使用[`CSM - Mark As System-Level Module.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm-mark-as-system-level-modulevi)生成，或直接在名称前加`.`。其他功能与普通模块完全相同。
 
 ### 典型场景
 
@@ -112,7 +112,7 @@ API: DoTask >> arguments -> module   // 空闲Worker处理异步消息
 
 ### 实现步骤
 
-1. 使用`CSM - Mark As Worker Module.vi`生成名称（如`Downloader#`）
+1. 使用[`CSM - Mark As Worker Module.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm-mark-as-worker-modulevi)生成名称（如`Downloader#`）
 2. 异步调用多个相同的Worker
 3. 向Worker Agent发送消息，自动分配给空闲Worker
 4. 向Worker Agent发送`Macro: Exit`，所有Worker依次退出
@@ -163,7 +163,7 @@ API: Process >> arguments -@ Handler
 ### 实现步骤
 
 1. 定义每个节点能处理的消息（在case结构中实现）
-2. 使用`CSM - Mark As Chain Module.vi`生成节点名称（输入名称和Order编号，输出如`Handler$1`）
+2. 使用[`CSM - Mark As Chain Module.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm-mark-as-chain-modulevi)生成节点名称（输入名称和Order编号，输出如`Handler$1`）
 3. 按顺序启动各节点
 4. 向Chain发送消息，自动按序传递
 5. 向Chain发送`Macro: Exit`，所有节点依次退出
@@ -231,7 +231,7 @@ API: Process >> arguments -@ Handler
 
 - **错误处理**: 统一的错误捕获和处理
 - **系统级模块**: 系统服务与业务逻辑分离
-- **子模块**: 命名分组
+- **[子模块]({% link docs/reference/api-08-advanced-modes.md %}#子模块)**: 命名分组
 - **工作者模式**: 并发处理和负载均衡
 - **责任链模式**: 顺序处理和功能组合
 - **多循环支持**: 循环分离和协作

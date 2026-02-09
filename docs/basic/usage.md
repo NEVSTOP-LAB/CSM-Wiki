@@ -83,7 +83,7 @@ Attribute 是用来存模块配置的，有两个用处：
 
 ## Step2. 在CSM框架中调用模块
 
-当调用者也是CSM模块时，模块之间靠消息字符串通讯。可以用 **Build Message with Arguments++.vi** 生成消息，或者直接写消息字符串。
+当调用者也是CSM模块时，模块之间靠消息字符串通讯。可以用 **[Build Message with Arguments++.vi]({% link docs/reference/api-02-core-functions.md %}#build-message-with-argumentsvi)** 生成消息，或者直接写消息字符串。
 
 ### CSM消息语法
 
@@ -239,7 +239,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 
 **API**：
 - 编码：`CSM - Make String Arguments Safe.vi`
-- 解码：`CSM - Revert Arguments-Safe String.vi`
+- 解码：[`CSM - Revert Arguments-Safe String.vi`]({% link docs/reference/api-03-arguments.md %}#csm-revert-arguments-safe-stringvi)
 
 ```labview
 输入: "Value -> Target"
@@ -252,7 +252,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 把任意 LabVIEW 数据转成十六进制字符串，支持数组、簇、波形等。
 
 **API**：
-- 编码：`CSM - Convert Data to HexStr.vi`
+- 编码：[`CSM - Convert Data to HexStr.vi`]({% link docs/reference/api-03-arguments.md %}#csm-convert-data-to-hexstrvi)
 - 解码：`CSM - Convert HexStr to Data.vi`
 
 ```labview
@@ -267,7 +267,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 专门传 LabVIEW 错误簇。
 
 **API**：
-- 编码：`CSM - Convert Error to Argument.vi`
+- 编码：[`CSM - Convert Error to Argument.vi`]({% link docs/reference/api-03-arguments.md %}#csm-convert-error-to-argumentvi)
 - 解码：`CSM - Convert Argument to Error.vi`
 
 ```labview
@@ -281,7 +281,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 
 ![table](https://nevstop-lab.github.io/CSM-Wiki/assets/img/slides/Baisic-4.Arguments(CN).png)
 
-- `CSM - Argument Type.vi`：识别参数类型
+- [`CSM - Argument Type.vi`]({% link docs/reference/api-03-arguments.md %}#csm-argument-typevi)：识别参数类型
 - `CSM - Keywords.vi`：列出CSM关键字
 - Safe/HexStr/ErrStr 编解码 VI 各一对
 
