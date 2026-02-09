@@ -63,7 +63,7 @@ MassData不直接传递数据本身，而是：
 
 ## Massdata参数类型
 
-CSM Massdata定义的参数类型为`<MassData>`，可以通过`CSM - Argument Type.vi`获取。
+CSM Massdata定义的参数类型为`<MassData>`，可以通过[`CSM - Argument Type.vi`]({% link docs/reference/api-03-arguments.md %}#csm-argument-typevi)获取。
 
 ### 参数格式
 

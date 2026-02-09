@@ -200,6 +200,84 @@ for encoding in encodings:
 - `api-11-obselete-vis.md` (废弃VIs) 已移除，无需维护
 - "参考范例" 现在是顶级菜单项 (nav_order: 35)，不再是"示例应用"的子页面
 
+## VI和示例超链接
+
+### 要求
+
+在 `docs/` 目录下的所有 markdown 文件中，当提到 VI 名称（如 `Parse State Queue++.vi`）或示例名称时，应该添加超链接，指向相应的 API 参考文档或示例文档。这样用户可以直接点击链接跳转到详细说明。
+
+### 实现方法
+
+1. **识别VI引用**：扫描文档中的VI名称，通常出现在：
+   - 代码块中：`` `VI Name.vi` ``
+   - 粗体中：`**VI Name.vi**`
+   - 普通文本中
+
+2. **创建VI映射**：从API参考文档中提取所有VI名称及其对应的文件和锚点：
+   ```python
+   # 示例映射
+   {
+     "Parse State Queue++.vi": {
+       "file": "docs/reference/api-02-core-functions.md",
+       "anchor": "parse-state-queuevi"
+     }
+   }
+   ```
+
+3. **添加Jekyll链接**：
+   - 对于代码块中的VI：
+     ```markdown
+     [`VI Name`]({% link docs/reference/api-XX.md %}#anchor)
+     ```
+   - 对于粗体VI：
+     ```markdown
+     **[VI Name]({% link docs/reference/api-XX.md %}#anchor)**
+     ```
+
+4. **注意事项**：
+   - 不要链接标题中的VI名称（以 `#` 开头的行）
+   - 不要重复链接已经有链接的VI
+   - 链接时从最长的VI名称开始匹配，避免部分匹配问题
+
+### 已添加链接的文件
+
+- `docs/basic/communication.md` - 7个VI链接
+- `docs/basic/advance.md` - 4个VI链接
+- `docs/basic/global-log.md` - 6个VI链接
+- `docs/basic/usage.md` - 5个VI链接
+- `docs/plugins/` 目录下的文件 - 3个VI链接
+
+### 示例脚本
+
+使用Python脚本自动添加链接：
+
+```python
+import re
+import json
+
+# 1. 从API文档提取VI映射
+vi_to_api = {}
+api_files = ['docs/reference/api-*.md']
+for api_file in api_files:
+    headings = re.findall(r'^##\s+(.+)$', content, re.MULTILINE)
+    for heading in headings:
+        anchor = heading.lower().replace(' ', '-').replace('.', '')
+        vi_to_api[heading] = {'file': api_file, 'anchor': anchor}
+
+# 2. 在文档中添加链接
+for vi_name, info in vi_to_api.items():
+    pattern = rf'`({re.escape(vi_name)})`'
+    replacement = rf'[`\1`]({{% link {info["file"]} %}}#{info["anchor"]})'
+    content = re.sub(pattern, replacement, content)
+```
+
+### 维护
+
+当添加新的API文档或更新VI名称时：
+1. 重新生成VI映射
+2. 运行链接添加脚本处理相关文档
+3. 检查生成的链接是否正确
+
 ## 联系信息
 
 如果在更新过程中遇到问题，请查看本次迁移的提交记录或联系原作者。
