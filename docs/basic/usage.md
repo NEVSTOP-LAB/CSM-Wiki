@@ -11,7 +11,7 @@ nav_order: 4
 
 在CSM里，所有 case 都能当消息调，但建议用 API 分组做外部接口。状态变化就通过 Status 或 Interrupt Status 广播出去。
 
-可参考范例 ***/Example/1. Create a reusable module***
+可参考范例：[创建可重用模块]({% link docs/examples/example-csm-basic-example.md %}#create-a-reuse-module)
 ![img](https://nevstop-lab.github.io/CSM-Wiki/assets/img/slides/Baisic-1.Create%20Reuse%20Module(CN).png)
 
 ### 设计要点
@@ -131,7 +131,7 @@ Attribute 是用来存模块配置的，有两个用处：
 3. 继续干别的事
 4. 收到响应时进入 "Async Response" 状态处理
 
-可参考范例 ***/Example/2. Caller is CSM Scenario***.
+可参考范例：[CSM调用者场景]({% link docs/examples/example-csm-basic-example.md %}#caller-is-csm-scenario)
 ![img](https://nevstop-lab.github.io/CSM-Wiki/assets/img/slides/Baisic-2.Call%20in%20CSM%20Framework(CN).png)
 
 ## Step3. 在其他框架中调用CSM模块
@@ -196,7 +196,7 @@ Event Structure
 - 同步调用要设超时保护
 - 通过订阅机制保持状态同步
 
-可参考范例 ***/Example/3. Caller is Other Framework Scenario***.
+可参考范例：[其他框架调用者场景]({% link docs/examples/example-csm-basic-example.md %}#caller-is-other-framework-scenario)
 ![img](https://nevstop-lab.github.io/CSM-Wiki/assets/img/slides/Baisic-3.Call%20in%20other%20Framework(CN).png)
 
 ## Step4. CSM参数传递

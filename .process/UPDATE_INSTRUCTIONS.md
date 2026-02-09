@@ -23,19 +23,20 @@
 8. **api-08-advanced-modes.md** ← VI Description(zh-cn) - 08. Advanced Modes.md
 9. **api-09-build-in-addons.md** ← VI Description(zh-cn) - 09. Build-in Addons.md
 10. **api-10-utility-vis.md** ← VI Description(zh-cn) - 10. Utility VIs.md
-11. **api-11-obselete-vis.md** ← VI Description(zh-cn) - 11. Obselete VIs.md
-12. **api-12-debugdoctools.md** ← VI Description(zh-cn) - 12. Debug,Doc,Tools.md
-13. **api-addon-api-string.md** ← VI Description(zh-cn) - Addon API String.md
-14. **api-addon-ini-variable.md** ← VI Description(zh-cn) - Addon INI-Variable.md
-15. **api-addon-massdata.md** ← VI Description(zh-cn) - Addon Massdata.md
+11. **api-12-debugdoctools.md** ← VI Description(zh-cn) - 12. Debug,Doc,Tools.md
+12. **api-addon-api-string.md** ← VI Description(zh-cn) - Addon API String.md
+13. **api-addon-ini-variable.md** ← VI Description(zh-cn) - Addon INI-Variable.md
+14. **api-addon-massdata.md** ← VI Description(zh-cn) - Addon Massdata.md
 
-#### Example文档 (docs/examples/)
+**注意**: `api-11-obselete-vis.md` (废弃VIs) 已被移除，不再需要。
+
+#### Example文档 (顶级菜单：参考范例)
 从 `.ref/Examples/` 迁移了以下文件：
 
 1. **example-csm-basic-example.md** ← CSM Basic Example(zh-cn).md
 2. **example-csm-advance-example.md** ← CSM Advance Example(zh-cn).md
 
-并创建了父页面 **reference-examples.md**
+并创建了顶级菜单页面 **reference-examples.md** (nav_order: 35，位于参考文档和插件系统之间)
 
 ### 未迁移的文件
 
@@ -135,10 +136,10 @@ git push
 
 ### 编码问题
 
-`.ref` 目录中的某些文件可能使用非UTF-8编码（如ISO-8859-1）。处理这些文件时，需要尝试多种编码：
+`.ref` 目录中的某些文件可能使用非UTF-8编码（如ISO-8859-1、GBK）。处理这些文件时，需要尝试多种编码：
 
 ```python
-encodings = ['utf-8', 'latin-1', 'iso-8859-1', 'gbk', 'gb2312']
+encodings = ['gbk', 'gb2312', 'gb18030', 'utf-8', 'latin-1', 'iso-8859-1']
 for encoding in encodings:
     try:
         with open(file_path, 'r', encoding=encoding) as f:
@@ -147,6 +148,8 @@ for encoding in encodings:
     except UnicodeDecodeError:
         continue
 ```
+
+**特别注意**: `VI Description(zh-cn) - 12. Debug,Doc,Tools.md` 使用GBK编码，需要特殊处理。
 
 ### 引用标题的变体
 
@@ -186,13 +189,16 @@ for encoding in encodings:
 | VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 08. Advanced Modes.md | reference/api-08-advanced-modes.md |
 | VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 09. Build-in Addons.md | reference/api-09-build-in-addons.md |
 | VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 10. Utility VIs.md | reference/api-10-utility-vis.md |
-| VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 11. Obselete VIs.md | reference/api-11-obselete-vis.md |
 | VI Description/VI Description(zh-cn)/VI Description(zh-cn) - 12. Debug,Doc,Tools.md | reference/api-12-debugdoctools.md |
 | VI Description/VI Description(zh-cn)/VI Description(zh-cn) - Addon API String.md | reference/api-addon-api-string.md |
 | VI Description/VI Description(zh-cn)/VI Description(zh-cn) - Addon INI-Variable.md | reference/api-addon-ini-variable.md |
 | VI Description/VI Description(zh-cn)/VI Description(zh-cn) - Addon Massdata.md | reference/api-addon-massdata.md |
 | Examples/CSM Basic Example(zh-cn).md | examples/example-csm-basic-example.md |
 | Examples/CSM Advance Example(zh-cn).md | examples/example-csm-advance-example.md |
+
+**注意**:
+- `api-11-obselete-vis.md` (废弃VIs) 已移除，无需维护
+- "参考范例" 现在是顶级菜单项 (nav_order: 35)，不再是"示例应用"的子页面
 
 ## 联系信息
 

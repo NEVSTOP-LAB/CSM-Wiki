@@ -39,7 +39,7 @@ Error Occurred@* >> Error Handler -><register>
 
 这样任何模块的错误都会触发主程序的`Error Handler`统一处理，适合全局日志记录、错误提示和恢复策略。
 
-参考范例：***/Example/4. Advance Examples/1. Global Error Handling***
+**参考范例**：[全局错误处理机制示例]({% link docs/examples/example-csm-advance-example.md %}#全局错误处理机制示例)
 
 ## 系统级模块
 
@@ -61,7 +61,7 @@ Macro: Exit -> CSM - List Modules VI的结果
 
 这样只退出业务模块，不影响主程序。
 
-参考范例：`0. Base Concepts\7. System-Level Module.vi`
+**参考范例**：[系统级模块]({% link docs/examples/example-csm-basic-example.md %}#7-system-level-modulevi)
 
 ## 子模块
 
@@ -123,7 +123,7 @@ API: DoTask >> arguments -> module   // 空闲Worker处理异步消息
 - Worker间不共享数据，独立处理任务
 - 适合无状态任务，不适合带界面的模块
 
-参考范例：`4. Advance Examples\1. Action Workers Example`
+**参考范例**：[工作者模式范例]({% link docs/examples/example-csm-advance-example.md %}#工作者模式范例)
 
 ## 责任链模式
 
@@ -182,7 +182,7 @@ API: Process >> arguments -@ Handler
 
 注意：必须通过Chain名称发送消息；节点顺序很重要；链条过长影响效率。
 
-参考范例：`4. Advance Examples\2. Chain of Responsibility Example`
+**参考范例**：[责任链模式范例]({% link docs/examples/example-csm-advance-example.md %}#责任链模式范例)
 
 ## 多循环模式支持
 
@@ -223,9 +223,7 @@ API: Process >> arguments -@ Handler
 
 通常包含：CSM循环（处理通讯和控制）、功能循环（执行实际功能）、UI循环（可选，处理界面事件）。循环间通过队列、用户事件交互。
 
-参考范例：
-- `4. Advance Examples\5. Multi-Loop Module Example\TCP Server Module(Multi-Loop Support).vi`
-- `Addons - Loop Support\CSMLS - Continuous Loop in CSM Example.vi`
+**参考范例**：[多循环模块示例]({% link docs/examples/example-csm-advance-example.md %}#多循环模块示例main---call-and-monitor-tcp-trafficvi)
 
 ## 总结
 

@@ -24,7 +24,6 @@ CSM框架的API参考和模板说明。
 - [高级模式 (Advanced Modes)]({% link docs/reference/api-08-advanced-modes.md %})
 - [内置插件 (Built-in Addons)]({% link docs/reference/api-09-build-in-addons.md %})
 - [工具VI (Utility VIs)]({% link docs/reference/api-10-utility-vis.md %})
-- [废弃VIs (Obsolete VIs)]({% link docs/reference/api-11-obselete-vis.md %})
 - [调试工具 (Debug Tools)]({% link docs/reference/api-12-debugdoctools.md %})
 - [Addon API String]({% link docs/reference/api-addon-api-string.md %})
 - [Addon INI-Variable]({% link docs/reference/api-addon-ini-variable.md %})

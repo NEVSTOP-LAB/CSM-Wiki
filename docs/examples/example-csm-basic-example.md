@@ -2,7 +2,6 @@
 title: CSM基础示例
 layout: default
 parent: 参考范例
-grand_parent: 示例应用
 nav_order: 1
 ---
 

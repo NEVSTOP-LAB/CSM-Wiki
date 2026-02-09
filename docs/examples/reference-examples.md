@@ -1,9 +1,9 @@
 ---
 title: 参考范例
 layout: default
-parent: 示例应用
-nav_order: 10
+nav_order: 35
 has_children: true
+permalink: /docs/reference-examples
 ---
 
 # 参考范例
