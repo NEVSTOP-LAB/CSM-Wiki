@@ -39,7 +39,7 @@ CSM 支持三种通讯方式：同步调用、异步调用和状态订阅。选�
 同步调用可能遇到三种错误：
 
 **No Target Error**: 目标模块名为空字符串  
-**Target Error**: 目标模块不存在，可用 `CSM - Check If Module Exists.vi` 检查  
+**Target Error**: 目标模块不存在，可用 [`CSM - Check If Module Exists.vi`]({% link docs/reference/api-04-management-api.md %}#csm-check-if-module-existsvi) 检查  
 **Target Timeout Error**: 超时未响应，考虑增加超时时间或改用异步调用
 
 ## 执行流程
@@ -227,14 +227,14 @@ I'm timeout >> statusArguments -> <all>
 
 这是推荐的消息构建 API，提供多态 VI：
 
-- **Build Message with Arguments(Auto Check).vi** - 自动检测消息类型
-- **Build Synchronous Message with Arguments.vi** - 同步消息 `-@`
-- **Build Asynchronous Message with Arguments.vi** - 异步消息 `->`
-- **Build No-Reply Asynchronous Message with Arguments.vi** - 无返回异步 `->\|`
-- **Build Interrupt Broadcast Message.vi** - 中断广播
+- **[Build Message with Arguments(Auto Check).vi]({% link docs/reference/api-02-core-functions.md %}#build-message-with-argumentsauto-checkvi)** - 自动检测消息类型
+- **[Build Synchronous Message with Arguments.vi]({% link docs/reference/api-02-core-functions.md %}#build-synchronous-message-with-argumentsvi)** - 同步消息 `-@`
+- **[Build Asynchronous Message with Arguments.vi]({% link docs/reference/api-02-core-functions.md %}#build-asynchronous-message-with-argumentsvi)** - 异步消息 `->`
+- **[Build No-Reply Asynchronous Message with Arguments.vi]({% link docs/reference/api-02-core-functions.md %}#build-no-reply-asynchronous-message-with-argumentsvi)** - 无返回异步 `->\|`
+- **[Build Interrupt Broadcast Message.vi]({% link docs/reference/api-02-core-functions.md %}#build-interrupt-broadcast-messagevi)** - 中断广播
 - **Build Normal Broadcast Message.vi** - 信号广播
 - **Build Register Message.vi** - 注册订阅
-- **Build Unregister Message.vi** - 取消订阅
+- **[Build Unregister Message.vi]({% link docs/reference/api-02-core-functions.md %}#build-unregister-messagevi)** - 取消订阅
 
 ## Parse State Queue++.vi
 
