@@ -7,6 +7,9 @@ nav_order: 5
 
 本文介绍CSM的高级特性：错误处理、系统级模块、子模块、工作者模式、责任链模式和多循环支持。
 
+> [!TIP]
+> 查看高级模式的详细API文档，请参考 [高级模式API参考]({% link docs/reference/api-08-advanced-modes.md %})
+
 ## 内置的错误处理机制
 
 CSM模块发生错误时会自动广播`Error Occurred`状态，订阅了该状态的模块可以收到通知并处理。
@@ -36,7 +39,7 @@ Error Occurred@* >> Error Handler -><register>
 
 这样任何模块的错误都会触发主程序的`Error Handler`统一处理，适合全局日志记录、错误提示和恢复策略。
 
-参考范例：***/Example/4. Advance Examples/1. Global Error Handling***
+**参考范例**：[全局错误处理机制示例]({% link docs/examples/example-csm-advance-example.md %}#全局错误处理机制示例)
 
 ## 系统级模块
 
@@ -46,7 +49,7 @@ Error Occurred@* >> Error Handler -><register>
 
 名称以`.`开头，例如：`.MainApp`、`.BackgroundTask`、`.Logger`、`.TCPDispatcher`。
 
-使用`CSM - Mark As System-Level Module.vi`生成，或直接在名称前加`.`。其他功能与普通模块完全相同。
+使用[`CSM - Mark As System-Level Module.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm-mark-as-system-level-modulevi)生成，或直接在名称前加`.`。其他功能与普通模块完全相同。
 
 ### 典型场景
 
@@ -58,7 +61,7 @@ Macro: Exit -> CSM - List Modules VI的结果
 
 这样只退出业务模块，不影响主程序。
 
-参考范例：`0. Base Concepts\7. System-Level Module.vi`
+**参考范例**：[系统级模块]({% link docs/examples/example-csm-basic-example.md %}#7-system-level-modulevi)
 
 ## 子模块
 
@@ -109,7 +112,7 @@ API: DoTask >> arguments -> module   // 空闲Worker处理异步消息
 
 ### 实现步骤
 
-1. 使用`CSM - Mark As Worker Module.vi`生成名称（如`Downloader#`）
+1. 使用[`CSM - Mark As Worker Module.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm-mark-as-worker-modulevi)生成名称（如`Downloader#`）
 2. 异步调用多个相同的Worker
 3. 向Worker Agent发送消息，自动分配给空闲Worker
 4. 向Worker Agent发送`Macro: Exit`，所有Worker依次退出
@@ -120,7 +123,7 @@ API: DoTask >> arguments -> module   // 空闲Worker处理异步消息
 - Worker间不共享数据，独立处理任务
 - 适合无状态任务，不适合带界面的模块
 
-参考范例：`4. Advance Examples\1. Action Workers Example`
+**参考范例**：[工作者模式范例]({% link docs/examples/example-csm-advance-example.md %}#工作者模式范例)
 
 ## 责任链模式
 
@@ -160,7 +163,7 @@ API: Process >> arguments -@ Handler
 ### 实现步骤
 
 1. 定义每个节点能处理的消息（在case结构中实现）
-2. 使用`CSM - Mark As Chain Module.vi`生成节点名称（输入名称和Order编号，输出如`Handler$1`）
+2. 使用[`CSM - Mark As Chain Module.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm-mark-as-chain-modulevi)生成节点名称（输入名称和Order编号，输出如`Handler$1`）
 3. 按顺序启动各节点
 4. 向Chain发送消息，自动按序传递
 5. 向Chain发送`Macro: Exit`，所有节点依次退出
@@ -179,7 +182,7 @@ API: Process >> arguments -@ Handler
 
 注意：必须通过Chain名称发送消息；节点顺序很重要；链条过长影响效率。
 
-参考范例：`4. Advance Examples\2. Chain of Responsibility Example`
+**参考范例**：[责任链模式范例]({% link docs/examples/example-csm-advance-example.md %}#责任链模式范例)
 
 ## 多循环模式支持
 
@@ -220,9 +223,7 @@ API: Process >> arguments -@ Handler
 
 通常包含：CSM循环（处理通讯和控制）、功能循环（执行实际功能）、UI循环（可选，处理界面事件）。循环间通过队列、用户事件交互。
 
-参考范例：
-- `4. Advance Examples\5. Multi-Loop Module Example\TCP Server Module(Multi-Loop Support).vi`
-- `Addons - Loop Support\CSMLS - Continuous Loop in CSM Example.vi`
+**参考范例**：[多循环模块示例]({% link docs/examples/example-csm-advance-example.md %}#多循环模块示例main---call-and-monitor-tcp-trafficvi)
 
 ## 总结
 
@@ -230,7 +231,7 @@ API: Process >> arguments -@ Handler
 
 - **错误处理**: 统一的错误捕获和处理
 - **系统级模块**: 系统服务与业务逻辑分离
-- **子模块**: 命名分组
+- **[子模块]({% link docs/reference/api-08-advanced-modes.md %}#子模块)**: 命名分组
 - **工作者模式**: 并发处理和负载均衡
 - **责任链模式**: 顺序处理和功能组合
 - **多循环支持**: 循环分离和协作

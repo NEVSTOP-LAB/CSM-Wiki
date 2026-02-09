@@ -69,7 +69,7 @@ CSM - Start Watchdog to Ensure All Modules Exit.vi
 - **Log File Path**：日志文件路径
 - **Timestamp format**：时间格式，默认`%<%Y/%m/%d %H:%M:%S%3u>T`
 - **Log Limit**：文件大小和数量限制
-- **Filter Rules**：过滤规则（通过`CSM - Convert Filter Rules VI`配置）
+- **[Filter Rules]({% link docs/reference/api-07-global-log.md %}#filter-rules)**：过滤规则（通过`CSM - Convert Filter Rules VI`配置）
 
 ```labview
 CSM - Start File Logger.vi

@@ -110,7 +110,7 @@ JKI State Machine自带的状态编辑器，CSM完全兼容。在状态字符串
 基于全局日志系统可以开发自己的调试工具。
 
 **开发流程**：
-1. 获取全局日志（使用`CSM - Global Log Queue.vi`或`CSM - Global Log Event.vi`）
+1. 获取全局日志（使用[`CSM - Global Log Queue.vi`]({% link docs/reference/api-07-global-log.md %}#csm-global-log-queuevi)或`CSM - Global Log Event.vi`）
 2. 处理日志数据，提取需要的信息
 3. 实现业务逻辑
 4. 显示或保存结果

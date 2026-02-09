@@ -11,7 +11,7 @@ nav_order: 4
 
 在CSM里，所有 case 都能当消息调，但建议用 API 分组做外部接口。状态变化就通过 Status 或 Interrupt Status 广播出去。
 
-可参考范例 ***/Example/1. Create a reusable module***
+可参考范例：[创建可重用模块]({% link docs/examples/example-csm-basic-example.md %}#create-a-reuse-module)
 ![img](https://nevstop-lab.github.io/CSM-Wiki/assets/img/slides/Baisic-1.Create%20Reuse%20Module(CN).png)
 
 ### 设计要点
@@ -83,7 +83,7 @@ Attribute 是用来存模块配置的，有两个用处：
 
 ## Step2. 在CSM框架中调用模块
 
-当调用者也是CSM模块时，模块之间靠消息字符串通讯。可以用 **Build Message with Arguments++.vi** 生成消息，或者直接写消息字符串。
+当调用者也是CSM模块时，模块之间靠消息字符串通讯。可以用 **[Build Message with Arguments++.vi]({% link docs/reference/api-02-core-functions.md %}#build-message-with-argumentsvi)** 生成消息，或者直接写消息字符串。
 
 ### CSM消息语法
 
@@ -131,7 +131,7 @@ Attribute 是用来存模块配置的，有两个用处：
 3. 继续干别的事
 4. 收到响应时进入 "Async Response" 状态处理
 
-可参考范例 ***/Example/2. Caller is CSM Scenario***.
+可参考范例：[CSM调用者场景]({% link docs/examples/example-csm-basic-example.md %}#caller-is-csm-scenario)
 ![img](https://nevstop-lab.github.io/CSM-Wiki/assets/img/slides/Baisic-2.Call%20in%20CSM%20Framework(CN).png)
 
 ## Step3. 在其他框架中调用CSM模块
@@ -196,7 +196,7 @@ Event Structure
 - 同步调用要设超时保护
 - 通过订阅机制保持状态同步
 
-可参考范例 ***/Example/3. Caller is Other Framework Scenario***.
+可参考范例：[其他框架调用者场景]({% link docs/examples/example-csm-basic-example.md %}#caller-is-other-framework-scenario)
 ![img](https://nevstop-lab.github.io/CSM-Wiki/assets/img/slides/Baisic-3.Call%20in%20other%20Framework(CN).png)
 
 ## Step4. CSM参数传递
@@ -239,7 +239,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 
 **API**：
 - 编码：`CSM - Make String Arguments Safe.vi`
-- 解码：`CSM - Revert Arguments-Safe String.vi`
+- 解码：[`CSM - Revert Arguments-Safe String.vi`]({% link docs/reference/api-03-arguments.md %}#csm-revert-arguments-safe-stringvi)
 
 ```labview
 输入: "Value -> Target"
@@ -252,7 +252,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 把任意 LabVIEW 数据转成十六进制字符串，支持数组、簇、波形等。
 
 **API**：
-- 编码：`CSM - Convert Data to HexStr.vi`
+- 编码：[`CSM - Convert Data to HexStr.vi`]({% link docs/reference/api-03-arguments.md %}#csm-convert-data-to-hexstrvi)
 - 解码：`CSM - Convert HexStr to Data.vi`
 
 ```labview
@@ -267,7 +267,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 专门传 LabVIEW 错误簇。
 
 **API**：
-- 编码：`CSM - Convert Error to Argument.vi`
+- 编码：[`CSM - Convert Error to Argument.vi`]({% link docs/reference/api-03-arguments.md %}#csm-convert-error-to-argumentvi)
 - 解码：`CSM - Convert Argument to Error.vi`
 
 ```labview
@@ -281,7 +281,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 
 ![table](https://nevstop-lab.github.io/CSM-Wiki/assets/img/slides/Baisic-4.Arguments(CN).png)
 
-- `CSM - Argument Type.vi`：识别参数类型
+- [`CSM - Argument Type.vi`]({% link docs/reference/api-03-arguments.md %}#csm-argument-typevi)：识别参数类型
 - `CSM - Keywords.vi`：列出CSM关键字
 - Safe/HexStr/ErrStr 编解码 VI 各一对
 

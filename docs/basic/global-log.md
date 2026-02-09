@@ -27,10 +27,10 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 队列方式效率更高，可以批量处理日志，性能最好。使用步骤：
 
-1. 用`CSM - Global Log Queue.vi`获取队列句柄
+1. 用[`CSM - Global Log Queue.vi`]({% link docs/reference/api-07-global-log.md %}#csm-global-log-queuevi)获取队列句柄
 2. 在循环中用`Dequeue Element`获取日志
 3. 处理日志数据
-4. 用`CSM - Destroy Global Log Queue.vi`释放资源
+4. 用[`CSM - Destroy Global Log Queue.vi`]({% link docs/reference/api-07-global-log.md %}#csm-destroy-global-log-queuevi)释放资源
 
 ### 事件方式
 
@@ -38,7 +38,7 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 1. 用`CSM - Global Log Event.vi`获取事件句柄
 2. 在事件结构中注册并处理
-3. 用`CSM - Destroy Global Log Event.vi`释放资源
+3. 用[`CSM - Destroy Global Log Event.vi`]({% link docs/reference/api-07-global-log.md %}#csm-destroy-global-log-eventvi)释放资源
 
 **怎么选？** 独立处理日志用队列方式，要和UI事件混合处理用事件方式。
 
@@ -81,8 +81,8 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 ### 过滤相关API
 
-- `CSM - Set Log Filter Rules.vi`: 设置源端过滤（多态VI，选最新版本）
-- `CSM - List Log Filter Rules As Strings.vi`: 查看当前过滤规则
+- [`CSM - Set Log Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm-set-log-filter-rulesvi): 设置源端过滤（多态VI，选最新版本）
+- [`CSM - List Log Filter Rules As Strings.vi`]({% link docs/reference/api-07-global-log.md %}#csm-list-log-filter-rules-as-stringsvi): 查看当前过滤规则
 - `CSM - Filter Global Log.vi`: 订阅端判断日志是否被过滤（多态VI）
 
 ## 核心API
@@ -143,7 +143,7 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 **用途**: 记录业务逻辑节点、性能测量点、用户操作、自定义调试信息
 
-**注意**: 输入参数包含错误信息时，会自动调用`CSM - Global Log Error Handler.vi`。
+**注意**: 输入参数包含错误信息时，会自动调用[`CSM - Global Log Error Handler.vi`]({% link docs/reference/api-07-global-log.md %}#csm-global-log-error-handlervi)。
 
 ## 工具函数
 
