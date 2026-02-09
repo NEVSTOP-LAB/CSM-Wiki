@@ -15,6 +15,17 @@ _**CSM 函数面板**_
 
 这是CSM（Communicable State Machine）的完整API手册，涵盖模块通讯、状态管理、参数处理等所有功能。
 
+> [!TIP]
+> 查看详细的API文档，请参考以下页面：
+> - [模板 (Templates)]({% link docs/reference/api-01-templates.md %})
+> - [核心功能 (Core Functions)]({% link docs/reference/api-02-core-functions.md %})
+> - [参数 (Arguments)]({% link docs/reference/api-03-arguments.md %})
+> - [管理接口 (Management API)]({% link docs/reference/api-04-management-api.md %})
+> - [模块操作接口 (Module Operation API)]({% link docs/reference/api-05-module-operation-api.md %})
+> - [状态订阅管理 (Status Registration)]({% link docs/reference/api-06-broadcast-registration.md %})
+> - [全局日志 (Global Log)]({% link docs/reference/api-07-global-log.md %})
+> - [高级模式 (Advanced Modes)]({% link docs/reference/api-08-advanced-modes.md %})
+
 ### API分类
 
 1. **模板面板** - 创建CSM模块的各种模板

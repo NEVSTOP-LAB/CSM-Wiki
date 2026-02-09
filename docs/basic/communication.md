@@ -238,7 +238,7 @@ I'm timeout >> statusArguments -> <all>
 
 ## Parse State Queue++.vi
 
-CSM 的核心 VI，负责解析状态队列。
+CSM 的核心 VI，负责解析状态队列。[查看完整API文档]({% link docs/reference/api-02-core-functions.md %}#parse-state-queuevi)
 
 **主要输入**:
 - **State Queue**: 状态队列（移位寄存器）

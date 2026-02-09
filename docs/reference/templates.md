@@ -9,6 +9,9 @@ _**CSM 代码模板**_
 
 ![csm-template](https://nevstop-lab.github.io/CSM-Wiki/assets/img/CSM%20Without%20Event%20Structure%20Template.png)
 
+> [!TIP]
+> 查看模板的详细API文档，请参考 [模板API参考]({% link docs/reference/api-01-templates.md %})
+
 # CSM开发模板指南
 
 ## 概述
