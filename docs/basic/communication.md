@@ -232,8 +232,8 @@ I'm timeout >> statusArguments -> <all>
 - **[Build Asynchronous Message with Arguments.vi]({% link docs/reference/api-02-core-functions.md %}#build-asynchronous-message-with-argumentsvi)** - 异步消息 `->`
 - **[Build No-Reply Asynchronous Message with Arguments.vi]({% link docs/reference/api-02-core-functions.md %}#build-no-reply-asynchronous-message-with-argumentsvi)** - 无返回异步 `->\|`
 - **[Build Interrupt Broadcast Message.vi]({% link docs/reference/api-02-core-functions.md %}#build-interrupt-broadcast-messagevi)** - 中断广播
-- **Build Normal Broadcast Message.vi** - 信号广播
-- **Build Register Message.vi** - 注册订阅
+- **[Build Status Broadcast Message.vi]({% link docs/reference/api-02-core-functions.md %}#build-status-broadcast-messagevi)** - 信号广播
+- **[Build Register Message.vi]({% link docs/reference/api-02-core-functions.md %}#build-register-messagevi)** - 注册订阅
 - **[Build Unregister Message.vi]({% link docs/reference/api-02-core-functions.md %}#build-unregister-messagevi)** - 取消订阅
 
 ## Parse State Queue++.vi
