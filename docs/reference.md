@@ -8,12 +8,10 @@ permalink: /docs/reference
 
 # 参考文档
 
-CSM框架的API参考和模板说明。
+CSM框架的API参考。
 
 ## 内容
 
-### API文档
-- [CSM 函数面板]({% link docs/reference/palette-apis.md %}) - API总览和快速参考
 - [模板 (Templates)]({% link docs/reference/api-01-templates.md %})
 - [核心功能 (Core Functions)]({% link docs/reference/api-02-core-functions.md %})
 - [参数 (Arguments)]({% link docs/reference/api-03-arguments.md %})
@@ -28,6 +26,3 @@ CSM框架的API参考和模板说明。
 - [Addon API String]({% link docs/reference/api-addon-api-string.md %})
 - [Addon INI-Variable]({% link docs/reference/api-addon-ini-variable.md %})
 - [Addon Massdata]({% link docs/reference/api-addon-massdata.md %})
-
-### 模板
-- [CSM 模板]({% link docs/reference/templates.md %}) - CSM开发模板指南
