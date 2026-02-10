@@ -13,24 +13,29 @@
     // Need at least 2 headings to show TOC
     if (headings.length < 2) return;
     
+    // Detect language once for consistent text
+    const lang = document.documentElement.lang || 'zh';
+    const tocText = lang.startsWith('zh') ? '目录' : 'Table of Contents';
+    
     // Create TOC toggle button
     const toggleButton = document.createElement('button');
     toggleButton.className = 'toc-toggle-button';
-    const lang = document.documentElement.lang || 'zh';
-    toggleButton.textContent = lang.startsWith('zh') ? '目录' : 'Table of Contents';
+    toggleButton.textContent = tocText;
     toggleButton.setAttribute('aria-label', 'Toggle Table of Contents');
     toggleButton.setAttribute('aria-expanded', 'false');
+    toggleButton.setAttribute('aria-controls', 'page-toc-nav');
     
     // Create TOC container
     const tocContainer = document.createElement('nav');
     tocContainer.className = 'page-toc';
     tocContainer.setAttribute('aria-label', 'Table of Contents');
     tocContainer.setAttribute('id', 'page-toc-nav');
+    tocContainer.setAttribute('aria-hidden', 'true');
     
     // Create TOC heading
     const tocHeading = document.createElement('div');
     tocHeading.className = 'page-toc-heading';
-    tocHeading.textContent = lang.startsWith('zh') ? '目录' : 'Table of Contents';
+    tocHeading.textContent = tocText;
     tocContainer.appendChild(tocHeading);
     
     // Create TOC list
@@ -96,6 +101,7 @@
       const isVisible = tocContainer.classList.contains('show');
       tocContainer.classList.toggle('show');
       toggleButton.setAttribute('aria-expanded', !isVisible);
+      tocContainer.setAttribute('aria-hidden', isVisible);
     });
     
     // Add collapse/expand functionality to TOC heading
