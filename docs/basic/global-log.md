@@ -36,7 +36,7 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 通过LabVIEW用户事件机制接收日志，适合和UI事件一起处理的场景：
 
-1. 用`CSM - Global Log Event.vi`获取事件句柄
+1. 用[`CSM - Global Log Event.vi`]({% link docs/reference/api-07-global-log.md %}#csm-global-log-eventvi)获取事件句柄
 2. 在事件结构中注册并处理
 3. 用[`CSM - Destroy Global Log Event.vi`]({% link docs/reference/api-07-global-log.md %}#csm-destroy-global-log-eventvi)释放资源
 
@@ -83,20 +83,20 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 - [`CSM - Set Log Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm-set-log-filter-rulesvi): 设置源端过滤（多态VI，选最新版本）
 - [`CSM - List Log Filter Rules As Strings.vi`]({% link docs/reference/api-07-global-log.md %}#csm-list-log-filter-rules-as-stringsvi): 查看当前过滤规则
-- `CSM - Filter Global Log.vi`: 订阅端判断日志是否被过滤（多态VI）
+- [`CSM - Filter Global Log.vi`]({% link docs/reference/api-07-global-log.md %}#csm-filter-global-logvi): 订阅端判断日志是否被过滤（多态VI）
 
 ## 核心API
 
 ### 日志获取
 
-#### CSM - Global Log Queue.vi
+#### [`CSM - Global Log Queue.vi`]({% link docs/reference/api-07-global-log.md %}#csm-global-log-queuevi)
 获取全局日志的队列句柄。
 
 **输出**: Global Log Queue
 
 **参考**: `4. Advance Examples\Filter From Source(Queue).vi`
 
-#### CSM - Global Log Event.vi
+#### [`CSM - Global Log Event.vi`]({% link docs/reference/api-07-global-log.md %}#csm-global-log-eventvi)
 获取全局日志用户事件句柄。
 
 **输出**: 
@@ -107,12 +107,12 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 ### 资源释放
 
-#### CSM - Destroy Global Log Queue.vi
+#### [`CSM - Destroy Global Log Queue.vi`]({% link docs/reference/api-07-global-log.md %}#csm-destroy-global-log-queuevi)
 释放队列句柄。
 
 **输入**: Global Log Queue
 
-#### CSM - Destroy Global Log Event.vi
+#### [`CSM - Destroy Global Log Event.vi`]({% link docs/reference/api-07-global-log.md %}#csm-destroy-global-log-eventvi)
 释放事件句柄。
 
 **输入**: 
@@ -122,7 +122,7 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 ### 日志生成
 
-#### CSM - Global Log Error Handler.vi
+#### [`CSM - Global Log Error Handler.vi`]({% link docs/reference/api-07-global-log.md %}#csm-global-log-error-handlervi)
 将非CSM框架的错误记录到全局日志。
 
 **输入**: 
@@ -131,7 +131,7 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 **用途**: 统一记录LabVIEW代码错误，集成第三方库错误
 
-#### CSM - Generate User Global Log.vi
+#### [`CSM - Generate User Global Log.vi`]({% link docs/reference/api-07-global-log.md %}#csm-generate-user-global-logvi)
 生成自定义用户日志。
 
 **输入**: 
@@ -149,10 +149,10 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 ### 日志转换
 
-#### Global Log To String.vi
+#### [`Global Log To String.vi`]({% link docs/reference/api-07-global-log.md %}#global-log-to-stringvi)
 将日志数据转为字符串。
 
-#### Global Log To String(Source Time).vi
+#### [`Global Log To String(Source Time).vi`]({% link docs/reference/api-07-global-log.md %}#global-log-to-stringsource-timevi)
 将日志转为字符串，用发送时间作为时间戳。
 
 **输入**: Log, Format String  
@@ -160,7 +160,7 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 ### 日志处理
 
-#### Global Log History Cacher.vi
+#### [`Global Log History Cacher.vi`]({% link docs/reference/api-07-global-log.md %}#global-log-history-cachervi)
 缓存历史日志字符串，用于调试和显示。
 
 **输入**: 
@@ -177,7 +177,7 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 **特性**: 限制缓存长度避免内存溢出，支持周期性日志折叠，多级处理等级
 
-#### Auto Processing Level.vi
+#### [`Auto Processing Level.vi`]({% link docs/reference/api-07-global-log.md %}#auto-processing-levelvi)
 根据队列中的日志数量，动态推算推荐的处理等级。
 
 **输入**: 
@@ -193,7 +193,7 @@ CSM全局日志系统是框架内置的调试和监控机制，记录系统运�
 
 **工作原理**: 日志产生速度超过处理速度时，队列会持续增加。此VI通过监测队列长度变化速度，动态调整处理等级：正常情况用Normal等级显示完整信息，日志堆积时提升等级加快处理，稳定后降低等级。
 
-#### Exit With Empty Queue Check.vi
+#### [`Exit With Empty Queue Check.vi`]({% link docs/reference/api-07-global-log.md %}#exit-with-empty-queue-checkvi)
 用于日志监控循环的优雅退出，确保队列中的日志被完整处理。
 
 **输入**: 

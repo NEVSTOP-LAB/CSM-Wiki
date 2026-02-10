@@ -22,7 +22,7 @@ CSM 支持三种通讯方式：同步调用、异步调用和状态订阅。选�
 
 ## 超时配置
 
-默认超时时间为 -2（使用全局设置）。可以通过 `CSM - Set TMO of Sync-Reply VI` 修改全局超时。
+默认超时时间为 -2（使用全局设置）。可以通过[`CSM - Set TMO of Sync-Reply.vi`]({% link docs/reference/api-05-module-operation-api.md %}#csm-set-tmo-of-sync-replyvi)修改全局超时。
 
 **特殊值**:
 - `-2`: 使用全局超时（默认）
@@ -192,7 +192,7 @@ End
 
 ## 发布状态
 
-用 `CSM Broadcast Status Change.vi` 发布状态：
+用[`CSM Broadcast Status Change.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm-broadcast-status-changevi)发布状态：
 ![Alt text](https://nevstop-lab.github.io/CSM-Wiki/assets/img/CSM%20Broadcast%20Status%20Change.png)
 
 或者直接用字符串：
@@ -202,7 +202,7 @@ I'm timeout >> statusArguments -> <all>
 
 ## 订阅状态
 
-用 `AdvanceAPI\CSM Register Status Change.vi` 订阅，`CSM Unregister Status Change.vi` 取消订阅。
+用[`CSM Register Status Change.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm-register-status-changevi)订阅，[`CSM Unregister Status Change.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm-unregister-status-changevi)取消订阅。
 
 支持通配符 "*" 代表所有模块。比如订阅 "*" 的 "Error Occurred" 状态，就能收到所有模块的错误通知。
 

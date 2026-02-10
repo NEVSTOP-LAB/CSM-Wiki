@@ -74,7 +74,7 @@ MassData参数有两种格式：
 <massdata>Start:8057;Size:4004;DataType:1D I32
 ```
 
-使用`CSM - Convert MassData to Argument With DataType.vim`生成。
+使用[`CSM - Convert MassData to Argument With DataType.vim`]({% link docs/reference/api-addon-massdata.md %}#csm-convert-massdata-to-argument-with-datatypevim)生成。
 
 **优点**：
 - 包含数据类型信息
@@ -91,7 +91,7 @@ MassData参数有两种格式：
 <massdata>Start:8057;Size:4004
 ```
 
-使用`CSM - Convert MassData to Argument.vim`生成。
+使用[`CSM - Convert MassData to Argument.vim`]({% link docs/reference/api-addon-massdata.md %}#csm-convert-massdata-to-argumentvim)生成。
 
 **优点**：
 - 参数字符串更短
@@ -132,19 +132,19 @@ MassData参数有两种格式：
 
 ### 配置API
 
-**CSM - Config MassData Parameter Cache Size.vi**
+**[`CSM - Config MassData Parameter Cache Size.vi`]({% link docs/reference/api-addon-massdata.md %}#csm-config-massdata-parameter-cache-sizevi)**
 - 配置缓冲区大小
 - 必须在使用MassData前调用
 - 默认大小可能不满足需求
 
 ### 监控API
 
-**CSM - MassData Update Status Indicator.vi**
+**[`CSM - MassData Update Status Indicator.vi`]({% link docs/reference/api-addon-massdata.md %}#csm-massdata-update-status-indicatorvi)**
 - 更新UI状态指示器
 - 显示缓冲区使用情况
 - 辅助调试和优化
 
-**CSM - MassData Data Type String.vi**
+**[`CSM - MassData Data Type String.vi`]({% link docs/reference/api-addon-massdata.md %}#csm-massdata-data-type-stringvi)**
 - 从参数中提取数据类型信息
 - 用于类型验证
 
@@ -182,7 +182,7 @@ CSM - Config MassData Parameter Cache Size.vi
 ### 监控缓冲区状态
 
 使用调试工具监控：
-1. 使用`CSM - MassData Update Status Indicator.vi`
+1. 使用[`CSM - MassData Update Status Indicator.vi`]({% link docs/reference/api-addon-massdata.md %}#csm-massdata-update-status-indicatorvi)
 2. 或使用CSM Tools中的MassData Cache Status Viewer
 3. 查看缓冲区使用率
 4. 识别潜在问题

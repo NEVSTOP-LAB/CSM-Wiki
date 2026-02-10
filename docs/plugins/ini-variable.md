@@ -46,8 +46,8 @@ CSM INI-Variable Support是CSM框架的一个插件，为CSM提供简单易用�
 
 ### Steps
 
-- step1：生成一个临时的INI文件，使用CSM - Load Configuration Variables From File VI加载该文件。
-- step2：使用一个普通的循环模拟一个CSM模块，使用CSM - Populate Configuration Variables VI将字符串中的变量解析为实际值。运行后，可以比较界面显示的信息是否与注释相同。
+- step1：生成一个临时的INI文件，使用[`CSM - Load Configuration Variables From File.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-load-configuration-variables-from-filevi)加载该文件。
+- step2：使用一个普通的循环模拟一个CSM模块，使用[`CSM - Populate Configuration Variables.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-populate-configuration-variablesvi)将字符串中的变量解析为实际值。运行后，可以比较界面显示的信息是否与注释相同。
     - step2.1：这部分的代码中，注意section/variable 在配置信息中是不存在的。
     - step2.2：step2.1部分代码运行的期望结果。
     - step2.3：这部分的代码中，注意并不只是参数可以使用CSM INI Variable Support，任意字段都可以使用。
@@ -64,17 +64,17 @@ CSM INI-Variable Support是CSM框架的一个插件，为CSM提供简单易用�
 可以提供一个Cluster prototype来加载配置。
 
 支持这个功能的函数为：
- - CSM - Read Cluster Elements From Session.vim：Cluster prototype 中的元素名称会被作为配置文件中的变量名。
- - CSM - Read Cluster Elements From Key.vim：需要提供Key参数，cluster 使用API String格式存储在给定的section/key中。
+ - [`CSM - Read Cluster Elements From Session.vim`]({% link docs/reference/api-addon-ini-variable.md %}#csm-read-cluster-elements-from-sessionvim)：Cluster prototype 中的元素名称会被作为配置文件中的变量名。
+ - [`CSM - Read Cluster Elements From Key.vim`]({% link docs/reference/api-addon-ini-variable.md %}#csm-read-cluster-elements-from-keyvim)：需要提供Key参数，cluster 使用API String格式存储在给定的section/key中。
 
 特殊情况说明：
 - 如果配置文件中未定义该变量，将使用提供原型的Cluster的元素数据。
 
 ### Steps
 
-- step1：生成一个临时的INI文件，使用CSM - Load Configuration Variables From File.vi加载该文件。
-- step2：使用CSM - Read Cluster Elements From Session.vim加载配置。
-- step3：使用CSM - Populate Configuration Variables.vi将字符串中的变量解析为实际值。
+- step1：生成一个临时的INI文件，使用[`CSM - Load Configuration Variables From File.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-load-configuration-variables-from-filevi)加载该文件。
+- step2：使用[`CSM - Read Cluster Elements From Session.vim`]({% link docs/reference/api-addon-ini-variable.md %}#csm-read-cluster-elements-from-sessionvim)加载配置。
+- step3：使用[`CSM - Populate Configuration Variables.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-populate-configuration-variablesvi)将字符串中的变量解析为实际值。
 
 
 
@@ -100,13 +100,13 @@ CSM INI-Variable Support是CSM框架的一个插件，为CSM提供简单易用�
 - step2：使用一个普通的循环模拟一个CSM模块，模块的名称为“network”。
 - step3：假设传递过来的参数为“ip:11.22.33.44”，此时这个信息优先级最高，会覆盖配置文件中的配置。
     - step3.1：`Convert API String to Cluster(Default in Session).vim`转换，从section中载入同名的key。IP信息从参数中载入；port由于参数中没有提供，但是“network”中定义了port为8080，所以最后cluster中port为8080。
-    - step3.2：`Convert API String to Cluster(Default in Session).vim`转换，从给定的section/key载入配置。IP信息从参数中载入；port由于参数中没有提供，但是network.address1中定义了port为8081，所以最后cluster中port为8081。
+    - step3.2：[`Convert API String to Cluster(Default in Key).vim`]({% link docs/reference/api-addon-ini-variable.md %}#convert-api-string-to-clusterdefault-in-keyvim)转换，从给定的section/key载入配置。IP信息从参数中载入；port由于参数中没有提供，但是network.address1中定义了port为8081，所以最后cluster中port为8081。
 - step4：假设传递过来的参数为空""，相当于没有提供参数，此时优先采用配置文件中的配置。
-    - step4.1：`Convert API String to Cluster(Default in Session).vim`转换，从section中载入同名的key。ip信息使用network.ip，结果是10.144.41.41；port使用network.port，结果是 8080。
-    - step4.2：`Convert API String to Cluster(Default in Session).vim`转换，从给定的section/key载入配置。从network.address1中载入配置，结果为ip:10.144.42.42，port:8081。
+    - step4.1：[`Convert API String to Cluster(Default in Session).vim`]({% link docs/reference/api-addon-ini-variable.md %}#convert-api-string-to-clusterdefault-in-sessionvim)转换，从section中载入同名的key。ip信息使用network.ip，结果是10.144.41.41；port使用network.port，结果是 8080。
+    - step4.2：[`Convert API String to Cluster(Default in Key).vim`]({% link docs/reference/api-addon-ini-variable.md %}#convert-api-string-to-clusterdefault-in-keyvim)转换，从给定的section/key载入配置。从network.address1中载入配置，结果为ip:10.144.42.42，port:8081。
 - step5：假设传递过来的参数为空""，相当于没有提供参数；同时INI配置文件中也没有定义对应的配置，此时采用默认常量参数。
-    - step5.1：`Convert API String to Cluster(Default in Session).vim`转换，"non-existing module" section不存在，使用提供的参考数据，结果为ip:127.0.0.1，port:80。
-    - step5.2：`Convert API String to Cluster(Default in Session).vim`转换，从给定的section/key载入配置，但是section/key都不存在。使用提供的参考数据，结果为ip:127.0.0.1，port:80。
+    - step5.1：[`Convert API String to Cluster(Default in Session).vim`]({% link docs/reference/api-addon-ini-variable.md %}#convert-api-string-to-clusterdefault-in-sessionvim)转换，"non-existing module" section不存在，使用提供的参考数据，结果为ip:127.0.0.1，port:80。
+    - step5.2：[`Convert API String to Cluster(Default in Key).vim`]({% link docs/reference/api-addon-ini-variable.md %}#convert-api-string-to-clusterdefault-in-keyvim)转换，从给定的section/key载入配置，但是section/key都不存在。使用提供的参考数据，结果为ip:127.0.0.1，port:80。
 
 
 
@@ -156,8 +156,8 @@ CSM INI Variable Support API载入的配置文件中，若包含 [__include] 段
 ### steps
 
 - step1：创建多个配置文件，注意内部引用关系。另外注意[__include]大消息不敏感。
-- step2：使用`CSM - Load Configuration Variables From File.vi`加载该文件
-- step3：可以使用`CSM - Configuration File Path.vi`获取当前加载的所有配置文件路径。
+- step2：使用[`CSM - Load Configuration Variables From File.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-load-configuration-variables-from-filevi)加载该文件
+- step3：可以使用[`CSM - Configuration File Path.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-configuration-file-pathvi)获取当前加载的所有配置文件路径。
 - step4：尝试读取配置信息，请注意覆盖关系后，实际生效的配置。
 
 
@@ -215,11 +215,11 @@ path = ${root}/${info.operator}/${info.date}/${info.test}${info.time}.tdms
 
 ### steps
 
-- step1：生成一个临时的INI文件，使用`CSM - Load Configuration Variables From File.vi`加载该文件。
+- step1：生成一个临时的INI文件，使用[`CSM - Load Configuration Variables From File.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-load-configuration-variables-from-filevi)加载该文件。
 - step2：嵌套变量中引用同一个section的配置。
-    - step2.1：`CSM - Read INI String.vi`加载的是原始配置，不会解析嵌套变量。
-    - step2.2：`CSM - Read Configuration Variable.vim`会解析嵌套变量。
-    - step2.3：`CSM - Populate Configuration Variables.vi`会解析嵌套变量。
+    - step2.1：[`CSM - Read INI String.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-read-ini-stringvi)加载的是原始配置，不会解析嵌套变量。
+    - step2.2：[`CSM - Read Configuration Variable.vim`]({% link docs/reference/api-addon-ini-variable.md %}#csm-read-configuration-variablevim)会解析嵌套变量。
+    - step2.3：[`CSM - Populate Configuration Variables.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-populate-configuration-variablesvi)会解析嵌套变量。
 - step3：嵌套变量中引用的其他section的配置，当指明section时，使用指定的section，否则优先使用当前section的配置。
 - step4：展示嵌套变量中变量名也可以引用的情况，例如：`${case${select}.addr}`。
     - step4.1：修改$`{RT.select}`为 2。
@@ -240,12 +240,12 @@ path = ${root}/${info.operator}/${info.date}/${info.test}${info.time}.tdms
 
 CSM INI Variable Support提供了修改配置信息的API。您可以使用这些API来动态更新配置文件中的键值对。请注意，由于CSM INI Variable Support为了提高效率，在读取函数处均使用全局缓存修改标志，当整体配置没有发生变化时，会快速的使用缓存的数据，提高读取效率。频繁的配置更改会降低读取VI中缓存机制的有效性。因此，本库不建议用于需要频繁修改配置的场景。
 
-可以使用`CSM - Write Configuration Variable.vi`和`CSM - Write INI String.vi`来修改配置信息。
+可以使用[`CSM - Write Configuration Variable.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-write-configuration-variablevim)和[`CSM - Write INI String.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-write-ini-stringvi)来修改配置信息。
 
 需要注意的是：
-- 默认内存中修改的配置，不会自动同步到配置文件中，需要调用`CSM - Sync Configuration Variables to File.vi`来同步到配置文件中。
+- 默认内存中修改的配置，不会自动同步到配置文件中，需要调用[`CSM - Sync Configuration Variables to File.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-sync-configuration-variables-to-filevi)来同步到配置文件中。
 - 原始配置文件定义某些配置项，才可以在同步保存到配置文件时保留下来。如果原始配置文件没有定义某些配置项，修改的变量默认只会保存在内存中，不会同步到配置文件中。
-- 可以调用`CSM - Mark All Temp Variables as Permanent.vi`将所有临时变量标记为永久变量，这样在同步保存到配置文件时，所有变量都会被保留下来。
+- 可以调用[`CSM - Mark All Temp Variables as Permanent.vi`]({% link docs/reference/api-addon-ini-variable.md %}#csm-mark-all-temp-variables-as-permanentvi)将所有临时变量标记为永久变量，这样在同步保存到配置文件时，所有变量都会被保留下来。
 
 
 
