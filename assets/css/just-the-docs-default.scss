@@ -174,21 +174,42 @@ h6:hover .anchor-heading {
   }
 }
 
-/* For ultra-wide screens (2K and larger displays) */
-/* Reduce the margin to give more space to main content */
+/* For large desktop screens (1440px and up) */
+/* First intermediate step for smoother scaling */
+@media (min-width: 90rem) {
+  .main-content-wrap {
+    /* Gradually reduce margin for large desktops */
+    /* clamp ensures margin stays between 21rem-22rem, preferring 17vw */
+    margin-right: clamp(21rem, 17vw, 22rem);
+  }
+}
+
+/* For ultra-wide screens (1920px / 2K displays) */
+/* Second step for smoother scaling */
 @media (min-width: 120rem) {
   .main-content-wrap {
-    /* On 2K/4K screens, reduce margin to allow main content to breathe */
+    /* On 2K screens, further reduce margin to allow content to breathe */
     /* TOC is 18rem wide, so 20rem margin provides adequate spacing */
     /* clamp ensures margin stays between 20rem-22rem, preferring 15vw */
     margin-right: clamp(20rem, 15vw, 22rem);
   }
 }
 
-/* For extremely wide screens (4K and beyond) */
+/* For very wide screens (2240px) */
+/* Third intermediate step for smoother scaling */
+@media (min-width: 140rem) {
+  .main-content-wrap {
+    /* Between ultra-wide and extremely wide displays */
+    /* clamp ensures margin stays between 19rem-22rem, preferring 13vw */
+    margin-right: clamp(19rem, 13vw, 22rem);
+  }
+}
+
+/* For extremely wide screens (2560px / 4K and beyond) */
+/* Final step for maximum content width */
 @media (min-width: 160rem) {
   .main-content-wrap {
-    /* On 4K+ screens, use even less margin for maximum content width */
+    /* On 4K+ screens, use minimum margin for maximum content width */
     /* while maintaining TOC visibility and proper spacing */
     /* clamp ensures margin stays between 18rem-22rem, preferring 12vw */
     margin-right: clamp(18rem, 12vw, 22rem);
