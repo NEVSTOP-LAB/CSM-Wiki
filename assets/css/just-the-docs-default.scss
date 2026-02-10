@@ -165,11 +165,53 @@ h6:hover .anchor-heading {
   }
 }
 
-/* Adjust main content width when TOC is visible */
+/* Adjust main content when TOC is visible - Dynamic responsive layout */
 @media (min-width: 66.5rem) {
   .main-content-wrap {
-    /* Use margin-right to prevent overlap with TOC while allowing main-content to be as wide as possible */
-    /* TOC width (18rem) + right spacing (2rem) + additional margin (2rem) = 22rem */
+    /* Keep the TOC space reserved but use percentage-based calculation */
+    /* This allows the content to expand naturally on larger screens */
     margin-right: 22rem;
+  }
+}
+
+/* For large desktop screens (1440px and up) */
+/* First intermediate step for smoother scaling */
+@media (min-width: 90rem) {
+  .main-content-wrap {
+    /* Gradually reduce margin for large desktops */
+    /* clamp ensures margin stays between 21rem-22rem, preferring 17vw */
+    margin-right: clamp(21rem, 17vw, 22rem);
+  }
+}
+
+/* For ultra-wide screens (1920px / 2K displays) */
+/* Second step for smoother scaling */
+@media (min-width: 120rem) {
+  .main-content-wrap {
+    /* On 2K screens, further reduce margin to allow content to breathe */
+    /* TOC is 18rem wide, so 20rem margin provides adequate spacing */
+    /* clamp ensures margin stays between 20rem-22rem, preferring 15vw */
+    margin-right: clamp(20rem, 15vw, 22rem);
+  }
+}
+
+/* For very wide screens (2240px) */
+/* Third intermediate step for smoother scaling */
+@media (min-width: 140rem) {
+  .main-content-wrap {
+    /* Between ultra-wide and extremely wide displays */
+    /* clamp ensures margin stays between 19rem-22rem, preferring 13vw */
+    margin-right: clamp(19rem, 13vw, 22rem);
+  }
+}
+
+/* For extremely wide screens (2560px / 4K and beyond) */
+/* Final step for maximum content width */
+@media (min-width: 160rem) {
+  .main-content-wrap {
+    /* On 4K+ screens, use minimum margin for maximum content width */
+    /* while maintaining TOC visibility and proper spacing */
+    /* clamp ensures margin stays between 18rem-22rem, preferring 12vw */
+    margin-right: clamp(18rem, 12vw, 22rem);
   }
 }
