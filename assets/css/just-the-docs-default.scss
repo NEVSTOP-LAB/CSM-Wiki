@@ -90,22 +90,18 @@ h6:hover .anchor-heading {
   }
 }
 
-/* Collapsible TOC (Table of Contents) below the navbar */
+/* Collapsible TOC (Table of Contents) in the sidebar */
 .page-toc {
   position: relative;
   width: 100%;
   max-width: 100%;
   margin: 1rem 0;
-  padding: 1rem;
-  background-color: #f5f6fa;
-  border-radius: 8px;
-  border: 1px solid #eeebee;
+  padding: 0.875rem;
+  background-color: #f8f9fa; /* Light background for sidebar integration */
+  border-radius: 6px;
+  border: 1px solid #e1e4e8; /* Subtle border matching sidebar style */
   font-size: 0.875rem;
-  display: none; /* Hidden by default, shown when toggled */
-}
-
-.page-toc.show {
-  display: block;
+  display: block; /* Visible by default in sidebar */
 }
 
 .page-toc-heading {
@@ -118,12 +114,16 @@ h6:hover .anchor-heading {
   border-bottom: 1px solid #d8dae0;
   cursor: pointer;
   user-select: none;
+  display: flex;
+  align-items: center;
 }
 
 .page-toc-heading::before {
-  content: '▼ ';
+  content: '▼';
   display: inline-block;
+  margin-right: 0.5rem;
   transition: transform 0.3s;
+  font-size: 0.75rem;
 }
 
 .page-toc.collapsed .page-toc-heading::before {
@@ -165,7 +165,7 @@ h6:hover .anchor-heading {
   border-left: 2px solid #5e41d0;
 }
 
-/* Remove nested TOC indentation on smaller displays since TOC is now inline */
+/* Nested TOC indentation */
 .page-toc-list .toc-h3 {
   padding-left: 1rem;
   font-size: 0.8125rem;
@@ -176,34 +176,11 @@ h6:hover .anchor-heading {
   font-size: 0.75rem;
 }
 
-/* TOC Toggle Button - positioned in navbar or at top of content */
-.toc-toggle-button {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  margin: 0.5rem 0;
-  background-color: #5e41d0;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 600;
-  transition: background-color 0.2s;
-}
-
-.toc-toggle-button:hover {
-  background-color: #4c33a8;
-}
-
-.toc-toggle-button::before {
-  content: '☰ ';
-  margin-right: 0.25rem;
-}
-
-/* Remove TOC-related media queries since TOC is no longer floating */
+/* Mobile responsive behavior */
 @media (max-width: 66.5rem) {
   .page-toc {
-    /* TOC is now always inline, so no need to hide on small screens */
+    /* TOC will be hidden/shown with sidebar collapse on mobile */
+    /* The just-the-docs theme handles sidebar visibility automatically */
   }
 }
 

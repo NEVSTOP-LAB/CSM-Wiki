@@ -17,20 +17,12 @@
     const lang = document.documentElement.lang || 'zh';
     const tocText = lang.startsWith('zh') ? '目录' : 'Table of Contents';
     
-    // Create TOC toggle button
-    const toggleButton = document.createElement('button');
-    toggleButton.className = 'toc-toggle-button';
-    toggleButton.textContent = tocText;
-    toggleButton.setAttribute('aria-label', 'Toggle Table of Contents');
-    toggleButton.setAttribute('aria-expanded', 'false');
-    toggleButton.setAttribute('aria-controls', 'page-toc-nav');
-    
     // Create TOC container
     const tocContainer = document.createElement('nav');
-    tocContainer.className = 'page-toc';
+    tocContainer.className = 'page-toc'; // Will be visible by default
     tocContainer.setAttribute('aria-label', 'Table of Contents');
     tocContainer.setAttribute('id', 'page-toc-nav');
-    tocContainer.setAttribute('aria-hidden', 'true');
+    tocContainer.setAttribute('aria-hidden', 'false');
     
     // Create TOC heading
     const tocHeading = document.createElement('div');
@@ -96,26 +88,28 @@
     
     tocContainer.appendChild(tocList);
     
-    // Add toggle functionality
-    toggleButton.addEventListener('click', function() {
-      const isVisible = tocContainer.classList.contains('show');
-      tocContainer.classList.toggle('show');
-      toggleButton.setAttribute('aria-expanded', !isVisible);
-      tocContainer.setAttribute('aria-hidden', isVisible);
-    });
-    
-    // Add collapse/expand functionality to TOC heading
+    // Add collapse/expand functionality to TOC heading (click to collapse/expand)
     tocHeading.addEventListener('click', function() {
       tocContainer.classList.toggle('collapsed');
     });
     
-    // Insert toggle button and TOC at the beginning of main content
-    const mainContentWrap = document.querySelector('.main-content-wrap');
-    if (mainContentWrap) {
-      // Insert button before the main content
-      mainContent.insertBefore(toggleButton, mainContent.firstChild);
-      // Insert TOC after the button
-      mainContent.insertBefore(tocContainer, toggleButton.nextSibling);
+    // Insert TOC into sidebar below nav-list
+    const sideBar = document.querySelector('.side-bar');
+    const navList = document.querySelector('.nav-list');
+    
+    if (sideBar && navList) {
+      // Insert TOC container after the nav-list
+      if (navList.nextSibling) {
+        sideBar.insertBefore(tocContainer, navList.nextSibling);
+      } else {
+        sideBar.appendChild(tocContainer);
+      }
+    } else {
+      // Fallback: insert TOC at the beginning of main content if sidebar is not found
+      const mainContentWrap = document.querySelector('.main-content-wrap');
+      if (mainContentWrap) {
+        mainContent.insertBefore(tocContainer, mainContent.firstChild);
+      }
     }
     
     // Set up scroll spy to highlight current section
