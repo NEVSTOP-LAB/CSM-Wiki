@@ -104,15 +104,11 @@
       } else {
         sideBar.appendChild(tocContainer);
       }
-      
-      // Remove toggle button - TOC will be always visible in sidebar
-      // toggleButton is no longer needed
     } else {
-      // Fallback to old behavior if sidebar is not found
+      // Fallback: insert TOC at the beginning of main content if sidebar is not found
       const mainContentWrap = document.querySelector('.main-content-wrap');
       if (mainContentWrap) {
-        mainContent.insertBefore(toggleButton, mainContent.firstChild);
-        mainContent.insertBefore(tocContainer, toggleButton.nextSibling);
+        mainContent.insertBefore(tocContainer, mainContent.firstChild);
       }
     }
     
