@@ -90,20 +90,22 @@ h6:hover .anchor-heading {
   }
 }
 
-/* Floating TOC (Table of Contents) on the right side */
+/* Collapsible TOC (Table of Contents) below the navbar */
 .page-toc {
-  position: fixed;
-  right: 2rem;
-  top: 6rem;
-  width: 18rem;
-  max-height: calc(100vh - 8rem);
-  overflow-y: auto;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 1rem 0;
   padding: 1rem;
   background-color: #f5f6fa;
   border-radius: 8px;
   border: 1px solid #eeebee;
   font-size: 0.875rem;
-  z-index: 100;
+  display: none; /* Hidden by default, shown when toggled */
+}
+
+.page-toc.show {
+  display: block;
 }
 
 .page-toc-heading {
@@ -114,6 +116,22 @@ h6:hover .anchor-heading {
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #d8dae0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.page-toc-heading::before {
+  content: '▼ ';
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.page-toc.collapsed .page-toc-heading::before {
+  transform: rotate(-90deg);
+}
+
+.page-toc.collapsed .page-toc-list {
+  display: none;
 }
 
 .page-toc-list {
@@ -147,7 +165,7 @@ h6:hover .anchor-heading {
   border-left: 2px solid #5e41d0;
 }
 
-/* Nested TOC items (h3, h4, etc.) */
+/* Remove nested TOC indentation on smaller displays since TOC is now inline */
 .page-toc-list .toc-h3 {
   padding-left: 1rem;
   font-size: 0.8125rem;
@@ -158,60 +176,41 @@ h6:hover .anchor-heading {
   font-size: 0.75rem;
 }
 
-/* Hide TOC on smaller screens */
+/* TOC Toggle Button - positioned in navbar or at top of content */
+.toc-toggle-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  background-color: #5e41d0;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.toc-toggle-button:hover {
+  background-color: #4c33a8;
+}
+
+.toc-toggle-button::before {
+  content: '☰ ';
+  margin-right: 0.25rem;
+}
+
+/* Remove TOC-related media queries since TOC is no longer floating */
 @media (max-width: 66.5rem) {
   .page-toc {
-    display: none;
+    /* TOC is now always inline, so no need to hide on small screens */
   }
 }
 
-/* Adjust main content when TOC is visible - Dynamic responsive layout */
+/* Adjust main content - no longer need right margin for floating TOC */
 @media (min-width: 66.5rem) {
   .main-content-wrap {
-    /* Keep the TOC space reserved but use percentage-based calculation */
-    /* This allows the content to expand naturally on larger screens */
-    margin-right: 22rem;
-  }
-}
-
-/* For large desktop screens (1440px and up) */
-/* First intermediate step for smoother scaling */
-@media (min-width: 90rem) {
-  .main-content-wrap {
-    /* Gradually reduce margin for large desktops */
-    /* clamp ensures margin stays between 21rem-22rem, preferring 17vw */
-    margin-right: clamp(21rem, 17vw, 22rem);
-  }
-}
-
-/* For ultra-wide screens (1920px / 2K displays) */
-/* Second step for smoother scaling */
-@media (min-width: 120rem) {
-  .main-content-wrap {
-    /* On 2K screens, further reduce margin to allow content to breathe */
-    /* TOC is 18rem wide, so 20rem margin provides adequate spacing */
-    /* clamp ensures margin stays between 20rem-22rem, preferring 15vw */
-    margin-right: clamp(20rem, 15vw, 22rem);
-  }
-}
-
-/* For very wide screens (2240px) */
-/* Third intermediate step for smoother scaling */
-@media (min-width: 140rem) {
-  .main-content-wrap {
-    /* Between ultra-wide and extremely wide displays */
-    /* clamp ensures margin stays between 19rem-22rem, preferring 13vw */
-    margin-right: clamp(19rem, 13vw, 22rem);
-  }
-}
-
-/* For extremely wide screens (2560px / 4K and beyond) */
-/* Final step for maximum content width */
-@media (min-width: 160rem) {
-  .main-content-wrap {
-    /* On 4K+ screens, use minimum margin for maximum content width */
-    /* while maintaining TOC visibility and proper spacing */
-    /* clamp ensures margin stays between 18rem-22rem, preferring 12vw */
-    margin-right: clamp(18rem, 12vw, 22rem);
+    /* Remove right margin since TOC is now inline */
+    margin-right: 0;
   }
 }
