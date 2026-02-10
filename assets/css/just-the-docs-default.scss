@@ -168,6 +168,7 @@ h6:hover .anchor-heading {
 /* Adjust main content width when TOC is visible */
 @media (min-width: 66.5rem) {
   .main-content-wrap {
+    /* TOC width (16rem) + spacing (2rem) = 18rem */
     max-width: calc(100% - 18rem);
   }
 }

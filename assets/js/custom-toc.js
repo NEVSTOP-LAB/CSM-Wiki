@@ -108,7 +108,9 @@
       
       // Find the current heading based on scroll position
       headings.forEach((heading, index) => {
-        if (heading.offsetTop <= scrollPosition) {
+        const rect = heading.getBoundingClientRect();
+        const offsetTop = rect.top + window.scrollY;
+        if (offsetTop <= scrollPosition) {
           currentHeading = index;
         }
       });
