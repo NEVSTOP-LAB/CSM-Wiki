@@ -165,11 +165,39 @@ h6:hover .anchor-heading {
   }
 }
 
-/* Adjust main content width when TOC is visible */
+/* Adjust main content width when TOC is visible - Dynamic calculation */
 @media (min-width: 66.5rem) {
   .main-content-wrap {
-    /* Use margin-right to prevent overlap with TOC while allowing main-content to be as wide as possible */
-    /* TOC width (18rem) + right spacing (2rem) + additional margin (2rem) = 22rem */
-    margin-right: 22rem;
+    /* Dynamically calculate margin based on available space */
+    /* Ensure TOC has space while allowing main content to expand naturally */
+    max-width: calc(100% - 22rem);
+  }
+  
+  .main-content {
+    /* Allow content to use available space but prevent overly long lines */
+    /* Set a comfortable max-width for readability while adapting to screen size */
+    max-width: 100%;
+  }
+}
+
+/* For medium-large screens (typical desktop) */
+@media (min-width: 66.5rem) and (max-width: 120rem) {
+  .main-content {
+    /* Balanced width for standard desktop monitors */
+    max-width: calc(100vw - 300px - 24rem);
+  }
+}
+
+/* For ultra-wide screens (2K/4K and beyond) */
+@media (min-width: 120rem) {
+  .main-content-wrap {
+    /* On very large screens, allow more space for main content */
+    max-width: none;
+  }
+  
+  .main-content {
+    /* Set a comfortable maximum reading width to prevent overly long lines */
+    /* while still using more of the available space than the fixed 22rem approach */
+    max-width: calc(100vw - 300px - 24rem);
   }
 }
