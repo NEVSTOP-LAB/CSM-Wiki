@@ -19,10 +19,10 @@
     
     // Create TOC container
     const tocContainer = document.createElement('nav');
-    tocContainer.className = 'page-toc show'; // Add 'show' class by default for sidebar display
+    tocContainer.className = 'page-toc'; // Will be visible by default
     tocContainer.setAttribute('aria-label', 'Table of Contents');
     tocContainer.setAttribute('id', 'page-toc-nav');
-    tocContainer.setAttribute('aria-hidden', 'false'); // Make visible by default
+    tocContainer.setAttribute('aria-hidden', 'false');
     
     // Create TOC heading
     const tocHeading = document.createElement('div');

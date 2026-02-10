@@ -101,11 +101,7 @@ h6:hover .anchor-heading {
   border-radius: 6px;
   border: 1px solid #eeebee;
   font-size: 0.875rem;
-  display: block; /* Always visible in sidebar */
-}
-
-.page-toc.show {
-  display: block;
+  display: block; /* Visible by default in sidebar */
 }
 
 .page-toc-heading {
@@ -188,10 +184,11 @@ h6:hover .anchor-heading {
   border: 1px solid #e1e4e8;
 }
 
-/* Remove TOC-related media queries since TOC is now in sidebar */
+/* Mobile responsive behavior */
 @media (max-width: 66.5rem) {
   .page-toc {
-    /* TOC is in sidebar, hidden when sidebar is collapsed on mobile */
+    /* TOC will be hidden/shown with sidebar collapse on mobile */
+    /* The just-the-docs theme handles sidebar visibility automatically */
   }
 }
 
