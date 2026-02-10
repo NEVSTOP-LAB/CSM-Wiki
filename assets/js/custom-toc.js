@@ -1,4 +1,4 @@
-// Generate floating Table of Contents (TOC) automatically
+// Generate collapsible Table of Contents (TOC) below navbar
 (function() {
   'use strict';
   
@@ -13,16 +13,29 @@
     // Need at least 2 headings to show TOC
     if (headings.length < 2) return;
     
+    // Detect language once for consistent text
+    const lang = document.documentElement.lang || 'zh';
+    const tocText = lang.startsWith('zh') ? '目录' : 'Table of Contents';
+    
+    // Create TOC toggle button
+    const toggleButton = document.createElement('button');
+    toggleButton.className = 'toc-toggle-button';
+    toggleButton.textContent = tocText;
+    toggleButton.setAttribute('aria-label', 'Toggle Table of Contents');
+    toggleButton.setAttribute('aria-expanded', 'false');
+    toggleButton.setAttribute('aria-controls', 'page-toc-nav');
+    
     // Create TOC container
     const tocContainer = document.createElement('nav');
     tocContainer.className = 'page-toc';
     tocContainer.setAttribute('aria-label', 'Table of Contents');
+    tocContainer.setAttribute('id', 'page-toc-nav');
+    tocContainer.setAttribute('aria-hidden', 'true');
     
-    // Create TOC heading - check for site language or default to Chinese
+    // Create TOC heading
     const tocHeading = document.createElement('div');
     tocHeading.className = 'page-toc-heading';
-    const lang = document.documentElement.lang || 'zh';
-    tocHeading.textContent = lang.startsWith('zh') ? '目录' : 'Table of Contents';
+    tocHeading.textContent = tocText;
     tocContainer.appendChild(tocHeading);
     
     // Create TOC list
@@ -83,10 +96,26 @@
     
     tocContainer.appendChild(tocList);
     
-    // Insert TOC into the page
+    // Add toggle functionality
+    toggleButton.addEventListener('click', function() {
+      const isVisible = tocContainer.classList.contains('show');
+      tocContainer.classList.toggle('show');
+      toggleButton.setAttribute('aria-expanded', !isVisible);
+      tocContainer.setAttribute('aria-hidden', isVisible);
+    });
+    
+    // Add collapse/expand functionality to TOC heading
+    tocHeading.addEventListener('click', function() {
+      tocContainer.classList.toggle('collapsed');
+    });
+    
+    // Insert toggle button and TOC at the beginning of main content
     const mainContentWrap = document.querySelector('.main-content-wrap');
     if (mainContentWrap) {
-      mainContentWrap.appendChild(tocContainer);
+      // Insert button before the main content
+      mainContent.insertBefore(toggleButton, mainContent.firstChild);
+      // Insert TOC after the button
+      mainContent.insertBefore(tocContainer, toggleButton.nextSibling);
     }
     
     // Set up scroll spy to highlight current section
