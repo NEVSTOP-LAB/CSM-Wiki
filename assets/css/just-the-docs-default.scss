@@ -168,9 +168,8 @@ h6:hover .anchor-heading {
 /* Adjust main content width when TOC is visible */
 @media (min-width: 66.5rem) {
   .main-content-wrap {
-    /* Use margin-right to prevent overlap with TOC while allowing main-content to be 100% wide */
+    /* Use margin-right to prevent overlap with TOC while allowing main-content to be as wide as possible */
     /* TOC width (18rem) + right spacing (2rem) + additional margin (2rem) = 22rem */
     margin-right: 22rem;
-    max-width: 100%;
   }
 }
