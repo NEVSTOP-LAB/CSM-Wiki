@@ -18,15 +18,19 @@
     tocContainer.className = 'page-toc';
     tocContainer.setAttribute('aria-label', 'Table of Contents');
     
-    // Create TOC heading
+    // Create TOC heading - check for site language or default to Chinese
     const tocHeading = document.createElement('div');
     tocHeading.className = 'page-toc-heading';
-    tocHeading.textContent = '目录';
+    const lang = document.documentElement.lang || 'zh';
+    tocHeading.textContent = lang.startsWith('zh') ? '目录' : 'Table of Contents';
     tocContainer.appendChild(tocHeading);
     
     // Create TOC list
     const tocList = document.createElement('ul');
     tocList.className = 'page-toc-list';
+    
+    // Track used IDs to ensure uniqueness
+    const usedIds = new Set();
     
     headings.forEach(heading => {
       const level = heading.tagName.toLowerCase();
@@ -36,21 +40,37 @@
       const link = document.createElement('a');
       link.textContent = heading.textContent.replace(/^#\s*/, '').trim();
       
-      // Get the heading ID or create one
+      // Get the heading ID or create a unique one
       let headingId = heading.id;
       if (!headingId) {
         headingId = heading.textContent.toLowerCase()
           .replace(/[^\w\u4e00-\u9fa5]+/g, '-')
           .replace(/^-|-$/g, '');
+        
+        // Ensure uniqueness by appending a counter if needed
+        let uniqueId = headingId;
+        let counter = 1;
+        while (usedIds.has(uniqueId)) {
+          uniqueId = `${headingId}-${counter}`;
+          counter++;
+        }
+        headingId = uniqueId;
         heading.id = headingId;
       }
+      usedIds.add(headingId);
       
       link.href = `#${headingId}`;
+      
+      // Check if user prefers reduced motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       
       // Add click handler for smooth scroll
       link.addEventListener('click', function(e) {
         e.preventDefault();
-        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        heading.scrollIntoView({ 
+          behavior: prefersReducedMotion ? 'auto' : 'smooth', 
+          block: 'start' 
+        });
         history.pushState(null, null, `#${headingId}`);
         
         // Update active link

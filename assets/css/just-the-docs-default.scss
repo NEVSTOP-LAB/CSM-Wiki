@@ -12,50 +12,50 @@ body {
 }
 
 /* Heading styles - harmonious sizing and styling */
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
-  font-weight: 700 !important; /* Make all headings bold */
+.main-content h1, .main-content .h1,
+.main-content h2, .main-content .h2,
+.main-content h3, .main-content .h3,
+.main-content h4, .main-content .h4,
+.main-content h5, .main-content .h5,
+.main-content h6, .main-content .h6 {
+  font-weight: 700; /* Make all headings bold */
   margin-top: 1.5em;
   margin-bottom: 0.75em;
 }
 
 /* Level 1 heading - largest with underline */
-h1, .h1 {
-  font-size: 2.25rem !important; /* 36px - significantly larger than body text */
-  border-bottom: 3px solid #5c5962 !important; /* Underline for h1 */
+.main-content h1, .main-content .h1 {
+  font-size: 2.25rem; /* 36px - significantly larger than body text */
+  border-bottom: 3px solid #5c5962; /* Underline for h1 */
   padding-bottom: 0.5rem;
   margin-top: 0;
 }
 
 /* Level 2 heading - large with underline */
-h2, .h2 {
-  font-size: 1.875rem !important; /* 30px */
-  border-bottom: 2px solid #5c5962 !important; /* Underline for h2 */
+.main-content h2, .main-content .h2 {
+  font-size: 1.875rem; /* 30px */
+  border-bottom: 2px solid #5c5962; /* Underline for h2 */
   padding-bottom: 0.4rem;
 }
 
 /* Level 3 heading */
-h3, .h3 {
-  font-size: 1.5rem !important; /* 24px */
+.main-content h3, .main-content .h3 {
+  font-size: 1.5rem; /* 24px */
 }
 
 /* Level 4 heading */
-h4, .h4 {
-  font-size: 1.25rem !important; /* 20px */
+.main-content h4, .main-content .h4 {
+  font-size: 1.25rem; /* 20px */
 }
 
 /* Level 5 heading */
-h5, .h5 {
-  font-size: 1.125rem !important; /* 18px */
+.main-content h5, .main-content .h5 {
+  font-size: 1.125rem; /* 18px */
 }
 
 /* Level 6 heading */
-h6, .h6 {
-  font-size: 1rem !important; /* 16px - same as body but bold */
+.main-content h6, .main-content .h6 {
+  font-size: 1rem; /* 16px - same as body but bold */
 }
 
 /* Adjust navigation headings for better hierarchy */
