@@ -22,7 +22,7 @@ CSM 支持三种通讯方式：同步调用、异步调用和状态订阅。选�
 
 ## 超时配置
 
-默认超时时间为 -2（使用全局设置）。可以通过 `CSM - Set TMO of Sync-Reply VI` 修改全局超时。
+默认超时时间为 -2（使用全局设置）。可以通过[`CSM - Set TMO of Sync-Reply.vi`]({% link docs/reference/api-05-module-operation-api.md %}#csm-set-tmo-of-sync-replyvi)修改全局超时。
 
 **特殊值**:
 - `-2`: 使用全局超时（默认）

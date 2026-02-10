@@ -43,7 +43,7 @@ Error Occurred@* >> Error Handler -><register>
 
 ## 系统级模块
 
-系统级模块用于实现后台服务，名称以`.`开头，默认不会被`CSM - List Modules VI`列出。这样可以将后台服务（日志、调度等）与业务模块分离。
+系统级模块用于实现后台服务，名称以`.`开头，默认不会被[`CSM - List Modules.vi`]({% link docs/reference/api-04-management-api.md %}#csm-list-modulesvi)列出。这样可以将后台服务（日志、调度等）与业务模块分离。
 
 ### 命名规则
 
@@ -65,7 +65,7 @@ Macro: Exit -> CSM - List Modules VI的结果
 
 ## 子模块
 
-通过名称中的`.`实现逻辑分组。`ModuleA`和`ModuleA.SubmoduleB`是两个独立模块，没有特殊依赖关系，只是命名上的约定。使用`CSM - List Submodules VI`可以获取某个前缀下的所有模块。
+通过名称中的`.`实现逻辑分组。`ModuleA`和`ModuleA.SubmoduleB`是两个独立模块，没有特殊依赖关系，只是命名上的约定。使用[`CSM - List Submodules.vi`]({% link docs/reference/api-04-management-api.md %}#csm-list-submodulesvi)可以获取某个前缀下的所有模块。
 
 ### 应用场景
 

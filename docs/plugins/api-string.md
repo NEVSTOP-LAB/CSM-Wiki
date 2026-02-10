@@ -25,7 +25,7 @@ API String Addon旨在解决以下问题：
 2. **多类型支持**：支持22种以上的数据类型
 3. **灵活解析**：支持多种格式表示同一数据
 4. **自动类型转换**：根据参考数据类型自动转换
-5. **无参数类型标记**：通过`CSM - Argument Type VI`返回空，在默认分支处理
+5. **无参数类型标记**：通过[`CSM - Argument Type.vi`]({% link docs/reference/api-03-arguments.md %}#csm-argument-typevi)返回空，在默认分支处理
 6. **手动输入优化**：支持多种便捷的输入格式
 
 ### 工作原理
@@ -66,7 +66,7 @@ API String不使用参数类型标记，而是：
 
 ## 参数类型识别
 
-API String未定义参数类型标记，通过`CSM - Argument Type VI`获取的结果为空，通常在默认分支中处理。
+API String未定义参数类型标记，通过[`CSM - Argument Type.vi`]({% link docs/reference/api-03-arguments.md %}#csm-argument-typevi)获取的结果为空，通常在默认分支中处理。
 
 ```labview
 CSM - Argument Type.vi
