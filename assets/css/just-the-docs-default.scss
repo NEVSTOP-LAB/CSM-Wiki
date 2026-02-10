@@ -174,21 +174,23 @@ h6:hover .anchor-heading {
   }
 }
 
-/* For ultra-wide screens (2K @ 120rem+, 4K @ 240rem+) */
+/* For ultra-wide screens (2K and larger displays) */
 /* Reduce the margin to give more space to main content */
 @media (min-width: 120rem) {
   .main-content-wrap {
     /* On 2K/4K screens, reduce margin to allow main content to breathe */
     /* TOC is 18rem wide, so 20rem margin provides adequate spacing */
-    margin-right: max(20rem, min(22rem, 15vw));
+    /* clamp ensures margin stays between 20rem-22rem, preferring 15vw */
+    margin-right: clamp(20rem, 15vw, 22rem);
   }
 }
 
-/* For extremely wide screens (4K+) */
+/* For extremely wide screens (4K and beyond) */
 @media (min-width: 160rem) {
   .main-content-wrap {
     /* On 4K+ screens, use even less margin for maximum content width */
     /* while maintaining TOC visibility and proper spacing */
-    margin-right: max(18rem, 12vw);
+    /* clamp ensures margin stays between 18rem-22rem, preferring 12vw */
+    margin-right: clamp(18rem, 12vw, 22rem);
   }
 }
