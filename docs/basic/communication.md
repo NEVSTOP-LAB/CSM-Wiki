@@ -192,7 +192,7 @@ End
 
 ## 发布状态
 
-用 `CSM Broadcast Status Change.vi` 发布状态：
+用[`CSM Broadcast Status Change.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm-broadcast-status-changevi)发布状态：
 ![Alt text](https://nevstop-lab.github.io/CSM-Wiki/assets/img/CSM%20Broadcast%20Status%20Change.png)
 
 或者直接用字符串：
@@ -202,7 +202,7 @@ I'm timeout >> statusArguments -> <all>
 
 ## 订阅状态
 
-用 `AdvanceAPI\CSM Register Status Change.vi` 订阅，`CSM Unregister Status Change.vi` 取消订阅。
+用[`CSM Register Status Change.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm-register-status-changevi)订阅，[`CSM Unregister Status Change.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm-unregister-status-changevi)取消订阅。
 
 支持通配符 "*" 代表所有模块。比如订阅 "*" 的 "Error Occurred" 状态，就能收到所有模块的错误通知。
 

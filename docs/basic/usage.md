@@ -238,7 +238,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 把CSM关键字转成安全格式，比如 `->` 转成 `%3E%3E`。
 
 **API**：
-- 编码：`CSM - Make String Arguments Safe.vi`
+- 编码：[`CSM - Make String Arguments Safe.vi`]({% link docs/reference/api-03-arguments.md %}#csm-make-string-arguments-safevi)
 - 解码：[`CSM - Revert Arguments-Safe String.vi`]({% link docs/reference/api-03-arguments.md %}#csm-revert-arguments-safe-stringvi)
 
 ```labview
@@ -253,7 +253,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 
 **API**：
 - 编码：[`CSM - Convert Data to HexStr.vi`]({% link docs/reference/api-03-arguments.md %}#csm-convert-data-to-hexstrvi)
-- 解码：`CSM - Convert HexStr to Data.vi`
+- 解码：[`CSM - Convert HexStr to Data.vi`]({% link docs/reference/api-03-arguments.md %}#csm-convert-hexstr-to-datavi)
 
 ```labview
 输入: [1.0, 2.5, 3.7] (DBL Array)
@@ -268,7 +268,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 
 **API**：
 - 编码：[`CSM - Convert Error to Argument.vi`]({% link docs/reference/api-03-arguments.md %}#csm-convert-error-to-argumentvi)
-- 解码：`CSM - Convert Argument to Error.vi`
+- 解码：[`CSM - Convert Argument to Error.vi`]({% link docs/reference/api-03-arguments.md %}#csm-convert-argument-to-errorvi)
 
 ```labview
 输入: Error 1 - "File not found"
@@ -282,7 +282,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 ![table](https://nevstop-lab.github.io/CSM-Wiki/assets/img/slides/Baisic-4.Arguments(CN).png)
 
 - [`CSM - Argument Type.vi`]({% link docs/reference/api-03-arguments.md %}#csm-argument-typevi)：识别参数类型
-- `CSM - Keywords.vi`：列出CSM关键字
+- [`CSM - Keywords.vi`]({% link docs/reference/api-10-utility-vis.md %}#csm-keywordsvi)：列出CSM关键字
 - Safe/HexStr/ErrStr 编解码 VI 各一对
 
 ### 使用场景
