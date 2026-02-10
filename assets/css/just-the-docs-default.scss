@@ -1,0 +1,91 @@
+---
+---
+
+{% include css/just-the-docs.scss.liquid color_scheme="light" %}
+
+/* Custom CSS for better heading display */
+
+/* Base typography improvements */
+body {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Heading styles - harmonious sizing and styling */
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-weight: 700 !important; /* Make all headings bold */
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+/* Level 1 heading - largest with underline */
+h1, .h1 {
+  font-size: 2.25rem !important; /* 36px - significantly larger than body text */
+  border-bottom: 3px solid #5c5962 !important; /* Underline for h1 */
+  padding-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+/* Level 2 heading - large with underline */
+h2, .h2 {
+  font-size: 1.875rem !important; /* 30px */
+  border-bottom: 2px solid #5c5962 !important; /* Underline for h2 */
+  padding-bottom: 0.4rem;
+}
+
+/* Level 3 heading */
+h3, .h3 {
+  font-size: 1.5rem !important; /* 24px */
+}
+
+/* Level 4 heading */
+h4, .h4 {
+  font-size: 1.25rem !important; /* 20px */
+}
+
+/* Level 5 heading */
+h5, .h5 {
+  font-size: 1.125rem !important; /* 18px */
+}
+
+/* Level 6 heading */
+h6, .h6 {
+  font-size: 1rem !important; /* 16px - same as body but bold */
+}
+
+/* Adjust navigation headings for better hierarchy */
+.side-bar .site-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Improve heading anchors visibility */
+.anchor-heading {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+h1:hover .anchor-heading,
+h2:hover .anchor-heading,
+h3:hover .anchor-heading,
+h4:hover .anchor-heading,
+h5:hover .anchor-heading,
+h6:hover .anchor-heading {
+  opacity: 1;
+}
+
+/* Better spacing for content readability */
+.main-content {
+  p {
+    margin-bottom: 1em;
+  }
+  
+  ul, ol {
+    margin-bottom: 1em;
+  }
+}
