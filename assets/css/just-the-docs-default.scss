@@ -165,39 +165,30 @@ h6:hover .anchor-heading {
   }
 }
 
-/* Adjust main content width when TOC is visible - Dynamic calculation */
+/* Adjust main content when TOC is visible - Dynamic responsive layout */
 @media (min-width: 66.5rem) {
   .main-content-wrap {
-    /* Dynamically calculate margin based on available space */
-    /* Ensure TOC has space while allowing main content to expand naturally */
-    max-width: calc(100% - 22rem);
-  }
-  
-  .main-content {
-    /* Allow content to use available space but prevent overly long lines */
-    /* Set a comfortable max-width for readability while adapting to screen size */
-    max-width: 100%;
+    /* Keep the TOC space reserved but use percentage-based calculation */
+    /* This allows the content to expand naturally on larger screens */
+    margin-right: 22rem;
   }
 }
 
-/* For medium-large screens (typical desktop) */
-@media (min-width: 66.5rem) and (max-width: 120rem) {
-  .main-content {
-    /* Balanced width for standard desktop monitors */
-    max-width: calc(100vw - 300px - 24rem);
-  }
-}
-
-/* For ultra-wide screens (2K/4K and beyond) */
+/* For ultra-wide screens (2K @ 120rem+, 4K @ 240rem+) */
+/* Reduce the margin to give more space to main content */
 @media (min-width: 120rem) {
   .main-content-wrap {
-    /* On very large screens, allow more space for main content */
-    max-width: none;
+    /* On 2K/4K screens, reduce margin to allow main content to breathe */
+    /* TOC is 18rem wide, so 20rem margin provides adequate spacing */
+    margin-right: max(20rem, min(22rem, 15vw));
   }
-  
-  .main-content {
-    /* Set a comfortable maximum reading width to prevent overly long lines */
-    /* while still using more of the available space than the fixed 22rem approach */
-    max-width: calc(100vw - 300px - 24rem);
+}
+
+/* For extremely wide screens (4K+) */
+@media (min-width: 160rem) {
+  .main-content-wrap {
+    /* On 4K+ screens, use even less margin for maximum content width */
+    /* while maintaining TOC visibility and proper spacing */
+    margin-right: max(18rem, 12vw);
   }
 }
