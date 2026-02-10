@@ -96,10 +96,10 @@ h6:hover .anchor-heading {
   width: 100%;
   max-width: 100%;
   margin: 1rem 0;
-  padding: 1rem;
-  background-color: #f5f6fa;
+  padding: 0.875rem;
+  background-color: #f8f9fa; /* Light background for sidebar integration */
   border-radius: 6px;
-  border: 1px solid #eeebee;
+  border: 1px solid #e1e4e8; /* Subtle border matching sidebar style */
   font-size: 0.875rem;
   display: block; /* Visible by default in sidebar */
 }
@@ -174,14 +174,6 @@ h6:hover .anchor-heading {
 .page-toc-list .toc-h4 {
   padding-left: 2rem;
   font-size: 0.75rem;
-}
-
-/* Sidebar TOC styling adjustments */
-.side-bar .page-toc {
-  margin-top: 1.5rem;
-  padding: 0.875rem;
-  background-color: #f8f9fa;
-  border: 1px solid #e1e4e8;
 }
 
 /* Mobile responsive behavior */
