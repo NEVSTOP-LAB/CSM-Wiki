@@ -95,7 +95,7 @@ h6:hover .anchor-heading {
   position: fixed;
   right: 2rem;
   top: 6rem;
-  width: 16rem;
+  width: 18rem;
   max-height: calc(100vh - 8rem);
   overflow-y: auto;
   padding: 1rem;
@@ -124,7 +124,7 @@ h6:hover .anchor-heading {
 
 .page-toc-list li {
   margin-bottom: 0.5rem;
-  line-height: 1.4;
+  line-height: 1.2;
 }
 
 .page-toc-list a {
@@ -168,7 +168,8 @@ h6:hover .anchor-heading {
 /* Adjust main content width when TOC is visible */
 @media (min-width: 66.5rem) {
   .main-content-wrap {
-    /* TOC width (16rem) + spacing (2rem) = 18rem */
-    max-width: calc(100% - 18rem);
+    /* Use margin-right to prevent overlap with TOC while allowing main-content to be as wide as possible */
+    /* TOC width (18rem) + right spacing (2rem) + additional margin (2rem) = 22rem */
+    margin-right: 22rem;
   }
 }
