@@ -139,7 +139,7 @@ nav_order: 2
 - Step1: 主程序核心为一个名为`GlobalErrorHandlingExample`的CSM模块。
 - Step2: 同步调用另外两个CSM模块，这两个子模块可以通过点击按钮产生一些预定的错误。
 - Step3: 启动时就注册"Error Occurred"广播事件，"Error Occurred@* >> Error Handler -><register>". 该事件在任何CSM子模块抛出Error Occurred状态变化时，会触发 GlobalErrorHandlingExample的 "Error Handler", 处理捕获的事件。
-- Step4: (Optional)退出逻辑中，通过`CSM - Filter Messages to Non-Existing Modules.vi`过滤掉所有不存在的CSM模块的消息，以避免在退出时触发错误。
+- Step4: (Optional)退出逻辑中，通过[`CSM - Filter Messages to Non-Existing Modules.vi`]({% link docs/reference/api-10-utility-vis.md %}#csm-filter-messages-to-non-existing-modulesvi)过滤掉所有不存在的CSM模块的消息，以避免在退出时触发错误。
 
 ### 模拟错误生成模块(Error Module.vi)
 

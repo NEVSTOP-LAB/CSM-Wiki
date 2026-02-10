@@ -132,19 +132,19 @@ MassData参数有两种格式：
 
 ### 配置API
 
-**CSM - Config MassData Parameter Cache Size.vi**
+**[`CSM - Config MassData Parameter Cache Size.vi`]({% link docs/reference/api-addon-massdata.md %}#csm-config-massdata-parameter-cache-sizevi)**
 - 配置缓冲区大小
 - 必须在使用MassData前调用
 - 默认大小可能不满足需求
 
 ### 监控API
 
-**CSM - MassData Update Status Indicator.vi**
+**[`CSM - MassData Update Status Indicator.vi`]({% link docs/reference/api-addon-massdata.md %}#csm-massdata-update-status-indicatorvi)**
 - 更新UI状态指示器
 - 显示缓冲区使用情况
 - 辅助调试和优化
 
-**CSM - MassData Data Type String.vi**
+**[`CSM - MassData Data Type String.vi`]({% link docs/reference/api-addon-massdata.md %}#csm-massdata-data-type-stringvi)**
 - 从参数中提取数据类型信息
 - 用于类型验证
 

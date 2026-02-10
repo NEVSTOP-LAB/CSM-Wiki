@@ -39,7 +39,7 @@ Addon是CSM的核心扩展接口，让你能添加新的参数类型、API功能
 
 **使用方法**：
 
-在主程序启动后调用 `CSM - Start Watchdog to Ensure All Modules Exit.vi`，保持返回的Watchdog Queue引用直到程序结束。程序退出时队列自动释放，WatchDog就会通知所有模块退出。
+在主程序启动后调用[`CSM - Start Watchdog to Ensure All Modules Exit.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csm-start-watchdog-to-ensure-all-modules-exitvi)，保持返回的Watchdog Queue引用直到程序结束。程序退出时队列自动释放，WatchDog就会通知所有模块退出。
 
 ```labview
 // 主程序初始化
@@ -63,7 +63,7 @@ CSM - Start Watchdog to Ensure All Modules Exit.vi
 
 **使用方法**：
 
-`CSM - Start File Logger.vi` 启动日志记录线程。
+[`CSM - Start File Logger.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csm-start-file-loggervi)启动日志记录线程。
 
 主要参数：
 - **Log File Path**：日志文件路径
