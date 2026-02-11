@@ -2,13 +2,10 @@
 // Use this file for custom styling that overrides the theme
 
 // Ensure TOC is properly visible in the sidebar
-.page-toc {
+// Using higher specificity instead of !important for better maintainability
+.side-bar .page-toc {
   // Already styled in just-the-docs-default.scss
   // Additional adjustments for better visibility
-  
-  // Ensure it's visible by default
-  display: block !important;
-  visibility: visible !important;
   
   // Make sure it has proper spacing in the sidebar
   margin: 1.5rem 1rem;
@@ -17,6 +14,7 @@
   max-width: 100%;
   
   // Make the TOC scrollable if it gets too long
+  // 20rem accounts for header (3.75rem) + footer + padding + margins
   max-height: calc(100vh - 20rem);
   overflow-y: auto;
   

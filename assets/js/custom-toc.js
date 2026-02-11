@@ -101,8 +101,8 @@
     if (sideBar && siteNav && siteFooter) {
       // Insert TOC container between site-nav and site-footer
       sideBar.insertBefore(tocContainer, siteFooter);
-    } else if (sideBar && siteNav) {
-      // No footer, just append after nav
+    } else if (sideBar) {
+      // No footer, just append to sidebar
       sideBar.appendChild(tocContainer);
     } else {
       // Fallback: insert TOC at the beginning of main content if sidebar is not found
