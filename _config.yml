@@ -83,7 +83,6 @@ exclude:
   - "**/_drafts"
   - "**/_design"
   - .ref
-  - _gitbook_readme_backup.md
   - Gemfile
   - Gemfile.lock
   - node_modules
