@@ -1,0 +1,11 @@
+// Custom setup - override Just the Docs variables before they are used
+// This file is loaded before the theme's default variables
+
+// Increase sidebar (navigation) width for better readability
+// Default: $nav-width: 16.5rem, $nav-width-md: 15.5rem
+$nav-width: 20rem;
+$nav-width-md: 18rem;
+
+// Increase content width to utilize larger screens
+// Default: $content-width: 50rem
+$content-width: 60rem;

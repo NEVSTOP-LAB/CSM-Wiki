@@ -93,17 +93,17 @@
       tocContainer.classList.toggle('collapsed');
     });
     
-    // Insert TOC into sidebar below nav-list
+    // Insert TOC into sidebar after site-nav
     const sideBar = document.querySelector('.side-bar');
-    const navList = document.querySelector('.nav-list');
+    const siteNav = document.querySelector('.site-nav');
+    const siteFooter = document.querySelector('.site-footer');
     
-    if (sideBar && navList) {
-      // Insert TOC container after the nav-list
-      if (navList.nextSibling) {
-        sideBar.insertBefore(tocContainer, navList.nextSibling);
-      } else {
-        sideBar.appendChild(tocContainer);
-      }
+    if (sideBar && siteNav && siteFooter) {
+      // Insert TOC container between site-nav and site-footer
+      sideBar.insertBefore(tocContainer, siteFooter);
+    } else if (sideBar && siteNav) {
+      // No footer, just append after nav
+      sideBar.appendChild(tocContainer);
     } else {
       // Fallback: insert TOC at the beginning of main content if sidebar is not found
       const mainContentWrap = document.querySelector('.main-content-wrap');
