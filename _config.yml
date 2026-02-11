@@ -113,3 +113,19 @@ mermaid:
   # Version of mermaid library
   # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
   version: "10.9.1"
+
+# Callouts configuration
+# Define callout types for use in markdown with {:  .callout-type }
+callouts:
+  note:
+    title: 注意
+    color: blue
+  tip:
+    title: 提示
+    color: green
+  warning:
+    title: 警告
+    color: yellow
+  important:
+    title: 重要
+    color: purple
