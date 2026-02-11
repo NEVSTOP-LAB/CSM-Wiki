@@ -6,6 +6,15 @@ nav_order: 1
 ---
 
 # CSM Continuous Measurement and Logging
+{: .no_toc }
+
+## 目录
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
 
 基于 CSM（可通信状态机）框架更简单、更直观、更优雅地实现连续测量和记录应用的示例。
 

@@ -5,7 +5,16 @@ parent: 参考文档
 nav_order: 11
 ---
 
-# 模板
+# 模板(Templates)
+{: .no_toc }
+
+## 目录
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
 
 ## CSM User Interface(UI) Module Template.vi
 用于创建带用户界面的CSM模块的模板，该模板包含用于响应用户操作的用户事件结构。

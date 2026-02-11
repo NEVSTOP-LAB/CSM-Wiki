@@ -40,9 +40,46 @@ _**本仓库使用了以下的开源项目或服务**_：
    ```
 
 3. **编写内容**
-   - 直接开始写内容，无需手动添加目录
-   - Just the Docs会自动在右侧生成浮动目录
-   - 使用标准Markdown语法
+   - 使用标准Markdown语法编写内容
+   - Just the Docs 使用 Kramdown 的 `{:toc}` 方法生成页内目录
+
+### 添加页内目录 (Table of Contents)
+
+对于内容较长的页面，建议添加页内目录：
+
+```markdown
+---
+title: 页面标题
+layout: default
+parent: 基础文档
+nav_order: 2
+---
+
+# 页面标题
+{: .no_toc }
+
+## 目录
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
+
+## 第一节
+
+内容...
+
+## 第二节
+
+内容...
+```
+
+**说明：**
+- `{: .no_toc }` 用于排除某个标题不出现在目录中
+- `{: .text-delta }` 为目录标题添加样式
+- `1. TOC` 后的 `{:toc}` 会自动生成目录链接
+- 可以在页面前置信息中添加 `has_toc: false` 来禁用某个页面的目录功能
 
 ### 添加顶级页面
 
