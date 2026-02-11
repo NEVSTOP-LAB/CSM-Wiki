@@ -38,7 +38,7 @@ This page tests the callout functionality.
 > This is a caution callout with Chinese title "小心".
 > It should display with a red border.
 
-## Single Line Note
+## Single Paragraph Callout (No Block Quote)
 
 {: .note }
-This is a single line note without block quote.
+This is a single paragraph note without block quote. This is valid syntax for Just the Docs callouts.

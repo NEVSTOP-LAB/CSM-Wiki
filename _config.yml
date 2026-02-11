@@ -115,7 +115,7 @@ mermaid:
   version: "10.9.1"
 
 # Callouts configuration
-# Define callout types for use in markdown with {:  .callout-type }
+# Define callout types for use in markdown with {: .callout-type }
 # See https://just-the-docs.com/docs/ui-components/callouts/ for details
 callouts:
   note:
