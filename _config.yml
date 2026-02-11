@@ -116,6 +116,7 @@ mermaid:
 
 # Callouts configuration
 # Define callout types for use in markdown with {:  .callout-type }
+# See https://just-the-docs.com/docs/ui-components/callouts/ for details
 callouts:
   note:
     title: 注意
@@ -129,3 +130,6 @@ callouts:
   important:
     title: 重要
     color: purple
+  caution:
+    title: 小心
+    color: red

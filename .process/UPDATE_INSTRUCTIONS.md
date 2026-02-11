@@ -12,6 +12,8 @@
 
 2026年2月11日：由于Just the Docs主题的callouts格式与GitHub格式不同，我们已经将 `docs/` 目录（不包括 `.ref/` 目录）中的所有callout从GitHub格式转换为Just the Docs格式。
 
+同时，已在 `_config.yml` 中添加了callout配置，定义了所有支持的callout类型（note, tip, warning, important, caution）及其样式。
+
 **重要**: 当从 `.ref` 目录更新文档到 `docs/` 目录时，必须将callout格式从GitHub格式转换为Just the Docs格式。
 
 #### Callout格式对照

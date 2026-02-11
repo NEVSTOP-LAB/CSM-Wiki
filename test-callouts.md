@@ -32,6 +32,12 @@ This page tests the callout functionality.
 > This is an important callout with Chinese title "重要".
 > It should display with a purple border.
 
+## Caution Callout
+
+{: .caution }
+> This is a caution callout with Chinese title "小心".
+> It should display with a red border.
+
 ## Single Line Note
 
 {: .note }
