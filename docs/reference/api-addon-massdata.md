@@ -15,7 +15,7 @@ nav_order: 25
 建议配置适当的缓存大小: 不要太大(避免浪费内存)，也不要太小(防止频繁覆盖)。可以利用提供的调试工具监控缓存使用情况，确定最佳配置。
 
 
-> [!NOTE]
+{: .note }
 > <b>CSM Massdata参数支持</b>
 >
 > CSM Massdata参数支持提供了一种高效的参数传递机制，用于在CSM中传递大量数据。通过使用内存高效的引用机制而非直接传输数据，从而提高了参数传递的效率和性能。
@@ -31,7 +31,7 @@ nav_order: 25
 将Massdata参数转换为原始数据。
 
 
-> [!NOTE]
+{: .note }
 > <b>CSM Massdata参数格式</b>
 >
 > 典型的Massdata数据格式为: `<MassData>Start:8057;Size:4004;DataType:1D I32`。其中:
@@ -50,7 +50,7 @@ nav_order: 25
 将数据转换为Massdata参数，此转换得到的Massdata参数不包含数据类型信息。
 
 
-> [!NOTE]
+{: .note }
 > <b>CSM Massdata参数格式</b>
 >
 > 典型的Massdata数据格式为: `<MassData>Start:8057;Size:4004;DataType:1D I32`。其中:
@@ -68,7 +68,7 @@ nav_order: 25
 将数据转换为Massdata参数，此转换得到的Massdata参数包含数据类型信息。
 
 
-> [!NOTE]
+{: .note }
 > <b>CSM Massdata参数格式</b>
 >
 > 典型的Massdata数据格式为: `<MassData>Start:8057;Size:4004;DataType:1D I32`。其中:
@@ -86,7 +86,7 @@ nav_order: 25
 从Massdata参数中提取数据类型字符串。
 
 
-> [!NOTE]
+{: .note }
 > <b>CSM Massdata参数格式</b>
 >
 > 典型的Massdata数据格式为: `<MassData>Start:8057;Size:4004;DataType:1D I32`。其中:
