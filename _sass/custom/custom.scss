@@ -1,42 +1,6 @@
 // Custom CSS - loaded after all theme styles
 // Use this file for custom styling that overrides the theme
 
-// Ensure TOC is properly visible in the sidebar
-// Using higher specificity instead of !important for better maintainability
-.side-bar .page-toc {
-  // Already styled in just-the-docs-default.scss
-  // Additional adjustments for better visibility
-  
-  // Make sure it has proper spacing in the sidebar
-  margin: 1.5rem 1rem;
-  
-  // Adjust for sidebar width
-  max-width: 100%;
-  
-  // Make the TOC scrollable if it gets too long
-  // 20rem accounts for header (3.75rem) + footer + padding + margins
-  max-height: calc(100vh - 20rem);
-  overflow-y: auto;
-  
-  // Better scrollbar styling
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-  
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 2px;
-  }
-  
-  &::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-}
-
 // Ensure sidebar nav doesn't overflow with wider sidebar
 @media (min-width: 50rem) {
   .site-nav {

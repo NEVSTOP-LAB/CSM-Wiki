@@ -46,9 +46,12 @@ last_edit_time_format: "%b %e %Y at %I:%M %p"
 back_to_top: true
 back_to_top_text: "Back to top"
 
-# Enable table of contents on the right side of pages
-# Just the Docs supports in-page TOC
-# Individual pages can override this with front matter
+# Enable in-page table of contents
+# Just the Docs uses Kramdown's {:toc} method for in-page TOC
+# Individual pages can override this with front matter (has_toc: false)
+# To use TOC in a page, add the following markdown after a list item:
+#   1. TOC
+#   {:toc}
 defaults:
   - scope:
       path: ""
