@@ -18,7 +18,7 @@ nav_order: 5
 
 本文介绍CSM的高级特性：错误处理、系统级模块、子模块、工作者模式、责任链模式和多循环支持。
 
-> [!TIP]
+{: .tip }
 > 查看高级模式的详细API文档，请参考 [高级模式API参考]({% link docs/reference/api-08-advanced-modes.md %})
 
 ## 内置的错误处理机制

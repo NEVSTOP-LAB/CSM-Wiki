@@ -8,6 +8,79 @@
 
 2026年2月，我们将中文API和Example文档从 `.ref` 目录迁移到了 `docs/reference` 和 `docs/examples` 目录，以便在网站上展示。`.ref` 目录中的原始文档被保留，用于未来的更新和对比。
 
+### Callout格式转换
+
+2026年2月11日：由于Just the Docs主题的callouts格式与GitHub格式不同，我们已经将 `docs/` 目录（不包括 `.ref/` 目录）中的所有callout从GitHub格式转换为Just the Docs格式。
+
+**重要**: 当从 `.ref` 目录更新文档到 `docs/` 目录时，必须将callout格式从GitHub格式转换为Just the Docs格式。
+
+#### Callout格式对照
+
+GitHub格式 (`.ref` 目录中使用):
+```markdown
+> [!NOTE]
+> 这是一个注释
+> 可以有多行内容
+```
+
+Just the Docs格式 (`docs/` 目录中使用):
+```markdown
+{: .note }
+> 这是一个注释
+> 可以有多行内容
+```
+
+#### Callout类型映射
+
+| GitHub格式 | Just the Docs格式 | 说明 |
+|-----------|------------------|------|
+| `> [!NOTE]` | `{: .note }` | 普通注释 |
+| `> [!WARNING]` | `{: .warning }` | 警告信息 |
+| `> [!TIP]` | `{: .tip }` | 提示信息 |
+| `> [!IMPORTANT]` | `{: .important }` | 重要信息 |
+| `> [!CAUTION]` | `{: .caution }` | 注意事项 |
+
+#### 转换工具
+
+使用以下Python脚本进行批量转换：
+
+```python
+#!/usr/bin/env python3
+import re
+
+def convert_callouts(content):
+    """将GitHub格式的callout转换为Just the Docs格式"""
+    callout_mapping = {
+        'NOTE': 'note',
+        'WARNING': 'warning',
+        'TIP': 'tip',
+        'IMPORTANT': 'important',
+        'CAUTION': 'caution'
+    }
+    
+    lines = content.split('\n')
+    converted_lines = []
+    i = 0
+    
+    while i < len(lines):
+        line = lines[i]
+        match = re.match(r'^>\s*\[!(NOTE|WARNING|TIP|IMPORTANT|CAUTION)\]\s*$', line)
+        if match:
+            callout_type = match.group(1)
+            just_the_docs_class = callout_mapping[callout_type]
+            converted_lines.append(f'{{: .{just_the_docs_class} }}')
+            i += 1
+            while i < len(lines) and lines[i].startswith('>'):
+                converted_lines.append(lines[i])
+                i += 1
+            continue
+        else:
+            converted_lines.append(line)
+            i += 1
+    
+    return '\n'.join(converted_lines)
+```
+
 ### 迁移的文件
 
 #### API文档 (docs/reference/)
@@ -61,7 +134,7 @@ git diff HEAD -- .ref/
 
 NOTE/WARNING块的格式：
 ```markdown
-> [!NOTE]
+{: .note }
 > <b>标题</b>
 >
 > 内容...
@@ -83,7 +156,8 @@ NOTE/WARNING块的格式：
 
 1. **移除原始NOTE/WARNING块**：从源文件中移除所有 `> [!NOTE]` 和 `> [!WARNING]` 块
 2. **替换引用**：将所有 `> - Ref: XXX` 行替换为实际的NOTE/WARNING内容
-3. **保持frontmatter**：确保目标文件的YAML frontmatter（title, layout, parent, nav_order等）保持不变
+3. **转换Callout格式**：将GitHub格式的callout (`> [!NOTE]`, `> [!WARNING]`等) 转换为Just the Docs格式 (`{: .note }`, `{: .warning }`等)。参见上面的"Callout格式转换"章节
+4. **保持frontmatter**：确保目标文件的YAML frontmatter（title, layout, parent, nav_order等）保持不变
 
 ### 步骤 4: 使用迁移脚本
 
