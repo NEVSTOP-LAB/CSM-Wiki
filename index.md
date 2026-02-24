@@ -15,6 +15,7 @@ permalink: /
 {: .fs-6 .fw-300 }
 
 [快速开始](#下载){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[常见问题解答](https://nevstop-lab.github.io/CSM-Wiki/FAQ){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [View on GitHub](https://github.com/NEVSTOP-LAB/Communicable-State-Machine){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
