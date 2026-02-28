@@ -1,3 +1,5 @@
+> **注意**: 本文档中的背景知识和技能已迁移至 [`.github/copilot-instructions.md`](../.github/copilot-instructions.md)，以符合 GitHub Copilot 标准。Copilot 每次启动时会自动加载该文件中的内容。
+
 # 文档更新流程说明 (Documentation Update Process)
 
 ## 概述
