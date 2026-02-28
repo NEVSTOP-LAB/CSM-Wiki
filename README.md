@@ -125,7 +125,21 @@ bundle exec jekyll serve
 
 访问 `http://localhost:4000/CSM-Wiki/` 预览效果。
 
-更多详情请参考 [Just the Docs 文档](https://just-the-docs.com/) 或查看 `.progress/theme-migration.md`。
+更多详情请参考 [Just the Docs 文档](https://just-the-docs.com/) 或查看 [`.github/progress/theme-migration.md`](.github/progress/theme-migration.md)。
+
+-----------------------------
+
+## AI 助手技能指南
+
+本仓库配置了 GitHub Copilot 自定义指令（`.github/copilot-instructions.md`），其中定义了可重复执行的标准化任务（"技能"）。向 AI 助手发送以下提示词即可触发对应技能：
+
+| 技能 | 触发提示词示例 | 说明 |
+|------|-----------|------|
+| **同步参考文档** | `同步参考文档：VI Description(zh-cn) - 02. Core Functions.md` | 将 `.ref/` 中的源文件更新同步到 `docs/` 对应文件，包含格式转换和内容合并 |
+| **添加VI超链接** | `为 docs/basic/communication.md 添加VI超链接` | 为指定文档中所有未链接的 VI 名称添加 Jekyll 超链接 |
+| **添加常见问题解答** | Issue 被分配给 AI 且判断为 FAQ 类型时自动触发 | 从 Issue 及 Wiki 中提取解答，合并同类问题后更新 `docs/faq(zh-cn).md` |
+
+> 每次修改 `docs/` 文件后，AI 会**自动**检查 callout 格式并在需要时更新项目进度，无需手动触发。详见 `.github/copilot-instructions.md`。
 
 _**TODO LIST**_
 
