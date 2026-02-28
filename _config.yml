@@ -76,6 +76,7 @@ markdown_ext: markdown,mkdown,mkdn,mkd,md
 permalink: /:categories/:year-:month-:day-:title:output_ext
 
 exclude:
+  - _pages
   - _drafts
   - "*.backup"
   - "*.bak"
@@ -94,10 +95,6 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
 
-collections:
-  pages:
-    output: true
-    permalink: /:collection/:path/
 
 destination: ./_site
 incremental: false
