@@ -99,3 +99,183 @@
 - 本地构建命令：`bundle exec jekyll build`。
 - Markdown lint 配置文件：`.markdownlint.json`。
 - Jekyll 工作流定义：`.github/workflows/jekyll.yml`。
+
+## 项目当前状态
+
+> 详细进度记录保存在 `.progress/` 目录，阅读该目录下的文件可了解完整历史。
+
+**总体进度**：主要文档已完成（约167,000字，13个文档）。参考资料覆盖度90%+。
+
+### `docs/reference/` 文件完成情况
+
+| 文件 | 对应 `.ref/` 源文件 | 状态 |
+|------|-------------------|------|
+| api-01-templates.md | VI Description(zh-cn) - 01. Templates.md | ✅ 完成 (95%) |
+| api-02-core-functions.md | VI Description(zh-cn) - 02. Core Functions.md | ✅ 完成 (95%) |
+| api-03-arguments.md | VI Description(zh-cn) - 03. Arguments.md | ✅ 完成 (95%) |
+| api-04-management-api.md | VI Description(zh-cn) - 04 .Management API.md | ✅ 完成 (95%) |
+| api-05-module-operation-api.md | VI Description(zh-cn) - 05. Module Operation API.md | ✅ 完成 (95%) |
+| api-06-broadcast-registration.md | VI Description(zh-cn) - 06. Broadcast Registration.md | ✅ 完成 (95%) |
+| api-07-global-log.md | VI Description(zh-cn) - 07. Global Log.md | ✅ 完成 (100%) |
+| api-08-advanced-modes.md | VI Description(zh-cn) - 08. Advanced Modes.md | ✅ 完成 (100%) |
+| api-09-build-in-addons.md | VI Description(zh-cn) - 09. Build-in Addons.md | ✅ 完成 (95%) |
+| api-10-utility-vis.md | VI Description(zh-cn) - 10. Utility VIs.md | ✅ 完成 (95%) |
+| api-12-debugdoctools.md | VI Description(zh-cn) - 12. Debug,Doc,Tools.md | ✅ 完成 (95%) |
+| api-addon-api-string.md | VI Description(zh-cn) - Addon API String.md | ✅ 完成 (95%) |
+| api-addon-ini-variable.md | VI Description(zh-cn) - Addon INI-Variable.md | ✅ 完成 (95%) |
+| api-addon-massdata.md | VI Description(zh-cn) - Addon Massdata.md | ✅ 完成 (95%) |
+
+### `docs/basic/` 文件完成情况
+
+| 文件 | 内容 | 状态 |
+|------|------|------|
+| concepts.md | CSM基本概念 | ✅ 完成 (100%) |
+| communication.md | CSM模块间通讯 | ✅ 完成 (90%) |
+| usage.md | 创建CSM复用模块 / 参数传递 | ✅ 完成 (95%) |
+| advance.md | CSM高级模式与特性 | ✅ 完成 (95%) |
+| global-log.md | CSM全局日志系统 | ✅ 完成 (100%) |
+| jkism.md | JKISM介绍与推荐用法 | ✅ 完成 (95%) |
+
+### `docs/plugins/` 文件完成情况
+
+| 文件 | 内容 | 状态 |
+|------|------|------|
+| plugin-system.md | CSM插件机制概述 | ✅ 完成 (95%) |
+| massdata.md | MassData参数支持 | ✅ 完成 (95%) |
+| api-string.md | API String参数支持 | ✅ 完成 (95%) |
+| ini-variable.md | INI/静态参数支持 | ✅ 完成 (95%) |
+| tools.md | CSM调试与开发工具 | ✅ 完成 (95%) |
+
+### `docs/examples/` 文件完成情况
+
+| 文件 | 对应 `.ref/` 源文件 | 状态 |
+|------|-------------------|------|
+| example-csm-basic-example.md | CSM Basic Example(zh-cn).md | ✅ 完成 |
+| example-csm-advance-example.md | CSM Advance Example(zh-cn).md | ✅ 完成 |
+
+### 待完成项目
+
+- `_pages/framework-compare(zh-cn).md`：与其他框架的对比（当前50%）
+- 英文文档翻译（所有中文文档的英文版本）
+
+## 可用技能（Skills）
+
+以下是本项目中可重复执行的标准化任务（"技能"）。每个技能都有固定的触发提示词，发送对应提示词即可启动该技能。
+
+### Skill 1：同步参考文档（sync-ref-doc）
+
+**触发提示词**：
+```
+同步参考文档：<.ref源文件名>
+```
+
+**示例**：
+```
+同步参考文档：VI Description(zh-cn) - 02. Core Functions.md
+```
+
+**执行步骤**：
+1. 根据文档映射表，找到 `.ref/` 源文件和 `docs/` 目标文件
+2. 读取 `.ref/` 源文件（注意编码：优先尝试 gbk/gb2312/gb18030/utf-8/latin-1）
+3. 对比目标文件的现有内容，识别缺失或过时的内容
+4. 移除所有 `> [!NOTE]`/`> [!WARNING]` 块（这些块由其他文件引用）
+5. 将 `> - Ref: <标题>` 行替换为对应标题的实际内容
+6. 将 GitHub callout 格式转换为 Just the Docs callout 格式
+7. 保留目标文件的 YAML frontmatter 不变
+8. 更新目标文件内容并提交
+
+---
+
+### Skill 2：添加VI超链接（add-vi-links）
+
+**触发提示词**：
+```
+为 <docs文件路径> 添加VI超链接
+```
+
+**示例**：
+```
+为 docs/basic/communication.md 添加VI超链接
+```
+
+**执行步骤**：
+1. 读取指定的 `docs/` 文件
+2. 识别所有未链接的 VI 名称（形如 `` `Xxx.vi` ``，排除标题行和已有链接）
+3. 从最长名称开始匹配，避免部分匹配
+4. 使用 Jekyll 链接语法 `[`Xxx.vi`]({% link docs/reference/api-XX-xxx.md %}#xxx)` 添加链接
+5. 提交更改
+
+---
+
+### Skill 3：检查并修复 Callout 格式（fix-callouts）
+
+**触发提示词**：
+```
+检查并修复 callout 格式
+```
+
+**执行步骤**：
+1. 扫描 `docs/` 目录下所有 Markdown 文件
+2. 查找仍使用 GitHub callout 格式（`> [!NOTE]` 等）的文件
+3. 将其转换为 Just the Docs 格式（`{: .note }` 等）
+4. 提交更改并汇报结果
+
+---
+
+### Skill 4：新建API参考文档（new-api-doc）
+
+**触发提示词**：
+```
+根据 <.ref源文件名> 新建API参考文档
+```
+
+**示例**：
+```
+根据 VI Description(zh-cn) - 11. Obselete VIs.md 新建API参考文档
+```
+
+**执行步骤**：
+1. 读取 `.ref/` 源文件（注意编码处理）
+2. 在 `docs/reference/` 创建新文件（命名格式：`api-{name}.md`）
+3. 添加完整的 YAML frontmatter（title、layout、parent、nav_order）
+4. 移除 `> [!NOTE]`/`> [!WARNING]` 块，展开 `> - Ref:` 引用
+5. 转换 callout 格式，添加页内目录
+6. 为 VI 名称添加超链接（如适用）
+7. 提交新文件
+
+---
+
+### Skill 5：新建示例文档（new-example-doc）
+
+**触发提示词**：
+```
+根据 <.ref源文件名> 新建示例文档
+```
+
+**示例**：
+```
+根据 CSM Basic Example(zh-cn).md 新建示例文档
+```
+
+**执行步骤**：
+1. 读取 `.ref/Examples/` 中的源文件
+2. 在 `docs/examples/` 创建新文件（命名格式：`example-{name}.md`）
+3. 添加完整的 YAML frontmatter
+4. 转换 callout 格式，添加页内目录
+5. 提交新文件
+
+---
+
+### Skill 6：更新进度记录（update-progress）
+
+**触发提示词**：
+```
+更新进度记录
+```
+
+**执行步骤**：
+1. 扫描 `docs/` 目录，统计各文件的内容完整度
+2. 更新 `.progress/PROJECT-STATUS.md` 中的状态表格
+3. 更新 `.progress/vi-description-tracking.md` 中的覆盖度记录
+4. 更新 `.github/copilot-instructions.md` 中"项目当前状态"部分
+5. 提交更改
