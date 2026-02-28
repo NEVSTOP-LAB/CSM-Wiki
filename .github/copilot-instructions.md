@@ -1,23 +1,23 @@
-# CSM-Wiki Repository Background Knowledge
+# CSM-Wiki 仓库背景知识
 
-## Project Overview
+## 项目概述
 
-This is a Jekyll-based wiki website for **CSM (Communication State Machine)** using the **Just the Docs** theme. Source reference documents live in `.ref/` and published website documents live in `docs/`.
+本项目是基于 Jekyll 和 **Just the Docs** 主题构建的 **CSM（Communication State Machine，通信状态机）** Wiki 网站。源参考文档存放在 `.ref/` 目录，发布到网站的文档存放在 `docs/` 目录。
 
-## Key Directory Structure
+## 关键目录结构
 
-- `.ref/` — Raw source reference documents (not published to website). Contains original VI descriptions and examples.
-- `docs/` — Published website documents. Organized into `reference/`, `examples/`, `basic/`, `plugins/`.
-- `.process/` — Internal process documentation.
-- `.progress/` — Progress tracking notes.
-- `_pages/` — Top-level Jekyll pages.
-- `_config.yml` — Jekyll site configuration, including callout type definitions.
+- `.ref/` — 原始参考文档（不发布到网站），包含 VI 说明和示例的原始内容。
+- `docs/` — 发布到网站的文档，分为 `reference/`、`examples/`、`basic/`、`plugins/` 子目录。
+- `.process/` — 内部流程文档。
+- `.progress/` — 进度跟踪记录。
+- `_pages/` — 顶级 Jekyll 页面。
+- `_config.yml` — Jekyll 站点配置，包含 callout 类型定义。
 
-## Document Mapping: `.ref/` → `docs/`
+## 文档映射：`.ref/` → `docs/`
 
-When updating published docs from source `.ref` files, use the following mappings:
+从 `.ref/` 源文件更新发布文档时，使用以下映射关系：
 
-| Source file in `.ref/VI Description/VI Description(zh-cn)/` | Target in `docs/reference/` |
+| `.ref/VI Description/VI Description(zh-cn)/` 中的源文件 | `docs/reference/` 中的目标文件 |
 |--------------------------------------------------------------|------------------------------|
 | VI Description(zh-cn) - 01. Templates.md | api-01-templates.md |
 | VI Description(zh-cn) - 02. Core Functions.md | api-02-core-functions.md |
@@ -34,20 +34,20 @@ When updating published docs from source `.ref` files, use the following mapping
 | VI Description(zh-cn) - Addon INI-Variable.md | api-addon-ini-variable.md |
 | VI Description(zh-cn) - Addon Massdata.md | api-addon-massdata.md |
 
-| Source file in `.ref/Examples/` | Target in `docs/examples/` |
+| `.ref/Examples/` 中的源文件 | `docs/examples/` 中的目标文件 |
 |----------------------------------|------------------------------|
 | CSM Basic Example(zh-cn).md | example-csm-basic-example.md |
 | CSM Advance Example(zh-cn).md | example-csm-advance-example.md |
 
-**Do not migrate** anything from `_internal/` subdirectories.
+**注意**：不要迁移 `_internal/` 子目录中的任何文件。
 
-New API docs go in `docs/reference/` as `api-{name}.md`; new example docs go in `docs/examples/` as `example-{name}.md`.
+新增 API 文档放在 `docs/reference/`，命名格式为 `api-{name}.md`；新增示例文档放在 `docs/examples/`，命名格式为 `example-{name}.md`。
 
-## Callout Format Conversion
+## Callout 格式转换
 
-The `.ref/` files use **GitHub callout format**. The `docs/` files must use **Just the Docs callout format**. Always convert when copying content from `.ref/` to `docs/`.
+`.ref/` 文件使用 **GitHub callout 格式**，`docs/` 文件必须使用 **Just the Docs callout 格式**。从 `.ref/` 复制内容到 `docs/` 时，始终进行格式转换。
 
-| GitHub format (`.ref/`) | Just the Docs format (`docs/`) |
+| GitHub 格式（`.ref/` 中使用） | Just the Docs 格式（`docs/` 中使用） |
 |-------------------------|--------------------------------|
 | `> [!NOTE]` | `{: .note }` |
 | `> [!WARNING]` | `{: .warning }` |
@@ -55,47 +55,47 @@ The `.ref/` files use **GitHub callout format**. The `docs/` files must use **Ju
 | `> [!IMPORTANT]` | `{: .important }` |
 | `> [!CAUTION]` | `{: .caution }` |
 
-Example conversion:
+转换示例：
 
 ```markdown
-# GitHub format (.ref/)
+# GitHub 格式（.ref/）
 > [!NOTE]
-> This is a note with multiple lines.
+> 这是一个多行注释。
 
-# Just the Docs format (docs/)
+# Just the Docs 格式（docs/）
 {: .note }
-> This is a note with multiple lines.
+> 这是一个多行注释。
 ```
 
-## Processing `.ref/` Updates
+## 处理 `.ref/` 文件更新
 
-When a `.ref/` file is updated and needs to be applied to `docs/`:
+当 `.ref/` 文件有更新需要应用到 `docs/` 时：
 
-1. **Remove NOTE/WARNING blocks** from the source content (blocks from `VI Description(zh-cn).md` are referenced by other files, not duplicated).
-2. **Replace `> - Ref: <title>` lines** with the actual NOTE/WARNING block content referenced by that title.
-3. **Convert callout format** from GitHub format to Just the Docs format.
-4. **Preserve the existing YAML frontmatter** (`title`, `layout`, `parent`, `nav_order`, etc.) of the target `docs/` file — do not overwrite it.
+1. **移除 NOTE/WARNING 块**：从源文件中移除所有 `> [!NOTE]` / `> [!WARNING]` 块（这些块来自 `VI Description(zh-cn).md`，由其他文件引用，不直接复制）。
+2. **替换引用行**：将所有 `> - Ref: <标题>` 行替换为对应标题的 NOTE/WARNING 块实际内容。
+3. **转换 Callout 格式**：将 GitHub 格式转换为 Just the Docs 格式（见上表）。
+4. **保留 YAML frontmatter**：保持目标 `docs/` 文件中已有的 frontmatter（`title`、`layout`、`parent`、`nav_order` 等）不变，不要覆盖。
 
-Reference titles may appear with variations (e.g., `CSM 模块间通信类型` vs `CSM模块间通信类型` vs `模块间通信类型`); handle all variants.
+引用标题可能有多种变体（如 `CSM 模块间通信类型`、`CSM模块间通信类型`、`模块间通信类型`），需全部兼容处理。
 
-## Encoding
+## 编码处理
 
-Some `.ref/` files (notably `VI Description(zh-cn) - 12. Debug,Doc,Tools.md`) use **GBK encoding**. When reading `.ref/` files, try encodings in this order: `gbk`, `gb2312`, `gb18030`, `utf-8`, `latin-1`.
+部分 `.ref/` 文件（尤其是 `VI Description(zh-cn) - 12. Debug,Doc,Tools.md`）使用 **GBK 编码**。读取 `.ref/` 文件时，按以下顺序尝试编码：`gbk`、`gb2312`、`gb18030`、`utf-8`、`latin-1`。
 
-## VI Hyperlinks in `docs/`
+## `docs/` 中的 VI 超链接
 
-When VI names (e.g., `` `Parse State Queue++.vi` ``) appear in `docs/` markdown files, link them to the corresponding section in the API reference using Jekyll link syntax:
+当 VI 名称（如 `` `Parse State Queue++.vi` ``）出现在 `docs/` 的 Markdown 文件中时，使用 Jekyll 链接语法将其链接到 API 参考文档的对应章节：
 
 ```markdown
 [`Parse State Queue++.vi`]({% link docs/reference/api-02-core-functions.md %}#parse-state-queuevi)
 ```
 
-- Do not link VI names inside headings (lines starting with `#`).
-- Do not re-link a VI name that is already linked.
-- Match longest VI names first to avoid partial matches.
+- 不要链接标题行（以 `#` 开头的行）中的 VI 名称。
+- 不要对已有链接的 VI 名称重复添加链接。
+- 从最长的 VI 名称开始匹配，避免部分匹配问题。
 
-## Build & Lint
+## 构建与 Lint
 
-- Run `bundle exec jekyll build` to build the site locally.
-- Markdown linting config is in `.markdownlint.json`.
-- The Jekyll workflow is defined in `.github/workflows/jekyll.yml`.
+- 本地构建命令：`bundle exec jekyll build`。
+- Markdown lint 配置文件：`.markdownlint.json`。
+- Jekyll 工作流定义：`.github/workflows/jekyll.yml`。
