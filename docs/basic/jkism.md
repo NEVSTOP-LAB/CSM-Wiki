@@ -19,7 +19,7 @@ nav_order: 1
 
 JKI State Machine (JKISM) 是一个 LabVIEW **事件驱动队列消息状态机**，核心是**队列消息状态机 + 用户界面交互处理**模式。JKISM 采用规定格式的字符串描述状态，利用字符串类型的移位寄存器构建消息队列。
 
-![JKISM 简介]({% link assets/img/jkism/slide-10.png %})
+![JKISM 简介](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-10.png)
 
 ### 优点
 
@@ -44,7 +44,7 @@ JKI State Machine (JKISM) 是一个 LabVIEW **事件驱动队列消息状态机*
 
 消息队列为空时，程序进入事件结构等待用户操作。
 
-![JKISM 核心结构]({% link assets/img/jkism/slide-11.png %})
+![JKISM 核心结构](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-11.png)
 
 ### 消息格式
 
@@ -74,7 +74,7 @@ UI: Front Panel State >> Open
 
 JKISM 提供了专为 JKI 状态机设计的**自定义探针**，应用在状态连线上，显示下一个状态；如果没有则显示空字符串。
 
-![JKISM 探针]({% link assets/img/jkism/slide-12.png %})
+![JKISM 探针](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-12.png)
 
 ### 使用方法
 
@@ -92,7 +92,7 @@ VIPM 中有多个历史列表探针库，安装后可以看到**轮转的历史�
 
 JKISM Editor 是 JKISM 的配套开发工具，提供可视化的状态管理界面。
 
-![JKISM 编辑器]({% link assets/img/jkism/slide-13.png %})
+![JKISM 编辑器](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-13.png)
 
 ### 主要功能
 
@@ -118,7 +118,7 @@ JKISM Editor 是 JKISM 的配套开发工具，提供可视化的状态管理界
 
 状态字符串应直接写在 Case 分支中，而不是封装到子 VI 内部。子 VI 内的状态字符串难以阅读和维护。
 
-![技巧1：不要在子VI中隐藏状态字符串]({% link assets/img/jkism/slide-14.png %})
+![技巧1：不要在子VI中隐藏状态字符串](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-14.png)
 
 {: .tip }
 > 将状态字符串直接暴露在 Case 分支中，阅读代码时无需打开子 VI 即可了解状态流转逻辑。
@@ -129,7 +129,7 @@ JKISM Editor 是 JKISM 的配套开发工具，提供可视化的状态管理界
 
 事件结构只负责**产生消息**，不应包含业务逻辑。复杂逻辑应放在对应的状态 Case 中处理。
 
-![技巧2：不要在事件结构中添加代码和逻辑判断]({% link assets/img/jkism/slide-15.png %})
+![技巧2：不要在事件结构中添加代码和逻辑判断](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-15.png)
 
 {: .note }
 > 简单的条件逻辑（如判断是否入队某状态）可以放在事件结构中，但业务逻辑应保持在状态 Case 内。
@@ -142,7 +142,7 @@ JKISM Editor 是 JKISM 的配套开发工具，提供可视化的状态管理界
 - 尽量避免拖拽复制大量代码
 - 关闭 **Auto Grow** 功能
 
-![技巧3：保留原生架构尺度]({% link assets/img/jkism/slide-16.png %})
+![技巧3：保留原生架构尺度](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-16.png)
 
 ---
 
@@ -169,7 +169,7 @@ UI: Initialize
 UI: Front Panel State >> Open
 ```
 
-![技巧4：使用宏替代链式序列状态]({% link assets/img/jkism/slide-17.png %})
+![技巧4：使用宏替代链式序列状态](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-17.png)
 
 ---
 
@@ -177,7 +177,7 @@ UI: Front Panel State >> Open
 
 状态字符串常量应使用**左对齐**，而非右对齐，以便阅读。
 
-![技巧5：左对齐替代右对齐状态字符串]({% link assets/img/jkism/slide-18.png %})
+![技巧5：左对齐替代右对齐状态字符串](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-18.png)
 
 {: .tip }
 > 在 LabVIEW 字符串常量属性中将对齐方式设为左对齐，多行状态队列字符串会更易读。
@@ -188,7 +188,7 @@ UI: Front Panel State >> Open
 
 以下是学习 JKISM 的推荐动手步骤：
 
-![JKISM Demo 步骤]({% link assets/img/jkism/slide-19.png %})
+![JKISM Demo 步骤](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-19.png)
 
 1. 后面板放置一个 JKISM，了解 JKISM 的**创建方法**
 2. 在 JKISM String Queue 连线上点击 **Probe**，高亮运行，了解 JKISM 的**运行逻辑**
