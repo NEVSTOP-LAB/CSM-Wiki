@@ -59,7 +59,7 @@ _**v2023.Dec Release: Improvement and Bug Fix**_
 
 ``` text
 #Core
-[update] #242 For async-message, if target turned invalid before response, no ¡°target error¡± throw out
+[update] #242 For async-message, if target turned invalid before response, no "target error" throw out
 [fix] Clear Last Message's Error before new remote message, to avoid some misinformation
 
 #Arguments
