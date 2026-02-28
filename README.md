@@ -131,18 +131,14 @@ bundle exec jekyll serve
 
 ## AI 助手技能指南
 
-本仓库配置了 GitHub Copilot 自定义指令（`.github/copilot-instructions.md`），其中定义了若干可重复执行的标准化任务（"技能"）。向 AI 助手发送以下提示词即可触发对应技能：
+本仓库配置了 GitHub Copilot 自定义指令（`.github/copilot-instructions.md`），其中定义了可重复执行的标准化任务（"技能"）。向 AI 助手发送以下提示词即可触发对应技能：
 
-| 技能 | 触发提示词 | 说明 |
+| 技能 | 触发提示词示例 | 说明 |
 |------|-----------|------|
-| **同步参考文档** | `同步参考文档：<.ref源文件名>` | 将 `.ref/` 中的源文件更新同步到 `docs/` 对应文件，包含格式转换和内容合并 |
-| **添加VI超链接** | `为 <docs文件路径> 添加VI超链接` | 为指定文档中所有未链接的 VI 名称添加 Jekyll 超链接 |
-| **检查Callout格式** | `检查并修复 callout 格式` | 扫描 `docs/` 目录，将 GitHub callout 格式转换为 Just the Docs 格式 |
-| **新建API参考文档** | `根据 <.ref源文件名> 新建API参考文档` | 从 `.ref/` 源文件创建新的 `docs/reference/api-*.md` 文档 |
-| **新建示例文档** | `根据 <.ref源文件名> 新建示例文档` | 从 `.ref/Examples/` 创建新的 `docs/examples/example-*.md` 文档 |
-| **更新进度记录** | `更新进度记录` | 更新 `.progress/` 和 `.github/copilot-instructions.md` 中的项目状态 |
+| **同步参考文档** | `同步参考文档：VI Description(zh-cn) - 02. Core Functions.md` | 将 `.ref/` 中的源文件更新同步到 `docs/` 对应文件，包含格式转换和内容合并 |
+| **添加VI超链接** | `为 docs/basic/communication.md 添加VI超链接` | 为指定文档中所有未链接的 VI 名称添加 Jekyll 超链接 |
 
-> 每个技能的详细执行步骤定义在 `.github/copilot-instructions.md` 的"可用技能（Skills）"章节。尖括号 `<...>` 为占位符，使用时替换为实际文件名或路径，例如：`同步参考文档：VI Description(zh-cn) - 02. Core Functions.md`。
+> 每次修改 `docs/` 文件后，AI 会**自动**检查 callout 格式并在需要时更新项目进度，无需手动触发。详见 `.github/copilot-instructions.md`。
 
 _**TODO LIST**_
 

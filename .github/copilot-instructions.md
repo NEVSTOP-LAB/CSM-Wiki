@@ -9,7 +9,7 @@
 - `.ref/` — 原始参考文档（不发布到网站），包含 VI 说明和示例的原始内容。
 - `docs/` — 发布到网站的文档，分为 `reference/`、`examples/`、`basic/`、`plugins/` 子目录。
 - `.process/` — 内部流程文档。
-- `.progress/` — 进度跟踪记录。
+- `.github/progress/` — 项目进度跟踪记录（历史对话摘要、VI覆盖度追踪等）。
 - `_pages/` — 顶级 Jekyll 页面。
 - `_config.yml` — Jekyll 站点配置，包含 callout 类型定义。
 
@@ -102,7 +102,7 @@
 
 ## 项目当前状态
 
-> 详细进度记录保存在 `.progress/` 目录，阅读该目录下的文件可了解完整历史。
+> 详细进度记录保存在 `.github/progress/` 目录，阅读该目录下的文件可了解完整历史。
 
 **总体进度**：主要文档已完成（约167,000字，13个文档）。参考资料覆盖度90%+。
 
@@ -207,75 +207,10 @@
 
 ---
 
-### Skill 3：检查并修复 Callout 格式（fix-callouts）
+## Wiki 修改后自动检查
 
-**触发提示词**：
-```
-检查并修复 callout 格式
-```
+每次修改 `docs/` 目录下的文件后，**自动执行**以下检查，无需用户显式触发：
 
-**执行步骤**：
-1. 扫描 `docs/` 目录下所有 Markdown 文件
-2. 查找仍使用 GitHub callout 格式（`> [!NOTE]` 等）的文件
-3. 将其转换为 Just the Docs 格式（`{: .note }` 等）
-4. 提交更改并汇报结果
+1. **Callout 格式**：检查被修改的文件中是否存在 GitHub callout 格式（`> [!NOTE]` 等），如有则立即转换为 Just the Docs 格式（`{: .note }` 等）。
 
----
-
-### Skill 4：新建API参考文档（new-api-doc）
-
-**触发提示词**：
-```
-根据 <.ref源文件名> 新建API参考文档
-```
-
-**示例**：
-```
-根据 VI Description(zh-cn) - 11. Obselete VIs.md 新建API参考文档
-```
-
-**执行步骤**：
-1. 读取 `.ref/` 源文件（注意编码处理）
-2. 在 `docs/reference/` 创建新文件（命名格式：`api-{name}.md`）
-3. 添加完整的 YAML frontmatter（title、layout、parent、nav_order）
-4. 移除 `> [!NOTE]`/`> [!WARNING]` 块，展开 `> - Ref:` 引用
-5. 转换 callout 格式，添加页内目录
-6. 为 VI 名称添加超链接（如适用）
-7. 提交新文件
-
----
-
-### Skill 5：新建示例文档（new-example-doc）
-
-**触发提示词**：
-```
-根据 <.ref源文件名> 新建示例文档
-```
-
-**示例**：
-```
-根据 CSM Basic Example(zh-cn).md 新建示例文档
-```
-
-**执行步骤**：
-1. 读取 `.ref/Examples/` 中的源文件
-2. 在 `docs/examples/` 创建新文件（命名格式：`example-{name}.md`）
-3. 添加完整的 YAML frontmatter
-4. 转换 callout 格式，添加页内目录
-5. 提交新文件
-
----
-
-### Skill 6：更新进度记录（update-progress）
-
-**触发提示词**：
-```
-更新进度记录
-```
-
-**执行步骤**：
-1. 扫描 `docs/` 目录，统计各文件的内容完整度
-2. 更新 `.progress/PROJECT-STATUS.md` 中的状态表格
-3. 更新 `.progress/vi-description-tracking.md` 中的覆盖度记录
-4. 更新 `.github/copilot-instructions.md` 中"项目当前状态"部分
-5. 提交更改
+2. **进度更新**：如果本次修改涉及文档内容的新增或完善，同步更新 `.github/copilot-instructions.md` 中"项目当前状态"对应文件的完成度，并更新 `.github/progress/vi-description-tracking.md`。
