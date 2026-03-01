@@ -207,7 +207,7 @@ End
 ![Alt text](../../assets/img/CSM%20Broadcast%20Status%20Change.png)
 
 或者直接用字符串：
-``` c
+``` csm
 I'm timeout >> statusArguments -> <all>
 ```
 
@@ -316,7 +316,7 @@ CSM 的核心 VI，负责解析状态队列。[查看完整API文档]({% link do
 - 在同步调用数据库的同时，异步记录日志
 
 **示例**：
-```
+```csm
 API: GetData >> params -@ Database        // 同步调用，等待返回
 API: UpdateProgress >> 50% ->| UI         // 在等待时发送异步消息
 ```
@@ -340,7 +340,7 @@ API: UpdateProgress >> 50% ->| UI         // 在等待时发送异步消息
 - 配置管理模块被多个模块同步调用获取配置
 
 **示例**：
-```
+```csm
 // 模块 A 的代码
 API: ProcessOrder >> orderData -@ ModuleB
 
@@ -362,7 +362,7 @@ API: CheckInventory >> itemId -@ ModuleD   // 再次嵌套同步调用
 - 异步处理数据，过程中同步访问数据库
 
 **示例**：
-```
+```csm
 // 发送方
 API: ProcessData >> data -> DataProcessor
 
@@ -386,7 +386,7 @@ Response >> result <- DataProcessor               // 返回异步响应
 - 异步日志记录
 
 **示例**：
-```
+```csm
 // 接收到异步消息后，在处理过程中发送多个异步消息
 API: Task1 >> data ->| ModuleB        // 异步无返回
 API: Task2 >> data -> ModuleC         // 异步有返回

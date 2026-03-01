@@ -1,0 +1,70 @@
+# frozen_string_literal: true
+
+require 'rouge'
+
+module Rouge
+  module Lexers
+    class CSM < RegexLexer
+      title 'CSM'
+      desc 'Communicable State Machine (CSM) script language'
+      tag 'csm'
+      filenames '*.csm'
+      mimetypes 'text/x-csm'
+
+      # Special token patterns used in both rule definitions and lookaheads
+      SEND_SEP  = /->(?:\|)?|-@/
+      ARG_SEP   = />>/
+      COMMENT   = /\/\//
+      SPECIAL   = /#{ARG_SEP}|#{SEND_SEP}|#{COMMENT}/
+
+      state :root do
+        # Single-line comment: // to end of line
+        rule %r{#{COMMENT}[^\n]*}, Comment::Single
+
+        # >> separator: command / argument boundary; switch to argument state
+        rule %r{#{ARG_SEP}}, Operator, :argument
+
+        # Send separators: ->|  ->  -@  (order matters: ->| before ->)
+        rule %r{#{SEND_SEP}}, Keyword, :target
+
+        # Whitespace (including newlines)
+        rule %r{\s+}, Text
+
+        # Command text: any non-whitespace sequence that does not begin
+        # one of the special tokens above
+        rule %r{(?:(?!#{SPECIAL})\S)+}, Name::Function
+      end
+
+      state :argument do
+        # Inline comment ends the argument
+        rule %r{#{COMMENT}[^\n]*}, Comment::Single, :pop!
+
+        # Newline ends the argument
+        rule %r{\n}, Text, :pop!
+
+        # Lookahead for a send separator: pop without consuming it
+        rule %r{(?=#{SEND_SEP})}, Text, :pop!
+
+        # Non-newline whitespace
+        rule %r{[^\S\n]+}, Text
+
+        # Argument tokens (lighter + italic via CSS)
+        rule %r{\S+}, Literal::String::Doc
+      end
+
+      state :target do
+        # Inline comment ends the target
+        rule %r{#{COMMENT}[^\n]*}, Comment::Single, :pop!
+
+        # Newline ends the target
+        rule %r{\n}, Text, :pop!
+
+        # Non-newline whitespace
+        rule %r{[^\S\n]+}, Text
+
+        # Target module name — plain Text so it renders in default (black) colour
+        rule %r{\S+}, Text, :pop!
+      end
+    end
+  end
+end
