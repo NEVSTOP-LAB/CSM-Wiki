@@ -221,3 +221,15 @@ $csm-argument-color: #6a737d; // medium grey (slightly lighter than default text
 .language-csm .o {
   font-weight: bold;
 }
+
+/* @target embedded in a command (Name::Label) — bold to stand out */
+.language-csm .nl {
+  font-weight: bold;
+}
+
+/* @target embedded in an argument (Literal::String::Interpol) — bold, grey, italic (harmonises with argument style) */
+.language-csm .si {
+  color: $csm-argument-color !important;
+  font-weight: bold;
+  font-style: italic;
+}

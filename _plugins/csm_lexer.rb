@@ -30,9 +30,12 @@ module Rouge
         # Whitespace (including newlines)
         rule %r{\s+}, Text
 
+        # @target embedded in a command (e.g. cmd@Module) — bold label
+        rule %r{@\S+}, Name::Label
+
         # Command text: any non-whitespace sequence that does not begin
-        # one of the special tokens above
-        rule %r{(?:(?!#{SPECIAL})\S)+}, Name::Function
+        # one of the special tokens above, stopping before @
+        rule %r{(?:(?!#{SPECIAL})[^\s@])+}, Name::Function
       end
 
       state :argument do
@@ -48,8 +51,11 @@ module Rouge
         # Non-newline whitespace
         rule %r{[^\S\n]+}, Text
 
+        # @target embedded in an argument (e.g. arg@Module) — bold, harmonises with argument style
+        rule %r{@\S+}, Literal::String::Interpol
+
         # Argument tokens (lighter + italic via CSS)
-        rule %r{\S+}, Literal::String::Doc
+        rule %r{[^\s@]+}, Literal::String::Doc
       end
 
       state :target do
