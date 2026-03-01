@@ -117,6 +117,10 @@ CSM 通过 VIPM Library 的形式发布，您可以通过以下方式下载：
 
 CSM 采用 MIT 开源协议，您可以在 [LICENSE](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/blob/main/LICENSE) 中查看 MIT 开源协议的详细信息。
 
+## 参与贡献
+
+欢迎参与 CSM 项目！您可以通过提交 Issue、参与讨论、贡献代码或完善 Wiki 文档等方式参与贡献。详细说明请参阅 [贡献指南](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/blob/main/CONTRIBUTING(zh-cn).md)。
+
 ## CSM公开演讲资料
 
 更多 CSM 架构设计、应用场景和实例分析，请参考 [csm-keynotes-collection](https://github.com/NEVSTOP-LAB/csm-keynotes-collection) 仓库中的公开演讲资料。
