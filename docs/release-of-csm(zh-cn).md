@@ -17,14 +17,8 @@ has_children: false
 
 ---
 
-CSM（Communicable State Machine，可通讯状态机）是一个基于 JKI State Machine（JKISM）扩展的开源 LabVIEW 应用开发框架。CSM 是全开源项目（MIT License），提供中文技术支持，持续更新迭代。
-
-- 完善且独特的 LabVIEW 程序框架
-- 全开源项目，MIT License
-- 中文技术支持
-- 持续的更新迭代
-
-**系统要求：** CSM 框架需要 LabVIEW 2017 及以上版本。
+{: .important }
+> CSM 框架需要 LabVIEW 2017 及以上版本。
 
 ---
 
@@ -86,6 +80,5 @@ CSM 通过 VIPM Library 的形式发布，推荐通过 VI Package Manager（VIPM
 | 🐙 GitHub | [NEVSTOP-LAB/Communicable-State-Machine](https://github.com/NEVSTOP-LAB/Communicable-State-Machine) | ![扫描访问 GitHub 仓库]({{ site.baseurl }}/assets/img/github-qr.png) |
 | 🦊 Gitee | [NEVSTOP-LAB/Communicable-State-Machine](https://gitee.com/NEVSTOP-LAB/Communicable-State-Machine) | ![扫描访问 Gitee 仓库]({{ site.baseurl }}/assets/img/gitee-qr.png) |
 | 📖 知乎专栏 | [可通讯状态机(CSM) 框架](https://www.zhihu.com/column/c_1681072169147342848) | ![扫描关注知乎专栏]({{ site.baseurl }}/assets/img/zhihu-qr.png) |
-| 💬 微信公众号 | 恩艾在您身边 | ![扫描关注微信公众号"恩艾在您身边"]({{ site.baseurl }}/assets/img/wechat-qr.png) |
 
 通过 GitHub/Gitee 的 Issue、PR、Discussions 参与开发与反馈。
