@@ -79,6 +79,16 @@ CSM 是 Communicable State Machine（可通信状态机）的缩写，是基于 
 > 更多信息，请参考 [基本概念 - 消息](https://nevstop-lab.github.io/CSM-Wiki/docs/basic/concepts) 和 [模块间通讯 - 状态订阅](https://nevstop-lab.github.io/CSM-Wiki/docs/basic/communication#状态订阅)。
 >
 
+### :question: CSM 广播会丢数吗？
+
+CSM 的广播（Broadcast）机制是**无损的**，不会丢失数据。广播在后台通过队列实现，所有订阅者均会收到每一条广播消息，因此可以放心地用于连续数据采集等对数据完整性要求较高的场景。
+
+但需要注意：**如果订阅关系是动态创建的**，必须保证数据包在订阅关系建立之后才发出。订阅关系创建之前发出的广播不会被新订阅者收到；一旦订阅关系建立完成，后续所有广播消息都会通过队列可靠地传递。
+
+> 📓
+> 更多信息，请参考 [模块间通讯 - 状态订阅](https://nevstop-lab.github.io/CSM-Wiki/docs/basic/communication#状态订阅)。
+>
+
 ### :question: 什么是 CSM 模块的 Response 和 Async Response？
 
 - **Response**：处理同步消息（`-@`）后的回调状态。目标模块处理完消息后，调用方会进入此状态，携带返回的参数和来源模块名。
