@@ -1,0 +1,31 @@
+name: Update Copyright Year
+
+on:
+  schedule:
+    # Runs at 00:00 UTC on January 1st every year
+    - cron: '0 0 1 1 *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-copyright:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update copyright year in _config.yml
+        run: |
+          CURRENT_YEAR=$(date +%Y)
+          sed -i "s/Copyright \&copy; [0-9]\{4\} NEVSTOP-LAB/Copyright \&copy; ${CURRENT_YEAR} NEVSTOP-LAB/" _config.yml
+
+      - name: Commit changes
+        run: |
+          CURRENT_YEAR=$(date +%Y)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _config.yml
+          git diff --cached --quiet || git commit -m "chore: update copyright year to ${CURRENT_YEAR}"
+          git push
