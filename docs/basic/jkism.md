@@ -48,7 +48,7 @@ JKI State Machine (JKISM) 是一个 LabVIEW **事件驱动队列消息状态机*
 
 ### 消息格式
 
-```text
+```csm
 //打开前界面
 UI: Front Panel State >> Open
 ```
@@ -150,7 +150,7 @@ JKISM Editor 是 JKISM 的配套开发工具，提供可视化的状态管理界
 
 使用**宏消息（Macro）**将多个连续状态打包，代替手动链式入队多个状态，使代码更简洁。
 
-```text
+```csm
 // 链式序列（不推荐）
 State 1
 State 2
@@ -162,7 +162,7 @@ Macro: Initialize
 
 其中 `Macro: Initialize` 展开后等价于：
 
-```text
+```csm
 Data: Initialize
 Initialize Core Data
 UI: Initialize

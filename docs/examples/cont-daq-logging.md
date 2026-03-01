@@ -111,7 +111,7 @@ graph LR
 
 **示例：（假设模块名称为"Logging"）**
 
-``` text
+``` csm
 API: Update Settings >> c:\_data -> Logging
 API: Log >> MassData-Start:89012,Size:1156 -> Logging
 API: Start -> Logging
@@ -141,7 +141,7 @@ API: Stop -> Logging
 
 **示例：（假设模块名称为"Acquisition"）**
 
-``` text
+``` csm
 API: Start -> Acquisition
 API: Stop -> Acquisition
 ```
@@ -191,7 +191,7 @@ Algorithm --> UI : "Power Spectrum >> UI：Update Power Spectrum"
 
 初始化数据和用户界面(UI)，从 XML 文件加载配置并将配置发送给子模块。将 'Acquisition' 模块的 'Acquired Waveform' 状态注册到 'UI' 模块的 'UI: Update Waveforms' 状态。当 'Acquired Waveform' 状态发生时，'UI' 将自动切换到 'UI: Update Waveforms' 状态。
 
-``` text
+``` csm
 Data: Initialize
 Initialize Core Data
 Data: Load Configuration From Ini
@@ -208,7 +208,7 @@ DO: Update Status >> Ready...
 
 停止子模块和用户界面模块本身。
 
-``` text
+``` csm
 Macro: Exit -@ Acquisition
 Macro: Exit -@ Logging
 Macro: Exit -@ Algorithm
@@ -224,7 +224,7 @@ Exits
 
 更新用户界面(UI)并触发子模块以启动消息进行工作。将 "Acquisition" 模块的 "Acquired Waveform" 状态注册到 "Logging" 模块的 "API: Log" 状态。当 "Acquired Waveform" 状态发生时，"Logging" 模块将自动执行 "API: Log"。
 
-``` text
+``` csm
 //Register Status
 Acquired Waveform@Acquisition >> API: Log@Logging -><register>
 Acquired Waveform@Acquisition >> API: Power Spectrum@Algorithm -><register>
@@ -246,7 +246,7 @@ API: Start ->| Acquisition
 
 更新用户界面(UI)并停止子模块。取消注册 "Acquisition" 模块的 "Acquired Waveform" 状态。
 
-``` text
+``` csm
 //Local States
 DO: Update Status >> Stopping...
 UI: Update When Stop
