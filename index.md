@@ -110,7 +110,7 @@ CSM 通过 VIPM Library 的形式发布，您可以通过以下方式下载：
     <https://gitee.com/nevstop-lab/Communicable-State-Machine/releases>
 
 > 📓
-> 更多信息，请参考页面 [下载](https://nevstop-lab.github.io/CSM-Wiki/release-of-csm)。
+> 更多信息，请参考页面 [下载](https://nevstop-lab.github.io/CSM-Wiki/download-and-install)。
 >
 
 ## 开源协议

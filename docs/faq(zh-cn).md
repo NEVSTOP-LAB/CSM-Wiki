@@ -36,7 +36,7 @@ CSM 通过 VIPM Library 的形式发布，您可以通过以下方式下载：
     [NEVSTOP-LAB/Communicable-State-Machine 的 Action 页面](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain)
 
 > 📓
-> 更多信息，请参考页面 [下载](https://nevstop-lab.github.io/CSM-Wiki/release-of-csm)。
+> 更多信息，请参考页面 [下载](https://nevstop-lab.github.io/CSM-Wiki/download-and-install)。
 >
 
 ### :question: 在使用 VIPM 安装时弹出的编译对话框是什么?

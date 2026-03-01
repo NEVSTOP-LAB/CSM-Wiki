@@ -2,7 +2,7 @@
 title: 下载
 layout: default
 nav_order: 2
-permalink: /release-of-csm
+permalink: /download-and-install
 has_children: false
 ---
 
@@ -32,7 +32,7 @@ CSM 通过 VIPM Library 的形式发布，推荐通过 VI Package Manager（VIPM
 2. 在搜索框中搜索 **CSM** 关键字
 3. 找到 `Communicable State Machine` 并点击安装
 
-![VIPM 搜索 CSM](<../assets/img/VIPM Search CSM.png>)
+![VIPM 搜索 CSM](https://nevstop-lab.github.io/CSM-Wiki/assets/img/VIPM%20Search%20CSM.png)
 
 [![VIPM 安装量](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs)](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)
 
@@ -77,8 +77,8 @@ CSM 通过 VIPM Library 的形式发布，推荐通过 VI Package Manager（VIPM
 
 | 渠道 | 链接 | 二维码 |
 |------|------|--------|
-| 🐙 GitHub | [NEVSTOP-LAB/Communicable-State-Machine](https://github.com/NEVSTOP-LAB/Communicable-State-Machine) | ![扫描访问 GitHub 仓库](<../assets/img/github-qr.png>) |
-| 🦊 Gitee | [NEVSTOP-LAB/Communicable-State-Machine](https://gitee.com/NEVSTOP-LAB/Communicable-State-Machine) | ![扫描访问 Gitee 仓库](<../assets/img/gitee-qr.png>) |
-| 📖 知乎专栏 | [可通讯状态机(CSM) 框架](https://www.zhihu.com/column/c_1681072169147342848) | ![扫描关注知乎专栏](<../assets/img/zhihu-qr.png>) |
+| 🐙 GitHub | [NEVSTOP-LAB/Communicable-State-Machine](https://github.com/NEVSTOP-LAB/Communicable-State-Machine) | ![扫描访问 GitHub 仓库](https://nevstop-lab.github.io/CSM-Wiki/assets/img/github-qr.png) |
+| 🦊 Gitee | [NEVSTOP-LAB/Communicable-State-Machine](https://gitee.com/NEVSTOP-LAB/Communicable-State-Machine) | ![扫描访问 Gitee 仓库](https://nevstop-lab.github.io/CSM-Wiki/assets/img/gitee-qr.png) |
+| 📖 知乎专栏 | [可通讯状态机(CSM) 框架](https://www.zhihu.com/column/c_1681072169147342848) | ![扫描关注知乎专栏](https://nevstop-lab.github.io/CSM-Wiki/assets/img/zhihu-qr.png) |
 
 通过 GitHub/Gitee 的 Issue、PR、Discussions 参与开发与反馈。
