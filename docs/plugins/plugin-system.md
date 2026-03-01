@@ -52,6 +52,8 @@ CSM - Start Watchdog to Ensure All Modules Exit.vi
 
 **注意**：在主程序启动时尽早调用，不要手动释放Watchdog Queue。
 
+详细说明请参阅：[WatchDog自动退出管理]({% link docs/plugins/watchdog.md %})
+
 ## File Logger Addon
 
 把应用的所有日志保存到文本文件，方便事后分析和排错。日志文件是`.csmlog`格式，普通文本编辑器就能打开。
