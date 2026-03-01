@@ -68,9 +68,9 @@ module Rouge
         # Non-newline whitespace
         rule %r{[^\S\n]+}, Text
 
-        # Target module name — plain Text so it renders in default (black) colour.
+        # Target module name — Name::Namespace (.nn) so it can be styled in CSS.
         # No :pop! so multi-word names (e.g. "Module A") are fully captured here.
-        rule %r{\S+}, Text
+        rule %r{\S+}, Name::Namespace
       end
     end
   end
