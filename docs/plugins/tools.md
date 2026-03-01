@@ -13,11 +13,11 @@ CSM提供了一整套开发和调试工具，帮你更快地开发、调试和�
 - **菜单**: `Tools` -> `Communicable State Machine(CSM)` -> `Open CSM Tool Launcher...`
 - **函数面板**: 在CSM函数面板中选择`CSM Tools`
 
-![CSM Tool Entry in Menu](https://nevstop-lab.github.io/CSM-Wiki/assets/img/Tools/Debug%20Tool%20Entry%20in%20Tool%20Menu.png)
+![CSM Tool Entry in Menu](../../assets/img/Tools/Debug%20Tool%20Entry%20in%20Tool%20Menu.png)
 
 打开后会弹出工具选择器，选你需要的工具就行：
 
-![CSM Tool Selector](https://nevstop-lab.github.io/CSM-Wiki/assets/img/Tools/Tool%20Selector.png)
+![CSM Tool Selector](../../assets/img/Tools/Tool%20Selector.png)
 
 ## 运行时调试工具
 
@@ -25,7 +25,7 @@ CSM提供了一整套开发和调试工具，帮你更快地开发、调试和�
 
 实时显示所有CSM事件，包括状态变化、消息通讯、广播等。
 
-![CSM Running Log Window](https://nevstop-lab.github.io/CSM-Wiki/assets/img/Tools/tool-RunningLogWindow.png)
+![CSM Running Log Window](../../assets/img/Tools/tool-RunningLogWindow.png)
 
 **核心功能**：实时显示、过滤搜索、导出日志、性能监控
 
@@ -37,7 +37,7 @@ CSM提供了一整套开发和调试工具，帮你更快地开发、调试和�
 
 图形化展示所有模块的当前状态，一眼看清系统运行状况。
 
-![CSM State Dashboard Window](https://nevstop-lab.github.io/CSM-Wiki/assets/img/Tools/tool-DashboardWindow.png)
+![CSM State Dashboard Window](../../assets/img/Tools/tool-DashboardWindow.png)
 
 **核心功能**：模块列表、实时状态、状态历史、颜色标识（绿=正常、黄=等待、红=错误、蓝=外部调用）
 
@@ -47,7 +47,7 @@ CSM提供了一整套开发和调试工具，帮你更快地开发、调试和�
 
 以表格形式记录状态变化，每个模块一列，每次变化一行。特别适合分析多模块的并行状态对应关系。
 
-![CSM Table Log Window](https://nevstop-lab.github.io/CSM-Wiki/assets/img/Tools/tool-TableLogWindow.png)
+![CSM Table Log Window](../../assets/img/Tools/tool-TableLogWindow.png)
 
 **核心功能**：并行状态对比、时序分析、状态同步、事件关联
 
