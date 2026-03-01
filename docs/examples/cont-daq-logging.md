@@ -133,11 +133,11 @@ API: Stop -> Logging
 
 #### `Acquisition Module`: 生成正弦/方波模拟信号数据
 
-![Alt text]({{ site.img_base | append: "/csm-cont-daq-logging-example/Simluated%20DAQ.png" | relative_url }})
+![Alt text](../../assets/img/csm-cont-daq-logging-example/Simluated%20DAQ.png)
 
 #### `SoundInput-DAQ`: 使用声卡采集波形数据
 
-![Alt text]({{ site.img_base | append: "/csm-cont-daq-logging-example/Sound_Card%20DAQ.png" | relative_url }})
+![Alt text](../../assets/img/csm-cont-daq-logging-example/Sound_Card%20DAQ.png)
 
 **示例：（假设模块名称为"Acquisition"）**
 
@@ -164,11 +164,11 @@ API: Stop -> Acquisition
 
 创建一个类似于 [Workers Continuous Measurement and Logging Example](https://www.vipm.io/package/sc_workers_framework_core/) 的用户界面。
 
-![Alt text]({{ site.img_base | append: "/csm-cont-daq-logging-example/mainUI.png" | relative_url }})
+![Alt text](../../assets/img/csm-cont-daq-logging-example/mainUI.png)
 
 使用 CSM 模板创建程序框图，将 "Logging Module" 和 "Acquisition Module" 作为子模块放置在 VI 后面板。
 
-![mainBD]({{ site.img_base | append: "/csm-cont-daq-logging-example/MainBD.png" | relative_url }})
+![mainBD](../../assets/img/csm-cont-daq-logging-example/MainBD.png)
 
 ### 系统架构
 
@@ -202,7 +202,7 @@ Do: Update Settings
 DO: Update Status >> Ready...
 ```
 
-![Macro: Initialize]({{ site.img_base | append: "/csm-cont-daq-logging-example/Initialize%20Process.png" | relative_url }})
+![Macro: Initialize](../../assets/img/csm-cont-daq-logging-example/Initialize%20Process.png)
 
 #### 退出过程 (Macro: Exit)
 
@@ -218,7 +218,7 @@ Events: Unregister
 Exits
 ```
 
-![Macro: Exit]({{ site.img_base | append: "/csm-cont-daq-logging-example/Exit%20Process.png" | relative_url }})
+![Macro: Exit](../../assets/img/csm-cont-daq-logging-example/Exit%20Process.png)
 
 #### 开始采集过程 (Macro: Start)
 
@@ -240,7 +240,7 @@ API: Start ->| Logging
 API: Start ->| Acquisition
 ```
 
-![Macro: Start]({{ site.img_base | append: "/csm-cont-daq-logging-example/Start%20Process.png" | relative_url }})
+![Macro: Start](../../assets/img/csm-cont-daq-logging-example/Start%20Process.png)
 
 #### 停止采集过程 (Macro: Stop)
 
@@ -262,7 +262,7 @@ Acquired Waveform@Acquisition >> UI: Update Waveforms -><unregister>
 Power Spectrum@Algorithm >> UI: Update FFT -><unregister>
 ```
 
-![Macro: Stop]({{ site.img_base | append: "/csm-cont-daq-logging-example/Stop%20Process.png" | relative_url }})
+![Macro: Stop](../../assets/img/csm-cont-daq-logging-example/Stop%20Process.png)
 
 ## 下载
 

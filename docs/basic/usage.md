@@ -23,7 +23,7 @@ nav_order: 4
 在CSM里，所有 case 都能当消息调，但建议用 API 分组做外部接口。状态变化就通过 Status 或 Interrupt Status 广播出去。
 
 可参考范例：[创建可重用模块]({% link docs/examples/example-csm-basic-example.md %}#create-a-reuse-module)
-![img]({{ site.img_base | append: "/slides/Baisic-1.Create%20Reuse%20Module(CN).png" | relative_url }})
+![img](../../assets/img/slides/Baisic-1.Create%20Reuse%20Module(CN).png)
 
 ### 设计要点
 
@@ -143,7 +143,7 @@ Attribute 是用来存模块配置的，有两个用处：
 4. 收到响应时进入 "Async Response" 状态处理
 
 可参考范例：[CSM调用者场景]({% link docs/examples/example-csm-basic-example.md %}#caller-is-csm-scenario)
-![img]({{ site.img_base | append: "/slides/Baisic-2.Call%20in%20CSM%20Framework(CN).png" | relative_url }})
+![img](../../assets/img/slides/Baisic-2.Call%20in%20CSM%20Framework(CN).png)
 
 ## Step3. 在其他框架中调用CSM模块
 
@@ -208,7 +208,7 @@ Event Structure
 - 通过订阅机制保持状态同步
 
 可参考范例：[其他框架调用者场景]({% link docs/examples/example-csm-basic-example.md %}#caller-is-other-framework-scenario)
-![img]({{ site.img_base | append: "/slides/Baisic-3.Call%20in%20other%20Framework(CN).png" | relative_url }})
+![img](../../assets/img/slides/Baisic-3.Call%20in%20other%20Framework(CN).png)
 
 ## Step4. CSM参数传递
 
@@ -290,7 +290,7 @@ API: SetSampleRate >> 1000 -@ DAQModule
 
 ### 参数工具VI
 
-![table]({{ site.img_base | append: "/slides/Baisic-4.Arguments(CN).png" | relative_url }})
+![table](../../assets/img/slides/Baisic-4.Arguments(CN).png)
 
 - [`CSM - Argument Type.vi`]({% link docs/reference/api-03-arguments.md %}#csm-argument-typevi)：识别参数类型
 - [`CSM - Keywords.vi`]({% link docs/reference/api-10-utility-vis.md %}#csm-keywordsvi)：列出CSM关键字
