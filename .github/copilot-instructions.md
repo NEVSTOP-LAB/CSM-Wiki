@@ -230,3 +230,23 @@
 1. **Callout 格式**：检查被修改的文件中是否存在 GitHub callout 格式（`> [!NOTE]` 等），如有则立即转换为 Just the Docs 格式（`{: .note }` 等）。
 
 2. **进度更新**：如果本次修改涉及文档内容的新增或完善，同步更新 `.github/copilot-instructions.md` 中"项目当前状态"对应文件的完成度，并更新 `.github/progress/vi-description-tracking.md`。
+
+## 图片路径规范
+
+在 `docs/` 目录下的 Markdown 文件中，**禁止使用** `{{ site.baseurl }}/assets/img/` 这种 Jekyll Liquid 语法引用图片。
+
+这种语法只在 Jekyll 构建时生效，在 GitHub Markdown 渲染器（如 PR 预览、README 展示）中**无法显示**。
+
+**正确做法**：使用相对路径：
+- `docs/` 目录下的文件：`../assets/img/filename.png`
+- `docs/basic/` 等子目录下的文件：`../../assets/img/filename.png`
+
+**示例（正确）**：
+```markdown
+![图片描述](../assets/img/example.png)
+```
+
+**示例（错误，不要使用）**：
+```markdown
+![图片描述]({{ site.baseurl }}/assets/img/example.png)
+```
