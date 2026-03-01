@@ -90,36 +90,7 @@ flowchart TD
 
 ## 典型应用场景
 
-### 场景一：标准多模块应用
-
-这是最常见的用法——主程序启动多个**异步**功能模块。主程序会主动管理它负责的模块（如UI模块），其余没有被主动退出的模块由WatchDog兜底清理。
-
-```text
-// 主程序 VI 框架示意
-Initialize >> {
-    // 尽早启动 WatchDog
-    CSM - Start Watchdog to Ensure All Modules Exit.vi
-    → Watchdog Queue（存入移位寄存器）
-
-    // 异步启动各功能模块
-    Run Async: DataAcquisitionModule   // 数据采集（由 WatchDog 兜底管理）
-    Run Async: DataProcessingModule    // 数据处理（由 WatchDog 兜底管理）
-    Run Async: UIModule                // UI 模块（主程序主动管理）
-    // 注意：同步调用的模块不在 WatchDog 管理范围内，
-    //       需要调用方自行确保其退出
-}
-
-// 程序运行...
-
-// 退出时：
-// 1. 主程序主动向 UIModule 发送 Macro: Exit（主程序自行管理）
-// 2. 主程序 VI 退出，LabVIEW 自动回收 Watchdog Queue
-// 3. WatchDog 检测到队列回收，向还在运行的 DataAcquisitionModule
-//    和 DataProcessingModule 广播 Macro: Exit（接管遗留模块）
-// 4. 所有模块正常退出
-```
-
-### 场景二：嵌入式/仪器控制应用
+### 典型场景：嵌入式/仪器控制应用
 
 在仪器控制场景下，各硬件模块（DAQ、串口、GPIB等）通常以异步CSM模块运行。主程序在退出前可主动通知关键硬件模块释放资源，WatchDog则确保任何未被主动通知的模块也能正确退出，避免仪器资源被锁定。
 
