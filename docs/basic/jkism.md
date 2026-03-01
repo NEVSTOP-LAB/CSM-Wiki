@@ -5,388 +5,200 @@ parent: 基础文档
 nav_order: 1
 ---
 
-# JKI State Machine(JKISM)简介
+# JKI State Machine (JKISM)
+{: .no_toc }
 
-## 什么是JKISM
+---
 
-JKISM 是 JKI 公司开发的轻量级 LabVIEW 框架，是社区最流行的设计模式之一。它基于**字符串队列状态机**，核心很简单：
-- 用字符串表示状态
-- 用队列管理状态序列  
-- 循环中依次执行
-- 状态可以动态添加新状态
+1. TOC
+{:toc}
 
-**设计理念**：简单直观、灵活动态、轻量级、易扩展
+---
 
-## 基本结构
+## JKISM 简介
 
-JKISM 包含三个核心：
+JKI State Machine (JKISM) 是一个 LabVIEW **事件驱动队列消息状态机**，核心是**队列消息状态机 + 用户界面交互处理**模式。JKISM 采用规定格式的字符串描述状态，利用字符串类型的移位寄存器构建消息队列。
 
-**1. 状态队列**：用 LabVIEW 队列存储待执行的状态（FIFO 模式）
+![JKISM 简介](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-10.png)
 
-**2. While 循环**：不断从队列取状态执行
-```
-Loop {
-    Dequeue -> Parse State -> Execute in Case -> Enqueue new states
-}
-```
+### 优点
 
-**3. Case 结构**：根据状态字符串执行对应代码
+1. 字符串格式的消息队列、消息，易于编辑、操作和查看
+2. 字符串消息可以携带附加的额外信息，构成**消息 + 数据**队列状态机
+3. 支持注释、宏消息
+4. 状态过程可通过文本描述，可以实现外部控制状态转换
+5. 模板内置错误处理机制
+6. JKISM Editor 工具
 
-### 状态字符串格式
+{: .note }
+> JKISM 开源地址：[JKISoftware/JKI-State-Machine (github.com)](https://github.com/JKISoftware/JKI-State-Machine)
 
-```
-"Initialize"                           // 单一状态
-"Initialize                            // 多个状态（换行符分隔）
-Read Configuration
-Start Acquisition"
-"Set Value: 100"                       // 带参数
-```
+---
 
-## 优势与局限
+## 核心结构：Parse State Queue.vi
 
-### 适合 JKISM 的场景
+`Parse State Queue.vi` 是 JKISM 的**消息处理核心**，负责：
 
-✓ **简单顺序控制**：明确的步骤序列（仪器初始化、简单测试）  
-✓ **小型应用**：代码量 <1000 行，功能单一  
-✓ **原型开发**：快速验证想法，时间优先  
-✓ **学习教学**：理解状态机概念，入门友好
+1. 取出消息队列中下一条消息
+2. Error 时进入 `"Error Handler"` 状态
 
-### JKISM 的局限
+消息队列为空时，程序进入事件结构等待用户操作。
 
-这些限制在大型项目中会成为瓶颈：
+![JKISM 核心结构](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-11.png)
 
-1. **缺乏模块间通讯**：只有一个队列，多模块协同困难
-2. **参数传递原始**：通过字符串编码/解析，无类型安全
-3. **错误处理不完善**：需手动实现，难以统一
-4. **缺乏高级特性**：无工作者模式、责任链、状态广播、插件机制
-5. **调试工具有限**：主要靠前面板显示
-6. **扩展性受限**：难以添加新功能
+### 消息格式
 
-**CSM 的改进**：提供完整的模块通讯 API、多种参数类型（HEXSTR、MassData）、内置错误处理、工作者/责任链模式、全局日志窗口、插件系统等
-
-## JKISM vs CSM 对比
-
-| 特性 | JKISM | CSM |
-|------|-------|-----|
-| 基础架构 | 单队列状态机 | 多模块通讯状态机 |
-| 模块化 | 不支持 | 完整支持 |
-| 模块通讯 | 无 | 同步/异步/广播 |
-| 参数传递 | 字符串解析 | 多种类型支持 |
-| 错误处理 | 手动实现 | 内置机制 |
-| 学习曲线 | 平缓 | 中等 |
-| 适用规模 | 小型(<1K 行) | 中大型(1K+ 行) |
-
-**性能**：JKISM 启动快、内存占用低；CSM 参数传递更高效
-
-**调试**：JKISM 靠前面板；CSM 有全局日志、状态仪表板、状态表格窗口
-
-**选择建议**：小型简单短期项目用 JKISM，中大型复杂长期项目用 CSM
-
-## 工作流程示例
-
-```labview
-// 初始化
-Queue = Create Queue
-Enqueue(Queue, "Initialize")
-
-// 主循环
-While Loop {
-    State = Dequeue(Queue)
-    
-    Case(State) {
-        "Initialize": {
-            Init Hardware
-            Enqueue(Queue, "Idle")
-        }
-        
-        "Idle": {
-            Wait for Event
-        }
-        
-        "Process Data": {
-            Process(Data)
-            Enqueue(Queue, "Update Display")
-        }
-        
-        "Error": {
-            Handle Error
-            Enqueue(Queue, "Idle")
-        }
-        
-        "Exit": {
-            Cleanup
-            Stop Loop
-        }
-    }
-}
-
-// 清理
-Release Queue(Queue)
+```text
+//打开前界面
+UI: Front Panel State >> Open
 ```
 
-## 从 JKISM 迁移到 CSM
+| 元素 | 说明 |
+|------|------|
+| `//打开前界面` | 注释（以 `//` 开头） |
+| `UI: Front Panel State` | 消息（状态名） |
+| `>> Open` | 消息参数 |
 
-### 什么时候该迁移？
+### Core Category（内置核心状态）
 
-项目出现这些问题时，考虑迁移：规模增长难管理、需要多模块协同、需要更好的错误处理和调试
+| 状态 | 说明 |
+|------|------|
+| `Default` | 严重错误，捕获编程中使用未定义状态 |
+| `Initialize Core Data` | 初始化框架所需资源 |
+| `Error Handler` | 处理错误 |
+| `Exit` | 退出 |
 
-### 迁移策略
+---
 
-**渐进式**（大型项目）：新模块用 CSM，旧模块通过 API 调用，逐步重构  
-**完全重写**（小型项目）：用 CSM Template 创建，一次性切换  
-**并行开发**（中型项目）：保留 JKISM 核心，CSM 模块补充，最终迁移
+## JKISM 探针 (Probe)
 
-### 概念对照
+JKISM 提供了专为 JKI 状态机设计的**自定义探针**，应用在状态连线上，显示下一个状态；如果没有则显示空字符串。
 
-| JKISM | CSM | 说明 |
-|-------|-----|------|
-| 状态 | API/状态 | CSM 区分 API 和内部状态 |
-| 入队 | 发送消息 | 使用 CSM 消息 API |
-| 状态字符串 | 消息字符串 | 支持多种参数类型 |
-| - | 模块通讯 | JKISM 无，CSM 新增 |
+![JKISM 探针](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-12.png)
 
-### 迁移示例
+### 使用方法
 
-```labview
-// JKISM
-Enqueue(Queue, "Read Data")
-Case: "Read Data" {
-    Data = Read File
-    Enqueue(Queue, "Process: " + Data)
-}
+在 LabVIEW 的连线右键菜单中，选择 **Custom Probe → JKI State Queue Cyclic Table** 即可插入 JKISM 专用探针。
 
-// CSM
-API: Read Data >> "" -> This Module
-API: Read Data >> {
-    Data = Read File
-    API: Process Data >> Data -> This Module
-}
+在四个状态对应的代码中插入探针后，每个状态的运行结果会依次显示在探针窗口中。
+
+### History 探针
+
+VIPM 中有多个历史列表探针库，安装后可以看到**轮转的历史状态列表**，方便追踪状态执行顺序。
+
+---
+
+## JKISM 编辑器
+
+JKISM Editor 是 JKISM 的配套开发工具，提供可视化的状态管理界面。
+
+![JKISM 编辑器](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-13.png)
+
+### 主要功能
+
+- **打开方式**：通过 JKISM 工具栏按钮或菜单打开
+- **状态跳转 / 过滤状态**：快速定位和筛选已定义的状态
+- **调用状态跳转**：点击状态名即可跳转到对应的 Case 分支
+
+---
+
+## JKISM 编程技巧
+
+### 技巧总览
+
+1. **不要在子 VI 中隐藏状态字符串**
+2. **不要在事件结构中添加代码和逻辑判断**
+3. **保留原生架构尺度，尽量不催生壮大架构**
+4. **使用宏替代链式序列状态**
+5. **左对齐替代右对齐状态字符串**
+
+---
+
+### 技巧 1：不要在子 VI 中隐藏状态字符串
+
+状态字符串应直接写在 Case 分支中，而不是封装到子 VI 内部。子 VI 内的状态字符串难以阅读和维护。
+
+![技巧1：不要在子VI中隐藏状态字符串](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-14.png)
+
+{: .tip }
+> 将状态字符串直接暴露在 Case 分支中，阅读代码时无需打开子 VI 即可了解状态流转逻辑。
+
+---
+
+### 技巧 2：不要在事件结构中添加代码和逻辑判断
+
+事件结构只负责**产生消息**，不应包含业务逻辑。复杂逻辑应放在对应的状态 Case 中处理。
+
+![技巧2：不要在事件结构中添加代码和逻辑判断](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-15.png)
+
+{: .note }
+> 简单的条件逻辑（如判断是否入队某状态）可以放在事件结构中，但业务逻辑应保持在状态 Case 内。
+
+---
+
+### 技巧 3：保留原生架构尺度，尽量不催生壮大架构
+
+- 尽量**保留原生尺寸**
+- 尽量避免拖拽复制大量代码
+- 关闭 **Auto Grow** 功能
+
+![技巧3：保留原生架构尺度](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-16.png)
+
+---
+
+### 技巧 4：使用宏替代链式序列状态
+
+使用**宏消息（Macro）**将多个连续状态打包，代替手动链式入队多个状态，使代码更简洁。
+
+```text
+// 链式序列（不推荐）
+State 1
+State 2
+State 3
+
+// 使用宏（推荐）
+Macro: Initialize
 ```
 
-**注意**：理解 CSM 的模块/API/状态概念，利用内置参数类型和错误处理，渐进式改进
+其中 `Macro: Initialize` 展开后等价于：
 
----------------------------------------
-
-# JKISM 编程实践
-
-## 命名和设计
-
-### 状态命名规范
-
-**推荐**：动词开头，清晰表意
-```
-"Initialize Hardware"
-"Read Sensor Data"  
-"Calculate Results"
-"Error: File Not Found"
+```text
+Data: Initialize
+Initialize Core Data
+UI: Initialize
+UI: Front Panel State >> Open
 ```
 
-**使用前缀分类**：
-```
-"Init: Hardware"      // 初始化类
-"Process: Data"       // 处理类
-"Error: Timeout"      // 错误类
-"Cleanup: Resources"  // 清理类
-```
+![技巧4：使用宏替代链式序列状态](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-17.png)
 
-**避免**：拼写模糊（"State1"、"DoIt"）
+---
 
-### 设计原则
+### 技巧 5：左对齐替代右对齐状态字符串
 
-**1. 单一职责**：每个状态只做一件事
-```labview
-// 好
-Case: "Read File" { Read -> Enqueue("Parse Data") }
-Case: "Parse Data" { Parse -> Enqueue("Validate") }
+状态字符串常量应使用**左对齐**，而非右对齐，以便阅读。
 
-// 差：一个状态做太多事
-Case: "Do Everything" { Read + Parse + Validate + Process + Save }
-```
+![技巧5：左对齐替代右对齐状态字符串](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-18.png)
 
-**2. 明确转换路径**
-```labview
-Case: "Initialize" {
-    If (Success) { Enqueue("Idle") }
-    Else { Enqueue("Error: Init Failed") }
-}
-```
+{: .tip }
+> 在 LabVIEW 字符串常量属性中将对齐方式设为左对齐，多行状态队列字符串会更易读。
 
-**3. 避免循环陷阱**
-```labview
-// 问题：无限循环
-Case: "A" { Enqueue("B") }
-Case: "B" { Enqueue("A") }
+---
 
-// 解决：加计数器或退出条件
-Case: "A" {
-    Counter++
-    If (Counter < Max) { Enqueue("B") }
-    Else { Enqueue("Done") }
-}
-```
+## Demo：了解 JKISM
 
-## 数据和错误处理
+以下是学习 JKISM 的推荐动手步骤：
 
-### 数据管理
+![JKISM Demo 步骤](https://nevstop-lab.github.io/CSM-Wiki/assets/img/jkism/slide-19.png)
 
-**使用 Shift Register**：
-```labview
-Shift Register: {
-    Config, Data, Status, Error
-}
-```
+1. 后面板放置一个 JKISM，了解 JKISM 的**创建方法**
+2. 在 JKISM String Queue 连线上点击 **Probe**，高亮运行，了解 JKISM 的**运行逻辑**
+3. 展示 JKISM 的 **Probe**（自定义探针）
+4. 展示 **JKISM Editor**
 
-**参数传递**：
-```labview
-// 方法1：字符串编码
-"Set Value: 100"  // 需手动解析
+---
 
-// 方法2：Variant（类型安全）
-State with Variant Attribute
+## 参考资料
 
-// 方法3：HEXSTR（集成CSM工具）
-"Set Config: <HEXSTR>..."
-```
-
-### 错误处理
-
-**统一错误状态**：
-```labview
-Case: "Error" {
-    Log Error
-    Display to User
-    Cleanup
-    If (Can Recover) { Enqueue("Retry") }
-    Else { Enqueue("Fatal Error") }
-}
-```
-
-**每个状态检查错误**：
-```labview
-Case: "Read Data" {
-    Data, Error = Read File
-    If (Error?) { Enqueue("Error: Read Failed") }
-    Else { Enqueue("Process Data") }
-}
-```
-
-**重试机制**：
-```labview
-Case: "Retry Operation" {
-    Retry Count++
-    If (Retry Count < Max) {
-        Wait(Delay)
-        Enqueue("Try Operation")
-    } Else {
-        Enqueue("Error: Max Retries")
-    }
-}
-```
-
-## 性能和调试
-
-### 性能优化
-
-**合并相关操作**：
-```labview
-// 差：太多小状态
-Enqueue("Read1\nRead2\nRead3...")
-
-// 好：合并
-Case: "Read All" { Read1; Read2; Read3 }
-```
-
-**周期性任务**：用 Timeout 实现
-```labview
-Dequeue with Timeout = 100ms
-If (Timeout) { Enqueue("Periodic Check") }
-```
-
-**批量处理**：
-```labview
-// 差：逐个入队
-For Each Item { Enqueue("Process: " + Item) }
-
-// 好：批量处理
-Case: "Process All" { For Each Item { Process(Item) } }
-```
-
-### 调试技巧
-
-**状态历史记录**：
-```labview
-Append Current State to History Array
-```
-
-**执行时间监控**：
-```labview
-Case: Each State {
-    Start = Get Time
-    ... // 执行
-    Duration = Get Time - Start
-    Log("State: " + Name + " Duration: " + Duration)
-}
-```
-
-**前面板显示**：显示当前状态、历史、队列长度
-
-**断点状态**：
-```labview
-Case: "Debug Breakpoint" {
-    Pause = Dialog("Continue?")
-}
-```
-
-## 常见问题
-
-### 1. 拼写错误
-```labview
-Enqueue("Initialize")  // 正确
-Case: "Initalize"      // 拼写错了，永远不会执行
-```
-**解决**：用常量/枚举定义状态名，或用 JKISM State Editor
-
-### 2. 忘记入队下一状态
-```labview
-Case: "Some State" {
-    Do Something
-    // 忘记Enqueue，程序卡住
-}
-```
-**解决**：每个状态明确下一步，用 Default Case 处理，或添加"Idle"默认状态
-
-### 3. 队列阻塞
-```labview
-State = Dequeue(Queue)  // 队列空时永远等待
-```
-**解决**：用 Timeout
-```labview
-State = Dequeue(Queue, Timeout = 100ms)
-If (Timeout) { Enqueue("Idle") }
-```
-
-### 4. 状态名冲突
-**解决**：用前缀区分（"ModuleA: Process"、"ModuleB: Process"）
-
-### 5. 状态过于复杂
-**解决**：拆分成多个状态，用 SubVI 封装逻辑
-
-## 实践经验
-
-- **从简单开始**：初始设计保持简单，只在需要时添加复杂性
-- **文档化流程**：绘制状态转换图，注释关键状态
-- **定期重构**：识别重复代码，提取公共逻辑
-- **适时升级**：项目超过 3000 行或需要多模块协作时，考虑 CSM
-- **团队规范**：统一命名规范，定义状态分类，代码审查
-
-## 总结
-
-**JKISM 的价值**：简单易学、代码清晰、灵活动态、快速开发  
-**局限性**：缺乏模块化、通讯机制简单、扩展性受限
-
-**何时用 JKISM**：小型简单短期项目、学习原型  
-**何时用 CSM**：中大型复杂长期项目、需要模块化和高级特性
-
-**最佳实践**：清晰命名、单一职责、统一错误处理、避免不必要转换、记录状态历史、文档化、适时升级
-
-更多资源：[JKI 官网](http://www.jki.net/) | [CSM GitHub](https://github.com/NEVSTOP-LAB/Communicable-State-Machine) | [CSM Wiki](https://nevstop-lab.github.io/CSM-Wiki/)
+- [JKI State Machine GitHub](https://github.com/JKISoftware/JKI-State-Machine)
+- [JKI 官方网站](http://jki.net/state-machine)
+- [CSM GitHub](https://github.com/NEVSTOP-LAB/Communicable-State-Machine)
