@@ -237,13 +237,40 @@
 
 这种语法只在 Jekyll 构建时生效，在 GitHub Markdown 渲染器（如 PR 预览、README 展示）中**无法显示**。
 
+### ⚠️ 自定义 Permalink 的特殊情况
+
+如果文件设置了自定义 `permalink`，其 **URL 深度**可能与文件的**目录深度**不一致，导致相对路径在网页上失效。
+
+**规则**：当文件设置了自定义 `permalink`，必须使用绝对 URL 引用图片。
+
+| 文件位置 | permalink | 正确图片路径写法 |
+|----------|-----------|----------------|
+| `docs/xxx.md` | 无（默认） | `../assets/img/filename.png` |
+| `docs/basic/xxx.md` | 无（默认） | `../../assets/img/filename.png` |
+| `docs/xxx.md` | `/xxx`（单层） | `https://nevstop-lab.github.io/CSM-Wiki/assets/img/filename.png` |
+| `docs/xxx.md` | `/FAQ`、`/download-and-install` 等 | `https://nevstop-lab.github.io/CSM-Wiki/assets/img/filename.png` |
+
+**原因**：`permalink: /FAQ` 将页面托管在 `/CSM-Wiki/FAQ`，此时浏览器解析 `../assets/img/` 会跳出 `/CSM-Wiki/` baseurl，导致图片 404。
+
+### 已知使用绝对 URL 的文件（含自定义 permalink）
+
+- `docs/download-and-install.md`（`permalink: /download-and-install`）
+- `docs/faq(zh-cn).md`（`permalink: /FAQ`）
+
+### 默认路径（无自定义 permalink）
+
 **正确做法**：使用相对路径：
 - `docs/` 目录下的文件：`../assets/img/filename.png`
 - `docs/basic/` 等子目录下的文件：`../../assets/img/filename.png`
 
-**示例（正确）**：
+**示例（正确，无自定义 permalink）**：
 ```markdown
 ![图片描述](../assets/img/example.png)
+```
+
+**示例（正确，有自定义 permalink）**：
+```markdown
+![图片描述](https://nevstop-lab.github.io/CSM-Wiki/assets/img/example.png)
 ```
 
 **示例（错误，不要使用）**：
