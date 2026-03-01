@@ -146,7 +146,7 @@ Macro: Exit -> Module B
 
 e.g. 范例:
 
-![How-to-Exit-Example](https://nevstop-lab.github.io/CSM-Wiki/assets/img/QA/How-to-Exit-Example.png)
+![How-to-Exit-Example](../assets/img/QA/How-to-Exit-Example.png)
 
 ### :question: 如何在非 CSM 框架（如 DQMH、Actor Framework）中调用 CSM 模块？
 
