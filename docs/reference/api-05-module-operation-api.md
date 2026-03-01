@@ -230,7 +230,7 @@ CSM - Run Script.vi 支持一个额外的补充语法，将返回值保存到指
 
 示例如下：
 
-```
+```csm
 API: Random -@ csm => var1
 API: Random -@ csm => var2
 API: echo >> ${var1} -@ csm
@@ -242,7 +242,7 @@ API: echo >> ${var1},${var2} -@ csm
 
 - Wait: 等待指定的毫秒数，语法为 `Wait >> 毫秒数`，例如 `Wait: 1000` 表示等待1000毫秒。
 
-```
+```csm
 API: Do Something -@ csm
 Wait: 1000 // 等待1000毫秒，然后继续执行下一条指令
 API: Do Something Else -@ csm

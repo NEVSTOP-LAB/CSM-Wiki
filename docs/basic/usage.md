@@ -98,7 +98,7 @@ Attribute 是用来存模块配置的，有两个用处：
 
 ### CSM消息语法
 
-``` c
+``` csm
 #CSM 状态语法
     // 本地消息
     DoSth: DoA >> 参数
