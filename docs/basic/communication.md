@@ -83,15 +83,15 @@ end
 
 **SubModule 实现 "API: EchoArguments"** - 将参数原样返回
 
-![API: EchoArguments@Sub-Module](../../assets/img/265700817-2070416f-2f2d-4ba9-831b-b3b22540607c.png)
+![API: EchoArguments@Sub-Module]({{ site.img_base | append: "/265700817-2070416f-2f2d-4ba9-831b-b3b22540607c.png" | relative_url }})
 
 **MainModule 同步调用 SubModule**
 
 按键中添加: `API: EchoArguments >> xyz -@ SubModule`
-![Alt text](../../assets/img/EchoArguments%20%20xyz%20-@%20SubModule.png)
+![Alt text]({{ site.img_base | append: "/EchoArguments%20%20xyz%20-@%20SubModule.png" | relative_url }})
 
 在 "Response" 状态处理响应:
-![Alt text](../../assets/img/Response@MainModule2.png)
+![Alt text]({{ site.img_base | append: "/Response@MainModule2.png" | relative_url }})
 
 运行效果（先启动 SubModule，再启动 MainModule）:
 ![Alt text](https://nevstop-lab.github.io/CSM-Wiki/assets/img/SyncCall%20by%20CSM%20result.png)
@@ -100,7 +100,7 @@ end
 
 可以用 `AdvanceAPI\CSM Send Message and Wait for Reply.vi` 在普通代码里同步调用:
 
-![Alt text](../../assets/img/SyncCall%20with%20advanceAPI.png)
+![Alt text]({{ site.img_base | append: "/SyncCall%20with%20advanceAPI.png" | relative_url }})
 
 # 异步调用 (`->` 或 `->|`)
 
@@ -165,15 +165,15 @@ End
 **有返回的异步消息 (->)**
 
 按键中添加: `API: EchoArguments >> xyz -> SubModule`
-![Alt text](../../assets/img/EchoArguments%20%20xyz%20-@%20SubModule.png)
+![Alt text]({{ site.img_base | append: "/EchoArguments%20%20xyz%20-@%20SubModule.png" | relative_url }})
 
 在 "Async Response" 状态处理响应:
-![Alt text](../../assets/img/Response@MainModule2.png)
+![Alt text]({{ site.img_base | append: "/Response@MainModule2.png" | relative_url }})
 
 **无返回的异步消息 (->\|)**
 
 按键中添加: `API: EchoArguments >> xyz ->| SubModule`
-![Alt text](../../assets/img/EchoArguments%20%20xyz%20asynccall%20without%20resp%20SubModule.png)
+![Alt text]({{ site.img_base | append: "/EchoArguments%20%20xyz%20asynccall%20without%20resp%20SubModule.png" | relative_url }})
 
 有返回的消息会弹框显示结果，无返回的不会:
 ![Alt text](https://nevstop-lab.github.io/CSM-Wiki/assets/img/Async-Call%20by%20CSM%20result.png)
@@ -182,7 +182,7 @@ End
 
 用 `AdvanceAPI\CSM Post Message.vi` 发送异步消息（无返回）:
 
-![Alt text](../../assets/img/AsyncCall%20with%20advanceAPI.png)
+![Alt text]({{ site.img_base | append: "/AsyncCall%20with%20advanceAPI.png" | relative_url }})
 
 # 状态订阅
 
@@ -204,7 +204,7 @@ End
 ## 发布状态
 
 用[`CSM Broadcast Status Change.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm-broadcast-status-changevi)发布状态：
-![Alt text](../../assets/img/CSM%20Broadcast%20Status%20Change.png)
+![Alt text]({{ site.img_base | append: "/CSM%20Broadcast%20Status%20Change.png" | relative_url }})
 
 或者直接用字符串：
 ``` c
@@ -217,18 +217,18 @@ I'm timeout >> statusArguments -> <all>
 
 支持通配符 "*" 代表所有模块。比如订阅 "*" 的 "Error Occurred" 状态，就能收到所有模块的错误通知。
 
-![Alt text](../../assets/img/status%20register%20and%20unregister%20api.png)
+![Alt text]({{ site.img_base | append: "/status%20register%20and%20unregister%20api.png" | relative_url }})
 
 ## 使用示例
 
 **SubModule 每 2 秒发布一次 "I'm timeout" 状态:**
-![Alt text](../../assets/img/submodule%20timeout%20status.png)
+![Alt text]({{ site.img_base | append: "/submodule%20timeout%20status.png" | relative_url }})
 
 **MainModule 通过按钮动态订阅/取消订阅:**
-![Alt text](../../assets/img/statusexample_reg_and_unreg.png)
+![Alt text]({{ site.img_base | append: "/statusexample_reg_and_unreg.png" | relative_url }})
 
 **订阅后的效果:**
-![Alt text](../../assets/img/statusexample_result.png)
+![Alt text]({{ site.img_base | append: "/statusexample_result.png" | relative_url }})
 
 # 消息构建 API
 

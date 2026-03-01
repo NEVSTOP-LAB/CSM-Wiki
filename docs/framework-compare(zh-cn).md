@@ -20,4 +20,4 @@ has_children: false
 
 ## CSM vs DQMH/SMO/AF
 
-![Compare-LabVIEW-Framework](../assets/img/slides/Compare-LabVIEW-Framework.png)
+![Compare-LabVIEW-Framework]({{ site.img_base | append: "/slides/Compare-LabVIEW-Framework.png" | relative_url }})

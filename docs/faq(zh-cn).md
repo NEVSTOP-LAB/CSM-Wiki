@@ -146,7 +146,7 @@ Macro: Exit -> Module B
 
 e.g. 范例:
 
-![How-to-Exit-Example](../assets/img/QA/How-to-Exit-Example.png)
+![How-to-Exit-Example]({{ site.img_base | append: "/QA/How-to-Exit-Example.png" | relative_url }})
 
 ### :question: 如何在非 CSM 框架（如 DQMH、Actor Framework）中调用 CSM 模块？
 

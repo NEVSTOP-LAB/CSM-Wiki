@@ -7,6 +7,10 @@ email: liyao.zheda@foxmail.com
 url: 'https://nevstop-lab.github.io/'
 baseurl: '/CSM-Wiki'
 
+# Path coordinate for site assets - use with relative_url filter:
+#   {{ site.img_base | append: "/path/to/image.png" | relative_url }}
+img_base: /assets/img
+
 # Just the Docs theme configuration
 theme: just-the-docs
 
