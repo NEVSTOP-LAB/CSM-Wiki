@@ -191,3 +191,45 @@ h6:hover .anchor-heading {
     margin-right: 0;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* CSM (Communicable State Machine) syntax highlighting                */
+/* Scoped to .language-csm so it does not affect other languages.      */
+/* ------------------------------------------------------------------ */
+
+$csm-comment-color:  #22863a; // green (C-style comment colour)
+$csm-argument-color: #6a737d; // medium grey (slightly lighter than default text)
+
+/* Comments (// ...) — green, italic */
+.language-csm .c1 {
+  color: $csm-comment-color !important;
+  font-style: italic;
+}
+
+/* Arguments (after >> separator) — lighter colour, italic */
+.language-csm .sd {
+  color: $csm-argument-color !important;
+  font-style: italic;
+}
+
+/* Send separators (-@, ->, ->|) — keep theme keyword colour but bold */
+.language-csm .k {
+  font-weight: bold;
+}
+
+/* >> operator */
+.language-csm .o {
+  font-weight: bold;
+}
+
+/* @target embedded in a command (Name::Label) — bold to stand out */
+.language-csm .nl {
+  font-weight: bold;
+}
+
+/* @target embedded in an argument (Literal::String::Interpol) — bold, grey, italic (harmonises with argument style) */
+.language-csm .si {
+  color: $csm-argument-color !important;
+  font-weight: bold;
+  font-style: italic;
+}
