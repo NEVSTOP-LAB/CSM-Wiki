@@ -118,7 +118,7 @@ JKISM Editor 是 JKISM 的配套开发工具，提供可视化的状态管理界
 
 状态字符串应直接写在 Case 分支中，而不是封装到子 VI 内部。子 VI 内的状态字符串难以阅读和维护。
 
-![技巧1：不要在子VI中隐藏状态字符串](../../assets/img/jkism/slide-14.png) {: width="50%" }
+![技巧1：不要在子VI中隐藏状态字符串](../../assets/img/jkism/slide-14.png) 
 
 {: .tip }
 > 将状态字符串直接暴露在 Case 分支中，阅读代码时无需打开子 VI 即可了解状态流转逻辑。
@@ -129,7 +129,7 @@ JKISM Editor 是 JKISM 的配套开发工具，提供可视化的状态管理界
 
 事件结构只负责**产生消息**，不应包含业务逻辑。复杂逻辑应放在对应的状态 Case 中处理。
 
-![技巧2：不要在事件结构中添加代码和逻辑判断](../../assets/img/jkism/slide-15.png) {: width="50%" }
+![技巧2：不要在事件结构中添加代码和逻辑判断](../../assets/img/jkism/slide-15.png) 
 
 {: .note }
 > 简单的条件逻辑（如判断是否入队某状态）可以放在事件结构中，但业务逻辑应保持在状态 Case 内。
@@ -142,7 +142,7 @@ JKISM Editor 是 JKISM 的配套开发工具，提供可视化的状态管理界
 - 尽量避免拖拽复制大量代码
 - 关闭 **Auto Grow** 功能
 
-![技巧3：保留原生架构尺度](../../assets/img/jkism/slide-16.png) {: width="50%" }
+![技巧3：保留原生架构尺度](../../assets/img/jkism/slide-16.png) 
 
 ---
 
@@ -169,7 +169,7 @@ UI: Initialize
 UI: Front Panel State >> Open
 ```
 
-![技巧4：使用宏替代链式序列状态](../../assets/img/jkism/slide-17.png) {: width="50%" }
+![技巧4：使用宏替代链式序列状态](../../assets/img/jkism/slide-17.png) 
 
 ---
 
@@ -177,7 +177,7 @@ UI: Front Panel State >> Open
 
 状态字符串常量应使用**左对齐**，而非右对齐，以便阅读。
 
-![技巧5：左对齐替代右对齐状态字符串](../../assets/img/jkism/slide-18.png) {: width="50%" }
+![技巧5：左对齐替代右对齐状态字符串](../../assets/img/jkism/slide-18.png) 
 
 {: .tip }
 > 在 LabVIEW 字符串常量属性中将对齐方式设为左对齐，多行状态队列字符串会更易读。
