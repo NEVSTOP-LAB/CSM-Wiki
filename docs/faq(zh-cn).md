@@ -97,8 +97,9 @@ CSM 是 Communicable State Machine（可通信状态机）的缩写，是基于 
 
 JKI State Machine 是由[JKI](http://jki.net/)公司开发维护的 LabVIEW 开源项目，由事件结构、字符串消息队列和循环结构组成的状态机模板。JKISM 不是程序框架，主要用于开发 LabVIEW 界面逻辑。
 CSM 是基于 JKISM 拓展的编程框架，依然延续 JKISM 的字符串消息设计，通过添加一些新的字符串规则，实现不同模块之间的消息交互。
+SMO 是 JKI 基于 JKISM + OOP 设计的程序框架。
 
-更多信息，请参考 [CSM vs JKISM vs SMO](https://nevstop-lab.github.io/CSM-Wiki/pros-and-cons#csm-vs-jkism-vs-smo) 和 [JKI State Machine 简介](https://nevstop-lab.github.io/CSM-Wiki/docs/basic/jkism)。
+更多信息，请参考 [JKI State Machine 简介](https://nevstop-lab.github.io/CSM-Wiki/docs/basic/jkism)。
 
 > 📓
 >
@@ -109,7 +110,10 @@ CSM 是基于 JKISM 拓展的编程框架，依然延续 JKISM 的字符串消�
 ### :question: LabVIEW不同的框架 CSM/DQMH/AF/SMO 有没有各自非常适合的应用场景?
 
 CSM/DQMH/AF/SMO 都是 LabVIEW 的编程框架，通常没有特别的应用场景区分。但是，由于每个框架的设计思想不同，所以在不同的场景下，可能会有不同的选择。
-具体的选择，可以参考 [CSM vs DQMH/SMO/AF](https://nevstop-lab.github.io/CSM-Wiki/pros-and-cons#csm-vs-dqmhsmoaf)。
+
+下图展示了各框架在不同维度的对比：
+
+![Compare-LabVIEW-Framework](../assets/img/slides/Compare-LabVIEW-Framework.png)
 
 ---
 
