@@ -54,7 +54,7 @@ CSM - Start Watchdog to Ensure All Modules Exit.vi
 
 ## File Logger Addon
 
-把应用的所有日志保存到文本文件，方便事后分析和排错。日志文件是`.csmlog`格式，普通文本编辑器就能打开。
+把应用的所有日志保存到文本文件，方便事后分析和排错。日志文件是`.csmlog`格式，普通文本编辑器就能打开。详细说明参见[文件日志(File Logger)]({% link docs/plugins/csmlogger.md %})。
 
 **文件管理**：
 - **File Size**：单文件最大大小（默认10MB）
