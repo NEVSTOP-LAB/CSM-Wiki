@@ -9,17 +9,18 @@ nav_order: 19
 
 ## CSM WatchDog Addon
 
+{: .note }
+> **CSM WatchDog实现的原理**
+>
+> LabVIEW VI退出时，会自动释放所有队列、事件等句柄资源。因此，您可以通过创建一个WatchDog线程，监控一个由主程序VI申请创建的队列资源，当这个队列资源在主VI退出后被释放时，触发WatchDog线程给还未退出的CSM模块发送`Macro: Exit`，保证他们正常的退出。
+
 ### CSM - Start Watchdog to Ensure All Modules Exit.vi
 启动CSM Watchdog线程，用于监控主程序是否退出。一般在主程序启动后立即执行。
 
 <b>应用场景</b>: 用于保证在主程序退出后，所有的异步启动的CSM模块都能正常退出。
 
-> - Ref: CSM WatchDog实现的原理
-
 ### CSM Watchdog Thread.vi
 CSM Watchdog线程，用于保证在主程序退出后，所有的异步启动的CSM模块都能正常退出。
-
-> - Ref: CSM WatchDog实现的原理
 
 -- <b>输入控件(Controls)</b> --
 - <b>Watchdog Queue</b>: Watchdog队列资源。
