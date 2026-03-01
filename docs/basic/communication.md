@@ -207,7 +207,7 @@ End
 ![Alt text](../../assets/img/CSM%20Broadcast%20Status%20Change.png)
 
 或者直接用字符串：
-``` csm
+```csm
 I'm timeout >> statusArguments -> <all>
 ```
 

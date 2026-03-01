@@ -12,7 +12,7 @@ module Rouge
       mimetypes 'text/x-csm'
 
       # Special token patterns used in both rule definitions and lookaheads
-      SEND_SEP  = /->(?:\|)?|-@/
+      SEND_SEP  = /->\||->|-@/
       ARG_SEP   = />>/
       COMMENT   = /\/\//
       SPECIAL   = /#{ARG_SEP}|#{SEND_SEP}|#{COMMENT}/
@@ -31,7 +31,7 @@ module Rouge
         rule %r{\s+}, Text
 
         # @target embedded in a command (e.g. cmd@Module) — bold label
-        rule %r{@\S+}, Name::Label
+        rule %r{@(?:(?!#{SPECIAL})[^\s])+}, Name::Label
 
         # Command text: any non-whitespace sequence that does not begin
         # one of the special tokens above, stopping before @
@@ -52,10 +52,10 @@ module Rouge
         rule %r{[^\S\n]+}, Text
 
         # @target embedded in an argument (e.g. arg@Module) — bold, harmonises with argument style
-        rule %r{@\S+}, Literal::String::Interpol
+        rule %r{@(?:(?!#{SPECIAL})[^\s])+}, Literal::String::Interpol
 
-        # Argument tokens (lighter + italic via CSS)
-        rule %r{[^\s@]+}, Literal::String::Doc
+        # Argument tokens (lighter + italic via CSS), stopping before SPECIAL tokens
+        rule %r{(?:(?!#{SPECIAL})[^\s@])+}, Literal::String::Doc
       end
 
       state :target do
@@ -68,8 +68,9 @@ module Rouge
         # Non-newline whitespace
         rule %r{[^\S\n]+}, Text
 
-        # Target module name — plain Text so it renders in default (black) colour
-        rule %r{\S+}, Text, :pop!
+        # Target module name — plain Text so it renders in default (black) colour.
+        # No :pop! so multi-word names (e.g. "Module A") are fully captured here.
+        rule %r{\S+}, Text
       end
     end
   end
