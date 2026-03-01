@@ -53,20 +53,20 @@ JKI State Machine (JKISM) 是一个 LabVIEW **事件驱动队列消息状态机*
 UI: Front Panel State >> Open
 ```
 
-| 元素 | 说明 |
-|------|------|
-| `//打开前界面` | 注释（以 `//` 开头） |
-| `UI: Front Panel State` | 消息（状态名） |
-| `>> Open` | 消息参数 |
+| 元素                    | 说明                 |
+| ----------------------- | -------------------- |
+| `//打开前界面`          | 注释（以 `//` 开头） |
+| `UI: Front Panel State` | 消息（状态名）       |
+| `>> Open`               | 消息参数             |
 
 ### Core Category（内置核心状态）
 
-| 状态 | 说明 |
-|------|------|
-| `Default` | 严重错误，捕获编程中使用未定义状态 |
-| `Initialize Core Data` | 初始化框架所需资源 |
-| `Error Handler` | 处理错误 |
-| `Exit` | 退出 |
+| 状态                   | 说明                               |
+| ---------------------- | ---------------------------------- |
+| `Default`              | 严重错误，捕获编程中使用未定义状态 |
+| `Initialize Core Data` | 初始化框架所需资源                 |
+| `Error Handler`        | 处理错误                           |
+| `Exit`                 | 退出                               |
 
 ---
 
@@ -181,19 +181,6 @@ UI: Front Panel State >> Open
 
 {: .tip }
 > 在 LabVIEW 字符串常量属性中将对齐方式设为左对齐，多行状态队列字符串会更易读。
-
----
-
-## Demo：了解 JKISM
-
-以下是学习 JKISM 的推荐动手步骤：
-
-![JKISM Demo 步骤](../../assets/img/jkism/slide-19.png)
-
-1. 后面板放置一个 JKISM，了解 JKISM 的**创建方法**
-2. 在 JKISM String Queue 连线上点击 **Probe**，高亮运行，了解 JKISM 的**运行逻辑**
-3. 展示 JKISM 的 **Probe**（自定义探针）
-4. 展示 **JKISM Editor**
 
 ---
 
