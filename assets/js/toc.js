@@ -168,12 +168,28 @@
     applyWidth(); // set immediately after first render
 
     // Keep the variable in sync when the TOC resizes (e.g. on window resize).
-    // Store the observer on the panel element itself so it could be
+    // Store the observer/listener on the panel element itself so it could be
     // disconnected in the future should the panel ever be removed.
     if (typeof ResizeObserver !== 'undefined') {
       var ro = new ResizeObserver(applyWidth);
       ro.observe(panel);
       panel._tocResizeObserver = ro; // store reference for potential cleanup
+    } else if (typeof window !== 'undefined' && window.addEventListener) {
+      // Fallback for browsers without ResizeObserver: update on window resize.
+      // This also handles the case where the panel is display:none on load
+      // (narrow viewport) and the user later widens into the desktop breakpoint.
+      var resizeHandler = function () {
+        applyWidth();
+      };
+
+      try {
+        window.addEventListener('resize', resizeHandler, { passive: true });
+      } catch (e) {
+        // Older browsers may not support the options object; fall back silently.
+        window.addEventListener('resize', resizeHandler);
+      }
+
+      panel._tocResizeHandler = resizeHandler; // store reference for potential cleanup
     }
   }
 
