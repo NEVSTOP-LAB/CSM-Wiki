@@ -60,7 +60,9 @@ graph TD
 
 1. **WatchDog方式**（默认启用）：调用者VI退出时，其持有的Watchdog Queue资源自动释放，触发后台线程退出。也可以手动释放Watchdog Queue来主动停止记录。
 2. **全部模块退出**（可选）：启用`Exit When All Module Exist?`后，所有CSM模块退出时，记录线程也自动退出（适合主程序本身不是CSM模块的场景）。
-3. **队列清空保证**：退出时后台线程会等待队列中剩余日志处理完毕（最多5秒超时），确保不丢失日志。
+
+{: .note }
+> **队列清空保证**：退出时后台线程会等待队列中剩余日志处理完毕（最多5秒超时），确保不丢失日志。
 
 ## 函数说明
 
@@ -71,8 +73,6 @@ graph TD
 | [`CSM - Start File Logger.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csm-file-logger-addon) | 启动文件记录后台线程，是唯一需要主动调用的API |
 | [`CSM - Convert Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm-convert-filter-rulesvi) | 将过滤规则簇转换为类实例，用于配置Filter Rules参数 |
 | [`CSM - Set Log Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm-set-log-filter-rulesvi) | 设置全局源端过滤，减少无需记录的日志产生 |
-| `CSM-Logger-Thread.vi` | 后台记录线程（内部使用，无需手动调用） |
-| `CSM-Logger-Thread(Event).vi` | 已废弃，请勿使用 |
 
 ### CSM - Start File Logger.vi 参数详解
 
@@ -127,84 +127,32 @@ sequenceDiagram
 
 ## 典型应用场景
 
-### 场景1：现场问题诊断
-
-**需求**：应用部署到现场后出现偶发性问题，需要记录完整运行日志供分析。
+以下展示 File Logger 在实际项目中的典型用法，将日志文件路径、记录限制、过滤规则等配置集中在初始化阶段，配置好后后台自动运行，无需再关注。
 
 ```labview
 // 主程序初始化阶段
+
+// 可选：过滤掉高频轮询等不关心的状态，减少磁盘写入
+CSM - Convert Filter Rules.vi
+  (过滤 "Idle" 状态、高频采集状态等)
+→ Filter Rules
+
 CSM - Start File Logger.vi
   Log File Path: "C:\Logs\app.csmlog"
   Log Limit: {File Size: 20MB, File Num: 5}
-  WatchDog?: TRUE
-→ Watchdog Queue（保持到程序结束）
-```
-
-**优势**：
-
-- 后台自动记录，不影响主程序性能
-- 滚动文件确保磁盘空间可控
-- 问题复现后直接提取日志文件分析
-
----
-
-### 场景2：开发调试阶段选择性记录
-
-**需求**：开发时需要详细日志，发布时减少日志输出。
-
-```labview
-// 读取配置文件决定是否记录
-Read Config: EnableLogging? → Enable
-
-// 可选：过滤掉高频内部状态，只记录关键信息
-CSM - Convert Filter Rules.vi
-  (过滤 "Idle" 状态、特定模块的轮询状态)
-→ Filter Rules
-
-CSM - Start File Logger.vi
-  Enable?: EnableLogging
   Filter Rules: Filter Rules
-  Log File Path: "logs\debug.csmlog"
+  Enable?: TRUE          // 可通过配置文件或条件控制，FALSE 时不启动记录
+  WatchDog?: TRUE        // 主程序退出时自动停止记录
+→ Watchdog Queue（保持引用直到程序结束，不要手动释放）
 ```
 
-**提示**：`Enable?`参数可以直接控制是否启动记录，方便在生产/调试模式之间切换，无需修改代码结构。
+**常见配置变体**：
 
----
+- **生产/调试切换**：将 `Enable?` 绑定到配置项，发布时设为 FALSE 即可完全禁用，无需修改代码结构
+- **源端过滤**：在调用 File Logger 前用 [`CSM - Set Log Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm-set-log-filter-rulesvi) 设置全局过滤，日志在源头就不产生，对所有工具生效
+- **非CSM主程序**：主程序本身不是CSM模块时，可设 `Exit When All Module Exist? = TRUE`，所有CSM模块退出后记录自动停止
 
-### 场景3：与源端过滤配合减少磁盘写入
-
-**需求**：应用有大量高频轮询状态，不希望这些状态填满日志文件。
-
-```labview
-// 设置源端过滤：减少整个系统的日志产生（影响所有工具）
-CSM - Set Log Filter Rules.vi
-  (过滤名为 ".Logger" 的模块、过滤 "Idle" 状态)
-
-// 设置订阅端过滤：仅影响File Logger自身
-CSM - Convert Filter Rules.vi
-  (过滤 "DAQ: Acquire" 等高频采集状态)
-→ Filter Rules
-
-CSM - Start File Logger.vi
-  Filter Rules: Filter Rules
-```
-
-{: .note }
-> **源端过滤 vs 订阅端过滤**：源端过滤通过`CSM - Set Log Filter Rules.vi`设置，日志在源头就不产生，所有工具都不会收到；订阅端过滤通过`Filter Rules`参数配置，只影响File Logger，其他调试工具仍可看到被过滤的日志。
-
----
-
-### 场景4：主程序不是CSM模块时的退出处理
-
-**需求**：主程序是普通VI（非CSM模块），所有CSM模块退出后File Logger也应退出。
-
-```labview
-CSM - Start File Logger.vi
-  Exit When All Module Exist?: TRUE
-  WatchDog?: FALSE
-```
-
----
+**参考范例**：`Addons - Logger\CSM Application Running Log Example.vi`
 
 ## 日志文件说明
 
@@ -229,10 +177,6 @@ CSM - Start File Logger.vi
 - **路径选择**：建议使用绝对路径，并确保路径所在磁盘有足够空间
 - **生产环境**：可以通过`Enable? = FALSE`完全禁用记录，也可以通过过滤规则减少无关日志
 - **性能影响**：File Logger在独立的后台线程运行，对主程序性能影响很小；大量日志时可通过过滤规则降低写入频率
-
-## 参考范例
-
-- `Addons - Logger\CSM Application Running Log Example.vi` — 完整的File Logger使用示例
 
 ## 相关文档
 
