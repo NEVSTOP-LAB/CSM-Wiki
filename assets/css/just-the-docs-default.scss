@@ -263,9 +263,11 @@ h6:hover .anchor-heading {
 
 .toc-inline-list a {
   display: block;
-  color: #5c5962;
+  color: #6b6b6b;
   text-decoration: none;
   padding: 0.2rem 0.875rem;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
 
 .toc-inline-list a:hover {
@@ -273,8 +275,9 @@ h6:hover .anchor-heading {
   background: rgba(0,0,0,0.04);
 }
 
-.toc-inline-list li.toc-level-3 > a { padding-left: 1.875rem; font-size: 0.8rem; }
-.toc-inline-list li.toc-level-4 > a { padding-left: 2.875rem; font-size: 0.75rem; color: #888; }
+.toc-inline-list li.toc-level-2 > a { padding-left: 0.875rem;             font-size: 0.9rem; }
+.toc-inline-list li.toc-level-3 > a { padding-left: calc(0.875rem + 0.75rem); font-size: 0.85rem; }
+.toc-inline-list li.toc-level-4 > a { padding-left: calc(0.875rem + 1.5rem);  font-size: 0.8rem; color: #888; }
 
 /* ================================================================== */
 /* Back to top button                                                  */
