@@ -218,7 +218,6 @@ h6:hover .anchor-heading {
   border: 1px solid #e1e4e8;
   border-radius: 6px;
   background: #f8f9fa;
-  font-size: 0.85rem;
   overflow: hidden;
 }
 
@@ -229,7 +228,7 @@ h6:hover .anchor-heading {
   gap: 0.5rem;
   width: 100%;
   padding: 0.6rem 0.875rem;
-  font-size: 0.75rem;
+  font-size: 1  rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -284,9 +283,9 @@ h6:hover .anchor-heading {
   background: rgba(94, 65, 208, 0.06);
 }
 
-.toc-inline-list li.toc-level-2 > a { padding-left: 0.25rem; font-size: 0.9rem; }
-.toc-inline-list li.toc-level-3 > a { padding-left: 1rem;    font-size: 0.85rem; }
-.toc-inline-list li.toc-level-4 > a { padding-left: 1.75rem; font-size: 0.8rem; color: #888; }
+.toc-inline-list li.toc-level-2 > a { padding-left: 0.25rem; font-size: 0.9rem; list-style: none; }
+.toc-inline-list li.toc-level-3 > a { padding-left: 1rem;    font-size: 0.85rem; list-style: none; }
+.toc-inline-list li.toc-level-4 > a { padding-left: 1.75rem; font-size: 0.8rem; color: #888; list-style: none; }
 
 /* ================================================================== */
 /* Back to top button                                                  */
