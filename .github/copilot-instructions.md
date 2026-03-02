@@ -145,6 +145,7 @@
 | api-string.md | API String参数支持 | ✅ 完成 (95%) |
 | ini-variable.md | INI/静态参数支持 | ✅ 完成 (95%) |
 | tools.md | CSM调试与开发工具 | ✅ 完成 (95%) |
+| csmlogger.md | CSM File Logger Addon | ✅ 完成 (100%) |
 
 ### `docs/examples/` 文件完成情况
 
