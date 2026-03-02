@@ -7,13 +7,6 @@ has_children: false
 ---
 
 # 下载 CSM
-{: .no_toc }
-
-## 目录
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
 
 ---
 

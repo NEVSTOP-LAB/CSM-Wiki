@@ -6,13 +6,6 @@ nav_order: 11
 ---
 
 # 模板(Templates)
-{: .no_toc }
-
-## 目录
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
 
 ---
 

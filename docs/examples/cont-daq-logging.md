@@ -6,13 +6,6 @@ nav_order: 1
 ---
 
 # CSM Continuous Measurement and Logging
-{: .no_toc }
-
-## 目录
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
 
 ---
 
