@@ -194,6 +194,17 @@ h6:hover .anchor-heading {
   .main-content {
     padding-right: 16rem;
   }
+  /*
+   * On desktop the TOC panel is fixed at right:0, width:15rem.
+   * Keep the back-to-top button outside (to the left of) the TOC panel so it
+   * is clearly visible and does not overlap the TOC.  The button is
+   * position:fixed so it stays anchored to the viewport corner and "follows"
+   * the user as they scroll – answering the question of whether it moves with
+   * the scrollbar: yes, it always remains at the same viewport position.
+   */
+  #back-to-top {
+    right: 16rem;
+  }
 }
 
 /* ================================================================== */
