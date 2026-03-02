@@ -5,6 +5,15 @@
 
 /* Custom CSS for better heading display */
 
+// Breakpoint at which the floating right TOC becomes visible.
+// Follows Just the Docs' default desktop TOC breakpoint and is independent
+// of our custom $content-width override (see _sass/custom/setup.scss).
+$desktop-toc-breakpoint: 66.5rem;
+
+// TOC panel dimensions — kept as a group so one change updates all dependent rules.
+$toc-panel-width:    15rem;  // width of the fixed right-side TOC panel
+$toc-content-offset: 16rem;  // panel width + 1rem gap; used for padding & button position
+
 /* Base typography improvements */
 body {
   font-size: 16px;
@@ -90,105 +99,219 @@ h6:hover .anchor-heading {
   }
 }
 
-/* Collapsible TOC (Table of Contents) in the sidebar */
-.page-toc {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  margin: 1rem 0;
-  padding: 0.875rem;
-  background-color: #f8f9fa; /* Light background for sidebar integration */
-  border-radius: 6px;
-  border: 1px solid #e1e4e8; /* Subtle border matching sidebar style */
-  font-size: 0.875rem;
-  display: block; /* Visible by default in sidebar */
+/* ================================================================== */
+/* Floating right-side Table of Contents                              */
+/* ================================================================== */
+
+/* Desktop floating TOC - fixed on right, does not squeeze content */
+#page-toc-float {
+  display: none; /* hidden on mobile; shown via media query below */
+  position: fixed;
+  top: 4rem;
+  right: 0;
+  width: $toc-panel-width;
+  max-height: calc(100vh - 5rem);
+  overflow-y: auto;
+  padding: 0.75rem 0.875rem;
+  background: #f8f9fa;
+  border-left: 1px solid #e1e4e8;
+  border-bottom: 1px solid #e1e4e8;
+  border-radius: 0 0 0 6px;
+  font-size: 0.8rem;
+  z-index: 100;
+  scrollbar-width: thin;
+  scrollbar-color: #d0d0d0 transparent;
 }
 
-.page-toc-heading {
-  font-size: 0.875rem;
+#page-toc-float::-webkit-scrollbar {
+  width: 4px;
+}
+
+#page-toc-float::-webkit-scrollbar-thumb {
+  background: #d0d0d0;
+  border-radius: 2px;
+}
+
+.toc-float-title {
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: #5c5962;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #d8dae0;
-  cursor: pointer;
-  user-select: none;
-  display: flex;
-  align-items: center;
+  letter-spacing: 0.06em;
+  color: #959396;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #e1e4e8;
 }
 
-.page-toc-heading::before {
-  content: '▼';
-  display: inline-block;
-  margin-right: 0.5rem;
-  transition: transform 0.3s;
-  font-size: 0.75rem;
-}
-
-.page-toc.collapsed .page-toc-heading::before {
-  transform: rotate(-90deg);
-}
-
-.page-toc.collapsed .page-toc-list {
-  display: none;
-}
-
-.page-toc-list {
+.toc-float-list {
   list-style: none;
-  padding-left: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.toc-float-list li {
+  line-height: 1.3;
   margin: 0;
 }
 
-.page-toc-list li {
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
-}
-
-.page-toc-list a {
-  color: #5c5962;
-  text-decoration: none;
+.toc-float-list a {
   display: block;
-  padding: 0.25rem 0;
-  transition: color 0.2s, padding-left 0.2s;
+  color: #6b6b6b;
+  text-decoration: none;
+  padding: 0.2rem 0.25rem;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  word-break: break-word;
 }
 
-.page-toc-list a:hover {
+.toc-float-list a:hover {
   color: #27262b;
-  padding-left: 0.5rem;
+  background: rgba(0,0,0,0.04);
 }
 
-.page-toc-list a.active {
+.toc-float-list a.active {
   color: #5e41d0;
   font-weight: 600;
-  padding-left: 0.5rem;
-  border-left: 2px solid #5e41d0;
+  border-left-color: #5e41d0;
+  background: rgba(94, 65, 208, 0.06);
 }
 
-/* Nested TOC indentation */
-.page-toc-list .toc-h3 {
-  padding-left: 1rem;
-  font-size: 0.8125rem;
-}
+/* Indentation by heading level */
+.toc-float-list li.toc-level-2 > a { padding-left: 0.25rem; font-size: 0.8rem; }
+.toc-float-list li.toc-level-3 > a { padding-left: 1rem;    font-size: 0.75rem; }
+.toc-float-list li.toc-level-4 > a { padding-left: 1.75rem; font-size: 0.7rem;  color: #888; }
 
-.page-toc-list .toc-h4 {
-  padding-left: 2rem;
-  font-size: 0.75rem;
-}
-
-/* Mobile responsive behavior */
-@media (max-width: 66.5rem) {
-  .page-toc {
-    /* TOC will be hidden/shown with sidebar collapse on mobile */
-    /* The just-the-docs theme handles sidebar visibility automatically */
+/* Show floating TOC only on wide screens */
+@media (min-width: $desktop-toc-breakpoint) {
+  #page-toc-float {
+    display: block;
+  }
+  /* Mobile inline TOC hidden on desktop */
+  #page-toc-inline {
+    display: none;
+  }
+  /*
+   * Clear the fixed TOC panel ($toc-panel-width + 1rem gap = $toc-content-offset).
+   * Using padding-right (not margin or max-width) ensures the outer container
+   * is NOT squeezed — only the inner text column gains clearance.
+   */
+  .main-content {
+    padding-right: $toc-content-offset;
   }
 }
 
-/* Adjust main content - no longer need right margin for floating TOC */
-@media (min-width: 66.5rem) {
-  .main-content-wrap {
-    /* Remove right margin since TOC is now inline */
-    margin-right: 0;
+/* ================================================================== */
+/* Inline (mobile) TOC - appears at top of content                    */
+/* ================================================================== */
+
+#page-toc-inline {
+  margin: 0 0 1.5rem 0;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  background: #f8f9fa;
+  font-size: 0.85rem;
+  overflow: hidden;
+}
+
+.toc-inline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.6rem 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5c5962;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  border-bottom: 1px solid #e1e4e8;
+  border-radius: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.toc-inline-arrow {
+  font-size: 0.7rem;
+  transition: transform 0.2s;
+}
+
+#page-toc-inline.collapsed .toc-inline-list {
+  display: none;
+}
+
+.toc-inline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+.toc-inline-list li {
+  line-height: 1.4;
+}
+
+.toc-inline-list a {
+  display: block;
+  color: #5c5962;
+  text-decoration: none;
+  padding: 0.2rem 0.875rem;
+}
+
+.toc-inline-list a:hover {
+  color: #27262b;
+  background: rgba(0,0,0,0.04);
+}
+
+.toc-inline-list li.toc-level-3 > a { padding-left: 1.875rem; font-size: 0.8rem; }
+.toc-inline-list li.toc-level-4 > a { padding-left: 2.875rem; font-size: 0.75rem; color: #888; }
+
+/* ================================================================== */
+/* Back to top button                                                  */
+/* ================================================================== */
+
+#back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 1.25rem;
+  z-index: 200;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  background: #5e41d0;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition: opacity 0.25s, transform 0.25s;
+  pointer-events: none;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#back-to-top:hover {
+  background: #4a33a8;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/*
+ * On desktop the TOC panel is fixed at right:0 with width $toc-panel-width.
+ * This override MUST come after the base #back-to-top rule above so the same
+ * specificity wins by cascade order, keeping the button outside the TOC panel.
+ */
+@media (min-width: $desktop-toc-breakpoint) {
+  #back-to-top {
+    right: $toc-content-offset;
   }
 }
 
