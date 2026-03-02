@@ -277,16 +277,16 @@ h6:hover .anchor-heading {
   background: rgba(0,0,0,0.04);
 }
 
+#page-toc-inline .toc-inline-list li.toc-level-2 > a { padding-left: 0.25rem; font-size: 0.9rem; }
+#page-toc-inline .toc-inline-list li.toc-level-3 > a { padding-left: 1rem;    font-size: 0.85rem; }
+#page-toc-inline .toc-inline-list li.toc-level-4 > a { padding-left: 1.75rem; font-size: 0.8rem; color: #888; }
+
 #page-toc-inline .toc-inline-list a.active {
   color: #5e41d0;
   font-weight: 600;
   border-left-color: #5e41d0;
   background: rgba(94, 65, 208, 0.06);
 }
-
-#page-toc-inline .toc-inline-list li.toc-level-2 > a { padding-left: 0.25rem; font-size: 0.9rem; }
-#page-toc-inline .toc-inline-list li.toc-level-3 > a { padding-left: 1rem;    font-size: 0.85rem; }
-#page-toc-inline .toc-inline-list li.toc-level-4 > a { padding-left: 1.75rem; font-size: 0.8rem; color: #888; }
 
 /* ================================================================== */
 /* Back to top button                                                  */
