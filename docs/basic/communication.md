@@ -6,13 +6,6 @@ nav_order: 3
 ---
 
 # 模块间通讯
-{: .no_toc }
-
-## 目录
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
 
 ---
 

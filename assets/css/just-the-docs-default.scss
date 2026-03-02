@@ -11,8 +11,8 @@
 $desktop-toc-breakpoint: 66.5rem;
 
 // TOC panel dimensions — kept as a group so one change updates all dependent rules.
-$toc-panel-width:    15rem;  // width of the fixed right-side TOC panel
-$toc-content-offset: 16rem;  // panel width + 1rem gap; used for padding & button position
+$toc-panel-width:    17rem;  // width of the fixed right-side TOC panel
+$toc-content-offset: 18rem;  // panel width + 1rem gap; used for padding & button position
 
 /* Base typography improvements */
 body {
@@ -191,11 +191,12 @@ h6:hover .anchor-heading {
     display: none;
   }
   /*
-   * Clear the fixed TOC panel ($toc-panel-width + 1rem gap = $toc-content-offset).
-   * Using padding-right (not margin or max-width) ensures the outer container
-   * is NOT squeezed — only the inner text column gains clearance.
+   * Reserve space for the fixed TOC panel at the wrapper level so that
+   * both .main-header and .main-content share the same right boundary.
+   * Applying this to .main-content-wrap (which wraps both elements) keeps
+   * the layout consistent — the TOC panel does not compress content unevenly.
    */
-  .main-content {
+  .main-content-wrap {
     padding-right: $toc-content-offset;
   }
 }

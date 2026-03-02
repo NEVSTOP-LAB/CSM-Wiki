@@ -6,13 +6,6 @@ nav_order: 5
 ---
 
 # 高级模式与特性
-{: .no_toc }
-
-## 目录
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
 
 ---
 

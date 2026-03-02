@@ -6,13 +6,6 @@ nav_order: 2
 ---
 
 # 基本概念
-{: .no_toc }
-
-## 目录
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
 
 ---
 

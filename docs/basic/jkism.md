@@ -6,12 +6,6 @@ nav_order: 1
 ---
 
 # JKI State Machine (JKISM)
-{: .no_toc }
-
----
-
-1. TOC
-{:toc}
 
 ---
 
