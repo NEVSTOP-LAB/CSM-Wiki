@@ -218,8 +218,8 @@
     arrow.setAttribute('aria-hidden', 'true');
     arrow.textContent = ARROW_DOWN;
 
-    header.appendChild(titleSpan);
     header.appendChild(arrow);
+    header.appendChild(titleSpan);
 
     var ul = document.createElement('ul');
     ul.className = 'toc-inline-list';

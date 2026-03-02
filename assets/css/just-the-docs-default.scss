@@ -224,8 +224,9 @@ h6:hover .anchor-heading {
 
 .toc-inline-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 0.5rem;
   width: 100%;
   padding: 0.6rem 0.875rem;
   font-size: 0.75rem;
@@ -272,6 +273,7 @@ h6:hover .anchor-heading {
 
 .toc-inline-list a:hover {
   color: #27262b;
+  border-left-color: #ccc;
   background: rgba(0,0,0,0.04);
 }
 
