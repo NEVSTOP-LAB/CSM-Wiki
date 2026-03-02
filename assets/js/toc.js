@@ -83,9 +83,18 @@
       } else {
         // Ensure pre-existing IDs are unique as well
         if (usedIds[id]) {
+          var oldId = id;
           var newId = uniqueId(id, usedIds);
           h.id = newId;
           id = newId;
+          // Also update any in-heading anchors (e.g., Just-the-Docs permalink
+          // anchors) that still reference the old id so they don't break.
+          var childAnchors = h.querySelectorAll('a[href^="#"]');
+          childAnchors.forEach(function (a) {
+            if (a.getAttribute('href') === '#' + oldId) {
+              a.setAttribute('href', '#' + newId);
+            }
+          });
         } else {
           usedIds[id] = 1;
         }
