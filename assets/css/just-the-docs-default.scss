@@ -218,17 +218,17 @@ h6:hover .anchor-heading {
   border: 1px solid #e1e4e8;
   border-radius: 6px;
   background: #f8f9fa;
-  font-size: 0.85rem;
   overflow: hidden;
 }
 
 .toc-inline-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 0.5rem;
   width: 100%;
   padding: 0.6rem 0.875rem;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -251,30 +251,42 @@ h6:hover .anchor-heading {
   display: none;
 }
 
-.toc-inline-list {
+#page-toc-inline .toc-inline-list {
   list-style: none;
   margin: 0;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0 0.25rem 0.875rem;
 }
 
-.toc-inline-list li {
-  line-height: 1.4;
+#page-toc-inline .toc-inline-list li {
+  line-height: 1.5;
+  list-style: none;
+  margin: 0;
 }
 
-.toc-inline-list a {
+#page-toc-inline .toc-inline-list a {
   display: block;
-  color: #5c5962;
+  color: #6b6b6b;
   text-decoration: none;
-  padding: 0.2rem 0.875rem;
+  padding: 0.2rem 0.25rem;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
 
-.toc-inline-list a:hover {
+#page-toc-inline .toc-inline-list a:hover {
   color: #27262b;
   background: rgba(0,0,0,0.04);
 }
 
-.toc-inline-list li.toc-level-3 > a { padding-left: 1.875rem; font-size: 0.8rem; }
-.toc-inline-list li.toc-level-4 > a { padding-left: 2.875rem; font-size: 0.75rem; color: #888; }
+#page-toc-inline .toc-inline-list li.toc-level-2 > a { padding-left: 0.25rem; font-size: 0.9rem; }
+#page-toc-inline .toc-inline-list li.toc-level-3 > a { padding-left: 1rem;    font-size: 0.85rem; }
+#page-toc-inline .toc-inline-list li.toc-level-4 > a { padding-left: 1.75rem; font-size: 0.8rem; color: #888; }
+
+#page-toc-inline .toc-inline-list a.active {
+  color: #5e41d0;
+  font-weight: 600;
+  border-left-color: #5e41d0;
+  background: rgba(94, 65, 208, 0.06);
+}
 
 /* ================================================================== */
 /* Back to top button                                                  */

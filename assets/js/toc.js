@@ -218,8 +218,8 @@
     arrow.setAttribute('aria-hidden', 'true');
     arrow.textContent = ARROW_DOWN;
 
-    header.appendChild(titleSpan);
     header.appendChild(arrow);
+    header.appendChild(titleSpan);
 
     var ul = document.createElement('ul');
     ul.className = 'toc-inline-list';
@@ -232,6 +232,7 @@
       var a = document.createElement('a');
       a.href = '#' + item.id;
       a.textContent = item.text;
+      a.dataset.tocId = item.id;
 
       // Use offset-aware smooth scroll for inline links too
       a.addEventListener('click', function (e) {
@@ -265,7 +266,7 @@
   function initScrollspy(items) {
     if (!items.length) return;
 
-    var links = document.querySelectorAll('#page-toc-float a[data-toc-id]');
+    var links = document.querySelectorAll('#page-toc-float a[data-toc-id], #page-toc-inline a[data-toc-id]');
     if (!links.length) return;
 
     var headingEls = items.map(function (i) { return i.el; });
