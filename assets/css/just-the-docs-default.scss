@@ -204,6 +204,7 @@ h6:hover .anchor-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   padding: 0.6rem 0.875rem;
   font-size: 0.75rem;
   font-weight: 700;
@@ -212,7 +213,11 @@ h6:hover .anchor-heading {
   color: #5c5962;
   cursor: pointer;
   user-select: none;
+  border: none;
   border-bottom: 1px solid #e1e4e8;
+  border-radius: 0;
+  background: transparent;
+  text-align: left;
 }
 
 .toc-inline-arrow {

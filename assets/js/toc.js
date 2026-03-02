@@ -5,7 +5,7 @@
  * - Scrollspy: highlights the active section
  * - Mobile: renders a collapsible TOC at the top of content
  * - Back-to-top button: fixed at bottom-right
- * - Respects has_toc front matter (page body has data-has-toc="false" to disable)
+ * - Respects has_toc front matter (via <meta name="has-toc" content="false"> to disable)
  */
 (function () {
   'use strict';
@@ -39,6 +39,30 @@
     return base + '-' + count;
   }
 
+  // Smooth-scroll to an element's position, accounting for the fixed header
+  function scrollToHeading(id) {
+    var target = document.getElementById(id);
+    if (!target) return;
+
+    // getBoundingClientRect() is fine here: this runs on a single click event,
+    // not in a scroll loop, so one layout read per interaction is acceptable.
+    var targetY = target.getBoundingClientRect().top + window.pageYOffset - SCROLL_OFFSET;
+
+    // Update URL hash without triggering an extra jump
+    var hash = '#' + id;
+    if (window.history && typeof window.history.pushState === 'function') {
+      window.history.pushState(null, '', hash);
+    } else {
+      // Fallback: temporarily remove the id to prevent the browser from
+      // jumping to the anchor before we scroll
+      target.id = '';
+      window.location.hash = hash;
+      target.id = id;
+    }
+
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
+  }
+
   // -----------------------------------------------------------------------
   // Build TOC data from headings
   // -----------------------------------------------------------------------
@@ -53,11 +77,18 @@
     headings.forEach(function (h) {
       var id = h.id;
       if (!id) {
-        id = uniqueId(slugify(h.textContent), usedIds);
+        var baseId = slugify(h.textContent) || 'untitled-section';
+        id = uniqueId(baseId, usedIds);
         h.id = id;
       } else {
-        // Track existing ID to avoid collisions with generated ones
-        usedIds[id] = (usedIds[id] || 0) + 1;
+        // Ensure pre-existing IDs are unique as well
+        if (usedIds[id]) {
+          var newId = uniqueId(id, usedIds);
+          h.id = newId;
+          id = newId;
+        } else {
+          usedIds[id] = 1;
+        }
       }
       items.push({
         id: id,
@@ -97,10 +128,7 @@
 
       a.addEventListener('click', function (e) {
         e.preventDefault();
-        var target = document.getElementById(item.id);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        scrollToHeading(item.id);
       });
 
       li.appendChild(a);
@@ -123,14 +151,18 @@
     var wrapper = document.createElement('div');
     wrapper.id = 'page-toc-inline';
 
-    var header = document.createElement('div');
+    // Use a <button> for keyboard accessibility and proper semantics
+    var header = document.createElement('button');
     header.className = 'toc-inline-header';
+    header.setAttribute('aria-expanded', 'true');
+    header.setAttribute('aria-controls', 'page-toc-inline-list');
 
     var titleSpan = document.createElement('span');
     titleSpan.textContent = 'ON THIS PAGE';
 
     var arrow = document.createElement('span');
     arrow.className = 'toc-inline-arrow';
+    arrow.setAttribute('aria-hidden', 'true');
     arrow.textContent = ARROW_DOWN;
 
     header.appendChild(titleSpan);
@@ -138,6 +170,7 @@
 
     var ul = document.createElement('ul');
     ul.className = 'toc-inline-list';
+    ul.id = 'page-toc-inline-list';
 
     items.forEach(function (item) {
       var li = document.createElement('li');
@@ -146,6 +179,12 @@
       var a = document.createElement('a');
       a.href = '#' + item.id;
       a.textContent = item.text;
+
+      // Use offset-aware smooth scroll for inline links too
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        scrollToHeading(item.id);
+      });
 
       li.appendChild(a);
       ul.appendChild(li);
@@ -158,6 +197,7 @@
     header.addEventListener('click', function () {
       var collapsed = wrapper.classList.toggle('collapsed');
       arrow.textContent = collapsed ? ARROW_RIGHT : ARROW_DOWN;
+      header.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
     });
 
     // Insert at the very beginning of main-content
@@ -176,14 +216,16 @@
     if (!links.length) return;
 
     var headingEls = items.map(function (i) { return i.el; });
+    var rafPending = false;
 
-    function onScroll() {
+    function updateHighlight() {
+      rafPending = false;
       var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
       var activeIndex = 0;
       for (var i = 0; i < headingEls.length; i++) {
-        var rect = headingEls[i].getBoundingClientRect();
-        if (rect.top + window.pageYOffset - SCROLL_OFFSET <= scrollTop + 1) {
+        // Read offsetTop (layout property) to avoid forced reflow per scroll
+        if (headingEls[i].offsetTop - SCROLL_OFFSET <= scrollTop + 1) {
           activeIndex = i;
         }
       }
@@ -197,8 +239,15 @@
       });
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    window.addEventListener('scroll', function () {
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(updateHighlight);
+      }
+    }, { passive: true });
+
+    // Run once on init to reflect initial scroll position
+    updateHighlight();
   }
 
   // -----------------------------------------------------------------------
@@ -217,13 +266,17 @@
 
     document.body.appendChild(btn);
 
-    window.addEventListener('scroll', function () {
+    function updateVisibility() {
       if (window.pageYOffset > 300) {
         btn.classList.add('visible');
       } else {
         btn.classList.remove('visible');
       }
-    }, { passive: true });
+    }
+
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    // Ensure correct initial visibility if the page loads already scrolled
+    updateVisibility();
 
     btn.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
