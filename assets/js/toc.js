@@ -161,7 +161,7 @@
     function applyWidth() {
       // offsetWidth reads the layout box including border/padding — exactly
       // what we want so that .main's padding-right matches the rendered size.
-      var w = panel.offsetWidth;
+      var w = panel.offsetWidth + 50; // add some extra spacing for visual comfort
       document.documentElement.style.setProperty('--page-toc-width', (w || 0) + 'px');
     }
 

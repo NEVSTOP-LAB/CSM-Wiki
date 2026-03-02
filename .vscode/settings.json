@@ -25,5 +25,11 @@
     ],
     "cmake.configureOnOpen": false,
     "todo-tree.tree.disableCompactFolders": false,
-    "todo-tree.tree.showCountsInTree": true
+    "todo-tree.tree.showCountsInTree": true,
+    "chat.tools.terminal.autoApprove": {
+        "/^cd 'd:\\\\NEVSTOP-LAB-Development\\\\CSMF\\\\CSM-Wiki'; bundle exec jekyll serve$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
 }
