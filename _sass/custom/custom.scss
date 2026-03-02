@@ -1,6 +1,12 @@
 // Custom CSS - loaded after all theme styles
 // Use this file for custom styling that overrides the theme
 
+// Responsive images: never exceed natural size, shrink to fit smaller viewports
+.main-content img {
+  max-width: 100%;
+  height: auto;
+}
+
 // Ensure sidebar nav doesn't overflow with wider sidebar
 @media (min-width: 50rem) {
   .site-nav {
