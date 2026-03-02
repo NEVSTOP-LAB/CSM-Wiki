@@ -84,67 +84,7 @@ CSM - Start File Logger.vi
 
 ## Loop Support Addon
 
-在CSM里实现循环操作，同时不阻塞状态机、能响应外部消息。
-
-**为什么需要Loop Support？**
-
-传统循环方式有问题：在Case里用While循环会卡死状态机，用状态链循环响应不及时。Loop Support让循环运行时仍然能响应其他事件。
-
-**限制**：不适用Worker模式和Chain模式（因为消息无法明确指定节点）。
-
-**核心API**：
-
-1. **CSMLS - Define Loop State(s).vi**：定义循环，用`-><loop>`标记循环状态
-
-```labview
-DAQ: Initialize
-DAQ: Start
-DAQ: Continue Check -><loop>  // 循环标记
-DAQ: Stop
-DAQ: Close -><end>             // 自动添加
-```
-
-2. **CSMLS - Append Continuous State.vi**：添加循环状态，维持循环
-
-3. **CSMLS - Remove Loop Tag and previous State(s) to Break.vi**：立即跳出循环
-
-4. **CSMLS - Remove Loop Tag to Break.vi**：完成当前状态后跳出循环
-
-**响应机制**：
-- 同步消息优先级高，立即打断循环
-- 异步消息插入到`-><end>`后，下次循环前处理
-
-**完整示例**：
-
-```labview
-DAQ: Initialize >> {
-    // 定义循环
-    CSMLS - Define Loop State(s).vi
-        Loop States: "DAQ: Start\nDAQ: Acquire\nDAQ: Continue Check\nDAQ: Stop\nDAQ: Close"
-}
-
-DAQ: Acquire >> {
-    // 采集数据
-    Acquire Data
-}
-
-DAQ: Continue Check >> {
-    If (Continue?) {
-        CSMLS - Append Continuous State.vi
-            Continuous State: "DAQ: Acquire"
-        Wait 100ms
-    } else {
-        CSMLS - Remove Loop Tag to Break.vi
-    }
-}
-
-// 外部消息中断循环
-API: StopDAQ >> {
-    CSMLS - Remove Loop Tag and previous State(s) to Break.vi
-}
-```
-
-**参考**：`Addons - Loop Support\CSMLS - Continuous Loop in CSM Example.vi`
+在CSM里实现循环操作，同时不阻塞状态机、能响应外部消息。详细说明参见[Loop Support（循环状态支持）]({% link docs/plugins/loop-support.md %})。
 
 ## Attribute Addon
 

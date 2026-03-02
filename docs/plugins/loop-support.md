@@ -42,8 +42,8 @@ Loop Support Addon 提供以下 4 个主要 API（均在 `Addons - Loop Support`
 |--------|------|----------|
 | [`CSMLS - Define Loop State(s).vi`]({% link docs/reference/api-09-build-in-addons.md %}#csmls---define-loop-statesvi) | 定义循环，用 `-><loop>` 标记循环状态 | 启动循环时（如 `API: Start DAQ`） |
 | [`CSMLS - Append Continuous State.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csmls---append-continuous-statevi) | 添加下一轮循环状态，维持循环运行 | 循环检查状态中（如 `DAQ: Continue Check`） |
-| [`CSMLS - Remove Loop Tag to Break.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csmls---remove-loop-tag-to-breakvi) | 移除 `-><loop>` 标记，完成当前轮后退出 | 正常停止循环（如低优先级停止） |
-| [`CSMLS - Remove Loop Tag and previous State(s) to Break.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csmls---remove-loop-tag-and-previous-states-to-breakvi) | 移除标记及之前所有状态，立即退出 | 紧急停止循环（如错误处理） |
+| [`CSMLS - Remove Loop Tag to Break.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csmls---remove-loop-tag-to-breakvi) | 移除 `-><loop>` 标记，完成当前轮后退出 | 需要完成当前轮操作后再退出循环 |
+| [`CSMLS - Remove Loop Tag and previous State(s) to Break.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csmls---remove-loop-tag-and-previous-states-to-breakvi) | 移除标记及之前所有状态，立即退出 | 需要跳过当前轮未完成的操作立即退出 |
 
 {: .note }
 > 还有一个内部 VI：[`CSMLS - Add Exit State(s) with Loop Check.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csmls---add-exit-states-with-loop-checkvi)，该 VI 已集成到 `Parse State Queue++.vi` 的 `Macro: Exit` 处理中，**已从函数选板移除**，无需手动调用。
@@ -77,8 +77,8 @@ flowchart TD
     F -- 无外部消息 --> G["Wait 延迟\n回到 DAQ: Acquire"]
     F -- 有异步消息 --> H["先处理异步消息\n再回到循环"]
     D -- 停止循环 --> I{"停止方式？"}
-    I -- 正常停止 --> J["CSMLS - Remove Loop Tag to Break.vi\n移除 ->&lt;loop&gt;，执行完剩余状态后退出"]
-    I -- 紧急停止 --> K["CSMLS - Remove Loop Tag and\nprevious State(s) to Break.vi\n移除 ->&lt;loop&gt; 及之前状态，立即退出"]
+    I -- 完成当前轮后退出 --> J["CSMLS - Remove Loop Tag to Break.vi\n移除 ->&lt;loop&gt;，执行完剩余状态后退出"]
+    I -- 跳过当前轮立即退出 --> K["CSMLS - Remove Loop Tag and\nprevious State(s) to Break.vi\n移除 ->&lt;loop&gt; 及之前状态，立即退出"]
     J --> L["DAQ: Stop → DAQ: Close\n正常收尾"]
     K --> L
     L --> M["循环结束"]
@@ -99,8 +99,8 @@ DAQ: Close
 
 | 停止方式 | 效果 | 适用场景 |
 |----------|------|----------|
-| `Remove Loop Tag to Break` | 移除 `-><loop>` 行，依然执行 `DAQ: Acquire → Stop → Close` | 正常停止，需要完成当前工作 |
-| `Remove Loop Tag and previous State(s) to Break` | 移除 `DAQ: Acquire` 和 `-><loop>` 行，直接执行 `DAQ: Stop → Close` | 紧急中止，跳过当前未完成的工作 |
+| `Remove Loop Tag to Break` | 移除 `-><loop>` 行，依然执行 `DAQ: Acquire → Stop → Close` | 完成当前轮操作后退出 |
+| `Remove Loop Tag and previous State(s) to Break` | 移除 `DAQ: Acquire` 和 `-><loop>` 行，直接执行 `DAQ: Stop → Close` | 跳过当前轮，立即进入收尾 |
 
 ### Add to Front? 参数说明
 
@@ -113,7 +113,7 @@ DAQ: Close
 
 ## 典型应用场景
 
-### 场景一：连续数据采集（DAQ）
+### 连续数据采集（DAQ）
 
 这是 Loop Support 最典型的应用场景。
 
@@ -126,9 +126,9 @@ API: Start DAQ >> {
         "DAQ: Initialize
          DAQ: Start
          DAQ: Acquire
-         DAQ: Continue Check
+         DAQ: Continue Check -><loop>
          DAQ: Stop
-         DAQ: Close"
+         DAQ: Close -><end>"
     // 注意 Add to Front? = FALSE，立即返回，后台开始循环
 }
 
@@ -158,72 +158,6 @@ Error: High Priority >> {
 ```
 
 **参考示例**：`Addons - Loop Support\CSMLS - Continuous Loop in CSM Example.vi`
-
-### 场景二：定时任务循环
-
-**需求**：周期性地执行某个检查任务（如健康检查、状态上报）。
-
-```text
-API: Start Monitor >> {
-    CSMLS - Define Loop State(s).vi
-    Loop States:
-        "Monitor: Check
-         Monitor: Report
-         Monitor: Wait"
-}
-
-Monitor: Wait >> {
-    // 循环检查点（带 -><loop> 标记）
-    CSMLS - Append Continuous State.vi
-        Continuous State: "Monitor: Check"
-    Wait 1000ms  // 每秒检查一次
-}
-
-API: Stop Monitor >> {
-    CSMLS - Remove Loop Tag to Break.vi
-}
-```
-
-### 场景三：文件批量处理
-
-**需求**：逐个处理文件列表中的文件，允许中途取消。
-
-```text
-API: Process Files >> {
-    CSMLS - Define Loop State(s).vi
-    Loop States:
-        "File: GetNext
-         File: Process
-         File: CheckMore
-         File: Finish"
-}
-
-File: CheckMore >> {
-    // 循环检查点（带 -><loop> 标记）
-    If (has more files) {
-        CSMLS - Append Continuous State.vi
-            Continuous State: "File: GetNext"
-    } Else {
-        CSMLS - Remove Loop Tag to Break.vi
-        // 自然结束，继续 File: Finish
-    }
-}
-
-API: Cancel >> {
-    CSMLS - Remove Loop Tag and previous State(s) to Break.vi
-    // 立即中止，跳过剩余文件
-}
-```
-
-## 与 DQMH-Style 模板的配合
-
-在使用 CSM DQMH-Style Template 时，UI 循环和 CSM 循环是分开的。UI 按钮事件通过 [`CSM - Forward UI Operations to CSM.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm---forward-ui-operations-to-csmvi) 转发到 CSM 主循环处理，再配合 Loop Support API 控制循环的启停。
-
-这种组合模式可以实现：
-
-- UI 响应流畅，不受循环采集影响
-- 用户随时可以点击停止按钮中断循环
-- 循环中的数据实时更新到界面
 
 ## 注意事项
 
