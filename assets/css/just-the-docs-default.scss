@@ -255,31 +255,38 @@ h6:hover .anchor-heading {
 .toc-inline-list {
   list-style: none;
   margin: 0;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0 0.25rem 0.875rem;
 }
 
 .toc-inline-list li {
-  line-height: 1.4;
+  line-height: 1.5;
+  list-style: none;
 }
 
 .toc-inline-list a {
   display: block;
   color: #6b6b6b;
   text-decoration: none;
-  padding: 0.2rem 0.875rem;
+  padding: 0.2rem 0.25rem;
   border-left: 2px solid transparent;
   transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
 
 .toc-inline-list a:hover {
   color: #27262b;
-  border-left-color: #ccc;
   background: rgba(0,0,0,0.04);
 }
 
-.toc-inline-list li.toc-level-2 > a { padding-left: 0.875rem;             font-size: 0.9rem; }
-.toc-inline-list li.toc-level-3 > a { padding-left: calc(0.875rem + 0.75rem); font-size: 0.85rem; }
-.toc-inline-list li.toc-level-4 > a { padding-left: calc(0.875rem + 1.5rem);  font-size: 0.8rem; color: #888; }
+.toc-inline-list a.active {
+  color: #5e41d0;
+  font-weight: 600;
+  border-left-color: #5e41d0;
+  background: rgba(94, 65, 208, 0.06);
+}
+
+.toc-inline-list li.toc-level-2 > a { padding-left: 0.25rem; font-size: 0.9rem; }
+.toc-inline-list li.toc-level-3 > a { padding-left: 1rem;    font-size: 0.85rem; }
+.toc-inline-list li.toc-level-4 > a { padding-left: 1.75rem; font-size: 0.8rem; color: #888; }
 
 /* ================================================================== */
 /* Back to top button                                                  */
