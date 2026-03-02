@@ -185,6 +185,15 @@ h6:hover .anchor-heading {
   #page-toc-inline {
     display: none;
   }
+  /*
+   * Keep .main-content at its natural width; add right padding so that text
+   * does not flow behind the fixed TOC panel (15rem wide + 1rem gap = 16rem).
+   * Using padding-right (not margin or max-width reduction) ensures the outer
+   * container is NOT squeezed — only the inner text column gains clearance.
+   */
+  .main-content {
+    padding-right: 16rem;
+  }
 }
 
 /* ================================================================== */
