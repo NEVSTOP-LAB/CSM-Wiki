@@ -10,9 +10,11 @@
 // of our custom $content-width override (see _sass/custom/setup.scss).
 $desktop-toc-breakpoint: 66.5rem;
 
-// TOC panel dimensions — kept as a group so one change updates all dependent rules.
-$toc-panel-width:    17rem;  // width of the fixed right-side TOC panel
-$toc-content-offset: 18rem;  // panel width + 1rem gap; used for padding & button position
+// TOC panel dimensions.
+// The panel uses width:max-content so it auto-fits text; max-width caps runaway entries.
+// Actual rendered width is measured by JS and exposed as --page-toc-width on :root.
+$toc-max-width: 22rem;  // hard cap for TOC panel width
+$toc-min-width: 10rem;  // minimum reasonable TOC panel width
 
 /* Base typography improvements */
 body {
@@ -103,13 +105,15 @@ h6:hover .anchor-heading {
 /* Floating right-side Table of Contents                              */
 /* ================================================================== */
 
-/* Desktop floating TOC - fixed on right, does not squeeze content */
+/* Desktop floating TOC - fixed on right, auto-width based on content */
 #page-toc-float {
   display: none; /* hidden on mobile; shown via media query below */
   position: fixed;
   top: 4rem;
   right: 0;
-  width: $toc-panel-width;
+  width: max-content;       /* expand to fit longest entry */
+  min-width: $toc-min-width;
+  max-width: $toc-max-width;
   max-height: calc(100vh - 5rem);
   overflow-y: auto;
   padding: 0.75rem 0.875rem;
@@ -161,7 +165,10 @@ h6:hover .anchor-heading {
   padding: 0.2rem 0.25rem;
   border-left: 2px solid transparent;
   transition: color 0.15s, border-color 0.15s, background 0.15s;
-  word-break: break-word;
+  white-space: nowrap;      /* never wrap – TOC panel expands to fit */
+  overflow: hidden;
+  text-overflow: ellipsis;  /* truncate with … only when capped by max-width */
+  max-width: 100%;          /* respect panel's max-width */
 }
 
 .toc-float-list a:hover {
@@ -191,18 +198,13 @@ h6:hover .anchor-heading {
     display: none;
   }
   /*
-   * Reserve space for the fixed TOC panel on the .main container itself.
-   * .main-header and .main-content-wrap are SIBLINGS inside .main — both
-   * are direct children with no explicit width, so they inherit .main's
-   * content-box width.  With box-sizing:border-box, adding padding-right to
-   * .main shrinks its content-box by $toc-content-offset, which narrows
-   * BOTH siblings equally — header and content share the same right edge.
-   * Applying this to .main-content-wrap alone (as previously done) left
-   * .main-header at full width while only the content column was narrowed,
-   * producing the visible inconsistency.
+   * Reserve space for the fixed TOC panel on the .main container.
+   * --page-toc-width is set by toc.js (via ResizeObserver) to the actual
+   * rendered width of #page-toc-float.  It defaults to 0px so pages with
+   * no TOC (or before JS runs) are unaffected.
    */
   .main {
-    padding-right: $toc-content-offset;
+    padding-right: var(--page-toc-width, 0px);
   }
 }
 
@@ -311,13 +313,44 @@ h6:hover .anchor-heading {
 }
 
 /*
- * On desktop the TOC panel is fixed at right:0 with width $toc-panel-width.
- * This override MUST come after the base #back-to-top rule above so the same
- * specificity wins by cascade order, keeping the button outside the TOC panel.
+ * On desktop the TOC panel is fixed at right:0.  Keep the button to the
+ * left of the TOC by using the same --page-toc-width CSS variable.
+ * When no TOC is present (var = 0px) the button stays at its default
+ * right:1.25rem position.
  */
 @media (min-width: $desktop-toc-breakpoint) {
   #back-to-top {
-    right: $toc-content-offset;
+    right: calc(var(--page-toc-width, 0px) + 1.25rem);
+  }
+}
+
+/* ================================================================== */
+/* Three-column layout: fixed sidebar | fluid main | auto-width TOC   */
+/* ================================================================== */
+
+/*
+ * md breakpoint (60rem+): remove the theme's max-width cap on .main so the
+ * content area can expand beyond $content-width.
+ */
+@media (min-width: #{$content-width}) {
+  .main {
+    max-width: none !important;
+  }
+}
+
+/*
+ * lg breakpoint (80rem+): override Just the Docs' growing sidebar formula
+ * (calc((100% - 80rem) / 2 + 20rem)) with a fixed $nav-width, and fix
+ * .main's left margin to match.  This produces the desired left|centre|right
+ * layout instead of a viewport-centred content column with a wider sidebar.
+ */
+@media (min-width: #{$content-width + $nav-width}) {
+  .side-bar {
+    width: $nav-width !important;
+  }
+
+  .main {
+    margin-left: $nav-width !important;
   }
 }
 
