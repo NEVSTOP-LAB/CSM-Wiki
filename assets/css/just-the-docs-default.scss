@@ -191,12 +191,17 @@ h6:hover .anchor-heading {
     display: none;
   }
   /*
-   * Reserve space for the fixed TOC panel at the wrapper level so that
-   * both .main-header and .main-content share the same right boundary.
-   * Applying this to .main-content-wrap (which wraps both elements) keeps
-   * the layout consistent — the TOC panel does not compress content unevenly.
+   * Reserve space for the fixed TOC panel on the .main container itself.
+   * .main-header and .main-content-wrap are SIBLINGS inside .main — both
+   * are direct children with no explicit width, so they inherit .main's
+   * content-box width.  With box-sizing:border-box, adding padding-right to
+   * .main shrinks its content-box by $toc-content-offset, which narrows
+   * BOTH siblings equally — header and content share the same right edge.
+   * Applying this to .main-content-wrap alone (as previously done) left
+   * .main-header at full width while only the content column was narrowed,
+   * producing the visible inconsistency.
    */
-  .main-content-wrap {
+  .main {
     padding-right: $toc-content-offset;
   }
 }
