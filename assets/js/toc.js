@@ -133,6 +133,7 @@
       var a = document.createElement('a');
       a.href = '#' + item.id;
       a.textContent = item.text;
+      a.title = item.text;       // expose full text on hover & to screen readers
       a.dataset.tocId = item.id;
 
       a.addEventListener('click', function (e) {
@@ -147,6 +148,33 @@
     panel.appendChild(ul);
     document.body.appendChild(panel);
     return panel;
+  }
+
+  // -----------------------------------------------------------------------
+  // Track TOC panel width → CSS custom property --page-toc-width on :root
+  // This allows .main to reserve the exact right-padding needed without
+  // hard-coding a fixed value.  Falls back gracefully when ResizeObserver
+  // is unavailable or when no TOC is rendered (var defaults to 0px in CSS).
+  // -----------------------------------------------------------------------
+
+  function trackTocWidth(panel) {
+    function applyWidth() {
+      // offsetWidth reads the layout box including border/padding — exactly
+      // what we want so that .main's padding-right matches the rendered size.
+      var w = panel.offsetWidth;
+      document.documentElement.style.setProperty('--page-toc-width', (w || 0) + 'px');
+    }
+
+    applyWidth(); // set immediately after first render
+
+    // Keep the variable in sync when the TOC resizes (e.g. on window resize).
+    // Store the observer on the panel element itself so it could be
+    // disconnected in the future should the panel ever be removed.
+    if (typeof ResizeObserver !== 'undefined') {
+      var ro = new ResizeObserver(applyWidth);
+      ro.observe(panel);
+      panel._tocResizeObserver = ro; // store reference for potential cleanup
+    }
   }
 
   // -----------------------------------------------------------------------
@@ -307,7 +335,8 @@
     var items = buildTocItems();
 
     if (items.length > 1) {
-      renderFloatingToc(items);
+      var panel = renderFloatingToc(items);
+      trackTocWidth(panel);
       renderInlineToc(items);
       initScrollspy(items);
     }
