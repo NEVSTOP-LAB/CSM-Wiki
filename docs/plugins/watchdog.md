@@ -1,11 +1,11 @@
 ---
-title: WatchDog自动退出管理
+title: 看门狗(WatchDog)自动退出管理
 layout: default
 parent: 插件系统
 nav_order: 6
 ---
 
-# CSM WatchDog Addon
+# 看门狗(WatchDog)自动退出管理
 
 CSM WatchDog是一个**内置插件**，用于在主程序退出后，自动通知所有**异步启动**的CSM模块正常退出，避免孤儿模块残留。
 

@@ -1,11 +1,11 @@
 ---
-title: Loop Support（循环状态支持）
+title: 循环状态支持(Loop Support)
 layout: default
 parent: 插件系统
 nav_order: 6
 ---
 
-# CSM Loop Support Addon
+# 循环状态支持(Loop Support)
 
 ## 概述
 

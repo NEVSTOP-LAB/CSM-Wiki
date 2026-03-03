@@ -5,7 +5,7 @@ parent: 示例应用
 nav_order: 2
 ---
 
-# CSM-TCP-Router
+# TCP服务器应用
 
 CSM-TCP-Router 演示如何通过创建一个可复用的TCP通讯层，将本地程序变成一个TCP服务器，实现远程控制。通过这个案例，展示CSM框架的隐形总线的优点。
 

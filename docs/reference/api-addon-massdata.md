@@ -1,11 +1,11 @@
 ---
-title: Addon Massdata
+title: MassData插件
 layout: default
 parent: 参考文档
 nav_order: 25
 ---
 
-# CSM Massdata Addon
+# MassData插件
 
 ## 概述
 

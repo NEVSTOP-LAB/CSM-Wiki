@@ -1,11 +1,11 @@
 ---
-title: JKI State Machine
+title: JKI状态机(JKISM)
 layout: default
 parent: 基础文档
 nav_order: 1
 ---
 
-# JKI State Machine (JKISM)
+# JKI状态机(JKISM)
 
 ---
 

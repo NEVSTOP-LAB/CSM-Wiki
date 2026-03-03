@@ -5,7 +5,7 @@ parent: 插件系统
 nav_order: 5
 ---
 
-# CSM INI-Variable Support
+# INI/静态参数支持
 
 ## 概述
 

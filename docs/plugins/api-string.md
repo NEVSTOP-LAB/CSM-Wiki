@@ -5,7 +5,7 @@ parent: 插件系统
 nav_order: 3
 ---
 
-# CSM API String Arguments Support
+# API String参数支持
 
 ## 概述
 

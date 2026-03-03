@@ -5,7 +5,7 @@ parent: 参考范例
 nav_order: 1
 ---
 
-# CSM Basic Example Description
+# CSM基础示例
 
 ## Basic Concepts
 
