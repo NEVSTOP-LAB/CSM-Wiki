@@ -5,7 +5,7 @@ parent: 示例应用
 nav_order: 1
 ---
 
-# CSM Continuous Measurement and Logging
+# 连续测量与记录项目
 
 ---
 
