@@ -1,11 +1,11 @@
 ---
-title: Addon API String
+title: API String插件
 layout: default
 parent: 参考文档
 nav_order: 23
 ---
 
-# CSM API String Addon
+# API String插件
 
 ## API String 核心功能
 

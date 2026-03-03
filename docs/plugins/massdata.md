@@ -5,7 +5,7 @@ parent: 插件系统
 nav_order: 4
 ---
 
-# CSM MassData Support Addon
+# MassData参数支持
 
 ## 概述
 

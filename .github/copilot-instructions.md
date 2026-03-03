@@ -232,6 +232,11 @@
 
 2. **进度更新**：如果本次修改涉及文档内容的新增或完善，同步更新 `.github/copilot-instructions.md` 中"项目当前状态"对应文件的完成度，并更新 `.github/progress/vi-description-tracking.md`。
 
+3. **页面标题中文检查**：检查被新建或修改文件的 frontmatter `title` 和 H1 主标题（`# ...`），确保符合以下规则：
+   - **`title` 字段**（左侧导航）：必须以中文开头，技术英文词汇可以附在括号中（如 `循环状态支持(Loop Support)`），不能以纯英文作为标题（如 `Addon API String`、`JKI State Machine` 均不合格）。
+   - **H1 主标题**：必须以中文开头，或以产品名（`CSM`）开头后紧跟中文（如 `# CSM插件机制` 合格）。纯英文 H1（如 `# CSM Debug Tools`、`# CSM File Logger Addon`）均不合格。
+   - **缺少 H1**：每个 `docs/` 文件都应有 H1 标题，缺少时自动补充与 `title` 相同的 H1。
+
 ## 图片路径规范
 
 在 `docs/` 目录下的 Markdown 文件中，**禁止使用** `{{ site.baseurl }}/assets/img/` 这种 Jekyll Liquid 语法引用图片。

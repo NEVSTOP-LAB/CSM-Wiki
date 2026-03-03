@@ -1,11 +1,11 @@
 ---
-title: Addon INI-Variable
+title: INI-Variable插件
 layout: default
 parent: 参考文档
 nav_order: 24
 ---
 
-# CSM INI-Variable Addon
+# INI-Variable插件
 
 ## 核心功能 VI
 

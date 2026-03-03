@@ -5,7 +5,7 @@ parent: 参考文档
 nav_order: 22
 ---
 
-# CSM Debug Tools
+# 调试工具(Debug Tools)
 
 ## 扫描添加"VI Reference" 分支(CSM - Add VI Reference Case to CSMs.vi)
 

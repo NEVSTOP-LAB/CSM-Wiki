@@ -5,7 +5,7 @@ parent: 插件系统
 nav_order: 6
 ---
 
-# CSM File Logger Addon
+# 文件日志插件(File Logger)
 
 CSM File Logger Addon是CSM的**内置**插件，基于[全局日志系统]({% link docs/basic/global-log.md %})，将应用的全部运行记录自动保存到文本文件中，方便事后分析和问题定位。
 
