@@ -68,10 +68,25 @@ CSM 通过 VIPM Library 的形式发布，推荐通过 VI Package Manager（VIPM
 
 欢迎通过以下渠道关注 CSM 项目、获取最新动态或参与社区交流：
 
-| 渠道 | 链接 | 二维码 |
-|------|------|--------|
-| 🐙 GitHub | [NEVSTOP-LAB/Communicable-State-Machine](https://github.com/NEVSTOP-LAB/Communicable-State-Machine) | ![扫描访问 GitHub 仓库](https://nevstop-lab.github.io/CSM-Wiki/assets/img/github-qr.png) |
-| 🦊 Gitee | [NEVSTOP-LAB/Communicable-State-Machine](https://gitee.com/NEVSTOP-LAB/Communicable-State-Machine) | ![扫描访问 Gitee 仓库](https://nevstop-lab.github.io/CSM-Wiki/assets/img/gitee-qr.png) |
-| 📖 知乎专栏 | [可通讯状态机(CSM) 框架](https://www.zhihu.com/column/c_1681072169147342848) | ![扫描关注知乎专栏](https://nevstop-lab.github.io/CSM-Wiki/assets/img/zhihu-qr.png) |
+<div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;">
+  <div style="text-align:center;">
+    <a href="https://github.com/NEVSTOP-LAB/Communicable-State-Machine">
+      <img src="https://nevstop-lab.github.io/CSM-Wiki/assets/img/github-qr.png" alt="扫描访问 GitHub 仓库" width="200" height="200"/>
+    </a>
+    <br/>🐙 GitHub
+  </div>
+  <div style="text-align:center;">
+    <a href="https://gitee.com/NEVSTOP-LAB/Communicable-State-Machine">
+      <img src="https://nevstop-lab.github.io/CSM-Wiki/assets/img/gitee-qr.png" alt="扫描访问 Gitee 仓库" width="200" height="200"/>
+    </a>
+    <br/>🦊 Gitee
+  </div>
+  <div style="text-align:center;">
+    <a href="https://www.zhihu.com/column/c_1681072169147342848">
+      <img src="https://nevstop-lab.github.io/CSM-Wiki/assets/img/zhihu-qr.png" alt="扫描关注知乎专栏" width="200" height="200"/>
+    </a>
+    <br/>📖 知乎专栏
+  </div>
+</div>
 
 通过 GitHub/Gitee 的 Issue、PR、Discussions 参与开发与反馈。
