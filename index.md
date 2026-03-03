@@ -83,7 +83,7 @@ CSM 在设计上有以下五大独特之处：
 
 ## 应用场景
 
-CSM 框架以**数据采集、存储与分析系统**为典型设计目标场景，专门解决该类项目中的常见挑战：
+CSM 框架可解决该类项目中的常见挑战：
 
 - **模块可替换** - 采集模块、算法模块等功能模块接口清晰，在算法不明确或硬件未到位时，可先用模拟模块开发，后期无缝替换真实模块
 - **并行团队开发** - 模块之间完全解耦，不同经验的工程师可并行开发各自的模块，无需等待依赖模块完成
@@ -94,20 +94,9 @@ CSM 框架以**数据采集、存储与分析系统**为典型设计目标场景
 
 ## 下载
 
-CSM 通过 VIPM Library 的形式发布，您可以通过以下方式下载：
-
-- 🥇 **推荐：通过 VIPM 应用搜索 CSM 获取 CSM 的最新发布版本，然后点击安装**
+🥇 **推荐：通过 VIPM 应用搜索 CSM 获取 CSM 的最新发布版本，然后点击安装**
 
 <img src="assets/img/VIPM%20Search%20CSM.png" alt="vipm-search-csm" width="80%">
-
-- **下载安装包(.vip 文件)，然后点击安装**
-
-  - 通过 VIPM.io 下载 CSM 的最新发布版本，然后点击安装:<br/>
-    <https://www.vipm.io/package/nevstop_lib_communicable_state_machine/>
-  - 通过 GitHub 下载 CSM 的最新发布版本，然后点击安装:<br/>
-    <https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases>
-  - 通过 Gitee 下载 CSM 的最新发布版本，然后点击安装:<br/>
-    <https://gitee.com/nevstop-lab/Communicable-State-Machine/releases>
 
 > 📓
 > 更多信息，请参考页面 [下载](https://nevstop-lab.github.io/CSM-Wiki/download-and-install)。
@@ -124,6 +113,8 @@ CSM 采用 MIT 开源协议，您可以在 [LICENSE](https://github.com/NEVSTOP-
 ## CSM公开演讲资料
 
 更多 CSM 架构设计、应用场景和实例分析，请参考 [csm-keynotes-collection](https://github.com/NEVSTOP-LAB/csm-keynotes-collection) 仓库中的公开演讲资料。
+
+---
 
 _**本站点使用了以下的开源项目或服务**_：
 
