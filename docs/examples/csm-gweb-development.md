@@ -1,11 +1,11 @@
 ---
-title: G-Web开发应用
+title: 基于 G-Web 的应用开发
 layout: default
 parent: 示例应用
 nav_order: 3
 ---
 
-# G-Web开发应用
+# 基于 G-Web 的应用开发
 
 本示例展示如何借助 CSM 框架，极简地将 LabVIEW 桌面应用发布为 Web 服务，并通过 G-Web 浏览器前端对其进行远程访问和控制。核心思路：只需在 LabVIEW Web Service 中暴露**一个** `CSM-RunScript` 接口，G-Web 端即可通过该接口调用后端所有 CSM 模块的全部功能。
 
