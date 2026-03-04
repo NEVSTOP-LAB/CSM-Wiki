@@ -47,7 +47,7 @@ graph TB
     end
 
     subgraph "LabVIEW Web Service"
-        RS[CSM-RunScript API(POST)<br/>唯一 HTTP 接口]
+        RS["CSM-RunScript API(POST)<br/>唯一 HTTP 接口"]
     end
 
     subgraph "LabVIEW 本地应用"
@@ -136,7 +136,7 @@ graph LR
 ```mermaid
 graph LR
     Client[Web客户端]
-    Client -->|/CSM-RunScript<br/>脚本文本| RS[CSM-RunScript API(POST)]
+    Client -->|/CSM-RunScript<br/>脚本文本| RS["CSM-RunScript API(POST)"]
     RS -->|CSM总线| M1[Module A]
     RS -->|CSM总线| M2[Module B]
     RS -->|CSM总线| MN[Module N ...]
@@ -187,7 +187,7 @@ G-Web 前端开发界面示意：
 sequenceDiagram
     participant U as 用户（浏览器）
     participant G as G-Web Application
-    participant W as CSM-RunScript API(POST)
+    participant W as "CSM-RunScript API(POST)"
     participant B as CSM 总线
     participant M as CSM 模块
 
