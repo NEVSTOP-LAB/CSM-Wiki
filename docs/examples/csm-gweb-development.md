@@ -66,7 +66,7 @@ graph TB
     RS -->|返回执行结果| Browser
 
     style RS fill:#e1f5ff
-    style Bus fill:#fff4e6
+    style Bus fill:#fff4e6,stroke-dasharray:5 5
     style GW fill:#e8f5e9
     style Browser fill:#f5e6ff
 ```
