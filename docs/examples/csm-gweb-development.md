@@ -9,17 +9,20 @@ nav_order: 3
 
 本示例展示如何借助 CSM 框架，极简地将 LabVIEW 桌面应用发布为 Web 服务，并通过 G-Web 浏览器前端对其进行远程访问和控制。核心思路：只需在 LabVIEW Web Service 中暴露**一个** `CSM-RunScript` 接口，G-Web 端即可通过该接口调用后端所有 CSM 模块的全部功能。
 
+这个场景很适合独立运行的嵌入式RT设备，如 NI 的 cRIO/PXI 等 RT 目标，程序部署后大多数情况下不需要界面，但是又需要远程配置参数和查看运行状态，发布一个 Web 服务供局域网内访问是非常合适的方案，用户可以不安装任何的客户端软件，直接通过浏览器访问设备进行监控和控制。
+
 > 项目仓库：[https://github.com/NEVSTOP-LAB/G-Web-Development-with-CSM](https://github.com/NEVSTOP-LAB/G-Web-Development-with-CSM)
 
 ## 背景
 
 ### LabVIEW Web Service
 
-LabVIEW Web Service 是 NI 提供的一种机制，可将 LabVIEW VI 直接发布为 HTTP 接口，无需额外的中间件。启动后，客户端可以通过标准 HTTP 请求调用这些接口，从而在桌面程序和 Web 应用之间建立通信桥梁。
+LabVIEW Web Service 是 NI 提供的开发机制，可将 LabVIEW VI 直接发布为 HTTP 接口，无需额外的中间件。启动后，客户端可以通过标准 HTTP 请求调用这些接口，从而在桌面程序和 Web 应用之间建立通信桥梁。
 
-传统方式下，每个功能都需要单独暴露为一个 HTTP 接口——如果应用有 20 个 API，就要写 20 个 Web Service 方法，维护成本较高。
+通常在LabVIEW Web Service中，每个 HTTP 接口对应一个接口VI, ——如果应用有 20 个 POST 方法，就要写 20 个 接口VI，维护成本较高。
 
-在 CSM 应用中，除了使用通用的 `CSM-RunScript` 单一接口外，也完全可以按照传统方式为每个功能单独编写 Web Service VI——CSM 的 API 使这种方式变得更为简单。在每个 VI 内部，只需调用 CSM 的消息发送函数，向对应模块发出同步请求并返回结果，相比不使用 CSM 的手工实现，代码更简洁、接口语义更清晰。因此，两种方式均可选择：
+在 CSM 应用中，由于其虚拟总线的设计，可以只定义一个`CSM-RunScript` 接口，处理所有的 CSM 脚本请求，这样极大的简化了接口层的开发和维护工作量，同时也使得前端调用更加灵活，任何新的功能都可以通过发送新的 CSM 脚本来实现，而无需修改接口代码。用户原本的 CSM 不需要为了了适配 Web Service 而做任何改动，完全不涉及网络访问的 CSM 模块代码可以被调用。
+除了使用通用的 `CSM-RunScript` 单一接口外，也完全可以按照传统方式为每个功能单独编写 Web Service VI——CSM 的 API 使这种方式变得更为简单。在每个 VI 内部，只需调用 CSM 的消息发送函数，向对应模块发出同步请求并返回结果，相比不使用 CSM 的手工实现，代码更简洁、接口语义更清晰。因此，两种方式均可选择：
 
 - **通用接口**：只写一个 `CSM-RunScript API(POST)`，任何 CSM 脚本都能通过该接口执行，快速实现 Web 化
 - **语义接口**：为特定操作单独编写 Web Service VI，内部通过 CSM API 调用后端模块，适合接口语义明确、需要参数校验或类型安全的场景
@@ -44,16 +47,18 @@ NI Windows 与 RT 目标均内置 NI Application Web Server，均支持部署 La
 graph TB
     Browser["浏览器（客户端）"]
 
-    subgraph "NI Web Server（上位机或 RT）"
-        GW["G-Web Application<br/>(HTML/CSS/JS 前端)"]
-        RS["CSM-RunScript API(POST)<br/>Web Service 后端接口"]
-    end
+    subgraph LabVIEW EXE/RT Target
+        subgraph "NI Web Server（上位机或 RT）"
+            GW["G-Web Application<br/>(HTML/CSS/JS 前端)"]
+            RS["CSM-RunScript API(POST)<br/>Web Service 后端接口"]
+        end
 
-    subgraph "LabVIEW 应用"
-        Bus[CSM 隐形总线]
-        M1[CSM Module A]
-        M2[CSM Module B]
-        MN[CSM Module N]
+        subgraph "LabVIEW 应用"
+            Bus[CSM 隐形总线]
+            M1[CSM Module A]
+            M2[CSM Module B]
+            MN[CSM Module N]
+        end
     end
 
     Browser -->|"① 加载 Web 页面"| GW
@@ -124,7 +129,7 @@ API: Update Config >> {param} ->* All
 
 ### 为什么只需要一个接口
 
-传统 Web Service 开发模式：每个功能点对应一个 VI 和一个 HTTP 接口。
+传统 LabVIEW Web Service 开发模式：每个功能点对应一个 VI 和一个 HTTP 接口。
 
 ```mermaid
 graph LR
@@ -231,8 +236,6 @@ http://<设备IP地址>:<端口>/CSMWebService/
 
 *📷 待补充截图：浏览器中运行的 G-Web 应用界面截图*
 
-### 程序架构通讯逻辑
-
 程序架构通讯逻辑如下：
 
 ```mermaid
@@ -261,7 +264,7 @@ sequenceDiagram
 
 ### LabVIEW 后端
 
-- Communicable State Machine (CSM) - NEVSTOP
+- Communicable State Machine (CSM) - NEVSTOP-LAB
 - LabVIEW Application Web Server（提供 Web Service 功能）
 
 ### G-Web 前端
@@ -276,4 +279,3 @@ sequenceDiagram
 - **无侵入集成**：现有基于 CSM 的 LabVIEW 应用，无需改动业务逻辑，只需添加 Web Service 层即可获得 Web 访问能力
 - **灵活扩展**：当后端新增 CSM 模块或 API 时，前端不需要修改接口，直接发送新的 CSM 脚本即可
 - **渐进式升级**：可以先使用通用 `CSM-RunScript` 快速实现 Web 化，后续按需再封装特定语义的接口
-- **纯文本协议**：CSM 脚本就是人类可读的文本，便于调试、记录和回放
