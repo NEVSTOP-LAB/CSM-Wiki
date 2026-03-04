@@ -153,6 +153,7 @@
 |------|-------------------|------|
 | example-csm-basic-example.md | CSM Basic Example(zh-cn).md | ✅ 完成 |
 | example-csm-advance-example.md | CSM Advance Example(zh-cn).md | ✅ 完成 |
+| csm-gweb-development.md | （新增）G-Web-Development-with-CSM 应用说明 | ✅ 完成 |
 
 ### 待完成项目
 
