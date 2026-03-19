@@ -15,7 +15,7 @@ CSM 支持以下几种通讯方式，选择哪种方式取决于你的需求：
 |---------|------|---------|----------|
 | 同步调用 | `-@` | 是 | 需要立即获取结果 |
 | 异步调用（有返回） | `->` | 否，后续处理 | 耗时操作但需要结果 |
-| 异步调用（无返回） | `->\|` | 否 | 单向通知 |
+| 异步调用（无返回） | `->|` | 否 | 单向通知 |
 | 信号广播 | `<status>` / `<broadcast>` | 否 | 向所有订阅者广播状态 |
 | 中断广播 | `<interrupt>` | 否 | 高优先级广播 |
 | 状态订阅 | `<register>` / `<unregister>` | 事件驱动 | 状态变化监听 |
@@ -194,13 +194,13 @@ ModuleStatus >> Arguments -> <broadcast>
 UrgentEvent >> Arguments -> <interrupt>
 ```
 
-也可以用 API 发送：用 [`CSM Broadcast Status Change.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm-broadcast-status-changevi) 发布状态：
+也可以用 API 发送：用 [`CSM - Broadcast Status Change.vi`]({% link docs/reference/api-02-core-functions.md %}#csm---broadcast-status-changevi) 发布状态：
 
 ![Alt text](../../assets/img/CSM%20Broadcast%20Status%20Change.png)
 
 ### 订阅与生命周期
 
-用 [`CSM Register Status Change.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm-register-status-changevi) 订阅，[`CSM Unregister Status Change.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm-unregister-status-changevi) 取消订阅。
+用 [`CSM - Register Broadcast.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm---register-broadcastvi) 订阅，[`CSM - Unregister Broadcast.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm---unregister-broadcastvi) 取消订阅。
 
 支持通配符 `*` 代表所有来源模块。例如订阅 `*` 的 `Error Occurred` 状态，就能收到所有模块的错误通知。
 
@@ -260,7 +260,7 @@ I'm timeout >> statusArguments -> <all>
 - **[Build Message with Arguments(Auto Check).vi]({% link docs/reference/api-02-core-functions.md %}#build-message-with-argumentsauto-checkvi)** — 自动检测消息类型
 - **[Build Synchronous Message with Arguments.vi]({% link docs/reference/api-02-core-functions.md %}#build-synchronous-message-with-argumentsvi)** — 同步消息 `-@`
 - **[Build Asynchronous Message with Arguments.vi]({% link docs/reference/api-02-core-functions.md %}#build-asynchronous-message-with-argumentsvi)** — 异步消息 `->`
-- **[Build No-Reply Asynchronous Message with Arguments.vi]({% link docs/reference/api-02-core-functions.md %}#build-no-reply-asynchronous-message-with-argumentsvi)** — 无返回异步 `->\|`
+- **[Build No-Reply Asynchronous Message with Arguments.vi]({% link docs/reference/api-02-core-functions.md %}#build-no-reply-asynchronous-message-with-argumentsvi)** — 无返回异步 `->|`
 - **[Build Interrupt Broadcast Message.vi]({% link docs/reference/api-02-core-functions.md %}#build-interrupt-broadcast-messagevi)** — 中断广播
 - **[Build Status Broadcast Message.vi]({% link docs/reference/api-02-core-functions.md %}#build-status-broadcast-messagevi)** — 信号广播
 - **[Build Register Message.vi]({% link docs/reference/api-02-core-functions.md %}#build-register-messagevi)** — 注册订阅
@@ -340,7 +340,7 @@ API: Log >> info ->| LogModule    // 异步日志
 
 - **消息未送达**：检查目标模块是否存在，名称是否正确
 - **同步调用超时**：检查被调用模块是否运行，超时时间是否合理
-- **异步响应未收到**：确认用的是 `->` 而不是 `->\|`
+- **异步响应未收到**：确认用的是 `->` 而不是 `->|`
 - **订阅未触发**：确认订阅关系已建立，广播是否正确发送
 - **消息追踪**：用全局日志、State Dashboard 查看消息流
 
