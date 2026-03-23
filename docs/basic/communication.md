@@ -87,7 +87,7 @@ end
 
 **非 CSM 代码调用**
 
-可以用 `AdvanceAPI\CSM Send Message and Wait for Reply.vi` 在普通代码里同步调用：
+可以用 [`CSM - Send Message and Wait for Reply.vi`]({% link docs/reference/api-05-module-operation-api.md %}#csm---send-message-and-wait-for-replyvi)（位于 `AdvanceAPI` 子面板）在普通代码里同步调用：
 
 ![Alt text](../../assets/img/SyncCall%20with%20advanceAPI.png)
 
@@ -168,7 +168,7 @@ End
 
 **非 CSM 代码调用**
 
-用 `AdvanceAPI\CSM Post Message.vi` 发送异步消息（无返回）：
+用 [`CSM - Post Message.vi`]({% link docs/reference/api-05-module-operation-api.md %}#csm---post-messagevi)（位于 `AdvanceAPI` 子面板）发送异步消息（无返回）：
 
 ![Alt text](../../assets/img/AsyncCall%20with%20advanceAPI.png)
 

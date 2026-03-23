@@ -74,7 +74,7 @@ graph TD
 | [`CSM - Convert Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm-convert-filter-rulesvi) | 将过滤规则簇转换为类实例，用于配置Filter Rules参数 |
 | [`CSM - Set Log Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm-set-log-filter-rulesvi) | 设置全局源端过滤，减少无需记录的日志产生 |
 
-### CSM - Start File Logger.vi 参数详解
+### [`CSM - Start File Logger.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csm---start-file-loggervi) 参数详解
 
 这是唯一需要在程序中调用的API，通常在主程序初始化阶段调用一次：
 
@@ -85,7 +85,7 @@ graph TD
 | Log File Path | — | 日志文件路径，建议使用绝对路径 |
 | Timestamp format | `%<%Y/%m/%d %H:%M:%S%3u>T` | 时间戳格式 |
 | Log Limit | File Size: 10 MB, File Num: 2 | 文件大小和数量限制 |
-| Filter Rules | — | 过滤规则（用`CSM - Convert Filter Rules.vi`配置） |
+| Filter Rules | — | 过滤规则（用[`CSM - Convert Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm---convert-filter-rulesvi)配置） |
 | Enable? | TRUE | 设为FALSE时不启动记录，可用于生产/调试环境切换 |
 | WatchDog? | TRUE | 启用WatchDog机制，调用VI退出时自动停止记录 |
 | Exit When All Module Exist? | FALSE | 所有CSM模块退出时自动停止记录 |
@@ -106,8 +106,8 @@ sequenceDiagram
     participant Filter as 过滤规则配置
     participant Thread as 后台记录线程
 
-    Main->>Filter: CSM - Convert Filter Rules.vi<br/>(配置需要过滤的模块/状态)
-    Main->>Logger: CSM - Start File Logger.vi<br/>(Log File Path, Log Limit, Filter Rules...)
+    Main->>Filter: [`CSM - Convert Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm---convert-filter-rulesvi)<br/>(配置需要过滤的模块/状态)
+    Main->>Logger: [`CSM - Start File Logger.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csm---start-file-loggervi)<br/>(Log File Path, Log Limit, Filter Rules...)
     Logger-->>Thread: 异步启动后台线程
     Logger-->>Main: Log File, Watchdog Queue
 
@@ -133,11 +133,11 @@ sequenceDiagram
 // 主程序初始化阶段
 
 // 可选：过滤掉高频轮询等不关心的状态，减少磁盘写入
-CSM - Convert Filter Rules.vi
+[`CSM - Convert Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm---convert-filter-rulesvi)
   (过滤 "Idle" 状态、高频采集状态等)
 → Filter Rules
 
-CSM - Start File Logger.vi
+[`CSM - Start File Logger.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csm---start-file-loggervi)
   Log File Path: "C:\Logs\app.csmlog"
   Log Limit: {File Size: 20MB, File Num: 5}
   Filter Rules: Filter Rules

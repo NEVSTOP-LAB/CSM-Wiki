@@ -149,7 +149,7 @@ Attribute 是用来存模块配置的，有两个用处：
 
 ```labview
 // 从DQMH发消息给CSM
-CSM - Post Message.vi
+[`CSM - Post Message.vi`]({% link docs/reference/api-05-module-operation-api.md %}#csm---post-messagevi)
   - State: "API: ProcessData"
   - Arguments: "DataString"
   - Target Module: "DataProcessor"
@@ -160,7 +160,7 @@ CSM - Post Message.vi
 
 ```labview
 // 查询CSM模块状态
-CSM - Send Message and Wait for Reply.vi
+[`CSM - Send Message and Wait for Reply.vi`]({% link docs/reference/api-05-module-operation-api.md %}#csm---send-message-and-wait-for-replyvi)
   - State: "API: GetStatus"
   - Target Module: "StatusModule"
   - Timeout: 5000ms
@@ -175,7 +175,7 @@ CSM - Send Message and Wait for Reply.vi
 
 ```labview
 // 注册订阅
-CSM - Register Broadcast.vi
+[`CSM - Register Broadcast.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm---register-broadcastvi)
   - CSM Name: "SubscriberModule"
   - Source CSM Name: "DataModule"
   - Trigger: "DataReady"
