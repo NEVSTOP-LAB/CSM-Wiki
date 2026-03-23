@@ -32,6 +32,9 @@
   --callout-important-bg: #fbefff;
   --callout-caution-color: #cf222e;
   --callout-caution-bg: #ffebe9;
+
+  // Smooth transitions for theme changes
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 [data-theme="dark"] {
@@ -64,6 +67,9 @@
   --callout-important-bg: #271c3a;
   --callout-caution-color: #f85149;
   --callout-caution-bg: #3c1618;
+
+  // Smooth transitions for theme changes
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 // Apply theme colors to elements
@@ -72,12 +78,14 @@
   body {
     background-color: var(--body-background-color);
     color: var(--body-text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   // Headings
   h1, h2, h3, h4, h5, h6,
   .site-title, .site-nav .nav-list .nav-list-item .nav-list-link {
     color: var(--body-heading-color);
+    transition: color 0.3s ease;
   }
 
   // Links
@@ -256,10 +264,16 @@
   // Image adjustments for dark theme
   img {
     opacity: 0.9;
+    border-radius: 4px;
 
     &:hover {
       opacity: 1;
     }
+  }
+
+  // Improve image contrast in dark mode by adding subtle border
+  .main-content img {
+    border: 1px solid var(--border-color);
   }
 
   // Special adjustments for navigation active states
@@ -278,6 +292,25 @@
 
     &:hover {
       color: var(--link-hover-color);
+    }
+  }
+
+  // CSM syntax highlighting adjustments for dark theme
+  .language-csm {
+    .c1 {
+      color: #3fb950 !important; // Green comments
+    }
+
+    .sd {
+      color: #8b949e !important; // Grey arguments
+    }
+
+    .nn {
+      color: #d29922 !important; // Amber target names
+    }
+
+    .si {
+      color: #8b949e !important; // Grey embedded targets in arguments
     }
   }
 }
