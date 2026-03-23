@@ -32,6 +32,7 @@ Addon是CSM的核心扩展接口，让你能添加新的参数类型、API功能
 - **File Logger Addon**：全局日志文件记录
 - **Loop Support Addon**：循环状态支持
 - **Attribute Addon**：属性访问增强
+- **TCP Router Addon**：TCP远程控制和监控
 
 ## WatchDog Addon
 
@@ -96,6 +97,29 @@ CSM - Start File Logger.vi
 - **CSM Get Module Attribute.vim**：多态读取
 
 用于快速读写模块属性、配置管理、Worker/Chain模式的节点间数据共享。
+
+## TCP Router Addon
+
+为 CSM 应用添加 TCP 远程控制能力，将本地程序转变为 TCP 服务器，实现远程访问和控制。详细说明参见[TCP Router（TCP远程控制）]({% link docs/plugins/tcp-router.md %})。
+
+**核心特性**：
+- 无侵入集成，无需修改原有代码
+- 支持多客户端同时连接
+- 完整支持 CSM 同步/异步消息、广播订阅
+- 三层指令集：CSM 消息、Router 管理、Client 指令
+
+**使用方法**：
+
+```labview
+// 在主程序初始化阶段启动 TCP Router
+Initialize >> {
+    Run Async: TCP-Router  // 使用默认端口
+}
+```
+
+**应用场景**：仪器远程控制、自动化测试、分布式系统集成、远程调试。
+
+**参考**：[TCP服务器应用示例]({% link docs/examples/csm-tcp-router.md %})
 
 ## 开发自己的Addon
 
