@@ -157,6 +157,11 @@ h6:hover .anchor-heading {
 .toc-float-list li {
   line-height: 1.5;
   margin: 0;
+  list-style: none;
+
+  &::marker {
+    content: none;
+  }
 }
 
 .toc-float-list a {
@@ -261,6 +266,10 @@ h6:hover .anchor-heading {
   line-height: 1.5;
   list-style: none;
   margin: 0;
+
+  &::marker {
+    content: none;
+  }
 }
 
 #page-toc-inline .toc-inline-list a {
