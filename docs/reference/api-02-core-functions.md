@@ -550,7 +550,10 @@ nav_order: 12
 ### Add State(s) to Queue By BOOL(Element).vi
 将CSM消息字符串并入CSM消息队列中。提供了TRUE/FALSE两种状态的字符串选项，能够避免使用条件结构，提高代码可读性和编程效率。
 
-> - Ref: CSM的状态队列操作API
+{: .note }
+> <b>CSM 的状态队列操作API</b>
+>
+> 该类型API不会直接发送消息，只是拼接消息字符串。在Parse State Queue++.vi中发送消息、执行操作。与消息拼接API不同的是，此类API会包含CSM的状态队列字符串输入，相当于在状态队列中插入消息。
 
 -- <b>输入控件(Controls)</b> --
 - <b>State Queue ("")</b>: 整个状态队列被连接到此输入。
@@ -565,7 +568,10 @@ nav_order: 12
 ### Add State(s) to Queue By BOOL(Array Left).vi
 将CSM消息字符串并入CSM消息队列中。提供了TRUE/FALSE两种状态的字符串选项，能够避免使用条件结构，提高代码可读性和编程效率。
 
-> - Ref: CSM的状态队列操作API
+{: .note }
+> <b>CSM 的状态队列操作API</b>
+>
+> 该类型API不会直接发送消息，只是拼接消息字符串。在Parse State Queue++.vi中发送消息、执行操作。与消息拼接API不同的是，此类API会包含CSM的状态队列字符串输入，相当于在状态队列中插入消息。
 
 -- <b>输入控件(Controls)</b> --
 - <b>State Queue ("")</b>: 整个状态队列被连接到此输入。

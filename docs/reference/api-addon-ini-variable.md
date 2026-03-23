@@ -16,9 +16,45 @@ nav_order: 24
 
 <b>参考范例</b>: `1. Used as parameters parsed by CSM.vi`。
 
-> - Ref: CSM INI-Variable Addon
-> - Ref: CSM INI-Variable变量格式
-> - Ref: CSM INI-Variable配置文件路径
+{: .note }
+> <b>CSM INI-Variable Addon</b>
+>
+> 配置文件是应用程序开发中不可或缺的组成部分。CSM INI-Variable Addon为CSM提供简单易用的配置文件支持功能，使用户能够配置应用程序而无需显式读写配置文件。
+>
+> CSM INI-Variable配置文件数据的格式使用CSM API String格式。
+>
+> 主要特点包括:
+> 1. <b>默认配置处理</b>: 首次调用库函数时自动加载默认配置文件，无需用户显式加载。
+> 2. <b>多文件支持</b>: 通过专用函数支持加载多个配置文件。
+> 3. <b>内存缓存</b>: 在内存中维护一个缓存副本，应用程序从该缓存中获取配置信息。
+> 4. <b>INI格式兼容</b>: 配置文件和内存副本均采用标准INI格式，支持节和键值对。
+> 5. <b>高效缓存机制</b>: 使用全局修改标记优化性能，仅在配置发生修改时才重新读取内存副本。
+>
+> 本库包含并使用了由[@rcpacini](https://github.com/rcpacini)开发的[LabVIEW-Config](https://github.com/rcpacini/LabVIEW-Config)的副本。
+{: .note }
+> <b>CSM INI-Variable变量格式</b>
+>
+> 格式定义: `${section.variable:defaultValue}`
+> - `${}`: 变量引用语法。
+> - `section`(可选): 配置文件中的节名。
+> - `variable`: 配置文件中的变量名。
+> - `defaultValue`(可选): 默认值，当变量不存在时使用。
+>
+> <b>说明</b>:
+> - 支持嵌套的变量引用，例如`${section1.variable1:${section2.variable2:defaultValue2}}`。
+> - `section`参数为可选。省略时，使用默认配置段 `SectionName=LabVIEW`。
+> - 默认值为可选，未指定时默认为空字符串("")。
+{: .note }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Section Name ("" as Default)</b>: 节名，空字符串表示使用默认节。
@@ -37,7 +73,17 @@ nav_order: 24
 
 <b>参考范例</b>: `2. Load the corresponding configuration by providing the prototype.vi`。
 
-> - Ref: CSM INI-Variable配置文件路径
+{: .note }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Configuration Prototype (Cluster Preferred)</b>: 配置原型(推荐使用簇)。
@@ -56,7 +102,17 @@ nav_order: 24
 
 <b>参考范例</b>: `2. Load the corresponding configuration by providing the prototype.vi`。
 
-> - Ref: CSM INI-Variable配置文件路径
+{: .note }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Cluster</b>: 簇原型。
@@ -72,7 +128,17 @@ nav_order: 24
 
 <b>参考范例</b>: `2. Load the corresponding configuration by providing the prototype.vi`。
 
-> - Ref: CSM INI-Variable配置文件路径
+{: .note }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Cluster</b>: 簇原型。
@@ -90,8 +156,21 @@ nav_order: 24
 
 <b>参考范例</b>: `7. Write and Read Configuration.vi`。
 
-> - Ref: CSM INI-Variable配置文件路径
-> - Ref: CSM INI-Variable缓存机制警告
+{: .note }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
+{: .warning }
+> <b>CSM INI-Variable缓存机制警告</b>
+>
+> 请注意，由于本库使用全局缓存修改标志，频繁的配置更改会降低读取VI中缓存机制的有效性。因此，本库不建议用于需要频繁修改配置的场景。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Configuration</b>: 要写入的配置数据。
@@ -187,7 +266,10 @@ nav_order: 24
 
 <b>参考范例</b>: `6. Read Nested Variables.vi`。
 
-> - Ref: CSM INI-Variable缓存机制警告
+{: .warning }
+> <b>CSM INI-Variable缓存机制警告</b>
+>
+> 请注意，由于本库使用全局缓存修改标志，频繁的配置更改会降低读取VI中缓存机制的有效性。因此，本库不建议用于需要频繁修改配置的场景。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Section Name ("" as Default)</b>: 节名，空字符串表示使用默认节。
@@ -204,7 +286,17 @@ nav_order: 24
 
 <b>参考范例</b>: `5. import Config.ini with __include section.vi`。
 
-> - Ref: CSM INI-Variable配置文件路径
+{: .note }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Include All Paths?(F)</b>: 是否包含所有配置文件路径。
@@ -220,7 +312,17 @@ nav_order: 24
 
 <b>参考范例</b>: `5. import Config.ini with __include section.vi`。
 
-> - Ref: CSM INI-Variable配置文件路径
+{: .note }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Configuration Path</b>: 配置文件路径。
@@ -229,7 +331,17 @@ nav_order: 24
 ### CSM - Unload Configuration Variable File.vi
 卸载配置变量文件。
 
-> - Ref: CSM INI-Variable配置文件路径
+{: .note }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Path</b>: 配置文件路径。
@@ -239,7 +351,17 @@ nav_order: 24
 
 <b>注意</b>: 虽然已经标记为永久变量，但是如果不使用CSM - Sync Configuration Variables to File VI，依然不会将变量同步到文件中。
 
-> - Ref: CSM INI-Variable配置文件路径
+{: .note }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Path ("" to Use Default File)</b>: 配置文件路径，空字符串表示使用默认INI文件。
@@ -249,7 +371,17 @@ nav_order: 24
 
 <b>注意</b>: 只有永久变量才会同步到文件中，如果想将临时变量写入文件，需要提前将临时变量标记为永久变量。
 
-> - Ref: CSM INI-Variable配置文件路径
+{: .note }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
 
 -- <b>输入控件(Controls)</b> --
 - <b>All Temp Variable to Default Ini(F)</b>: 是否将所有临时变量同步到默认INI文件。
@@ -258,12 +390,32 @@ nav_order: 24
 ### CSM - Restore Variable Value.vi
 恢复变量值，将所有的永久变量刷新为首次载入的配置值，临时变量不会被修改。
 
-> - Ref: CSM INI-Variable配置文件路径
+{: .note }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
 
 ### CSM - Reset to Default.vi
 将配置重置为默认值。所有的变量将被清空，所有的配置会从现在加载的配置文件中重新加载。
 
-> - Ref: CSM INI-Variable配置文件路径
+{: .note }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
 
 ## 实用工具 VI
 
