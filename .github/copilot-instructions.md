@@ -73,10 +73,20 @@
 
 1. **移除 NOTE/WARNING 块**：从源文件中移除所有 `> [!NOTE]` / `> [!WARNING]` 块（这些块来自 `VI Description(zh-cn).md`，由其他文件引用，不直接复制）。
 2. **替换引用行**：将所有 `> - Ref: <标题>` 行替换为对应标题的 NOTE/WARNING 块实际内容。
+   - **重要**：`> - Ref:` 行必须被完全展开，不能保留在最终的 `docs/` 文件中
+   - 从 `.ref/VI Description/VI Description(zh-cn)/VI Description(zh-cn).md` 和对应的各个源文件中查找标题匹配的 NOTE/WARNING 块
+   - 标题匹配时需要忽略：空格、括号及其内容、引号、冒号等标点符号
+   - 支持多种标题变体（如 `CSM 模块间通信类型`、`CSM模块间通信类型`、`模块间通信类型`、`模块间通信类型参数`）
+   - 特殊映射：`全局超时时间设置` → `CSM同步消息全局超时`
+   - 对于引用其他 VI API 的 Ref（如 `CSM - Set Module Attribute.vi`），这些是跨文档引用，应移除而非展开
 3. **转换 Callout 格式**：将 GitHub 格式转换为 Just the Docs 格式（见上表）。
 4. **保留 YAML frontmatter**：保持目标 `docs/` 文件中已有的 frontmatter（`title`、`layout`、`parent`、`nav_order` 等）不变，不要覆盖。
 
-引用标题可能有多种变体（如 `CSM 模块间通信类型`、`CSM模块间通信类型`、`模块间通信类型`），需全部兼容处理。
+**验证方法**：完成更新后，使用以下命令验证所有引用都已展开：
+```bash
+grep -r "> - Ref:" docs/reference/
+```
+如果有输出，说明还有未展开的引用。
 
 ## 编码处理
 
@@ -110,20 +120,20 @@
 
 | 文件 | 对应 `.ref/` 源文件 | 状态 |
 |------|-------------------|------|
-| api-01-templates.md | VI Description(zh-cn) - 01. Templates.md | ✅ 完成 (95%) |
-| api-02-core-functions.md | VI Description(zh-cn) - 02. Core Functions.md | ✅ 完成 (95%) |
-| api-03-arguments.md | VI Description(zh-cn) - 03. Arguments.md | ✅ 完成 (95%) |
-| api-04-management-api.md | VI Description(zh-cn) - 04 .Management API.md | ✅ 完成 (95%) |
-| api-05-module-operation-api.md | VI Description(zh-cn) - 05. Module Operation API.md | ✅ 完成 (95%) |
-| api-06-broadcast-registration.md | VI Description(zh-cn) - 06. Broadcast Registration.md | ✅ 完成 (95%) |
+| api-01-templates.md | VI Description(zh-cn) - 01. Templates.md | ✅ 完成 (100%) |
+| api-02-core-functions.md | VI Description(zh-cn) - 02. Core Functions.md | ✅ 完成 (100%) |
+| api-03-arguments.md | VI Description(zh-cn) - 03. Arguments.md | ✅ 完成 (100%) |
+| api-04-management-api.md | VI Description(zh-cn) - 04 .Management API.md | ✅ 完成 (100%) |
+| api-05-module-operation-api.md | VI Description(zh-cn) - 05. Module Operation API.md | ✅ 完成 (100%) |
+| api-06-broadcast-registration.md | VI Description(zh-cn) - 06. Broadcast Registration.md | ✅ 完成 (100%) |
 | api-07-global-log.md | VI Description(zh-cn) - 07. Global Log.md | ✅ 完成 (100%) |
 | api-08-advanced-modes.md | VI Description(zh-cn) - 08. Advanced Modes.md | ✅ 完成 (100%) |
-| api-09-build-in-addons.md | VI Description(zh-cn) - 09. Build-in Addons.md | ✅ 完成 (95%) |
-| api-10-utility-vis.md | VI Description(zh-cn) - 10. Utility VIs.md | ✅ 完成 (95%) |
-| api-12-debugdoctools.md | VI Description(zh-cn) - 12. Debug,Doc,Tools.md | ✅ 完成 (95%) |
-| api-addon-api-string.md | VI Description(zh-cn) - Addon API String.md | ✅ 完成 (95%) |
-| api-addon-ini-variable.md | VI Description(zh-cn) - Addon INI-Variable.md | ✅ 完成 (95%) |
-| api-addon-massdata.md | VI Description(zh-cn) - Addon Massdata.md | ✅ 完成 (95%) |
+| api-09-build-in-addons.md | VI Description(zh-cn) - 09. Build-in Addons.md | ✅ 完成 (100%) |
+| api-10-utility-vis.md | VI Description(zh-cn) - 10. Utility VIs.md | ✅ 完成 (100%) |
+| api-12-debugdoctools.md | VI Description(zh-cn) - 12. Debug,Doc,Tools.md | ✅ 完成 (100%) |
+| api-addon-api-string.md | VI Description(zh-cn) - Addon API String.md | ✅ 完成 (100%) |
+| api-addon-ini-variable.md | VI Description(zh-cn) - Addon INI-Variable.md | ✅ 完成 (100%) |
+| api-addon-massdata.md | VI Description(zh-cn) - Addon Massdata.md | ✅ 完成 (100%) |
 
 ### `docs/basic/` 文件完成情况
 

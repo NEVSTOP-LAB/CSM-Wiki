@@ -14,8 +14,18 @@ nav_order: 18
 
 <b>参考范例</b>:  `0. Base Concepts\7. System-Level Module.vi`。
 
-> - Ref: 名称拼接API
-> - Ref: CSM系统级模块
+{: .note }
+> <b>名称拼接API</b>
+>
+> 这个VI只操作了模块名称字符串，并没有实际功能，当熟悉CSM规则后，可以直接输入对应的名称字符串和规则符号，不是必须调用此API。
+{: .note }
+> <b>CSM系统级模块</b>
+>
+> 系统级模块的其他CSM功能，均与普通模块相同，和普通模块唯一的区别，在于默认的CSM - List Modules VI不会列出系统级模块。因此它通常用于实现一些后台运行的功能模块，而在统一处理普通模块操作逻辑时，可以避免对这些后台运行逻辑的干扰。
+>
+> CSM系统级模块通常以`.`开头，例如: `.MainApp`、`.BackgroundTask`等，`.`是名称的一部分，消息发送、订阅等操作需要的名称也要包含`.`。例如：您可以将主程序循环命名为`.MainApp`，就可以通过CSM - List Modules VI来获取所有普通模块的列表，而不会列出`.MainApp`，如果主程序需要退出其他全部模块，就可以发送`Macro: Exit`给CSM - List Modules VI的结果，这样就可以退出所有普通模块，而不会影响系统级模块的运行。
+>
+> 协作者模式、责任链模式的CSM模块名称，也可以以`.`开头，作为系统级模块运行。
 
 -- <b>输入控件(Controls)</b> --
 - <b>CSM Name</b>: CSM模块名称。
@@ -41,8 +51,34 @@ nav_order: 18
 
 <b>参考范例</b>:  `4. Advance Examples\1. Action Workers Example`。
 
-> - Ref: 名称拼接API
-> - Ref: CSM工作者模式(Worker Mode)
+{: .note }
+> <b>名称拼接API</b>
+>
+> 这个VI只操作了模块名称字符串，并没有实际功能，当熟悉CSM规则后，可以直接输入对应的名称字符串和规则符号，不是必须调用此API。
+{: .note }
+> <b>CSM工作者模式(Worker Mode)</b>
+>
+> 一个CSM模块，通过实例化多个实例，申请的名称后添加`#`，并共享相同的消息队列，实现工作者模式。
+> - 从外部调用上看，这些实例一起组成了一个复合的模块，命名为Worker Agent。
+> - 每一个实例，命名为Worker。
+>
+> <b>行为</b>:
+> 外部调用者可以认为Worker Agent就是一个CSM模块，可以进行消息通讯、状态注册等操作。从内部看，空闲的Worker会从Worker Agent消息队列中取出消息，处理消息。因此，工作者模式能够实现一个CSM模块的并发消息处理。
+>
+> <b>举例</b>:
+>
+>       //申请模块名称为module#，module是Worker Agent名称，实例化2个实例，这2个实例的名字可能为:
+>       // - module#59703F3AD837
+>       // - module#106A470BA5EC
+>       // 不能直接和Worker进行通讯，需要和Worker Agent通讯，例如:
+>       csm message >> arguments -@ module //同步消息，空闲的Worker将处理此消息。
+>       csm message >> arguments -> module //同步消息，空闲的Worker将处理此消息。
+>
+> 应用场景:
+> - 10086接线员的场景
+> - 下载器并发下载的场景
+> - 编译器并发编译的场景
+> - TCP Server处理多个Client连接
 
 -- <b>输入控件(Controls)</b> --
 - <b>CSM Name</b>: CSM模块名称。
@@ -58,8 +94,37 @@ nav_order: 18
 
 <b>参考范例</b>:  `4. Advance Examples\2. Chain of Responsibility Example`。
 
-> - Ref: CSM责任链模式(Chain of Responsibility Mode)
-> - Ref: 名称拼接API
+{: .note }
+> <b>CSM责任链模式(Chain of Responsibility Mode)</b>
+>
+> 多个CSM模块，申请的名称后添加`$`，组成处理事务的一个链条，通过责任链模式形成一个完整的模块。
+> - 从外部调用上看，这些实例一起组成了一个复合的模块，命名为Chain。
+> - 每一个实例，命名为Chain Node。
+>
+> <b>行为</b>:
+> 外部调用者可以认为Chain就是一个CSM模块，可以进行消息通讯、状态注册等操作。从内部看，nodes会根据排列顺序依次尝试处理消息，当node具有当前消息处理的能力时，消息被处理，不再向后传递。
+>
+> <b>举例</b>:
+>
+>     //申请模块名称为module$, module是chain名称，实例化4个实例，这四个实例的名字可能为:
+>     // - module$1
+>     // - module$2
+>     // - module$3
+>     // - module$4
+>     // 组成的Chain顺序为module$1(head) >> module$2 >> module$3 >> module$4(tail)
+>     // 假设module$3 module$4能够处理"csm message"
+>     csm message >> arguments -@ module
+>     // 这个消息将被module$3处理, module$4不会响应
+>
+> <b>应用场景</b>:
+> - 权限审批过程，按照职位层级，具有某职能权限的人员，就可以直接审批，无需继续传递。
+> - 功能拼接，不同模块实现不同的任务，通过拼接可以完成不同功能合集的组合。
+> - 功能覆盖，通过覆盖实现OOP中的重载。
+> - 工作者模式的场景，通常不适合具有界面操作。
+{: .note }
+> <b>名称拼接API</b>
+>
+> 这个VI只操作了模块名称字符串，并没有实际功能，当熟悉CSM规则后，可以直接输入对应的名称字符串和规则符号，不是必须调用此API。
 
 -- <b>输入控件(Controls)</b> --
 - <b>CSM Name</b>:  CSM模块名称。
@@ -88,7 +153,16 @@ nav_order: 18
 
 <b>参考范例</b>：`4. Advance Examples\5. Multi-Loop Module Example\TCP Server Module(Multi-Loop Support).vi`。
 
-> - Ref: CSM多循环模式(Multi-Loop Mode)
+{: .note }
+> <b>CSM多循环模式(Multi-Loop Mode)</b>
+>
+> 在有些场景下，适合使用多个循环构成同一个CSM模块，例如:
+> - 一段已有的功能代码上改造为CSM模块，例如TCP连接循环、DAQmx数据采集循环，为了保证原本的逻辑清晰，可以在已有的代码包裹While循环，再附加CSM通讯循环，实现改造功能。
+> - 在实时要求高的情况，需要使用定时循环实现，则需要CSM循环作为通讯接口，定时循环作为功能循环的实现方案。
+> - 在界面操作非常复杂的情况下，建议将界面操作和CSM通讯循环分离，界面操作循环处理界面操作，产生模块间的消息，CSM循环作为实际功能循环。
+>
+> 多循环支持模式API用于此场景下在模块内部循环间传递内部消息，或提供非CSM循环的CSM接口功能。
+>
 
 -- <b>输入控件(Controls)</b> --
 - <b>Module Name</b>: 发送状态的CSM。
@@ -103,7 +177,16 @@ nav_order: 18
 
 <b>参考范例</b>：`4. Advance Examples\5. Multi-Loop Module Example\TCP Server Module(Multi-Loop Support).vi`。
 
-> - Ref: CSM多循环模式(Multi-Loop Mode)
+{: .note }
+> <b>CSM多循环模式(Multi-Loop Mode)</b>
+>
+> 在有些场景下，适合使用多个循环构成同一个CSM模块，例如:
+> - 一段已有的功能代码上改造为CSM模块，例如TCP连接循环、DAQmx数据采集循环，为了保证原本的逻辑清晰，可以在已有的代码包裹While循环，再附加CSM通讯循环，实现改造功能。
+> - 在实时要求高的情况，需要使用定时循环实现，则需要CSM循环作为通讯接口，定时循环作为功能循环的实现方案。
+> - 在界面操作非常复杂的情况下，建议将界面操作和CSM通讯循环分离，界面操作循环处理界面操作，产生模块间的消息，CSM循环作为实际功能循环。
+>
+> 多循环支持模式API用于此场景下在模块内部循环间传递内部消息，或提供非CSM循环的CSM接口功能。
+>
 
 -- <b>输入控件(Controls)</b> --
 - <b>Module Name</b>: 发送状态的CSM。
@@ -118,7 +201,16 @@ nav_order: 18
 
 <b>参考范例</b>：`Addons - Loop Support\CSMLS - Continuous Loop in CSM Example.vi`。
 
-> - Ref: CSM多循环模式(Multi-Loop Mode)
+{: .note }
+> <b>CSM多循环模式(Multi-Loop Mode)</b>
+>
+> 在有些场景下，适合使用多个循环构成同一个CSM模块，例如:
+> - 一段已有的功能代码上改造为CSM模块，例如TCP连接循环、DAQmx数据采集循环，为了保证原本的逻辑清晰，可以在已有的代码包裹While循环，再附加CSM通讯循环，实现改造功能。
+> - 在实时要求高的情况，需要使用定时循环实现，则需要CSM循环作为通讯接口，定时循环作为功能循环的实现方案。
+> - 在界面操作非常复杂的情况下，建议将界面操作和CSM通讯循环分离，界面操作循环处理界面操作，产生模块间的消息，CSM循环作为实际功能循环。
+>
+> 多循环支持模式API用于此场景下在模块内部循环间传递内部消息，或提供非CSM循环的CSM接口功能。
+>
 
 -- <b>输入控件(Controls)</b> --
 - <b>State(s) In ("")</b>: 待处理的状态。

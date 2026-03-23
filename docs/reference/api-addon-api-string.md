@@ -12,8 +12,34 @@ nav_order: 23
 ### API String - Is Supported Datatype.vi
 判断数据类型是否为API String支持的转换数据类型。
 
-> - Ref: API String参数支持
-> - Ref: CSM HEXSTR格式
+{: .note }
+><b>API String参数支持</b>
+>
+> API String参数支持用于增强通信状态机(CSM)的API参数功能，支持以纯文本格式传递各种数据类型，并特别优化了手动输入体验。API String未定义参数类型(Argument Type)，通过CSM - Argument Type VI获取的结果为空，通常在默认分支中处理。支持的数据类型包括:
+> - 字符串(String)
+> - 路径(Path)
+> - 布尔值(Boolean)
+> - 标签(Tag)
+> - 引用号(Refnum，包括IVI/VISA/UserDefinedRefnumTag)
+> - 整数(I8, I16, I32, I64, U8, U16, U32, U64)
+> - 浮点数(DBL/SGL)
+> - 复数(DBL/SGL)
+> - 时间戳(Timestamp)
+> - 枚举(Enum)
+> - 数组(Array)
+> - 簇(Cluster)
+> - 其他类型(使用 CSM-Hexstr 表示)
+>
+> 更多详细信息请访问: https://github.com/NEVSTOP-LAB/CSM-API-String-Arguments-Support
+>
+> 或参考范例，所有数据类型均有详细说明和示例。
+{: .note }
+> <b>CSM HEXSTR格式参数</b>
+>
+> 为了在CSM参数中传递任意数据类型，CSM内置了HEXSTR格式参数编解码方案。其参数类型字符串为HEXSTR。转换过程如下:
+> 1. 将LabVIEW数据先转为变体；
+> 2. 再将变体的内存映像序列化为十六进制字符串；
+> 3. 得到`<HEXSTR>十六进制字符串`形式的参数，可安全嵌入状态字符串，不会破坏CSM消息解析。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Data</b>: 输入数据。
@@ -25,7 +51,27 @@ nav_order: 23
 ### Convert Data To API String Arguments.vim
 将数据转换为API String格式。
 
-> - Ref: API String参数支持
+{: .note }
+><b>API String参数支持</b>
+>
+> API String参数支持用于增强通信状态机(CSM)的API参数功能，支持以纯文本格式传递各种数据类型，并特别优化了手动输入体验。API String未定义参数类型(Argument Type)，通过CSM - Argument Type VI获取的结果为空，通常在默认分支中处理。支持的数据类型包括:
+> - 字符串(String)
+> - 路径(Path)
+> - 布尔值(Boolean)
+> - 标签(Tag)
+> - 引用号(Refnum，包括IVI/VISA/UserDefinedRefnumTag)
+> - 整数(I8, I16, I32, I64, U8, U16, U32, U64)
+> - 浮点数(DBL/SGL)
+> - 复数(DBL/SGL)
+> - 时间戳(Timestamp)
+> - 枚举(Enum)
+> - 数组(Array)
+> - 簇(Cluster)
+> - 其他类型(使用 CSM-Hexstr 表示)
+>
+> 更多详细信息请访问: https://github.com/NEVSTOP-LAB/CSM-API-String-Arguments-Support
+>
+> 或参考范例，所有数据类型均有详细说明和示例。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Data</b>: 输入数据。
@@ -38,7 +84,27 @@ nav_order: 23
 ### Convert API String Arguments to Data.vim
 将API String转换为相应的数据类型。
 
-> - Ref: API String参数支持
+{: .note }
+><b>API String参数支持</b>
+>
+> API String参数支持用于增强通信状态机(CSM)的API参数功能，支持以纯文本格式传递各种数据类型，并特别优化了手动输入体验。API String未定义参数类型(Argument Type)，通过CSM - Argument Type VI获取的结果为空，通常在默认分支中处理。支持的数据类型包括:
+> - 字符串(String)
+> - 路径(Path)
+> - 布尔值(Boolean)
+> - 标签(Tag)
+> - 引用号(Refnum，包括IVI/VISA/UserDefinedRefnumTag)
+> - 整数(I8, I16, I32, I64, U8, U16, U32, U64)
+> - 浮点数(DBL/SGL)
+> - 复数(DBL/SGL)
+> - 时间戳(Timestamp)
+> - 枚举(Enum)
+> - 数组(Array)
+> - 簇(Cluster)
+> - 其他类型(使用 CSM-Hexstr 表示)
+>
+> 更多详细信息请访问: https://github.com/NEVSTOP-LAB/CSM-API-String-Arguments-Support
+>
+> 或参考范例，所有数据类型均有详细说明和示例。
 
 -- <b>输入控件(Controls)</b> --
 - <b>API String</b>: API String格式的输入字符串。
@@ -68,8 +134,16 @@ nav_order: 23
 ### API String - Add Boolean Strings.vi
 将自定义布尔字符串添加到API String布尔值解析列表中，并返回更新后的列表。
 
-> - Ref: TRUE值的默认字符串
-> - Ref: FALSE值的默认字符串
+{: .note }
+> <b>TRUE值的默认字符串</b>
+>
+> 支持`1`, `Active`, `Enable`, `Non-null`, `On`, `T`, `True`, `valid`, `yes`
+> 不区分大小写
+{: .note }
+> <b>FALSE值的默认字符串</b>
+>
+> 支持`0`, `Disable`, `F`, `False`, `Inactive`, `Invalid`, `No`, `Off`, `Void`, `null`
+> 不区分大小写
 
 -- <b>输入控件(Controls)</b> --
 - <b>Custom False Boolean Strings</b>: 自定义FALSE字符串列表。
@@ -82,8 +156,16 @@ nav_order: 23
 ### API String - Remove Boolean Strings.vi
 从API String布尔值解析列表中移除自定义布尔字符串，并返回更新后的列表。
 
-> - Ref: TRUE值的默认字符串
-> - Ref: FALSE值的默认字符串
+{: .note }
+> <b>TRUE值的默认字符串</b>
+>
+> 支持`1`, `Active`, `Enable`, `Non-null`, `On`, `T`, `True`, `valid`, `yes`
+> 不区分大小写
+{: .note }
+> <b>FALSE值的默认字符串</b>
+>
+> 支持`0`, `Disable`, `F`, `False`, `Inactive`, `Invalid`, `No`, `Off`, `Void`, `null`
+> 不区分大小写
 
 -- <b>输入控件(Controls)</b> --
 - <b>Custom False Boolean Strings</b>: 要移除的FALSE字符串列表。
@@ -96,8 +178,16 @@ nav_order: 23
 ### API String - List Boolean Strings.vi
 列出当前所有可用的布尔值字符串。
 
-> - Ref: TRUE值的默认字符串
-> - Ref: FALSE值的默认字符串
+{: .note }
+> <b>TRUE值的默认字符串</b>
+>
+> 支持`1`, `Active`, `Enable`, `Non-null`, `On`, `T`, `True`, `valid`, `yes`
+> 不区分大小写
+{: .note }
+> <b>FALSE值的默认字符串</b>
+>
+> 支持`0`, `Disable`, `F`, `False`, `Inactive`, `Invalid`, `No`, `Off`, `Void`, `null`
+> 不区分大小写
 
 -- <b>输出控件(Indicators)</b> --
 - <b>False Boolean Strings</b>: 当前的FALSE字符串列表。
@@ -106,7 +196,10 @@ nav_order: 23
 ### API String - Set Float Format String.vi
 设置浮点数的格式字符串，可参考LabVIEW format string格式。
 
-> - Ref: 浮点数默认格式
+{: .note }
+> <b>浮点数默认格式</b>
+>
+> 浮点数默认格式为`%.6p`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Float Format String Setting</b>: 浮点数格式字符串设置。
@@ -117,7 +210,10 @@ nav_order: 23
 ### API String - Float Format String.vi
 获取当前的浮点数格式字符串。
 
-> - Ref: 浮点数默认格式
+{: .note }
+> <b>浮点数默认格式</b>
+>
+> 浮点数默认格式为`%.6p`。
 
 -- <b>输出控件(Indicators)</b> --
 - <b>Float Format String</b>: 当前的浮点数格式字符串。
@@ -125,7 +221,10 @@ nav_order: 23
 ### API String - Set Float Precision.vi
 设置浮点数的精度。
 
-> - Ref: 浮点数默认格式
+{: .note }
+> <b>浮点数默认格式</b>
+>
+> 浮点数默认格式为`%.6p`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Precision</b>: 浮点数精度设置。
@@ -138,8 +237,16 @@ nav_order: 23
 ### String to Boolean_csm.vi
 将字符串转换为布尔值。支持多种TRUE/FALSE表示方式，可通过API String - Add Boolean Strings VI添加自定义的TRUE/FALSE字符串。
 
-> - Ref: TRUE值的默认字符串
-> - Ref: FALSE值的默认字符串
+{: .note }
+> <b>TRUE值的默认字符串</b>
+>
+> 支持`1`, `Active`, `Enable`, `Non-null`, `On`, `T`, `True`, `valid`, `yes`
+> 不区分大小写
+{: .note }
+> <b>FALSE值的默认字符串</b>
+>
+> 支持`0`, `Disable`, `F`, `False`, `Inactive`, `Invalid`, `No`, `Off`, `Void`, `null`
+> 不区分大小写
 
 -- <b>输入控件(Controls)</b> --
 - <b>String</b>: 输入字符串。
@@ -151,7 +258,10 @@ nav_order: 23
 ### String To Float_csm.vi
 将字符串转换为浮点数。支持多种浮点数格式和单位，可通过API String - Set Float Format String VI设置格式。
 
-> - Ref: 浮点数默认格式
+{: .note }
+> <b>浮点数默认格式</b>
+>
+> 浮点数默认格式为`%.6p`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>String</b>: 输入字符串。
@@ -173,7 +283,19 @@ nav_order: 23
 ### String To Indexed Enum_csm.vi
 将字符串转换为带索引的枚举类型。
 
-> - Ref: 带索引的枚举类型(Indexed Enum)
+{: .note }
+> <b>带索引的枚举类型(Indexed Enum)</b>
+>
+> 格式为`[索引编号(index)][分隔符(separator)][枚举字符串]`，索引编号支持多种数值表示方式
+>
+> 索引编号使用`==`分隔符示例:
+> `1 == boolean | 2 == string | 4 == dbl | 8 == number`
+>
+> 索引编号使用`--`分隔符示例:
+> `0x01 -- boolean | 0x02 -- string | 0x04 -- dbl | 0x08 -- number`
+>
+> 索引编号使用`__`分隔符示例:
+> `0b0001 __ boolean | 0b0100 __ dbl | 0b1000 __ number`
 
     _<b>转换规则1: 无索引编号</b>_
 
@@ -202,7 +324,19 @@ nav_order: 23
 ### Indexed Enum to Numeric_csm.vim
 将枚举转换为数值，支持带索引的枚举类型，当枚举数值携带索引编号时，将直接使用索引编号作为数值。
 
-> - Ref: 带索引的枚举类型(Indexed Enum)
+{: .note }
+> <b>带索引的枚举类型(Indexed Enum)</b>
+>
+> 格式为`[索引编号(index)][分隔符(separator)][枚举字符串]`，索引编号支持多种数值表示方式
+>
+> 索引编号使用`==`分隔符示例:
+> `1 == boolean | 2 == string | 4 == dbl | 8 == number`
+>
+> 索引编号使用`--`分隔符示例:
+> `0x01 -- boolean | 0x02 -- string | 0x04 -- dbl | 0x08 -- number`
+>
+> 索引编号使用`__`分隔符示例:
+> `0b0001 __ boolean | 0b0100 __ dbl | 0b1000 __ number`
 
 -- <b>输入控件(Controls)</b> --
 - <b>Enum</b>: 输入枚举值。
@@ -218,7 +352,19 @@ nav_order: 23
 
 规则2: 当没有匹配到索引编号时，将使用数字值作为枚举索引。
 
-> - Ref: 带索引的枚举类型(Indexed Enum)
+{: .note }
+> <b>带索引的枚举类型(Indexed Enum)</b>
+>
+> 格式为`[索引编号(index)][分隔符(separator)][枚举字符串]`，索引编号支持多种数值表示方式
+>
+> 索引编号使用`==`分隔符示例:
+> `1 == boolean | 2 == string | 4 == dbl | 8 == number`
+>
+> 索引编号使用`--`分隔符示例:
+> `0x01 -- boolean | 0x02 -- string | 0x04 -- dbl | 0x08 -- number`
+>
+> 索引编号使用`__`分隔符示例:
+> `0b0001 __ boolean | 0b0100 __ dbl | 0b1000 __ number`
 
 -- <b>输入控件(Controls)</b> --
 - <b>Numeric</b>: 输入数字值。
