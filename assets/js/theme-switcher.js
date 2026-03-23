@@ -8,56 +8,68 @@
   const DATA_THEME_ATTR = 'data-theme';
   const LIGHT_THEME = 'light';
   const DARK_THEME = 'dark';
+  const SYSTEM_PREFERENCE = 'system';
 
-  // Get the saved theme or detect from system
-  function getInitialTheme() {
-    // Check localStorage first (with error handling)
+  function getSavedPreference() {
     try {
       const savedTheme = localStorage.getItem(STORAGE_KEY);
       if (savedTheme === LIGHT_THEME || savedTheme === DARK_THEME) {
         return savedTheme;
       }
     } catch (e) {
-      // localStorage blocked or unavailable, fall through to system preference
-      console.warn('localStorage unavailable, using system preference');
+      // localStorage blocked or unavailable
     }
+    return null;
+  }
 
-    // Check system preference
+  function persistPreference(preference) {
+    try {
+      if (preference === LIGHT_THEME || preference === DARK_THEME) {
+        localStorage.setItem(STORAGE_KEY, preference);
+      } else {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    } catch (e) {
+      // localStorage blocked or unavailable, silently fail
+    }
+  }
+
+  function getSystemTheme() {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return DARK_THEME;
     }
-
     return LIGHT_THEME;
   }
 
-  // Save theme to localStorage (only when explicitly set by user)
-  function saveThemePreference(theme) {
-    try {
-      localStorage.setItem(STORAGE_KEY, theme);
-    } catch (e) {
-      // localStorage blocked or unavailable, silently fail
-      console.warn('localStorage unavailable, theme preference not persisted');
+  function resolveTheme(preference) {
+    if (preference === LIGHT_THEME || preference === DARK_THEME) {
+      return preference;
+    }
+    return getSystemTheme();
+  }
+
+  function updateThemeSelector(preference) {
+    const select = document.getElementById('theme-select');
+    if (!select) return;
+
+    const normalized = (preference === LIGHT_THEME || preference === DARK_THEME)
+      ? preference
+      : SYSTEM_PREFERENCE;
+
+    if (select.value !== normalized) {
+      select.value = normalized;
     }
   }
 
   // Apply theme to document (without saving to localStorage)
-  function applyTheme(theme, shouldPersist) {
+  function applyTheme(theme, shouldPersist, preferenceForUI) {
     document.documentElement.setAttribute(DATA_THEME_ATTR, theme);
 
     if (shouldPersist) {
-      saveThemePreference(theme);
+      persistPreference(preferenceForUI);
     }
 
-    // Update toggle button if it exists
-    const toggleBtn = document.getElementById('theme-toggle');
-    if (toggleBtn) {
-      const icon = toggleBtn.querySelector('.theme-icon');
-      if (icon) {
-        icon.textContent = theme === DARK_THEME ? '☀️' : '🌙';
-      }
-      toggleBtn.setAttribute('aria-label',
-        theme === DARK_THEME ? 'Switch to light theme' : 'Switch to dark theme');
-    }
+    updateThemeSelector(preferenceForUI);
 
     // Update Mermaid theme if mermaid is loaded
     if (window.mermaid && typeof window.mermaid.initialize === 'function') {
@@ -82,24 +94,23 @@
     }
   }
 
-  // Toggle between light and dark themes (manual user action)
-  function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute(DATA_THEME_ATTR);
-    const newTheme = currentTheme === DARK_THEME ? LIGHT_THEME : DARK_THEME;
-    // Persist when user manually toggles
-    applyTheme(newTheme, true);
-  }
-
   // Initialize theme on page load (before DOM ready to avoid flash)
-  const initialTheme = getInitialTheme();
+  const savedPreference = getSavedPreference();
+  const initialPreference = savedPreference || SYSTEM_PREFERENCE;
+  const initialTheme = resolveTheme(initialPreference);
   // Don't persist on initial load - only on explicit user action
-  applyTheme(initialTheme, false);
+  applyTheme(initialTheme, false, initialPreference);
 
   // Set up toggle button after DOM is ready
   document.addEventListener('DOMContentLoaded', function() {
-    const toggleBtn = document.getElementById('theme-toggle');
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', toggleTheme);
+    const themeSelect = document.getElementById('theme-select');
+    if (themeSelect) {
+      updateThemeSelector(initialPreference);
+      themeSelect.addEventListener('change', function(event) {
+        const preference = event.target.value;
+        const themeToApply = resolveTheme(preference);
+        applyTheme(themeToApply, true, preference);
+      });
     }
 
     // Listen for system theme changes (with Safari compatibility)
@@ -107,14 +118,9 @@
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       const handleSystemThemeChange = function(e) {
         // Only auto-switch if user hasn't explicitly set a preference
-        try {
-          const savedTheme = localStorage.getItem(STORAGE_KEY);
-          if (!savedTheme) {
-            applyTheme(e.matches ? DARK_THEME : LIGHT_THEME, false);
-          }
-        } catch (err) {
-          // localStorage unavailable, apply theme without checking preference
-          applyTheme(e.matches ? DARK_THEME : LIGHT_THEME, false);
+        const preference = getSavedPreference();
+        if (!preference || preference === SYSTEM_PREFERENCE) {
+          applyTheme(e.matches ? DARK_THEME : LIGHT_THEME, false, SYSTEM_PREFERENCE);
         }
       };
 
@@ -128,5 +134,12 @@
   });
 
   // Expose toggleTheme globally for programmatic use
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute(DATA_THEME_ATTR);
+    const newTheme = currentTheme === DARK_THEME ? LIGHT_THEME : DARK_THEME;
+    // Persist when user manually toggles
+    applyTheme(newTheme, true, newTheme);
+  }
+
   window.toggleTheme = toggleTheme;
 })();
