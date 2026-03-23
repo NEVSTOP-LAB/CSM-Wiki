@@ -13,7 +13,7 @@
   function getSavedPreference() {
     try {
       const savedTheme = localStorage.getItem(STORAGE_KEY);
-      if (savedTheme === LIGHT_THEME || savedTheme === DARK_THEME || savedTheme === SYSTEM_PREFERENCE) {
+      if (savedTheme === LIGHT_THEME || savedTheme === DARK_THEME) {
         return savedTheme;
       }
     } catch (e) {
@@ -52,7 +52,7 @@
     const select = document.getElementById('theme-select');
     if (!select) return;
 
-    const normalized = (preference === LIGHT_THEME || preference === DARK_THEME || preference === SYSTEM_PREFERENCE)
+    const normalized = (preference === LIGHT_THEME || preference === DARK_THEME)
       ? preference
       : SYSTEM_PREFERENCE;
 
@@ -97,7 +97,7 @@
   // Initialize theme on page load (before DOM ready to avoid flash)
   const savedPreference = getSavedPreference();
   const initialPreference = savedPreference || SYSTEM_PREFERENCE;
-  const initialTheme = resolveTheme(savedPreference);
+  const initialTheme = resolveTheme(initialPreference);
   // Don't persist on initial load - only on explicit user action
   applyTheme(initialTheme, false, initialPreference);
 
