@@ -60,7 +60,7 @@ Error Occurred@* >> Error Handler -><register>
 将主程序命名为`.MainApp`，退出时使用：
 
 ```labview
-Macro: Exit -> CSM - List Modules VI的结果
+Macro: Exit -> [`CSM - List Modules.vi`]({% link docs/reference/api-04-management-api.md %}#csm---list-modulesvi) 的结果
 ```
 
 这样只退出业务模块，不影响主程序。
@@ -201,25 +201,25 @@ API: Process >> arguments -@ Handler
 
 ### 核心API
 
-#### CSM - Request CSM to Post Message.vi
+#### [`CSM - Request CSM to Post Message.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm---request-csm-to-post-messagevi)
 
 非CSM循环通过此API请求CSM循环发送消息。可指定立即执行（优先处理）、支持异步消息获取返回值。
 
 参数：Module Name、State、Arguments、Without Reply?、Target Module、Immediately?
 
-#### CSM - Request CSM to Broadcast Status Change.vi
+#### [`CSM - Request CSM to Broadcast Status Change.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm---request-csm-to-broadcast-status-changevi)
 
 非CSM循环通过此API请求CSM循环发送广播。仅应在模块内部使用。
 
 参数：Module Name、Status、Arguments、Broadcast?、Priority、Immediately?
 
-#### CSM - Forward UI Operations to CSM.vi
+#### [`CSM - Forward UI Operations to CSM.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm---forward-ui-operations-to-csmvi)
 
 将UI循环的用户操作转发到CSM循环，DQMH-Style模板的核心机制。
 
 参数：State(s) In、Name、High Priority?
 
-#### CSM - Module Turns Invalid.vi
+#### [`CSM - Module Turns Invalid.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm---module-turns-invalidvi)
 
 检查CSM模块是否已退出，用于功能循环跟随退出。注意：高级模式的模块只有在最后一个节点退出后才触发。
 

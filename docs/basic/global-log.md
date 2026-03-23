@@ -251,8 +251,8 @@ CSM提供了多个使用范例：
 - `4. Advance Examples\Filter From Source(Event).vi` - 源端过滤（事件）
 - `4. Advance Examples\Filter From Subscriber(Queue).vi` - 订阅端过滤（队列）
 - `4. Advance Examples\Filter From Subscriber(Event).vi` - 订阅端过滤（事件）
-- `template/CSM - Global Log Queue Monitoring Loop.vi` - 队列监控模板
-- `template/CSM - Global Log Event Monitoring Loop.vi` - 事件监控模板
+- [`CSM - Global Log Queue Monitoring Loop.vi`]({% link docs/reference/api-01-templates.md %}#csm---global-log-queue-monitoring-loopvi) - 队列监控模板
+- [`CSM - Global Log Event Monitoring Loop.vi`]({% link docs/reference/api-01-templates.md %}#csm---global-log-event-monitoring-loopvi) - 事件监控模板
 
 ## 总结
 

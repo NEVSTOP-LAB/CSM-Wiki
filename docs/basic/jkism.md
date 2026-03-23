@@ -31,7 +31,7 @@ JKI State Machine (JKISM) 是一个 LabVIEW **事件驱动队列消息状态机*
 
 ## 核心结构：Parse State Queue.vi
 
-`Parse State Queue.vi` 是 JKISM 的**消息处理核心**，负责：
+[`Parse State Queue.vi`]({% link docs/reference/api-02-core-functions.md %}#parse-state-queuevi) 是 JKISM 的**消息处理核心**，负责：
 
 1. 取出消息队列中下一条消息
 2. Error 时进入 `"Error Handler"` 状态
