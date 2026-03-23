@@ -1,0 +1,55 @@
+<button id="theme-toggle" class="btn js-toggle-dark-mode" type="button" aria-label="Switch to dark theme">
+  <span class="theme-icon" aria-hidden="true">🌙</span>
+</button>
+
+<style>
+  #theme-toggle {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    padding: 0.75rem;
+    border-radius: 50%;
+    background: var(--btn-primary-color, #5e41d0);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  #theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+
+  #theme-toggle:active {
+    transform: scale(0.95);
+  }
+
+  .theme-icon {
+    line-height: 1;
+  }
+
+  /* Adjust button style for dark theme */
+  [data-theme="dark"] #theme-toggle {
+    background: var(--btn-primary-color, #7253ed);
+  }
+
+  @media (max-width: 50rem) {
+    #theme-toggle {
+      bottom: 0.5rem;
+      right: 0.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 1.25rem;
+      padding: 0.5rem;
+    }
+  }
+</style>

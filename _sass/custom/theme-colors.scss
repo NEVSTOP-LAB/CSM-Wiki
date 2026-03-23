@@ -1,0 +1,316 @@
+// Dark theme color scheme for CSM-Wiki
+// Based on GitHub's dark theme color palette
+
+// Define color scheme dynamically based on data-theme attribute
+:root {
+  // Light theme colors (default)
+  --body-background-color: #ffffff;
+  --body-text-color: #24292f;
+  --body-heading-color: #24292f;
+  --nav-background-color: #f6f8fa;
+  --nav-link-color: #24292f;
+  --link-color: #0969da;
+  --link-hover-color: #0550ae;
+  --code-background-color: #f6f8fa;
+  --code-text-color: #24292f;
+  --border-color: #d0d7de;
+  --search-background-color: #ffffff;
+  --search-result-preview-color: #6e7781;
+  --btn-primary-color: #5e41d0;
+  --btn-primary-hover-color: #4c2fb3;
+  --table-background-color: #ffffff;
+  --sidebar-color: #f6f8fa;
+
+  // Callout colors (light)
+  --callout-note-color: #0969da;
+  --callout-note-bg: #ddf4ff;
+  --callout-tip-color: #1a7f37;
+  --callout-tip-bg: #dafbe1;
+  --callout-warning-color: #9a6700;
+  --callout-warning-bg: #fff8c5;
+  --callout-important-color: #8250df;
+  --callout-important-bg: #fbefff;
+  --callout-caution-color: #cf222e;
+  --callout-caution-bg: #ffebe9;
+
+  // Smooth transitions for theme changes
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] {
+  // Dark theme colors based on GitHub dark theme
+  --body-background-color: #0d1117;
+  --body-text-color: #e6edf3;
+  --body-heading-color: #e6edf3;
+  --nav-background-color: #161b22;
+  --nav-link-color: #e6edf3;
+  --link-color: #2f81f7;
+  --link-hover-color: #58a6ff;
+  --code-background-color: #161b22;
+  --code-text-color: #e6edf3;
+  --border-color: #30363d;
+  --search-background-color: #0d1117;
+  --search-result-preview-color: #8b949e;
+  --btn-primary-color: #7253ed;
+  --btn-primary-hover-color: #8b6ce8;
+  --table-background-color: #0d1117;
+  --sidebar-color: #161b22;
+
+  // Callout colors (dark)
+  --callout-note-color: #58a6ff;
+  --callout-note-bg: #1f2937;
+  --callout-tip-color: #3fb950;
+  --callout-tip-bg: #1a2e24;
+  --callout-warning-color: #d29922;
+  --callout-warning-bg: #2d2109;
+  --callout-important-color: #a371f7;
+  --callout-important-bg: #271c3a;
+  --callout-caution-color: #f85149;
+  --callout-caution-bg: #3c1618;
+
+  // Smooth transitions for theme changes
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Apply theme colors to elements
+[data-theme="dark"] {
+  // Body
+  body {
+    background-color: var(--body-background-color);
+    color: var(--body-text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  // Headings
+  h1, h2, h3, h4, h5, h6,
+  .site-title, .site-nav .nav-list .nav-list-item .nav-list-link {
+    color: var(--body-heading-color);
+    transition: color 0.3s ease;
+  }
+
+  // Links
+  a {
+    color: var(--link-color);
+
+    &:hover, &:focus {
+      color: var(--link-hover-color);
+    }
+  }
+
+  // Navigation
+  .side-bar {
+    background-color: var(--sidebar-color);
+    border-right-color: var(--border-color);
+  }
+
+  .site-nav .nav-list .nav-list-item .nav-list-link {
+    color: var(--nav-link-color);
+  }
+
+  // Code blocks
+  code {
+    background-color: var(--code-background-color);
+    color: var(--code-text-color);
+    border-color: var(--border-color);
+  }
+
+  pre, pre code {
+    background-color: var(--code-background-color);
+    color: var(--code-text-color);
+  }
+
+  // Tables
+  table {
+    background-color: var(--table-background-color);
+
+    th, td {
+      border-color: var(--border-color);
+    }
+
+    thead th {
+      background-color: var(--code-background-color);
+    }
+  }
+
+  // Borders
+  hr, .side-bar {
+    border-color: var(--border-color);
+  }
+
+  // Search
+  .search-input {
+    background-color: var(--search-background-color);
+    color: var(--body-text-color);
+    border-color: var(--border-color);
+  }
+
+  .search-results {
+    background-color: var(--sidebar-color);
+
+    .search-result-preview {
+      color: var(--search-result-preview-color);
+    }
+  }
+
+  // Buttons
+  .btn, .btn-primary {
+    background-color: var(--btn-primary-color);
+
+    &:hover, &:focus {
+      background-color: var(--btn-primary-hover-color);
+    }
+  }
+
+  // Callouts
+  .note {
+    border-left-color: var(--callout-note-color);
+    background-color: var(--callout-note-bg);
+
+    > p:first-child::before {
+      color: var(--callout-note-color);
+    }
+  }
+
+  .tip {
+    border-left-color: var(--callout-tip-color);
+    background-color: var(--callout-tip-bg);
+
+    > p:first-child::before {
+      color: var(--callout-tip-color);
+    }
+  }
+
+  .warning {
+    border-left-color: var(--callout-warning-color);
+    background-color: var(--callout-warning-bg);
+
+    > p:first-child::before {
+      color: var(--callout-warning-color);
+    }
+  }
+
+  .important {
+    border-left-color: var(--callout-important-color);
+    background-color: var(--callout-important-bg);
+
+    > p:first-child::before {
+      color: var(--callout-important-color);
+    }
+  }
+
+  .caution {
+    border-left-color: var(--callout-caution-color);
+    background-color: var(--callout-caution-bg);
+
+    > p:first-child::before {
+      color: var(--callout-caution-color);
+    }
+  }
+
+  // Main content
+  .main-content {
+    background-color: var(--body-background-color);
+    color: var(--body-text-color);
+  }
+
+  // Footer
+  .site-footer {
+    background-color: var(--sidebar-color);
+    border-top-color: var(--border-color);
+    color: var(--body-text-color);
+  }
+
+  // Blockquotes
+  blockquote {
+    border-left-color: var(--border-color);
+    color: var(--search-result-preview-color);
+  }
+
+  // Labels and badges
+  .label, .label-blue, .label-green, .label-purple, .label-red, .label-yellow {
+    border-color: var(--border-color);
+  }
+
+  // TOC
+  .toc-panel {
+    background-color: var(--code-background-color);
+    border-color: var(--border-color);
+
+    a {
+      color: var(--link-color);
+
+      &:hover {
+        color: var(--link-hover-color);
+      }
+
+      &.active {
+        color: var(--btn-primary-color);
+      }
+    }
+  }
+
+  // Syntax highlighting adjustments
+  .highlight {
+    background-color: var(--code-background-color);
+
+    .c, .cm, .c1, .cs { color: #8b949e; } // Comments
+    .k, .kd, .kn, .kp, .kr, .kt { color: #ff7b72; } // Keywords
+    .s, .s1, .s2, .sh, .sr { color: #a5d6ff; } // Strings
+    .m, .mi, .mf, .mh, .il { color: #79c0ff; } // Numbers
+    .na, .nb, .nc, .nf, .nn { color: #d2a8ff; } // Names
+    .o, .ow { color: #ff7b72; } // Operators
+  }
+
+  // Image adjustments for dark theme
+  img {
+    opacity: 0.9;
+    border-radius: 4px;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Improve image contrast in dark mode by adding subtle border
+  .main-content img {
+    border: 1px solid var(--border-color);
+  }
+
+  // Special adjustments for navigation active states
+  .nav-list .nav-list-item > .nav-list-link.active {
+    background-color: var(--code-background-color);
+  }
+
+  // Breadcrumbs
+  .breadcrumb-nav {
+    color: var(--search-result-preview-color);
+  }
+
+  // Aux links (GitHub link in header)
+  .aux-nav .aux-nav-list .aux-nav-list-item a {
+    color: var(--link-color);
+
+    &:hover {
+      color: var(--link-hover-color);
+    }
+  }
+
+  // CSM syntax highlighting adjustments for dark theme
+  .language-csm {
+    .c1 {
+      color: #3fb950 !important; // Green comments
+    }
+
+    .sd {
+      color: #8b949e !important; // Grey arguments
+    }
+
+    .nn {
+      color: #d29922 !important; // Amber target names
+    }
+
+    .si {
+      color: #8b949e !important; // Grey embedded targets in arguments
+    }
+  }
+}
