@@ -279,6 +279,7 @@
     border: 1px solid var(--border-color);
     background-color: rgba(255, 255, 255, 0.03);
     padding: 2px;
+    box-sizing: border-box;
   }
 
   // Special adjustments for navigation active states
@@ -289,6 +290,10 @@
 
   .nav-list .nav-list-item > .nav-list-link:hover {
     background-color: rgba(88, 166, 255, 0.08);
+  }
+
+  .nav-list .nav-list-item > .nav-list-link.active:hover {
+    background-color: rgba(88, 166, 255, 0.15);
   }
 
   // Breadcrumbs
