@@ -37,7 +37,7 @@ body {
 /* Level 1 heading - largest with underline */
 .main-content h1, .main-content .h1 {
   font-size: 2.25rem; /* 36px - significantly larger than body text */
-  border-bottom: 3px solid #5c5962; /* Underline for h1 */
+  border-bottom: 3px solid var(--border-color, #5c5962); /* Underline for h1 */
   padding-bottom: 0.5rem;
   margin-top: 0;
 }
@@ -45,7 +45,7 @@ body {
 /* Level 2 heading - large with underline */
 .main-content h2, .main-content .h2 {
   font-size: 1.875rem; /* 30px */
-  border-bottom: 2px solid #5c5962; /* Underline for h2 */
+  border-bottom: 2px solid var(--border-color, #5c5962); /* Underline for h2 */
   padding-bottom: 0.4rem;
 }
 
@@ -117,13 +117,13 @@ h6:hover .anchor-heading {
   max-height: calc(100vh - 5rem);
   overflow-y: auto;
   padding: 0.75rem 0.875rem;
-  background: #f8f9fa;
-  border: 1px solid #e1e4e8;
+  background: var(--code-background-color, #f8f9fa);
+  border: 1px solid var(--border-color, #e1e4e8);
   border-radius: 0 0 0 6px;
   font-size: 0.8rem;
   z-index: 100;
   scrollbar-width: thin;
-  scrollbar-color: #d0d0d0 transparent;
+  scrollbar-color: var(--border-color, #d0d0d0) transparent;
   margin-left: 1.25rem; /* space from content on smaller desktops where TOC is narrower */
   margin-right: 1.25rem; /* space from edge of viewport */
 }
@@ -142,10 +142,10 @@ h6:hover .anchor-heading {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #959396;
+  color: var(--search-result-preview-color, #959396);
   margin-bottom: 0.5rem;
   padding-bottom: 0.4rem;
-  border-bottom: 1px solid #e1e4e8;
+  border-bottom: 1px solid var(--border-color, #e1e4e8);
 }
 
 .toc-float-list {
@@ -161,7 +161,7 @@ h6:hover .anchor-heading {
 
 .toc-float-list a {
   display: block;
-  color: #6b6b6b;
+  color: var(--search-result-preview-color, #6b6b6b);
   text-decoration: none;
   padding: 0.2rem 0.25rem;
   border-left: 2px solid transparent;
@@ -173,21 +173,21 @@ h6:hover .anchor-heading {
 }
 
 .toc-float-list a:hover {
-  color: #27262b;
-  background: rgba(0,0,0,0.04);
+  color: var(--body-heading-color, #27262b);
+  background: var(--code-background-color, rgba(0,0,0,0.04));
 }
 
 .toc-float-list a.active {
-  color: #5e41d0;
+  color: var(--btn-primary-color, #5e41d0);
   font-weight: 600;
-  border-left-color: #5e41d0;
+  border-left-color: var(--btn-primary-color, #5e41d0);
   background: rgba(94, 65, 208, 0.06);
 }
 
 /* Indentation by heading level */
 .toc-float-list li.toc-level-2 > a { padding-left: 0.25rem; font-size: 0.9rem; }
 .toc-float-list li.toc-level-3 > a { padding-left: 1rem;    font-size: 0.85rem; }
-.toc-float-list li.toc-level-4 > a { padding-left: 1.75rem; font-size: 0.8rem;  color: #888; }
+.toc-float-list li.toc-level-4 > a { padding-left: 1.75rem; font-size: 0.8rem;  color: var(--search-result-preview-color, #888); }
 
 /* Show floating TOC only on wide screens */
 @media (min-width: $desktop-toc-breakpoint) {
@@ -215,9 +215,9 @@ h6:hover .anchor-heading {
 
 #page-toc-inline {
   margin: 0 0 1.5rem 0;
-  border: 1px solid #e1e4e8;
+  border: 1px solid var(--border-color, #e1e4e8);
   border-radius: 6px;
-  background: #f8f9fa;
+  background: var(--code-background-color, #f8f9fa);
   overflow: hidden;
 }
 
@@ -232,11 +232,11 @@ h6:hover .anchor-heading {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #5c5962;
+  color: var(--body-heading-color, #5c5962);
   cursor: pointer;
   user-select: none;
   border: none;
-  border-bottom: 1px solid #e1e4e8;
+  border-bottom: 1px solid var(--border-color, #e1e4e8);
   border-radius: 0;
   background: transparent;
   text-align: left;
@@ -265,7 +265,7 @@ h6:hover .anchor-heading {
 
 #page-toc-inline .toc-inline-list a {
   display: block;
-  color: #6b6b6b;
+  color: var(--search-result-preview-color, #6b6b6b);
   text-decoration: none;
   padding: 0.2rem 0.25rem;
   border-left: 2px solid transparent;
@@ -273,18 +273,18 @@ h6:hover .anchor-heading {
 }
 
 #page-toc-inline .toc-inline-list a:hover {
-  color: #27262b;
+  color: var(--body-heading-color, #27262b);
   background: rgba(0,0,0,0.04);
 }
 
 #page-toc-inline .toc-inline-list li.toc-level-2 > a { padding-left: 0.25rem; font-size: 0.9rem; }
 #page-toc-inline .toc-inline-list li.toc-level-3 > a { padding-left: 1rem;    font-size: 0.85rem; }
-#page-toc-inline .toc-inline-list li.toc-level-4 > a { padding-left: 1.75rem; font-size: 0.8rem; color: #888; }
+#page-toc-inline .toc-inline-list li.toc-level-4 > a { padding-left: 1.75rem; font-size: 0.8rem; color: var(--search-result-preview-color, #888); }
 
 #page-toc-inline .toc-inline-list a.active {
-  color: #5e41d0;
+  color: var(--btn-primary-color, #5e41d0);
   font-weight: 600;
-  border-left-color: #5e41d0;
+  border-left-color: var(--btn-primary-color, #5e41d0);
   background: rgba(94, 65, 208, 0.06);
 }
 
@@ -301,7 +301,7 @@ h6:hover .anchor-heading {
   height: 2.5rem;
   border-radius: 50%;
   border: none;
-  background: #5e41d0;
+  background: var(--btn-primary-color, #5e41d0);
   color: #fff;
   cursor: pointer;
   display: flex;
@@ -321,7 +321,7 @@ h6:hover .anchor-heading {
 }
 
 #back-to-top:hover {
-  background: #4a33a8;
+  background: var(--btn-primary-hover-color, #4a33a8);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 

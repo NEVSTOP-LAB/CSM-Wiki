@@ -1,6 +1,9 @@
 // Custom CSS - loaded after all theme styles
 // Use this file for custom styling that overrides the theme
 
+// Import theme colors for dark/light mode support
+@import "./theme-colors";
+
 // Responsive images: never exceed natural size, shrink to fit smaller viewports
 .main-content img {
   max-width: 100%;
