@@ -58,15 +58,15 @@
 
   // Callout colors (dark) - softer backgrounds
   --callout-note-color: #58a6ff;
-  --callout-note-bg: #192839;
+  --callout-note-bg: color-mix(in srgb, var(--body-background-color) 75%, var(--callout-note-color));
   --callout-tip-color: #3fb950;
-  --callout-tip-bg: #182920;
+  --callout-tip-bg: color-mix(in srgb, var(--body-background-color) 75%, var(--callout-tip-color));
   --callout-warning-color: #d29922;
-  --callout-warning-bg: #271f0c;
+  --callout-warning-bg: color-mix(in srgb, var(--body-background-color) 75%, var(--callout-warning-color));
   --callout-important-color: #a371f7;
-  --callout-important-bg: #231833;
+  --callout-important-bg: color-mix(in srgb, var(--body-background-color) 75%, var(--callout-important-color));
   --callout-caution-color: #f85149;
-  --callout-caution-bg: #331416;
+  --callout-caution-bg: color-mix(in srgb, var(--body-background-color) 75%, var(--callout-caution-color));
 
   // Smooth transitions for theme changes
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -155,9 +155,11 @@
   // Buttons
   .btn, .btn-primary {
     background-color: var(--btn-primary-color);
+    color: var(--body-heading-color);
 
     &:hover, &:focus {
       background-color: var(--btn-primary-hover-color);
+      color: var(--body-heading-color);
     }
   }
 
@@ -205,6 +207,38 @@
     > p:first-child::before {
       color: var(--callout-caution-color);
     }
+  }
+
+  .note,
+  .tip,
+  .warning,
+  .important,
+  .caution {
+    color: var(--body-heading-color);
+
+    a {
+      color: inherit;
+    }
+  }
+
+  .note a {
+    color: var(--callout-note-color);
+  }
+
+  .tip a {
+    color: var(--callout-tip-color);
+  }
+
+  .warning a {
+    color: var(--callout-warning-color);
+  }
+
+  .important a {
+    color: var(--callout-important-color);
+  }
+
+  .caution a {
+    color: var(--callout-caution-color);
   }
 
   // Main content
