@@ -19,11 +19,11 @@
     > .nav-list-link:hover,
     > .nav-list-link.active,
     > .nav-list-link.active:hover {
-      background-image: none;
+      background-image: none !important;
     }
 
     .nav-list-expander:hover {
-      background-image: none;
+      background-image: none !important;
     }
   }
 }
