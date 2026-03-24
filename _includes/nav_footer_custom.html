@@ -1,9 +1,9 @@
 <div class="theme-switcher">
-  <label for="theme-select">主题模式</label>
+  <label for="theme-select">主题</label>
   <select id="theme-select" aria-label="选择主题模式">
     <option value="system">跟随系统</option>
-    <option value="light">Light</option>
-    <option value="dark">Dark</option>
+    <option value="light">浅色</option>
+    <option value="dark">深色</option>
   </select>
 </div>
 
@@ -21,18 +21,26 @@
   }
 
   .theme-switcher label {
-    font-size: 0.95rem;
-    color: var(--body-text-color);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--body-heading-color);
     white-space: nowrap;
   }
 
   .theme-switcher select {
     flex: 1;
-    padding: 0.4rem 0.5rem;
-    border-radius: 0.35rem;
+    padding: 0.5rem 0.65rem;
+    border-radius: 0.375rem;
     border: 1px solid var(--border-color);
     background: var(--body-background-color);
     color: var(--body-text-color);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .theme-switcher select:hover {
+    border-color: var(--btn-primary-color);
   }
 
   .theme-switcher select:focus {
