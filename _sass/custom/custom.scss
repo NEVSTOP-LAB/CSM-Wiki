@@ -11,7 +11,7 @@
     rgba(246, 248, 250, 1) 0%,
     rgba(246, 248, 250, 0.85) 80%,
     rgba(246, 248, 250, 0) 100%
-  );
+  ) !important;
 }
 
 [data-theme="dark"] {
@@ -21,7 +21,7 @@
       rgba(22, 27, 34, 1) 0%,
       rgba(22, 27, 34, 0.85) 80%,
       rgba(22, 27, 34, 0) 100%
-    );
+    ) !important;
   }
 
   .nav-list .nav-list-item {
