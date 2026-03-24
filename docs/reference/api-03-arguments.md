@@ -51,7 +51,7 @@ nav_order: 13
 > 1. 扫描输入字符串，若出现CSM关键字(如`->`、`;`、`\r`等)，则将其替换为`%Hex`转义序列；
 > 2. 最终得到形如`<SAFESTR> 已转义字符串`的参数，可安全嵌入状态字符串，不会破坏CSM消息解析。
 
-<b>参考范例</b>：`[CSM-Example]\0. Base Concepts\4.3 Arguments - Safe Arguments if it contains key words of CSM.vi`。
+<b>参考范例</b>：[参数安全转义示例]({% link docs/examples/example-csm-basic-example.md %}#arguments---safe-arguments-if-it-contains-key-words-of-csmvi) - `[CSM-Example]\0. Base Concepts\4.3 Arguments - Safe Arguments if it contains key words of CSM.vi`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Argument String</b>: 字符串参数。
@@ -77,7 +77,7 @@ nav_order: 13
 > 1. 扫描输入字符串，若出现CSM关键字(如`->`、`;`、`\r`等)，则将其替换为`%Hex`转义序列；
 > 2. 最终得到形如`<SAFESTR> 已转义字符串`的参数，可安全嵌入状态字符串，不会破坏CSM消息解析。
 
-<b>参考范例</b>：`[CSM-Example]\0. Base Concepts\4.3 Arguments - Safe Arguments if it contains key words of CSM.vi`。
+<b>参考范例</b>：[参数安全转义示例]({% link docs/examples/example-csm-basic-example.md %}#arguments---safe-arguments-if-it-contains-key-words-of-csmvi) - `[CSM-Example]\0. Base Concepts\4.3 Arguments - Safe Arguments if it contains key words of CSM.vi`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Safe Argument String</b>:  安全的字符串参数。
@@ -104,7 +104,7 @@ nav_order: 13
 > 2. 再将变体的内存映像序列化为十六进制字符串；
 > 3. 得到`<HEXSTR>十六进制字符串`形式的参数，可安全嵌入状态字符串，不会破坏CSM消息解析。
 
-<b>参考范例</b>：`[CSM-Example]\0. Base Concepts\4.1 Arguments - Complex Data As Arguments.vi`。
+<b>参考范例</b>：[复杂数据作为参数示例]({% link docs/examples/example-csm-basic-example.md %}#arguments---complex-data-as-argumentsvi) - `[CSM-Example]\0. Base Concepts\4.1 Arguments - Complex Data As Arguments.vi`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Variant</b>: LabVIEW数据，通过变体支持任意数据类型。
@@ -130,7 +130,7 @@ nav_order: 13
 > 2. 再将变体的内存映像序列化为十六进制字符串；
 > 3. 得到`<HEXSTR>十六进制字符串`形式的参数，可安全嵌入状态字符串，不会破坏CSM消息解析。
 
-<b>参考范例</b>：`[CSM-Example]\0. Base Concepts\4.1 Arguments - Complex Data As Arguments.vi`。
+<b>参考范例</b>：[复杂数据作为参数示例]({% link docs/examples/example-csm-basic-example.md %}#arguments---complex-data-as-argumentsvi) - `[CSM-Example]\0. Base Concepts\4.1 Arguments - Complex Data As Arguments.vi`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>HEX String</b>: CSM HEXSTR格式参数。
@@ -160,7 +160,7 @@ nav_order: 13
 > 2. 将这段字符串中的特殊字符替换为安全字符；
 > 3. 得到CSM ERRSTR格式参数，可安全嵌入状态字符串，不会破坏CSM消息解析。
 
-<b>参考范例</b>：`[CSM-Example]\0. Base Concepts\4.2 Arguments - Error As Arguments.vi`。
+<b>参考范例</b>：[错误作为参数示例]({% link docs/examples/example-csm-basic-example.md %}#arguments---error-as-argumentsvi) - `[CSM-Example]\0. Base Concepts\4.2 Arguments - Error As Arguments.vi`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Error</b>: LabVIEW错误簇。
@@ -190,7 +190,7 @@ nav_order: 13
 > 2. 将这段字符串中的特殊字符替换为安全字符；
 > 3. 得到CSM ERRSTR格式参数，可安全嵌入状态字符串，不会破坏CSM消息解析。
 
-<b>参考范例</b>：`[CSM-Example]\0. Base Concepts\4.2 Arguments - Error As Arguments.vi`。
+<b>参考范例</b>：[错误作为参数示例]({% link docs/examples/example-csm-basic-example.md %}#arguments---error-as-argumentsvi) - `[CSM-Example]\0. Base Concepts\4.2 Arguments - Error As Arguments.vi`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Argument</b>: CSM错误参数格式。
