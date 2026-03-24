@@ -12,7 +12,7 @@ nav_order: 18
 ### CSM - Mark As System-Level Module.vi
 在输入字符串前添加`.`，即可将此模块标记为系统级模块，例如输入为`UIModule`，输出为`.UIModule`。
 
-<b>参考范例</b>:  `0. Base Concepts\7. System-Level Module.vi`。
+<b>参考范例</b>:  [系统级模块示例]({% link docs/examples/example-csm-basic-example.md %}#7-system-level-modulevi) - `0. Base Concepts\7. System-Level Module.vi`。
 
 {: .note }
 > <b>名称拼接API</b>
@@ -49,7 +49,7 @@ nav_order: 18
 ### CSM - Mark As Worker Module.vi
 在CSM名称后添加`#`，以标记此模块为协作者模式模块。
 
-<b>参考范例</b>:  `4. Advance Examples\1. Action Workers Example`。
+<b>参考范例</b>:  [工作者模式示例]({% link docs/examples/example-csm-advance-example.md %}#工作者模式范例) - `4. Advance Examples\1. Action Workers Example`。
 
 {: .note }
 > <b>名称拼接API</b>
@@ -92,7 +92,7 @@ nav_order: 18
 
 拼接责任链模式模块的名称，使用`$`作为分隔符。注意Order不必连续，但是必须唯一，编号小的节点，将排列在责任链的前面。
 
-<b>参考范例</b>:  `4. Advance Examples\2. Chain of Responsibility Example`。
+<b>参考范例</b>:  [责任链模式示例]({% link docs/examples/example-csm-advance-example.md %}#责任链模式范例) - `4. Advance Examples\2. Chain of Responsibility Example`。
 
 {: .note }
 > <b>CSM责任链模式(Chain of Responsibility Mode)</b>
@@ -151,7 +151,7 @@ nav_order: 18
 
 在此场景下，通常也可以使用CSM - Post Message VI，但是它发送的时刻无法确定，而且也不能获得异步消息的返回值。此VI是一个补充。
 
-<b>参考范例</b>：`4. Advance Examples\5. Multi-Loop Module Example\TCP Server Module(Multi-Loop Support).vi`。
+<b>参考范例</b>：[多循环模块示例]({% link docs/examples/example-csm-advance-example.md %}#多循环模块示例main---call-and-monitor-tcp-trafficvi) - `4. Advance Examples\5. Multi-Loop Module Example\TCP Server Module(Multi-Loop Support).vi`。
 
 {: .note }
 > <b>CSM多循环模式(Multi-Loop Mode)</b>
@@ -175,7 +175,7 @@ nav_order: 18
 ### CSM - Request CSM to Broadcast Status Change.vi
 申请CSM发送广播。此API主要用于CSM多循环模式下，其他模块中申请CSM发出广播，通知其他模块状态改变。
 
-<b>参考范例</b>：`4. Advance Examples\5. Multi-Loop Module Example\TCP Server Module(Multi-Loop Support).vi`。
+<b>参考范例</b>：[多循环模块示例]({% link docs/examples/example-csm-advance-example.md %}#多循环模块示例main---call-and-monitor-tcp-trafficvi) - `4. Advance Examples\5. Multi-Loop Module Example\TCP Server Module(Multi-Loop Support).vi`。
 
 {: .note }
 > <b>CSM多循环模式(Multi-Loop Mode)</b>
@@ -199,7 +199,7 @@ nav_order: 18
 ### CSM - Forward UI Operations to CSM.vi
 此VI主要应用于多循环模式下，将并行于CSM循环的UI循环中用户操作产生的时间，转发到CSM循环中处理。CSM DQMH-Style Template VI模板就是这个逻辑。
 
-<b>参考范例</b>：`Addons - Loop Support\CSMLS - Continuous Loop in CSM Example.vi`。
+<b>参考范例</b>：[连续循环示例]({% link docs/examples/example-csm-advance-example.md %}#多循环模块示例main---call-and-monitor-tcp-trafficvi) - `Addons - Loop Support\CSMLS - Continuous Loop in CSM Example.vi`。
 
 {: .note }
 > <b>CSM多循环模式(Multi-Loop Mode)</b>

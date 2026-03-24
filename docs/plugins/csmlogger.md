@@ -152,7 +152,7 @@ sequenceDiagram
 - **源端过滤**：在调用 File Logger 前用 [`CSM - Set Log Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm-set-log-filter-rulesvi) 设置全局过滤，日志在源头就不产生，对所有工具生效
 - **非CSM主程序**：主程序本身不是CSM模块时，可设 `Exit When All Module Exist? = TRUE`，所有CSM模块退出后记录自动停止
 
-**参考范例**：`Addons - Logger\CSM Application Running Log Example.vi`
+**参考范例**：[CSM应用日志记录示例]({% link docs/examples/example-csm-advance-example.md %}#全局日志过滤示例) - `Addons - Logger\CSM Application Running Log Example.vi`
 
 ## 日志文件说明
 

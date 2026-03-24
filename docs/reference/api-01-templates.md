@@ -120,7 +120,7 @@ nav_order: 11
 
 用户操作的用户事件结构循环通过CSM - Flood of Events Handler Side Loop VI模板创建。用户也可以通过组合CSM - Flood of Events Handler Side Loop VI与CSM Module Template VI来创建完整的DQMH风格的CSM模块模板。
 
-<b>参考范例</b>：`[CSM-Example]\4. Advance Examples\CSMLS - Continuous Loop in CSM Example.vi`。
+<b>参考范例</b>：[连续循环示例]({% link docs/examples/example-csm-advance-example.md %}#多循环模块示例main---call-and-monitor-tcp-trafficvi) - `[CSM-Example]\4. Advance Examples\CSMLS - Continuous Loop in CSM Example.vi`。
 
 {: .note }
 > <b>CSM名称规则</b>
@@ -150,27 +150,27 @@ nav_order: 11
 ### CSM - Start Async Call.vi
 异步启动CSM模块的代码片段。拖至程序框图后，请将VI静态引用改为目标CSM模块。
 
-<b>参考范例</b>：`[CSM-Example]\3. Caller is Other Framework Scenario\CSM Example - Caller is NOT a CSM.vi`。
+<b>参考范例</b>：[非CSM框架调用]({% link docs/examples/example-csm-basic-example.md %}#caller-is-other-framework-scenario) - `[CSM-Example]\3. Caller is Other Framework Scenario\CSM Example - Caller is NOT a CSM.vi`。
 
 ### CSM - Synchronized Call.vi
 同步调用CSM模块的代码片段。实质上是把CSM模块当作子VI直接调用。
 
-<b>参考范例</b>：`[CSM-Example]\2. Caller is CSM Scenario\CSM Example - Caller is a CSM.vi`。
+<b>参考范例</b>：[CSM框架调用]({% link docs/examples/example-csm-basic-example.md %}#caller-is-csm-scenario) - `[CSM-Example]\2. Caller is CSM Scenario\CSM Example - Caller is a CSM.vi`。
 
 ### CSM - Flood of Events Handler Side Loop.vi
 该模板是DQMH风格的CSM模块的用户事件结构循环模板，主要用于处理用户界面操作非常复杂，需要组合逻辑完成协同工作的场景。
 
-<b>参考范例</b>：`[CSM-Example]\4. Advance Examples\CSMLS - Continuous Loop in CSM Example.vi`。
+<b>参考范例</b>：[连续循环示例]({% link docs/examples/example-csm-advance-example.md %}#多循环模块示例main---call-and-monitor-tcp-trafficvi) - `[CSM-Example]\4. Advance Examples\CSMLS - Continuous Loop in CSM Example.vi`。
 
 ### CSM - Global Log Queue Monitoring Loop.vi
 此模板用于创建一个全局日志队列监控循环，用于查询监控全局日志队列中的消息。
 
-<b>参考范例</b>：`[CSM-Example]\4. Advance Examples\2. Chain of Responsibility Example\Chain of Responsibility Example.vi`。
+<b>参考范例</b>：[责任链模式]({% link docs/examples/example-csm-advance-example.md %}#责任链模式范例) - `[CSM-Example]\4. Advance Examples\2. Chain of Responsibility Example\Chain of Responsibility Example.vi`。
 
 ### CSM - Global Log Event Monitoring Loop.vi
 此模板用于创建一个全局日志事件监控循环，用于查询监控全局日志队列中的消息。
 
-<b>参考范例</b>：`[CSM-Example]\4. Advance Examples\4. Global Log Filter Example\`中的任一范例。
+<b>参考范例</b>：[全局日志过滤示例]({% link docs/examples/example-csm-advance-example.md %}#全局日志过滤示例) - `[CSM-Example]\4. Advance Examples\4. Global Log Filter Example\`中的任一范例。
 
 ## 模板支持
 

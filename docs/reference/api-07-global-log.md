@@ -30,7 +30,7 @@ nav_order: 17
 >
 > CSM全局日志提供了队列和事件两种获取方法。推荐使用队列处理的方法，因为队列接口的效率更高，也能根据队列中的累积日志数量，选择处理日志的方案，更加的灵活。
 
-<b>参考范例</b>：
+<b>参考范例</b>：[全局日志过滤示例]({% link docs/examples/example-csm-advance-example.md %}#全局日志过滤示例)
 - `4. Advance Examples\Filter From Source(Queue).vi`
 - `4. Advance Examples\Filter From Subscriber(Queue).vi`
 
@@ -60,7 +60,7 @@ nav_order: 17
 >
 > CSM全局日志提供了队列和事件两种获取方法。推荐使用队列处理的方法，因为队列接口的效率更高，也能根据队列中的累积日志数量，选择处理日志的方案，更加的灵活。
 
-<b>参考范例</b>：
+<b>参考范例</b>：[全局日志过滤示例]({% link docs/examples/example-csm-advance-example.md %}#全局日志过滤示例)
 - `4. Advance Examples\Filter From Source(Event).vi`
 - `4. Advance Examples\Filter From Subscriber(Event).vi`
 
@@ -91,7 +91,7 @@ nav_order: 17
 >
 > CSM全局日志提供了队列和事件两种获取方法。推荐使用队列处理的方法，因为队列接口的效率更高，也能根据队列中的累积日志数量，选择处理日志的方案，更加的灵活。
 
-<b>参考范例</b>：
+<b>参考范例</b>：[全局日志过滤示例]({% link docs/examples/example-csm-advance-example.md %}#全局日志过滤示例)
 - `4. Advance Examples\Filter From Source(Queue).vi`
 - `4. Advance Examples\Filter From Subscriber(Queue).vi`
 
@@ -121,7 +121,7 @@ nav_order: 17
 >
 > CSM全局日志提供了队列和事件两种获取方法。推荐使用队列处理的方法，因为队列接口的效率更高，也能根据队列中的累积日志数量，选择处理日志的方案，更加的灵活。
 
-<b>参考范例</b>：
+<b>参考范例</b>：[全局日志过滤示例]({% link docs/examples/example-csm-advance-example.md %}#全局日志过滤示例)
 - `4. Advance Examples\Filter From Source(Event).vi`
 - `4. Advance Examples\Filter From Subscriber(Event).vi`
 

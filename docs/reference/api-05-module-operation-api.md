@@ -320,7 +320,7 @@ CSM高级模式的模块(协作者模式、责任链模式)只有在最后一个
 > - 提供一种无需消息即可访问修改的配置、状态信息。例如TCP模块中表示是否已经连接的属性"Connected"属性，直接访问会更加方便。
 > - 在高级模式(协作者模式、责任链模式)运行下的节点共享同一个数据区域，用于在模块之间共享数据。
 
-<b>参考范例</b>：`[CSM-Example]\0. Base Concepts\6. Module Attributes.vi`。
+<b>参考范例</b>：[模块属性示例]({% link docs/examples/example-csm-basic-example.md %}#module-attributesvi) - `[CSM-Example]\0. Base Concepts\6. Module Attributes.vi`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>CSM Name</b>: CSM模块名称。
@@ -343,7 +343,7 @@ CSM高级模式的模块(协作者模式、责任链模式)只有在最后一个
 > - 提供一种无需消息即可访问修改的配置、状态信息。例如TCP模块中表示是否已经连接的属性"Connected"属性，直接访问会更加方便。
 > - 在高级模式(协作者模式、责任链模式)运行下的节点共享同一个数据区域，用于在模块之间共享数据。
 
-<b>参考范例</b>：`[CSM-Example]\0. Base Concepts\6. Module Attributes.vi`。
+<b>参考范例</b>：[模块属性示例]({% link docs/examples/example-csm-basic-example.md %}#module-attributesvi) - `[CSM-Example]\0. Base Concepts\6. Module Attributes.vi`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>CSM Name</b>: CSM模块名称。
@@ -367,7 +367,7 @@ CSM高级模式的模块(协作者模式、责任链模式)只有在最后一个
 > - 提供一种无需消息即可访问修改的配置、状态信息。例如TCP模块中表示是否已经连接的属性"Connected"属性，直接访问会更加方便。
 > - 在高级模式(协作者模式、责任链模式)运行下的节点共享同一个数据区域，用于在模块之间共享数据。
 
-<b>参考范例</b>：`[CSM-Example]\0. Base Concepts\6. Module Attributes.vi`。
+<b>参考范例</b>：[模块属性示例]({% link docs/examples/example-csm-basic-example.md %}#module-attributesvi) - `[CSM-Example]\0. Base Concepts\6. Module Attributes.vi`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>CSM Name</b>: CSM模块名称。
@@ -390,7 +390,7 @@ CSM高级模式的模块(协作者模式、责任链模式)只有在最后一个
 > - 提供一种无需消息即可访问修改的配置、状态信息。例如TCP模块中表示是否已经连接的属性"Connected"属性，直接访问会更加方便。
 > - 在高级模式(协作者模式、责任链模式)运行下的节点共享同一个数据区域，用于在模块之间共享数据。
 
-<b>参考范例</b>：`[CSM-Example]\0. Base Concepts\6. Module Attributes.vi`。
+<b>参考范例</b>：[模块属性示例]({% link docs/examples/example-csm-basic-example.md %}#module-attributesvi) - `[CSM-Example]\0. Base Concepts\6. Module Attributes.vi`。
 
 -- <b>输入控件(Controls)</b> --
 - <b>CSM Name</b>: CSM模块名称。

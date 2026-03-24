@@ -12,7 +12,7 @@ nav_order: 16
 
 协作者模式和责任链模式下，输入节点的名称，会被自动解析为模块的名称，因为CSM是以模块为单位实现订阅的。
 
-<b>参考范例</b>：`2. Caller is CSM Scenario\CSM Example - Caller is a CSM.vi`。
+<b>参考范例</b>：[CSM框架调用示例]({% link docs/examples/example-csm-basic-example.md %}#caller-is-csm-scenario) - `2. Caller is CSM Scenario\CSM Example - Caller is a CSM.vi`。
 
 
 {: .note }
@@ -87,7 +87,7 @@ nav_order: 16
 
 协作者模式和责任链模式下，输入节点的名称，会被自动解析为模块的名称，因为CSM是以模块为单位实现订阅的。
 
-<b>参考范例</b>：`2. Caller is CSM Scenario\CSM Example - Caller is a CSM.vi`。
+<b>参考范例</b>：[CSM框架调用示例]({% link docs/examples/example-csm-basic-example.md %}#caller-is-csm-scenario) - `2. Caller is CSM Scenario\CSM Example - Caller is a CSM.vi`。
 
 
 {: .note }
