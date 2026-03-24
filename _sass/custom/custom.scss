@@ -4,6 +4,39 @@
 // Import theme colors for dark/light mode support
 @import "./theme-colors";
 
+// Make nav gradients theme-aware so dark mode doesn't reuse light values
+.site-nav ul li a {
+  background-image: linear-gradient(
+    -90deg,
+    rgba(246, 248, 250, 1) 0%,
+    rgba(246, 248, 250, 0.85) 80%,
+    rgba(246, 248, 250, 0) 100%
+  );
+}
+
+[data-theme="dark"] {
+  .site-nav ul li a {
+    background-image: linear-gradient(
+      -90deg,
+      rgba(22, 27, 34, 1) 0%,
+      rgba(22, 27, 34, 0.85) 80%,
+      rgba(22, 27, 34, 0) 100%
+    );
+  }
+
+  .nav-list .nav-list-item {
+    > .nav-list-link:hover,
+    > .nav-list-link.active,
+    > .nav-list-link.active:hover {
+      background-image: none;
+    }
+
+    .nav-list-expander:hover {
+      background-image: none;
+    }
+  }
+}
+
 // Responsive images: never exceed natural size, shrink to fit smaller viewports
 .main-content img {
   max-width: 100%;
