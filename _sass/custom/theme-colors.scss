@@ -21,17 +21,17 @@
   --table-background-color: #ffffff;
   --sidebar-color: #f6f8fa;
 
-  // Callout colors (light)
-  --callout-note-color: #0969da;
-  --callout-note-bg: #ddf4ff;
-  --callout-tip-color: #1a7f37;
-  --callout-tip-bg: #dafbe1;
-  --callout-warning-color: #9a6700;
-  --callout-warning-bg: #fff8c5;
-  --callout-important-color: #8250df;
-  --callout-important-bg: #fbefff;
-  --callout-caution-color: #cf222e;
-  --callout-caution-bg: #ffebe9;
+  // Callout colors (light) - enhanced contrast
+  --callout-note-color: #0550ae;
+  --callout-note-bg: #b6e3ff;
+  --callout-tip-color: #0e6027;
+  --callout-tip-bg: #a3f0b5;
+  --callout-warning-color: #744500;
+  --callout-warning-bg: #ffe999;
+  --callout-important-color: #6639ba;
+  --callout-important-bg: #e8d6ff;
+  --callout-caution-color: #a0111f;
+  --callout-caution-bg: #ffcccb;
 
   // Smooth transitions for theme changes
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -48,7 +48,7 @@
   --link-hover-color: #79c0ff;
   --code-background-color: #161b22;
   --code-text-color: #c9d1d9;
-  --border-color: #30363d;
+  --border-color: #3d444d;
   --search-background-color: #0d1117;
   --search-result-preview-color: #8b949e;
   --btn-primary-color: #7253ed;
@@ -56,17 +56,17 @@
   --table-background-color: #0d1117;
   --sidebar-color: #161b22;
 
-  // Callout colors (dark) - softer backgrounds
-  --callout-note-color: #58a6ff;
-  --callout-note-bg: color-mix(in srgb, var(--body-background-color) 75%, var(--callout-note-color));
-  --callout-tip-color: #3fb950;
-  --callout-tip-bg: color-mix(in srgb, var(--body-background-color) 75%, var(--callout-tip-color));
-  --callout-warning-color: #d29922;
-  --callout-warning-bg: color-mix(in srgb, var(--body-background-color) 75%, var(--callout-warning-color));
-  --callout-important-color: #a371f7;
-  --callout-important-bg: color-mix(in srgb, var(--body-background-color) 75%, var(--callout-important-color));
-  --callout-caution-color: #f85149;
-  --callout-caution-bg: color-mix(in srgb, var(--body-background-color) 75%, var(--callout-caution-color));
+  // Callout colors (dark) - enhanced contrast
+  --callout-note-color: #6cb6ff;
+  --callout-note-bg: #1a3a52;
+  --callout-tip-color: #4ac267;
+  --callout-tip-bg: #1a3d26;
+  --callout-warning-color: #e8b449;
+  --callout-warning-bg: #3d3017;
+  --callout-important-color: #b08aed;
+  --callout-important-bg: #2d1f4a;
+  --callout-caution-color: #ff7b72;
+  --callout-caution-bg: #4a1f1f;
 
   // Smooth transitions for theme changes
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -156,10 +156,20 @@
   .btn, .btn-primary {
     background-color: var(--btn-primary-color);
     color: var(--body-heading-color);
+    border: 1px solid transparent;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.2s ease;
 
     &:hover, &:focus {
       background-color: var(--btn-primary-hover-color);
       color: var(--body-heading-color);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     }
   }
 
@@ -318,16 +328,18 @@
 
   // Special adjustments for navigation active states
   .nav-list .nav-list-item > .nav-list-link.active {
-    background-color: rgba(88, 166, 255, 0.15);
+    background-color: rgba(88, 166, 255, 0.2);
     font-weight: 600;
+    border-left: 3px solid var(--link-color);
+    padding-left: calc(1rem - 3px);
   }
 
   .nav-list .nav-list-item > .nav-list-link:hover {
-    background-color: rgba(88, 166, 255, 0.08);
+    background-color: rgba(88, 166, 255, 0.1);
   }
 
   .nav-list .nav-list-item > .nav-list-link.active:hover {
-    background-color: rgba(88, 166, 255, 0.15);
+    background-color: rgba(88, 166, 255, 0.25);
   }
 
   // Breadcrumbs
