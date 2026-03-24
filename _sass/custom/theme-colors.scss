@@ -152,27 +152,6 @@
     }
   }
 
-  // Buttons
-  .btn, .btn-primary {
-    background-color: var(--btn-primary-color);
-    color: var(--body-heading-color);
-    border: 1px solid transparent;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.2s ease;
-
-    &:hover, &:focus {
-      background-color: var(--btn-primary-hover-color);
-      color: var(--body-heading-color);
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-      transform: translateY(-1px);
-    }
-
-    &:active {
-      transform: translateY(0);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    }
-  }
-
   // Callouts
   .note {
     border-left-color: var(--callout-note-color);
@@ -384,5 +363,26 @@
     .si {
       color: #8b949e !important; // Grey embedded targets in arguments
     }
+  }
+}
+
+// Button styles - apply to both light and dark themes
+.btn, .btn-primary {
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+
+  &:hover, &:focus {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
 }
