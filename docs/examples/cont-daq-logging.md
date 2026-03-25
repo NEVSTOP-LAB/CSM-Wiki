@@ -13,6 +13,60 @@ nav_order: 1
 
 > 项目仓库：[https://github.com/NEVSTOP-LAB/CSM-Continuous-Meausrement-and-Logging](https://github.com/NEVSTOP-LAB/CSM-Continuous-Meausrement-and-Logging)
 
+## 场景描述
+
+### 项目任务与现状
+
+1. 需要创建一个**连续的数据采集、存储和分析系统**。
+2. 分析算法暂时不明确。
+3. 后期可能需要支持中控系统，需要被远程控制和数据备份。
+4. 硬件仍在采购中，但是项目周期比较紧张，先要编写程序。
+5. 新人同事小李与你一起完成这个项目。
+6. 交付后，这个项目会部署偏远地区，可能需要长期支持。
+
+### 初步模块化设计
+
+根据功能职责划分，初步模块设计如下：
+
+- **数据采集模块 (DAQ)**：负责连续采集原始数据
+- **数据分析模块 (Algorithm)**：处理和分析原始数据
+- **数据保存模块 (Logging)**：将原始数据和分析结果持久化
+- **界面模块 (UI)**：负责显示和控制
+- **TCP通讯模块（可选）**：支持远程控制
+- **数据备份模块（可选）**：网络备份功能
+
+### 系统架构师的设计考量
+
+在进行详细设计之前，系统架构师需要思考以下问题：
+
+**实现细节**：
+
+- DAQ：DAQ 模块启动失败怎么办？如何保证 Logging 模块先于 DAQ 模块准备就绪？
+- Algorithm：算法是否耗时？是否需要 Workers 模式并行处理？
+- Logging：数据量大，队列效率是否足够？Logging 必须在 DAQ 前准备好，否则会丢数
+
+**扩展性问题**：
+
+- 模块是否可能会有多个实例？
+- 如果要添加数据备份模块，源代码需要修改哪些？
+- 如果加入 TCP 通讯模块，只与界面模块通讯是否足够？
+- 如果现场出现问题，能否远程快速定位问题？
+
+**复用性问题**：
+
+- DAQ 模块替换？（例如硬件到位后替换模拟 DAQ）
+- DAQ/Algorithm/Logging 模块能否用于其他项目？
+
+**团队分工**：
+
+- 模块如何定义清楚，以便于分工？
+- 如何进行单模块测试？
+- 如何多人并行开发？
+- 如何在某个基础模块没有完成时整体调试？
+
+{: .tip }
+> CSM 框架的设计能够很好地解决上述问题：纯文本接口定义支持团队分工，调试面板支持单模块独立测试，虚拟总线设计支持插件化扩展，内置日志系统支持远程运维。
+
 ## 需求映射
 
 在开始编码之前，我们首先要将应用需求分解并映射到CSM模块和接口设计。这是CSM应用开发的关键步骤。
@@ -235,6 +289,17 @@ API: Start ->| Acquisition
 
 ![Macro: Start](../../assets/img/csm-cont-daq-logging-example/Start%20Process.png)
 
+{: .note }
+> **同步/异步消息的选择**：上面的示例使用了异步无返回消息（`->|`）启动两个模块。在生产场景中，如果需要确保 Logging 模块**准备好之后**再启动采集，应该先用**同步消息**（`-@`）启动 Logging，等待返回后再用异步消息启动 Acquisition：
+>
+> ```csm
+> API: Start -@ Logging    // 同步启动 Logging，等待准备就绪
+> Response                 // 处理返回（如有错误则中止后续步骤）
+> API: Start ->| Acquisition  // Logging 准备好后再启动采集
+> ```
+>
+> 这样可以防止采集模块发出的第一帧数据在 Logging 准备就绪前丢失。
+
 #### 停止采集过程 (Macro: Stop)
 
 更新用户界面(UI)并停止子模块。取消注册 "Acquisition" 模块的 "Acquired Waveform" 状态。
@@ -256,6 +321,16 @@ Power Spectrum@Algorithm >> UI: Update FFT -><unregister>
 ```
 
 ![Macro: Stop](../../assets/img/csm-cont-daq-logging-example/Stop%20Process.png)
+
+{: .note }
+> **停止顺序**：在生产场景中，停止时需要先确保采集停止，再停止 Logging，防止丢掉最后一帧数据：
+>
+> ```csm
+> API: Stop -@ Acquisition   // 同步停止采集，等待确认
+> Response
+> API: Stop -@ Logging       // 采集停止后，再停止 Logging
+> Response
+> ```
 
 ## 下载
 
