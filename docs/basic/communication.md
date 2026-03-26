@@ -176,6 +176,14 @@ End
 
 广播是 CSM 的 1 对多通讯方式。发送方不需要知道谁在监听，只管发出；订阅方注册感兴趣的广播即可触发对应处理。
 
+CSM 中的广播分为三种类型：
+
+| 广播类型 | 符号 | 优先级 | 触发方式 | 适用场景 |
+| -------- | ---- | ------ | -------- | -------- |
+| 信号广播 (Status) | `<status>` / `<broadcast>` | 低（与异步消息相同） | 显式调用 | 主动发送事件通知（如数据采集完成） |
+| 中断广播 (Interrupt) | `<interrupt>` | 高（与同步消息相同） | 显式调用 | 紧急通知，需要被立即处理 |
+| 状态广播 (State) | 无需符号 | 低（默认与信号广播相同） | 隐式，订阅后自动触发 | 订阅模块内部状态变化（执行完某状态后自动通知） |
+
 ### 信号广播(<status>)
 
 信号广播走**低优先级队列**，行为类似异步消息，按顺序处理：
@@ -198,6 +206,13 @@ UrgentEvent >> Arguments -> <interrupt>
 
 ![Alt text](../../assets/img/CSM%20Broadcast%20Status%20Change.png)
 
+### 状态广播(State)
+
+状态广播是**隐式广播**——当 CSM 模块运行完某个状态后，如果存在针对该状态的订阅关系，就会自动触发状态广播，将该状态的 Response 作为参数传递给订阅方。
+
+{: .note }
+> 状态广播**只有在存在订阅关系时才会发送**，无需显式调用。因此在没有订阅的情况下，不会产生任何额外开销。
+
 ### 订阅与生命周期
 
 用 [`CSM - Register Broadcast.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm---register-broadcastvi) 订阅，[`CSM - Unregister Broadcast.vi`]({% link docs/reference/api-06-broadcast-registration.md %}#csm---unregister-broadcastvi) 取消订阅。
@@ -209,14 +224,16 @@ UrgentEvent >> Arguments -> <interrupt>
 Status@SourceModule >> API@TargetModule -><register>
 Status@SourceModule >> API@TargetModule -><unregister>
 
-// 改变订阅优先级
+// 将订阅的广播改为普通优先级（无论发送方原来是何优先级）
+Status@SourceModule >> API@TargetModule -><register as status>
+// 将订阅的广播改为高优先级（无论发送方原来是何优先级）
 Status@SourceModule >> API@TargetModule -><register as interrupt>
 ```
 
 **订阅的生命周期**：
 
-- 指定了目标模块名：全局规则，模块退出后不会自动删除
-- 未指定目标模块名：内部规则，模块退出时自动删除
+- 指定了目标模块名（如 `API@TargetModule`）：**外部规则**，全局生效，模块退出后不会自动删除
+- 未指定目标模块名（如仅 `API`）：**内部规则**，模块退出时自动删除
 
 ## 状态订阅
 
