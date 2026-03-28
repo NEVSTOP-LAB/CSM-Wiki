@@ -148,6 +148,12 @@
   width: 100%;
   box-shadow: var(--callout-hover-shadow, 0 4px 20px rgba(0, 0, 0, 0.15));
   border-radius: 6px;
+  // Ensure popup is fully opaque so underlying content doesn't show through
+  &.note      { background-color: var(--callout-note-bg); }
+  &.tip       { background-color: var(--callout-tip-bg); }
+  &.warning   { background-color: var(--callout-warning-bg); }
+  &.important { background-color: var(--callout-important-bg); }
+  &.caution   { background-color: var(--callout-caution-bg); }
 
   &.is-visible {
     display: block;
