@@ -7,7 +7,7 @@ nav_order: 1
 
 # CSM插件机制
 
-CSM提供三种插件接口来扩展功能：**Addon** 扩展核心能力，**Template** 提供模块模板，**Tools** 提供调试工具。通过这三个接口，你可以给CSM加上各种新功能，定制开发模板，还能开发调试工具。
+CSM提供三种插件接口：**Addon** 扩展核心能力，**Template** 提供模块模板，**Tools** 提供调试工具。
 
 ```
 CSM框架
@@ -123,23 +123,13 @@ Initialize >> {
 
 ## 开发自己的Addon
 
-**开发流程**：需求分析 → 架构设计 → 实现 → 测试 → 文档 → 发布
+**命名与注册**：
+- Addon VI命名为`CSM-Addon-*.vi`或`CSM*.vi`，放到CSM目录下即可自动注册
+- 也可通过API手动注册（适用于动态加载场景）
 
-**命名规范**：
-- Addon VI：`CSM-Addon-*.vi`或`CSM*.vi`
-- API命名清晰，参数类型明确
-- 完善错误处理和文档
-
-**注册方式**：
-
-1. **自动注册**：把Addon VI放到CSM目录，命名为`CSM-Addon-*.vi`，框架会自动发现
-2. **手动注册**：通过API手动注册（动态加载时用）
-
-**最佳实践**：
-- 避免阻塞操作，内存使用合理
-- 使用全局日志记录运行信息
-- 用CSM Debug Console测试API
-- 编写完整的测试用例
+**开发建议**：
+- 避免阻塞操作，合理管理资源
+- 使用全局日志记录运行信息，用CSM Debug Console测试API
 
 **参考项目**：
 - [MassData Support](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)
@@ -152,83 +142,28 @@ Template让你快速创建标准化的CSM模块，提高开发效率和代码一
 
 ## 模板类型
 
-**Event-based Template（事件模板）**：
-- 包含事件结构处理UI操作
-- 分离UI循环和CSM循环
-- 适合复杂的用户界面
-
-**No-Event Template（非事件模板）**：
-- 单一CSM循环
-- 无UI交互
-- 适合后台任务和服务
-
-**DQMH-Style Template**：
-- UI循环和CSM循环完全分离
-- 通过消息通讯
-- 适合大型应用
-
-## 已有模板
-
-1. **CSM Basic Template**：最基础的模板，适合后台服务和简单业务逻辑
-2. **CSM UI Template**：带UI的模板，适合用户交互模块
-3. **CSM DQMH-Style Template**：DQMH风格，适合大型应用
-4. **CSM API String Template**：支持API String参数，适合复杂参数传递
+| 模板 | 说明 | 适用场景 |
+|------|------|---------|
+| **CSM Basic Template** | 单一CSM循环，无UI交互 | 后台服务、简单业务逻辑 |
+| **CSM UI Template** | 包含事件结构，分离UI循环和CSM循环 | 用户交互模块 |
+| **CSM DQMH-Style Template** | UI循环和CSM循环完全分离，通过消息通讯 | 大型应用 |
+| **CSM API String Template** | 支持API String参数 | 复杂参数传递 |
 
 ## 开发自己的模板
 
-**步骤**：确定类型 → 设计结构 → 实现VI → 测试 → 注册发布
-
-**规范要点**：
-- 清晰的状态命名和注释
-- 标准的初始化和退出流程
-- 统一的代码风格
-- 详细的使用说明
-
-**最佳实践**：
-- 保持简洁，不包含业务逻辑
-- 充分注释，指导使用者修改
-- 遵循CSM标准和最佳实践
-- 提供丰富的使用示例
-
-**使用模板**：
-1. 选择合适的模板
-2. 创建新VI
-3. 修改模块名称
-4. 添加业务逻辑
-5. 测试验证
+模板应保持简洁，不包含业务逻辑，并提供充分的注释指导使用者修改。需要包含标准的初始化和退出流程，遵循CSM命名规范。
 
 更多详情参考[CSM模板文档](../reference/templates)。
 
 # Tools 接口
 
-Tools让你开发调试工具来监控和调试CSM应用。所有工具都基于全局日志机制，通过订阅日志获取系统运行信息。
+Tools是CSM的调试工具接口，所有工具都基于全局日志机制，通过订阅日志获取系统运行信息。
 
-## 工具分类
+CSM内置了多种工具，包括运行时监控（Running Log Window、State Dashboard、Table Log Window）、开发调试（Debug Console、Interface Browser、Example Browser）和数据查看（MassData Cache Viewer、INI-Variable Viewer）等。详细使用说明参见[CSM调试与开发工具](./tools)。
 
-**运行时监控工具**：
-- CSM Running Log Window
-- CSM State Dashboard Window
-- CSM Table Log Window
+## 开发自定义工具
 
-**开发调试工具**：
-- CSM Debug Console
-- CSM Interface Browser
-- CSM Example Browser
-
-**数据查看工具**：
-- CSM MassData Cache Status Viewer
-- CSM INI-Variable Viewer
-
-## 打开工具
-
-三种方式：
-1. LabVIEW菜单：`Tools` → `Communicable State Machine(CSM)` → `Open CSM Tool Launcher...`
-2. CSM函数面板：`Communicable State Machine(CSM)` → `CSM Tools`
-3. 创建桌面快捷方式
-
-## 开发自己的工具
-
-**基本框架**：
+自定义工具的核心是订阅全局日志队列并处理日志数据：
 
 ```labview
 // 获取全局日志队列
@@ -246,78 +181,6 @@ CSM - Destroy Global Log Queue.vi
 ```
 
 **开发要点**：
-- 确定要监控的信息，设计用户界面
-- 实现日志订阅和过滤
-- 优化性能，不影响被监控系统
-- 清晰的信息展示，友好的交互
+- 实现日志过滤，只处理需要的日志，避免影响被监控系统性能
+- 使用队列方式获取日志（比事件高效），批量更新UI
 
-**性能建议**：
-- 使用队列方式（比事件高效）
-- 实现过滤，只处理需要的日志
-- 批量更新UI
-- 根据日志量动态调整策略
-
-更多详情参考[CSM调试与开发工具](./tools)。
-
-# 插件开发完整指南
-
-## 开发流程
-
-```
-需求分析 → 架构设计 → 实现开发 → 测试验证 → 文档编写 → 发布维护
-```
-
-**1. 需求分析**：确定插件类型、使用场景、评估可行性
-
-**2. 架构设计**：
-- API设计：清晰接口、参数规范、错误处理
-- 数据结构：内部结构、持久化、资源管理
-- 性能设计：性能目标、优化策略、资源限制
-
-**3. 实现开发**：
-- 遵循LabVIEW编码规范
-- 完善错误检查和传播
-- 正确管理资源，避免泄漏
-
-**4. 测试验证**：
-- 单元测试：测试各API、边界条件、异常情况
-- 集成测试：与CSM框架集成、与其他Addon兼容性
-- 性能测试：基准测试、压力测试、内存泄漏检测
-
-**5. 文档编写**：
-- API文档：功能说明、参数描述、使用示例
-- 用户指南：安装方法、基本使用、常见问题
-- 开发者文档：架构说明、实现原理、扩展方法
-
-**6. 发布维护**：
-- 打包发布、编写版本说明
-- 收集反馈、修复Bug、添加新功能
-
-## 发布清单
-
-- [ ] 功能完整且稳定
-- [ ] 所有测试通过
-- [ ] 文档完整详细
-- [ ] 示例代码齐全
-- [ ] 性能满足要求
-- [ ] 与CSM兼容
-- [ ] 代码规范符合标准
-- [ ] 开源协议明确
-
-## 学习参考
-
-参考现有开源项目是最快的学习方式：
-
-1. **[MassData Support](https://github.com/NEVSTOP-LAB/CSM-MassData-Parameter-Support)**：循环缓冲区，高性能大数据传递
-2. **[API String Arguments Support](https://github.com/NEVSTOP-LAB/CSM-API-String-Arugments-Support)**：简单易用的纯文本多参数
-3. **[INI-Variable Support](https://github.com/NEVSTOP-LAB/CSM-INI-Static-Variable-Support)**：配置文件管理和动态变量
-
-# 总结
-
-CSM插件机制提供了三个强大的扩展接口：
-
-- **Addon**：扩展核心功能，添加参数类型和功能模块
-- **Template**：提供标准化模板，提高开发效率
-- **Tools**：创建调试工具，增强开发能力
-
-通过这些接口，CSM能不断进化、适应各种应用场景。欢迎为CSM社区贡献你的插件！
