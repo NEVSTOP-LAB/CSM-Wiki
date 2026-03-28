@@ -10,7 +10,7 @@ nav_order: 13
 ## CSM - Argument Type.vi
 从编码后的参数字符串中提取参数的编码类型标记。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM参数类型(Argument Type)</b>
 >
 > 在CSM中，所有参数/返回均以字符串形式呈现，但其背后可承载任意数据类型。因此，发送端需先进行编码，接收端再进行解码。
@@ -28,7 +28,7 @@ nav_order: 13
 ## CSM - Keywords.vi
 用于罗列CSM消息中的关键字及其%Hex格式。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM消息关键字</b>
 >
 > 包括：`->`、`->|`、`-@`、`-&`、`<-`、`\r`、`\n`、`//`、`>>`、`>>>`、`;`、`,`。
@@ -40,11 +40,12 @@ nav_order: 13
 ## CSM - Make String Arguments Safe.vi
 将参数字符串中的CSM关键字转换为%Hex格式，确保不影响CSM消息字符串解析。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM消息关键字</b>
 >
 > 包括：`->`、`->|`、`-@`、`-&`、`<-`、`\r`、`\n`、`//`、`>>`、`>>>`、`;`、`,`。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM安全字符串参数(CSM Safe String Argument)</b>
 >
 > 为了在CSM参数中传递任意字符串且不破坏消息解析，CSM内置了Safe-String编解码方案，其参数类型字符串为SAFESTR。转换过程如下:
@@ -66,11 +67,12 @@ nav_order: 13
 - 当<b>Force Convert (F)</b>为FALSE时，仅当参数类型标记为`SAFESTR`时才进行转换。
 - 当<b>Force Convert (F)</b>为TRUE时，无论参数类型标记为何值均进行转换。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM消息关键字</b>
 >
 > 包括：`->`、`->|`、`-@`、`-&`、`<-`、`\r`、`\n`、`//`、`>>`、`>>>`、`;`、`,`。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM安全字符串参数(CSM Safe String Argument)</b>
 >
 > 为了在CSM参数中传递任意字符串且不破坏消息解析，CSM内置了Safe-String编解码方案，其参数类型字符串为SAFESTR。转换过程如下:
@@ -89,14 +91,15 @@ nav_order: 13
 ## CSM - Convert Data to HexStr.vi
 将LabVIEW任意数据类型转换为HEXSTR格式参数字符串。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM参数类型(Argument Type)</b>
 >
 > 在CSM中，所有参数/返回均以字符串形式呈现，但其背后可承载任意数据类型。因此，发送端需先进行编码，接收端再进行解码。
 > 例如CSM内置HEXSTR编码方案，也可按需扩展自定义编解码器。
 > 为便于识别编码方式，推荐将编码后的参数写成`<Argument Type> STRING FORMAT ARGUMENT`格式。
 > 使用CSM - Argument Type VI即可提取类型标记，据此选择对应的解码函数。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM HEXSTR格式参数</b>
 >
 > 为了在CSM参数中传递任意数据类型，CSM内置了HEXSTR格式参数编解码方案。其参数类型字符串为HEXSTR。转换过程如下:
@@ -115,14 +118,15 @@ nav_order: 13
 ## CSM - Convert HexStr to Data.vi
 将十六进制字符串参数转换回变体数据。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM参数类型(Argument Type)</b>
 >
 > 在CSM中，所有参数/返回均以字符串形式呈现，但其背后可承载任意数据类型。因此，发送端需先进行编码，接收端再进行解码。
 > 例如CSM内置HEXSTR编码方案，也可按需扩展自定义编解码器。
 > 为便于识别编码方式，推荐将编码后的参数写成`<Argument Type> STRING FORMAT ARGUMENT`格式。
 > 使用CSM - Argument Type VI即可提取类型标记，据此选择对应的解码函数。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM HEXSTR格式参数</b>
 >
 > 为了在CSM参数中传递任意数据类型，CSM内置了HEXSTR格式参数编解码方案。其参数类型字符串为HEXSTR。转换过程如下:
@@ -141,14 +145,15 @@ nav_order: 13
 ## CSM - Convert Error to Argument.vi
 将LabVIEW错误簇转换为CSM错误参数格式。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM参数类型(Argument Type)</b>
 >
 > 在CSM中，所有参数/返回均以字符串形式呈现，但其背后可承载任意数据类型。因此，发送端需先进行编码，接收端再进行解码。
 > 例如CSM内置HEXSTR编码方案，也可按需扩展自定义编解码器。
 > 为便于识别编码方式，推荐将编码后的参数写成`<Argument Type> STRING FORMAT ARGUMENT`格式。
 > 使用CSM - Argument Type VI即可提取类型标记，据此选择对应的解码函数。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM ERRSTR格式参数</b>
 >
 > LabVIEW错误簇是一个复杂数据类型，错误信息字符串中通常包含回车符，因此它通常不能直接作为CSM参数传递。虽然可以将错误簇信息转换为HEXSTR格式，但这种方式缺乏可读性，在日志中无法直观读取信息。
@@ -171,14 +176,15 @@ nav_order: 13
 ## CSM - Convert Argument to Error.vi
 将CSM错误参数格式转换为LabVIEW错误簇。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM参数类型(Argument Type)</b>
 >
 > 在CSM中，所有参数/返回均以字符串形式呈现，但其背后可承载任意数据类型。因此，发送端需先进行编码，接收端再进行解码。
 > 例如CSM内置HEXSTR编码方案，也可按需扩展自定义编解码器。
 > 为便于识别编码方式，推荐将编码后的参数写成`<Argument Type> STRING FORMAT ARGUMENT`格式。
 > 使用CSM - Argument Type VI即可提取类型标记，据此选择对应的解码函数。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM ERRSTR格式参数</b>
 >
 > LabVIEW错误簇是一个复杂数据类型，错误信息字符串中通常包含回车符，因此它通常不能直接作为CSM参数传递。虽然可以将错误簇信息转换为HEXSTR格式，但这种方式缺乏可读性，在日志中无法直观读取信息。

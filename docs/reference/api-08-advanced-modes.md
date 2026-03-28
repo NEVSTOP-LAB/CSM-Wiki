@@ -14,11 +14,12 @@ nav_order: 18
 
 <b>参考范例</b>:  [系统级模块示例]({% link docs/examples/example-csm-basic-example.md %}#7-system-level-modulevi) - `0. Base Concepts\7. System-Level Module.vi`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>名称拼接API</b>
 >
 > 这个VI只操作了模块名称字符串，并没有实际功能，当熟悉CSM规则后，可以直接输入对应的名称字符串和规则符号，不是必须调用此API。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM系统级模块</b>
 >
 > 系统级模块的其他CSM功能，均与普通模块相同，和普通模块唯一的区别，在于默认的CSM - List Modules VI不会列出系统级模块。因此它通常用于实现一些后台运行的功能模块，而在统一处理普通模块操作逻辑时，可以避免对这些后台运行逻辑的干扰。
@@ -51,11 +52,12 @@ nav_order: 18
 
 <b>参考范例</b>:  [工作者模式示例]({% link docs/examples/example-csm-advance-example.md %}#工作者模式范例) - `4. Advance Examples\1. Action Workers Example`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>名称拼接API</b>
 >
 > 这个VI只操作了模块名称字符串，并没有实际功能，当熟悉CSM规则后，可以直接输入对应的名称字符串和规则符号，不是必须调用此API。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM工作者模式(Worker Mode)</b>
 >
 > 一个CSM模块，通过实例化多个实例，申请的名称后添加`#`，并共享相同的消息队列，实现工作者模式。
@@ -94,7 +96,7 @@ nav_order: 18
 
 <b>参考范例</b>:  [责任链模式示例]({% link docs/examples/example-csm-advance-example.md %}#责任链模式范例) - `4. Advance Examples\2. Chain of Responsibility Example`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM责任链模式(Chain of Responsibility Mode)</b>
 >
 > 多个CSM模块，申请的名称后添加`$`，组成处理事务的一个链条，通过责任链模式形成一个完整的模块。
@@ -121,7 +123,8 @@ nav_order: 18
 > - 功能拼接，不同模块实现不同的任务，通过拼接可以完成不同功能合集的组合。
 > - 功能覆盖，通过覆盖实现OOP中的重载。
 > - 工作者模式的场景，通常不适合具有界面操作。
-{: .note }
+
+{: .note .callout-hover }
 > <b>名称拼接API</b>
 >
 > 这个VI只操作了模块名称字符串，并没有实际功能，当熟悉CSM规则后，可以直接输入对应的名称字符串和规则符号，不是必须调用此API。
@@ -153,7 +156,7 @@ nav_order: 18
 
 <b>参考范例</b>：[多循环模块示例]({% link docs/examples/example-csm-advance-example.md %}#多循环模块示例main---call-and-monitor-tcp-trafficvi) - `4. Advance Examples\5. Multi-Loop Module Example\TCP Server Module(Multi-Loop Support).vi`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM多循环模式(Multi-Loop Mode)</b>
 >
 > 在有些场景下，适合使用多个循环构成同一个CSM模块，例如:
@@ -177,7 +180,7 @@ nav_order: 18
 
 <b>参考范例</b>：[多循环模块示例]({% link docs/examples/example-csm-advance-example.md %}#多循环模块示例main---call-and-monitor-tcp-trafficvi) - `4. Advance Examples\5. Multi-Loop Module Example\TCP Server Module(Multi-Loop Support).vi`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM多循环模式(Multi-Loop Mode)</b>
 >
 > 在有些场景下，适合使用多个循环构成同一个CSM模块，例如:
@@ -201,7 +204,7 @@ nav_order: 18
 
 <b>参考范例</b>：[连续循环示例]({% link docs/examples/example-csm-advance-example.md %}#多循环模块示例main---call-and-monitor-tcp-trafficvi) - `Addons - Loop Support\CSMLS - Continuous Loop in CSM Example.vi`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM多循环模式(Multi-Loop Mode)</b>
 >
 > 在有些场景下，适合使用多个循环构成同一个CSM模块，例如:

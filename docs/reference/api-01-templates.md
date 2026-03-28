@@ -12,7 +12,7 @@ nav_order: 11
 ## CSM User Interface(UI) Module Template.vi
 用于创建带用户界面的CSM模块的模板，该模板包含用于响应用户操作的用户事件结构。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM名称规则</b>
 >
 > - CSM模块名称必须唯一，否则将导致CSM进入`Critical Error`状态。
@@ -21,12 +21,14 @@ nav_order: 11
 > - 责任链模式规则：若输入以`$`加数字结尾，则会实例化一个责任链模式节点，多个节点可共同组成一个责任链模式模块。
 > - 系统级模块规则：若输入以`.`开头，则该模块为系统级模块。在默认参数下，此类模块不会被CSM - List Modules VI列出，适用于实例化后台运行的模块。
 > - 子模块规则：`.`也允许出现在名称之中，将模块名称分为多个部分，每个部分之间用`.`分隔。CSM中并没有严格意义上的子模块，仅通过模块名称中的`.`来标记不同模块的逻辑关系，从实际运行角度来看认为是独立的模块。唯一区别在于可以通过CSM - List Submodules VI，获取逻辑上的子模块列表。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM初始化状态("Macro：Initialize")</b>
 >
 > - 默认值与JKISM状态机保持一致，为`Macro：Initialize`。
 > - 该状态用于初始化CSM模块的状态机，CSM模块仅在完成该宏状态后，才会处理外部发送的消息。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM退出状态("Macro：Exit")</b>
 >
 > - 默认值与JKISM状态机保持一致，为"Macro：Exit"。
@@ -38,7 +40,7 @@ nav_order: 11
 ## CSM Module Template.vi
 用于创建无用户界面的CSM模块的模板, 这个模板是最常使用的CSM模板，在模板中还包含了一个用于调试中退出模块的事件响应循环，请在模块调试完成后，将其删除。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM名称规则</b>
 >
 > - CSM模块名称必须唯一，否则将导致CSM进入`Critical Error`状态。
@@ -47,12 +49,14 @@ nav_order: 11
 > - 责任链模式规则：若输入以`$`加数字结尾，则会实例化一个责任链模式节点，多个节点可共同组成一个责任链模式模块。
 > - 系统级模块规则：若输入以`.`开头，则该模块为系统级模块。在默认参数下，此类模块不会被CSM - List Modules VI列出，适用于实例化后台运行的模块。
 > - 子模块规则：`.`也允许出现在名称之中，将模块名称分为多个部分，每个部分之间用`.`分隔。CSM中并没有严格意义上的子模块，仅通过模块名称中的`.`来标记不同模块的逻辑关系，从实际运行角度来看认为是独立的模块。唯一区别在于可以通过CSM - List Submodules VI，获取逻辑上的子模块列表。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM初始化状态("Macro：Initialize")</b>
 >
 > - 默认值与JKISM状态机保持一致，为`Macro：Initialize`。
 > - 该状态用于初始化CSM模块的状态机，CSM模块仅在完成该宏状态后，才会处理外部发送的消息。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM退出状态("Macro：Exit")</b>
 >
 > - 默认值与JKISM状态机保持一致，为"Macro：Exit"。
@@ -64,7 +68,7 @@ nav_order: 11
 ## CSM Module Template - Tiny.vi
 用于创建无用户界面的CSM模块的紧凑代码模板。该模板功能与CSM Module Template VI完全相同，区别仅在于代码更加紧凑。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM名称规则</b>
 >
 > - CSM模块名称必须唯一，否则将导致CSM进入`Critical Error`状态。
@@ -73,12 +77,14 @@ nav_order: 11
 > - 责任链模式规则：若输入以`$`加数字结尾，则会实例化一个责任链模式节点，多个节点可共同组成一个责任链模式模块。
 > - 系统级模块规则：若输入以`.`开头，则该模块为系统级模块。在默认参数下，此类模块不会被CSM - List Modules VI列出，适用于实例化后台运行的模块。
 > - 子模块规则：`.`也允许出现在名称之中，将模块名称分为多个部分，每个部分之间用`.`分隔。CSM中并没有严格意义上的子模块，仅通过模块名称中的`.`来标记不同模块的逻辑关系，从实际运行角度来看认为是独立的模块。唯一区别在于可以通过CSM - List Submodules VI，获取逻辑上的子模块列表。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM初始化状态("Macro：Initialize")</b>
 >
 > - 默认值与JKISM状态机保持一致，为`Macro：Initialize`。
 > - 该状态用于初始化CSM模块的状态机，CSM模块仅在完成该宏状态后，才会处理外部发送的消息。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM退出状态("Macro：Exit")</b>
 >
 > - 默认值与JKISM状态机保持一致，为"Macro：Exit"。
@@ -90,7 +96,7 @@ nav_order: 11
 ## CSM User Interface(UI) Module Template - Tiny.vi
 用于创建带用户界面的CSM模块的紧凑代码模板，该模板包含用于响应用户操作的用户事件结构。该模板功能与CSM User Interface(UI) Module Template VI完全相同，区别仅在于代码更加紧凑.
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM名称规则</b>
 >
 > - CSM模块名称必须唯一，否则将导致CSM进入`Critical Error`状态。
@@ -99,12 +105,14 @@ nav_order: 11
 > - 责任链模式规则：若输入以`$`加数字结尾，则会实例化一个责任链模式节点，多个节点可共同组成一个责任链模式模块。
 > - 系统级模块规则：若输入以`.`开头，则该模块为系统级模块。在默认参数下，此类模块不会被CSM - List Modules VI列出，适用于实例化后台运行的模块。
 > - 子模块规则：`.`也允许出现在名称之中，将模块名称分为多个部分，每个部分之间用`.`分隔。CSM中并没有严格意义上的子模块，仅通过模块名称中的`.`来标记不同模块的逻辑关系，从实际运行角度来看认为是独立的模块。唯一区别在于可以通过CSM - List Submodules VI，获取逻辑上的子模块列表。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM初始化状态("Macro：Initialize")</b>
 >
 > - 默认值与JKISM状态机保持一致，为`Macro：Initialize`。
 > - 该状态用于初始化CSM模块的状态机，CSM模块仅在完成该宏状态后，才会处理外部发送的消息。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM退出状态("Macro：Exit")</b>
 >
 > - 默认值与JKISM状态机保持一致，为"Macro：Exit"。
@@ -122,7 +130,7 @@ nav_order: 11
 
 <b>参考范例</b>：[连续循环示例]({% link docs/examples/example-csm-advance-example.md %}#多循环模块示例main---call-and-monitor-tcp-trafficvi) - `[CSM-Example]\4. Advance Examples\CSMLS - Continuous Loop in CSM Example.vi`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM名称规则</b>
 >
 > - CSM模块名称必须唯一，否则将导致CSM进入`Critical Error`状态。
@@ -131,12 +139,14 @@ nav_order: 11
 > - 责任链模式规则：若输入以`$`加数字结尾，则会实例化一个责任链模式节点，多个节点可共同组成一个责任链模式模块。
 > - 系统级模块规则：若输入以`.`开头，则该模块为系统级模块。在默认参数下，此类模块不会被CSM - List Modules VI列出，适用于实例化后台运行的模块。
 > - 子模块规则：`.`也允许出现在名称之中，将模块名称分为多个部分，每个部分之间用`.`分隔。CSM中并没有严格意义上的子模块，仅通过模块名称中的`.`来标记不同模块的逻辑关系，从实际运行角度来看认为是独立的模块。唯一区别在于可以通过CSM - List Submodules VI，获取逻辑上的子模块列表。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM初始化状态("Macro：Initialize")</b>
 >
 > - 默认值与JKISM状态机保持一致，为`Macro：Initialize`。
 > - 该状态用于初始化CSM模块的状态机，CSM模块仅在完成该宏状态后，才会处理外部发送的消息。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM退出状态("Macro：Exit")</b>
 >
 > - 默认值与JKISM状态机保持一致，为"Macro：Exit"。

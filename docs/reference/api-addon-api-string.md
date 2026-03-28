@@ -12,7 +12,7 @@ nav_order: 23
 ### API String - Is Supported Datatype.vi
 判断数据类型是否为API String支持的转换数据类型。
 
-{: .note }
+{: .note .callout-hover }
 ><b>API String参数支持</b>
 >
 > API String参数支持用于增强通信状态机(CSM)的API参数功能，支持以纯文本格式传递各种数据类型，并特别优化了手动输入体验。API String未定义参数类型(Argument Type)，通过CSM - Argument Type VI获取的结果为空，通常在默认分支中处理。支持的数据类型包括:
@@ -33,7 +33,8 @@ nav_order: 23
 > 更多详细信息请访问: https://github.com/NEVSTOP-LAB/CSM-API-String-Arguments-Support
 >
 > 或参考范例，所有数据类型均有详细说明和示例。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM HEXSTR格式参数</b>
 >
 > 为了在CSM参数中传递任意数据类型，CSM内置了HEXSTR格式参数编解码方案。其参数类型字符串为HEXSTR。转换过程如下:
@@ -51,7 +52,7 @@ nav_order: 23
 ### Convert Data To API String Arguments.vim
 将数据转换为API String格式。
 
-{: .note }
+{: .note .callout-hover }
 ><b>API String参数支持</b>
 >
 > API String参数支持用于增强通信状态机(CSM)的API参数功能，支持以纯文本格式传递各种数据类型，并特别优化了手动输入体验。API String未定义参数类型(Argument Type)，通过CSM - Argument Type VI获取的结果为空，通常在默认分支中处理。支持的数据类型包括:
@@ -84,7 +85,7 @@ nav_order: 23
 ### Convert API String Arguments to Data.vim
 将API String转换为相应的数据类型。
 
-{: .note }
+{: .note .callout-hover }
 ><b>API String参数支持</b>
 >
 > API String参数支持用于增强通信状态机(CSM)的API参数功能，支持以纯文本格式传递各种数据类型，并特别优化了手动输入体验。API String未定义参数类型(Argument Type)，通过CSM - Argument Type VI获取的结果为空，通常在默认分支中处理。支持的数据类型包括:
@@ -134,12 +135,13 @@ nav_order: 23
 ### API String - Add Boolean Strings.vi
 将自定义布尔字符串添加到API String布尔值解析列表中，并返回更新后的列表。
 
-{: .note }
+{: .note .callout-hover }
 > <b>TRUE值的默认字符串</b>
 >
 > 支持`1`, `Active`, `Enable`, `Non-null`, `On`, `T`, `True`, `valid`, `yes`
 > 不区分大小写
-{: .note }
+
+{: .note .callout-hover }
 > <b>FALSE值的默认字符串</b>
 >
 > 支持`0`, `Disable`, `F`, `False`, `Inactive`, `Invalid`, `No`, `Off`, `Void`, `null`
@@ -156,12 +158,13 @@ nav_order: 23
 ### API String - Remove Boolean Strings.vi
 从API String布尔值解析列表中移除自定义布尔字符串，并返回更新后的列表。
 
-{: .note }
+{: .note .callout-hover }
 > <b>TRUE值的默认字符串</b>
 >
 > 支持`1`, `Active`, `Enable`, `Non-null`, `On`, `T`, `True`, `valid`, `yes`
 > 不区分大小写
-{: .note }
+
+{: .note .callout-hover }
 > <b>FALSE值的默认字符串</b>
 >
 > 支持`0`, `Disable`, `F`, `False`, `Inactive`, `Invalid`, `No`, `Off`, `Void`, `null`
@@ -178,12 +181,13 @@ nav_order: 23
 ### API String - List Boolean Strings.vi
 列出当前所有可用的布尔值字符串。
 
-{: .note }
+{: .note .callout-hover }
 > <b>TRUE值的默认字符串</b>
 >
 > 支持`1`, `Active`, `Enable`, `Non-null`, `On`, `T`, `True`, `valid`, `yes`
 > 不区分大小写
-{: .note }
+
+{: .note .callout-hover }
 > <b>FALSE值的默认字符串</b>
 >
 > 支持`0`, `Disable`, `F`, `False`, `Inactive`, `Invalid`, `No`, `Off`, `Void`, `null`
@@ -196,7 +200,7 @@ nav_order: 23
 ### API String - Set Float Format String.vi
 设置浮点数的格式字符串，可参考LabVIEW format string格式。
 
-{: .note }
+{: .note .callout-hover }
 > <b>浮点数默认格式</b>
 >
 > 浮点数默认格式为`%.6p`。
@@ -210,7 +214,7 @@ nav_order: 23
 ### API String - Float Format String.vi
 获取当前的浮点数格式字符串。
 
-{: .note }
+{: .note .callout-hover }
 > <b>浮点数默认格式</b>
 >
 > 浮点数默认格式为`%.6p`。
@@ -221,7 +225,7 @@ nav_order: 23
 ### API String - Set Float Precision.vi
 设置浮点数的精度。
 
-{: .note }
+{: .note .callout-hover }
 > <b>浮点数默认格式</b>
 >
 > 浮点数默认格式为`%.6p`。
@@ -237,12 +241,13 @@ nav_order: 23
 ### String to Boolean_csm.vi
 将字符串转换为布尔值。支持多种TRUE/FALSE表示方式，可通过API String - Add Boolean Strings VI添加自定义的TRUE/FALSE字符串。
 
-{: .note }
+{: .note .callout-hover }
 > <b>TRUE值的默认字符串</b>
 >
 > 支持`1`, `Active`, `Enable`, `Non-null`, `On`, `T`, `True`, `valid`, `yes`
 > 不区分大小写
-{: .note }
+
+{: .note .callout-hover }
 > <b>FALSE值的默认字符串</b>
 >
 > 支持`0`, `Disable`, `F`, `False`, `Inactive`, `Invalid`, `No`, `Off`, `Void`, `null`
@@ -258,7 +263,7 @@ nav_order: 23
 ### String To Float_csm.vi
 将字符串转换为浮点数。支持多种浮点数格式和单位，可通过API String - Set Float Format String VI设置格式。
 
-{: .note }
+{: .note .callout-hover }
 > <b>浮点数默认格式</b>
 >
 > 浮点数默认格式为`%.6p`。
@@ -283,7 +288,7 @@ nav_order: 23
 ### String To Indexed Enum_csm.vi
 将字符串转换为带索引的枚举类型。
 
-{: .note }
+{: .note .callout-hover }
 > <b>带索引的枚举类型(Indexed Enum)</b>
 >
 > 格式为`[索引编号(index)][分隔符(separator)][枚举字符串]`，索引编号支持多种数值表示方式
@@ -324,7 +329,7 @@ nav_order: 23
 ### Indexed Enum to Numeric_csm.vim
 将枚举转换为数值，支持带索引的枚举类型，当枚举数值携带索引编号时，将直接使用索引编号作为数值。
 
-{: .note }
+{: .note .callout-hover }
 > <b>带索引的枚举类型(Indexed Enum)</b>
 >
 > 格式为`[索引编号(index)][分隔符(separator)][枚举字符串]`，索引编号支持多种数值表示方式
@@ -352,7 +357,7 @@ nav_order: 23
 
 规则2: 当没有匹配到索引编号时，将使用数字值作为枚举索引。
 
-{: .note }
+{: .note .callout-hover }
 > <b>带索引的枚举类型(Indexed Enum)</b>
 >
 > 格式为`[索引编号(index)][分隔符(separator)][枚举字符串]`，索引编号支持多种数值表示方式
