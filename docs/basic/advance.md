@@ -9,7 +9,7 @@ nav_order: 5
 
 ---
 
-本文介绍CSM的高级特性：错误处理、系统级模块、子模块、工作者模式、责任链模式和多循环支持。
+本文介绍CSM的高级特性，包括错误处理、系统级模块、子模块、工作者模式、责任链模式和多循环支持。
 
 {: .tip }
 > 查看高级模式的详细API文档，请参考 [高级模式API参考]({% link docs/reference/api-08-advanced-modes.md %})
@@ -90,10 +90,9 @@ Macro: Exit -> [`CSM - List Modules.vi`]({% link docs/reference/api-04-managemen
 
 ### 工作原理
 
-1. 名称后添加`#`，框架为每个实例生成唯一标识
-2. 所有Worker共享同一个消息队列
-3. 空闲的Worker从队列中获取消息处理
-4. 外部只需与Worker Agent通讯，无需关心具体Worker数量
+1. 名称后添加`#`，框架为每个实例生成唯一标识（如`Downloader#59703F3AD837`）
+2. 所有Worker共享同一个消息队列，空闲Worker自动获取消息处理
+3. 外部只需与Worker Agent通讯，无需关心具体Worker数量
 
 ### 使用方式
 
@@ -108,11 +107,9 @@ API: DoTask >> arguments -> module   // 空闲Worker处理异步消息
 
 ### 典型场景
 
-1. 并发服务（10086客服系统）
-2. 并发下载
-3. 并发编译
-4. TCP服务器（每个Worker处理一个连接）
-5. 数据处理
+1. 并发下载、并发编译等批量任务
+2. 客服热线系统（多坐席共享来电队列）
+3. TCP服务器（每个Worker处理一个连接）
 
 ### 实现步骤
 
@@ -172,8 +169,6 @@ API: Process >> arguments -@ Handler
 4. 向Chain发送消息，自动按序传递
 5. 向Chain发送`Macro: Exit`，所有节点依次退出
 
-注意：Order编号不必连续但必须唯一，编号小的优先处理。节点只实现能处理的状态，其他消息自动传递给下一节点。
-
 ### 与工作者模式的区别
 
 | 特性 | 工作者模式 | 责任链模式 |
@@ -184,7 +179,7 @@ API: Process >> arguments -@ Handler
 | 适用场景 | 相同任务并发 | 不同任务串行 |
 | 带界面 | 不适合 | 可以 |
 
-注意：必须通过Chain名称发送消息；节点顺序很重要；链条过长影响效率。
+注意：必须通过Chain名称发送消息，不能直接向单个节点发送；节点顺序决定消息处理优先级。
 
 **参考范例**：[责任链模式范例]({% link docs/examples/example-csm-advance-example.md %}#责任链模式范例)
 
@@ -203,29 +198,23 @@ API: Process >> arguments -@ Handler
 
 #### [`CSM - Request CSM to Post Message.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm---request-csm-to-post-messagevi)
 
-非CSM循环通过此API请求CSM循环发送消息。可指定立即执行（优先处理）、支持异步消息获取返回值。
-
-参数：Module Name、State、Arguments、Without Reply?、Target Module、Immediately?
+非CSM循环通过此API请求CSM循环发送消息。支持立即执行（优先处理）和异步消息获取返回值。
 
 #### [`CSM - Request CSM to Broadcast Status Change.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm---request-csm-to-broadcast-status-changevi)
 
-非CSM循环通过此API请求CSM循环发送广播。仅应在模块内部使用。
-
-参数：Module Name、Status、Arguments、Broadcast?、Priority、Immediately?
+非CSM循环通过此API请求CSM循环发送广播，仅应在模块内部使用。
 
 #### [`CSM - Forward UI Operations to CSM.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm---forward-ui-operations-to-csmvi)
 
-将UI循环的用户操作转发到CSM循环，DQMH-Style模板的核心机制。
-
-参数：State(s) In、Name、High Priority?
+将UI循环的用户操作转发到CSM循环处理，是DQMH-Style模板的核心机制。
 
 #### [`CSM - Module Turns Invalid.vi`]({% link docs/reference/api-08-advanced-modes.md %}#csm---module-turns-invalidvi)
 
-检查CSM模块是否已退出，用于功能循环跟随退出。注意：高级模式的模块只有在最后一个节点退出后才触发。
+检查CSM模块是否已退出，用于功能循环跟随退出。高级模式下，仅在最后一个节点退出后才触发。
 
 ### 设计模式
 
-通常包含：CSM循环（处理通讯和控制）、功能循环（执行实际功能）、UI循环（可选，处理界面事件）。循环间通过队列、用户事件交互。
+通常包含：CSM循环（处理通讯和控制）、功能循环（执行实际功能）、UI循环（可选，处理界面事件），循环间通过队列或用户事件交互。
 
 **参考范例**：[多循环模块示例]({% link docs/examples/example-csm-advance-example.md %}#多循环模块示例main---call-and-monitor-tcp-trafficvi)
 
@@ -240,4 +229,4 @@ API: Process >> arguments -@ Handler
 - **责任链模式**: 顺序处理和功能组合
 - **多循环支持**: 循环分离和协作
 
-灵活组合可构建高性能、高可维护性的LabVIEW应用。
+灵活组合这些特性，可构建高性能、高可维护性的LabVIEW应用。
