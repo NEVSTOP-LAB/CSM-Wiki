@@ -13,6 +13,10 @@
 (function () {
   'use strict';
 
+  // Timing constants (milliseconds)
+  var SHOW_DELAY = 100;
+  var HIDE_DELAY = 200;
+
   var CALLOUT_TYPES = {
     note:      { emoji: '📝', label: '注意' },
     tip:       { emoji: '💡', label: '提示' },
@@ -99,7 +103,7 @@
         callout.classList.add('is-visible');
         trigger.setAttribute('aria-expanded', 'true');
         positionPopup(wrapper, callout);
-      }, 100);
+      }, SHOW_DELAY);
     }
 
     function hidePopup() {
@@ -110,7 +114,7 @@
       hideTimeout = setTimeout(function () {
         callout.classList.remove('is-visible');
         trigger.setAttribute('aria-expanded', 'false');
-      }, 200);
+      }, HIDE_DELAY);
     }
 
     // Mouse hover

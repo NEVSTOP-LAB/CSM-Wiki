@@ -146,7 +146,7 @@
   top: calc(100% + 4px);
   left: 0;
   width: 100%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--callout-hover-shadow, 0 4px 20px rgba(0, 0, 0, 0.15));
   border-radius: 6px;
 
   &.is-visible {
@@ -169,6 +169,6 @@
 // Dark mode shadow enhancement
 [data-theme="dark"] {
   .callout-hover-popup {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+    --callout-hover-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
   }
 }
