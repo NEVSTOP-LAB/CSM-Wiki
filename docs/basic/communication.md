@@ -9,7 +9,7 @@ nav_order: 3
 
 ---
 
-CSM 支持以下几种通讯方式，选择哪种方式取决于你的需求：
+CSM 支持以下通讯方式：
 
 | 通讯方式 | 符号 | 等待返回 | 适用场景 |
 |---------|------|---------|----------|
@@ -52,7 +52,7 @@ end
 
 ### 超时配置
 
-默认超时时间为 -2（使用全局设置）。可以通过 [`CSM - Set TMO of Sync-Reply.vi`]({% link docs/reference/api-04-management-api.md %}#csm---set-tmo-of-sync-replyvi) 修改全局超时。
+通过 [`CSM - Set TMO of Sync-Reply.vi`]({% link docs/reference/api-04-management-api.md %}#csm---set-tmo-of-sync-replyvi) 可修改全局超时。超时参数含义：
 
 - `-2`：使用全局超时（默认）
 - `-1`：永久等待
@@ -174,7 +174,7 @@ End
 
 ## 广播(Broadcast)
 
-广播是 CSM 的 1 对多通讯方式。发送方不需要知道谁在监听，只管发出；订阅方注册感兴趣的广播即可触发对应处理。
+广播是 CSM 的 1 对多通讯方式，订阅方注册感兴趣的广播即可收到通知。
 
 CSM 中的广播分为三种类型：
 
@@ -202,7 +202,7 @@ ModuleStatus >> Arguments -> <broadcast>
 UrgentEvent >> Arguments -> <interrupt>
 ```
 
-也可以用 API 发送：用 [`CSM - Broadcast Status Change.vi`]({% link docs/reference/api-02-core-functions.md %}#csm---broadcast-status-changevi) 发布状态：
+也可以通过 [`CSM - Broadcast Status Change.vi`]({% link docs/reference/api-02-core-functions.md %}#csm---broadcast-status-changevi) 发布状态：
 
 ![Alt text](../../assets/img/CSM%20Broadcast%20Status%20Change.png)
 
@@ -237,7 +237,7 @@ Status@SourceModule >> API@TargetModule -><register as interrupt>
 
 ## 状态订阅
 
-状态订阅是 CSM 实现模块解耦最常用的方式。模块不需要知道谁在监听它，只管发布状态；监听方注册感兴趣的状态就行。
+状态订阅是 CSM 中最常用的解耦方式，下面通过一个完整示例展示用法。
 
 **举个例子**：音乐下载完后自动播放
 
@@ -268,7 +268,7 @@ I'm timeout >> statusArguments -> <all>
 
 ## 消息构建 API
 
-虽然熟悉规则后可以直接写字符串，但用 API 能减少错误。
+熟悉规则后可以直接写字符串，但推荐使用 API 以减少拼写错误。
 
 ### Build Message with Arguments++.vi
 
