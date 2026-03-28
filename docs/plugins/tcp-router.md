@@ -7,14 +7,14 @@ nav_order: 7
 
 # TCP远程控制插件(TCP Router)
 
-CSM TCP Router 是一个**扩展 Addon**，为 CSM 应用提供 TCP 远程控制能力。它作为 TCP 通讯层，将本地 CSM 应用转变为 TCP 服务器，实现远程访问和控制。
+CSM TCP Router 是一个**扩展 Addon**，将本地 CSM 应用转变为 TCP 服务器，实现远程访问和控制。
 
 {: .note }
 > 详细的使用说明、协议定义和示例代码，请参见：[CSM-TCP-Router-App 项目仓库](https://github.com/NEVSTOP-LAB/CSM-TCP-Router-App)
 
 ## 功能概述
 
-TCP Router 通过 CSM 的隐形总线机制，以无侵入的方式为任何 CSM 应用添加 TCP 远程控制功能。远程客户端可以通过 TCP 连接发送 CSM 消息，与本地应用模块交互。
+TCP Router 通过 CSM 隐形总线机制，以无侵入方式为 CSM 应用添加远程控制功能。远程客户端通过 TCP 连接发送 CSM 消息，与本地模块交互。
 
 **核心特性**：
 
