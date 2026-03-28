@@ -72,3 +72,103 @@
     max-width: 100%;
   }
 }
+
+// ============================================================
+// Callout hover tooltip styles
+// Usage: {: .note .callout-hover } to make a callout collapsible
+// ============================================================
+
+.callout-hover-wrapper {
+  position: relative;
+  margin: 0.75rem 0;
+}
+
+.callout-hover-trigger {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.15em;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  transition: background-color 0.2s ease;
+  user-select: none;
+
+  &:hover,
+  &:focus-visible {
+    outline: none;
+  }
+
+  .callout-hover-label {
+    font-weight: 600;
+  }
+}
+
+// Type-specific trigger colors
+.callout-hover-type-note {
+  color: var(--callout-note-color);
+  text-decoration-color: var(--callout-note-color);
+  &:hover, &:focus-visible { background-color: var(--callout-note-bg); }
+}
+
+.callout-hover-type-tip {
+  color: var(--callout-tip-color);
+  text-decoration-color: var(--callout-tip-color);
+  &:hover, &:focus-visible { background-color: var(--callout-tip-bg); }
+}
+
+.callout-hover-type-warning {
+  color: var(--callout-warning-color);
+  text-decoration-color: var(--callout-warning-color);
+  &:hover, &:focus-visible { background-color: var(--callout-warning-bg); }
+}
+
+.callout-hover-type-important {
+  color: var(--callout-important-color);
+  text-decoration-color: var(--callout-important-color);
+  &:hover, &:focus-visible { background-color: var(--callout-important-bg); }
+}
+
+.callout-hover-type-caution {
+  color: var(--callout-caution-color);
+  text-decoration-color: var(--callout-caution-color);
+  &:hover, &:focus-visible { background-color: var(--callout-caution-bg); }
+}
+
+// Popup - the original callout content, shown on hover
+.callout-hover-popup {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+
+  &.is-visible {
+    display: block;
+    animation: callout-hover-fadein 0.15s ease-out;
+  }
+}
+
+@keyframes callout-hover-fadein {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Dark mode shadow enhancement
+[data-theme="dark"] {
+  .callout-hover-popup {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  }
+}
