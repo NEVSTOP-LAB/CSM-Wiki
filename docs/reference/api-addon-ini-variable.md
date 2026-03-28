@@ -16,7 +16,7 @@ nav_order: 24
 
 <b>参考范例</b>: `1. Used as parameters parsed by CSM.vi`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM INI-Variable Addon</b>
 >
 > 配置文件是应用程序开发中不可或缺的组成部分。CSM INI-Variable Addon为CSM提供简单易用的配置文件支持功能，使用户能够配置应用程序而无需显式读写配置文件。
@@ -31,7 +31,8 @@ nav_order: 24
 > 5. <b>高效缓存机制</b>: 使用全局修改标记优化性能，仅在配置发生修改时才重新读取内存副本。
 >
 > 本库包含并使用了由[@rcpacini](https://github.com/rcpacini)开发的[LabVIEW-Config](https://github.com/rcpacini/LabVIEW-Config)的副本。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM INI-Variable变量格式</b>
 >
 > 格式定义: `${section.variable:defaultValue}`
@@ -44,7 +45,8 @@ nav_order: 24
 > - 支持嵌套的变量引用，例如`${section1.variable1:${section2.variable2:defaultValue2}}`。
 > - `section`参数为可选。省略时，使用默认配置段 `SectionName=LabVIEW`。
 > - 默认值为可选，未指定时默认为空字符串("")。
-{: .note }
+
+{: .note .callout-hover }
 > <b>CSM INI-Variable配置文件路径</b>
 >
 > - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
@@ -73,7 +75,7 @@ nav_order: 24
 
 <b>参考范例</b>: `2. Load the corresponding configuration by providing the prototype.vi`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM INI-Variable配置文件路径</b>
 >
 > - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
@@ -102,7 +104,7 @@ nav_order: 24
 
 <b>参考范例</b>: `2. Load the corresponding configuration by providing the prototype.vi`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM INI-Variable配置文件路径</b>
 >
 > - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
@@ -128,7 +130,7 @@ nav_order: 24
 
 <b>参考范例</b>: `2. Load the corresponding configuration by providing the prototype.vi`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM INI-Variable配置文件路径</b>
 >
 > - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
@@ -156,7 +158,7 @@ nav_order: 24
 
 <b>参考范例</b>: `7. Write and Read Configuration.vi`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM INI-Variable配置文件路径</b>
 >
 > - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
@@ -167,7 +169,8 @@ nav_order: 24
 >   - 使用相对路径时，相对于当前配置文件的路径。
 >   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
 >   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
-{: .warning }
+
+{: .warning .callout-hover }
 > <b>CSM INI-Variable缓存机制警告</b>
 >
 > 请注意，由于本库使用全局缓存修改标志，频繁的配置更改会降低读取VI中缓存机制的有效性。因此，本库不建议用于需要频繁修改配置的场景。
@@ -266,7 +269,7 @@ nav_order: 24
 
 <b>参考范例</b>: `6. Read Nested Variables.vi`。
 
-{: .warning }
+{: .warning .callout-hover }
 > <b>CSM INI-Variable缓存机制警告</b>
 >
 > 请注意，由于本库使用全局缓存修改标志，频繁的配置更改会降低读取VI中缓存机制的有效性。因此，本库不建议用于需要频繁修改配置的场景。
@@ -286,7 +289,7 @@ nav_order: 24
 
 <b>参考范例</b>: `5. import Config.ini with __include section.vi`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM INI-Variable配置文件路径</b>
 >
 > - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
@@ -312,7 +315,7 @@ nav_order: 24
 
 <b>参考范例</b>: `5. import Config.ini with __include section.vi`。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM INI-Variable配置文件路径</b>
 >
 > - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
@@ -331,7 +334,7 @@ nav_order: 24
 ### CSM - Unload Configuration Variable File.vi
 卸载配置变量文件。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM INI-Variable配置文件路径</b>
 >
 > - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
@@ -351,7 +354,7 @@ nav_order: 24
 
 <b>注意</b>: 虽然已经标记为永久变量，但是如果不使用CSM - Sync Configuration Variables to File VI，依然不会将变量同步到文件中。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM INI-Variable配置文件路径</b>
 >
 > - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
@@ -371,7 +374,7 @@ nav_order: 24
 
 <b>注意</b>: 只有永久变量才会同步到文件中，如果想将临时变量写入文件，需要提前将临时变量标记为永久变量。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM INI-Variable配置文件路径</b>
 >
 > - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
@@ -390,7 +393,7 @@ nav_order: 24
 ### CSM - Restore Variable Value.vi
 恢复变量值，将所有的永久变量刷新为首次载入的配置值，临时变量不会被修改。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM INI-Variable配置文件路径</b>
 >
 > - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
@@ -405,7 +408,7 @@ nav_order: 24
 ### CSM - Reset to Default.vi
 将配置重置为默认值。所有的变量将被清空，所有的配置会从现在加载的配置文件中重新加载。
 
-{: .note }
+{: .note .callout-hover }
 > <b>CSM INI-Variable配置文件路径</b>
 >
 > - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。

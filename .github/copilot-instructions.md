@@ -55,6 +55,33 @@
 | `> [!IMPORTANT]` | `{: .important }` |
 | `> [!CAUTION]` | `{: .caution }` |
 
+### Callout 悬浮提示（callout-hover）
+
+`docs/reference/` 目录下的 API 参考文档中，所有 callout 必须添加 `.callout-hover` 类，使其显示为可悬浮展开的紧凑链接，减少重复内容对页面的干扰。
+
+| 普通 callout 格式 | 参考文档中使用的格式 |
+|-------------------|-------------------|
+| `{: .note }` | `{: .note .callout-hover }` |
+| `{: .warning }` | `{: .warning .callout-hover }` |
+| `{: .tip }` | `{: .tip .callout-hover }` |
+| `{: .important }` | `{: .important .callout-hover }` |
+| `{: .caution }` | `{: .caution .callout-hover }` |
+
+**重要**：连续多个 callout-hover 块时，每个 `{: .note .callout-hover }` 前面必须有一个空行，否则 kramdown 会将 IAL 应用到前一个 blockquote 上，导致样式错误。
+
+```markdown
+# 正确写法（连续 callout 之间有空行）
+{: .note .callout-hover }
+> <b>标题1</b>
+>
+> 内容1
+
+{: .note .callout-hover }
+> <b>标题2</b>
+>
+> 内容2
+```
+
 转换示例：
 
 ```markdown
@@ -192,7 +219,7 @@ grep -r "> - Ref:" docs/reference/
 3. 对比目标文件的现有内容，识别缺失或过时的内容
 4. 移除所有 `> [!NOTE]`/`> [!WARNING]` 块（这些块由其他文件引用）
 5. 将 `> - Ref: <标题>` 行替换为对应标题的实际内容
-6. 将 GitHub callout 格式转换为 Just the Docs callout 格式
+6. 将 GitHub callout 格式转换为 Just the Docs callout 格式，`docs/reference/` 下的文件必须添加 `.callout-hover` 类（如 `{: .note .callout-hover }`）
 7. 保留目标文件的 YAML frontmatter 不变
 8. 更新目标文件内容并提交
 
@@ -239,7 +266,7 @@ grep -r "> - Ref:" docs/reference/
 
 每次修改 `docs/` 目录下的文件后，**自动执行**以下检查，无需用户显式触发：
 
-1. **Callout 格式**：检查被修改的文件中是否存在 GitHub callout 格式（`> [!NOTE]` 等），如有则立即转换为 Just the Docs 格式（`{: .note }` 等）。
+1. **Callout 格式**：检查被修改的文件中是否存在 GitHub callout 格式（`> [!NOTE]` 等），如有则立即转换为 Just the Docs 格式（`{: .note }` 等）。对于 `docs/reference/` 目录下的文件，还需确保所有 callout 包含 `.callout-hover` 类。
 
 2. **进度更新**：如果本次修改涉及文档内容的新增或完善，同步更新 `.github/copilot-instructions.md` 中"项目当前状态"对应文件的完成度，并更新 `.github/progress/vi-description-tracking.md`。
 
