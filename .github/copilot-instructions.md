@@ -192,6 +192,12 @@ grep -r "> - Ref:" docs/reference/
 | example-csm-advance-example.md | CSM Advance Example(zh-cn).md | ✅ 完成 |
 | csm-gweb-development.md | （新增）G-Web-Development-with-CSM 应用说明 | ✅ 完成 |
 
+### `docs/release/` 文件完成情况
+
+| 文件 | 内容 | 状态 |
+|------|------|------|
+| 2026Q1 - 核心优化与插件增强.md | CSM 2026Q1 版本发布博客 | ✅ 完成 |
+
 ### 待完成项目
 
 - `_pages/framework-compare(zh-cn).md`：与其他框架的对比（当前50%）
