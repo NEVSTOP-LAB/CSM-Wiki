@@ -3,7 +3,7 @@ title: 下载
 layout: default
 nav_order: 2
 permalink: /download-and-install
-has_children: false
+has_children: true
 ---
 
 # 下载 CSM

@@ -1,7 +1,8 @@
 ---
 title: 版本变更
 layout: default
-nav_order: 60
+parent: 下载
+nav_order: 1
 has_children: false
 permalink: /docs/release
 ---
