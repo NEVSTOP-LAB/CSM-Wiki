@@ -22,7 +22,7 @@ user-invocable: true
 ## 本技能产出
 
 - 将 `.ref/` 源文件中的最新内容同步到对应的 `docs/` 目标文件。
-- 将 GitHub callout 格式（`> [!NOTE]` 等）转换为 Just the Docs callout 格式（`{: .note }` 等）。
+- 将 GitHub callout 格式（`> [!NOTE]` 等）转换为 Just the Docs callout 格式：`docs/reference/` 中必须使用 `{: .note .callout-hover }` / `{: .warning .callout-hover }` 等带 `.callout-hover` 的格式，其它 `docs/` 目录使用普通 `{: .note }` / `{: .warning }` 等格式。
 - 展开所有 `> - Ref: <标题>` 引用行，替换为实际内容。
 - 保留目标文件已有的 YAML frontmatter 不变。
 
