@@ -50,9 +50,11 @@ user-invocable: true
 | CSM Basic Example(zh-cn).md | example-csm-basic-example.md |
 | CSM Advance Example(zh-cn).md | example-csm-advance-example.md |
 
+**重要限制**：不要迁移 `.ref/` 下任何 `_internal/` 子目录中的文件。凡是路径匹配 `.ref/**/_internal/**` 的内容，都属于内部资料，不应同步到 `docs/` 发布文档中。
+
 ## 执行流程
 
-1. **定位文件**：根据文档映射表，找到 `.ref/` 源文件和 `docs/` 目标文件路径。
+1. **定位文件**：根据文档映射表，找到 `.ref/` 源文件和 `docs/` 目标文件路径；如果源文件位于任意 `_internal/` 子目录（如 `.ref/**/_internal/**`），则立即停止，不进行同步。
 
 2. **读取源文件**（注意编码处理）：
    - 部分 `.ref/` 文件（尤其是 `VI Description(zh-cn) - 12. Debug,Doc,Tools.md`）使用 GBK 编码。
