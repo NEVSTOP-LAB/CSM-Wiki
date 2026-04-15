@@ -205,66 +205,35 @@ grep -r "> - Ref:" docs/reference/
 
 ## 可用技能（Skills）
 
-以下是本项目中可重复执行的标准化任务（"技能"）。每个技能都有固定的触发提示词，发送对应提示词即可启动该技能。
+以下是本项目中可重复执行的标准化任务（"技能"）。技能定义文件位于 `.github/skills/` 目录，每个技能都有固定的触发提示词，发送对应提示词即可启动该技能。
 
 ### Skill 1：同步参考文档（sync-ref-doc）
+
+详见 `.github/skills/sync-ref-doc/SKILL.md`。
 
 **触发提示词**：
 ```
 同步参考文档：<.ref源文件名>
 ```
 
-**示例**：
-```
-同步参考文档：VI Description(zh-cn) - 02. Core Functions.md
-```
-
-**执行步骤**：
-1. 根据文档映射表，找到 `.ref/` 源文件和 `docs/` 目标文件
-2. 读取 `.ref/` 源文件（注意编码：优先尝试 gbk/gb2312/gb18030/utf-8/latin-1）
-3. 对比目标文件的现有内容，识别缺失或过时的内容
-4. 移除所有 `> [!NOTE]`/`> [!WARNING]` 块（这些块由其他文件引用）
-5. 将 `> - Ref: <标题>` 行替换为对应标题的实际内容
-6. 将 GitHub callout 格式转换为 Just the Docs callout 格式，`docs/reference/` 下的文件必须添加 `.callout-hover` 类（如 `{: .note .callout-hover }`）
-7. 保留目标文件的 YAML frontmatter 不变
-8. 更新目标文件内容并提交
-
 ---
 
 ### Skill 2：添加VI超链接（add-vi-links）
+
+详见 `.github/skills/add-vi-links/SKILL.md`。
 
 **触发提示词**：
 ```
 为 <docs文件路径> 添加VI超链接
 ```
 
-**示例**：
-```
-为 docs/basic/communication.md 添加VI超链接
-```
-
-**执行步骤**：
-1. 读取指定的 `docs/` 文件
-2. 识别所有未链接的 VI 名称（形如 `` `Xxx.vi` ``，排除标题行和已有链接）
-3. 从最长名称开始匹配，避免部分匹配
-4. 使用 Jekyll 链接语法 `[`Xxx.vi`]({% link docs/reference/api-XX-xxx.md %}#xxx)` 添加链接
-5. 提交更改
-
 ---
 
 ### Skill 3：添加常见问题解答（add-faq）
 
-**触发条件**：Issue 被分配给 AI 助手后，判断该 Issue 属于常见问题记录类型时触发。
+详见 `.github/skills/add-faq/SKILL.md`。
 
-**执行步骤**：
-1. 读取 Issue 内容，判断是否为常见问题
-2. 检查 Issue 是否有 comments：
-   - **有 comments**：优先使用 @nevstop 回复的内容作为解答核心，再用 Wiki 相关内容补充
-   - **无 comments**：直接根据 Wiki 内容撰写解答
-3. 读取 `docs/faq(zh-cn).md`，查找是否有相似问题：
-   - **有相似问题**：合并问题描述和解答内容（取两者的并集，避免重复）
-   - **无相似问题**：判断应归入哪个分类（下载/安装、基本概念、应用场景/框架比较、使用方法、高级功能、调试工具等），在对应分类下追加新问题
-4. 只修改 `docs/faq(zh-cn).md`，保持其已有格式（`### :question: 问题标题` + 正文 + 📓 参考链接）
+**触发条件**：Issue 被分配给 AI 助手后，判断该 Issue 属于常见问题记录类型时触发。
 
 ---
 
