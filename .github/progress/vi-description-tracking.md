@@ -138,12 +138,12 @@
 
 ### CSM Basic Example - ○ 部分使用
 - **参考文件**: `.ref/Examples/CSM Basic Example(zh-cn).md`
-- **Wiki位置**: `_posts/zh-cn/VI Description(zh-cn)/CSM Basic Example(zh-cn).md`
+- **Wiki位置**: `docs/examples/example-csm-basic-example.md`
 - **状态**: 已存在，需审查是否需要更新
 
 ### CSM Advance Example - ○ 部分使用
 - **参考文件**: `.ref/Examples/CSM Advance Example(zh-cn).md`
-- **Wiki位置**: `_posts/zh-cn/VI Description(zh-cn)/CSM Advance Example(zh-cn).md`
+- **Wiki位置**: `docs/examples/example-csm-advance-example.md`
 - **状态**: 已存在，需审查是否需要更新
 
 ### CSMScript-Lite 应用案例 - ✓ 已新增
