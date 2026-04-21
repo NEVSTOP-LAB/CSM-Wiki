@@ -54,13 +54,16 @@ graph TB
 
 | 功能类别 | 本案例中的体现 |
 | --- | --- |
-| 标准 CSM 消息执行 | 同步 `-@`、异步 `->`、异步无回复 `->|`、广播/订阅 |
+| 标准 CSM 消息执行 | 同步 `-@`、异步 `->`、异步无回复 `->\|`、广播/订阅 |
 | 返回值捕获 | `=> 变量名` 保存返回值并在后续步骤 `${变量}` 复用 |
 | 锚点机制 | `<setup>`、`<main>`、`<error_handler>`、`<cleanup>` |
 | 显式跳转 | `GOTO >> <anchor>` |
 | 条件跳转 | `?? goto >> <anchor>`（前一条出错时跳转） |
 | 自动错误处理 | `AUTO_ERROR_HANDLE_ENABLE`、`AUTO_ERROR_HANDLE_ANCHOR` |
 | 等待指令 | `WAIT` / `Sleep`、`WAIT(s)`、`WAIT(ms)` |
+
+{: .note }
+> 广播与订阅相关语法（如 `-><status>`、`-><interrupt>`、`-><register>`、`-><unregister>`）属于 CSM 框架标准消息格式；本示例直接复用这些标准语法；不是 CSMScript-Lite 私有扩展。
 
 ## 虚拟测试脚本（完整示例）
 
