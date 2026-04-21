@@ -54,7 +54,7 @@ graph TB
 
 | 功能类别 | 本案例中的体现 |
 | --- | --- |
-| 标准 CSM 消息执行 | 同步 `-@`、异步 `->`、异步无回复 `->\|`、广播/订阅 |
+| 标准 CSM 消息执行 | 同步 `-@`、异步 `->`、异步无回复 `->\|`、订阅注册与注销 |
 | 返回值捕获 | `=> 变量名` 保存返回值并在后续步骤 `${变量}` 复用 |
 | 锚点机制 | `<setup>`、`<main>`、`<error_handler>`、`<cleanup>` |
 | 显式跳转 | `GOTO >> <anchor>` |
@@ -63,7 +63,7 @@ graph TB
 | 等待指令 | `WAIT` / `Sleep`、`WAIT(s)`、`WAIT(ms)` |
 
 {: .note }
-> 广播与订阅相关语法（如 `-><status>`、`-><interrupt>`、`-><register>`、`-><unregister>`）属于 CSM 框架标准消息格式；本示例直接复用这些标准语法；不是 CSMScript-Lite 私有扩展。
+> 订阅语法（`-><register>`、`-><unregister>`）属于 CSM 框架标准消息格式；本案例直接复用这些语法；不是 CSMScript-Lite 私有扩展。
 
 ## 虚拟测试脚本（完整示例）
 
@@ -102,8 +102,8 @@ API: Save Temp Result >> ${judge_result} -> Report
 // 无回复异步调用
 API: Heartbeat >> running ->| Device
 
-// 广播状态
-Status >> RoundFinished -><status>
+// 记录当前轮测试完成（脚本内改用可执行 API 消息）
+API: On Round Finished >> ${dut_id} -@ Report
 
 // 秒级等待
 WAIT(s) >> 0.2
