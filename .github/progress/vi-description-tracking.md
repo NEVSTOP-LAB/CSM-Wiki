@@ -138,13 +138,18 @@
 
 ### CSM Basic Example - ○ 部分使用
 - **参考文件**: `.ref/Examples/CSM Basic Example(zh-cn).md`
-- **Wiki位置**: `_posts/zh-cn/VI Description(zh-cn)/CSM Basic Example(zh-cn).md`
+- **Wiki位置**: `docs/examples/example-csm-basic-example.md`
 - **状态**: 已存在，需审查是否需要更新
 
 ### CSM Advance Example - ○ 部分使用
 - **参考文件**: `.ref/Examples/CSM Advance Example(zh-cn).md`
-- **Wiki位置**: `_posts/zh-cn/VI Description(zh-cn)/CSM Advance Example(zh-cn).md`
+- **Wiki位置**: `docs/examples/example-csm-advance-example.md`
 - **状态**: 已存在，需审查是否需要更新
+
+### CSMScript-Lite 应用案例 - ✓ 已新增
+- **参考文件**: （新增案例，无 `.ref/Examples/` 对应源文件）
+- **Wiki位置**: `docs/examples/csm-script-lite.md`
+- **状态**: 已完成，覆盖 CSMScript-Lite 扩展语法与自动化测试场景示例
 
 ## 总体统计
 
@@ -155,6 +160,7 @@
 ## 近期补充记录
 
 - 2026-04-12：新增发布文档 `docs/release/2026Q1 - 核心优化与插件增强.md`（季度发布博客，非 VI Description 映射内容）。
+- 2026-04-21：新增示例文档 `docs/examples/csm-script-lite.md`（CSMScript-Lite 脚本化自动测试应用案例）。
 
 ## 优先补充顺序
 
