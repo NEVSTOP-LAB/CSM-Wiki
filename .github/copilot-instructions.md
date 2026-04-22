@@ -8,8 +8,7 @@
 
 - `.ref/` — 原始参考文档（不发布到网站），包含 VI 说明和示例的原始内容。
 - `docs/` — 发布到网站的文档，分为 `reference/`、`examples/`、`basic/`、`plugins/` 子目录。
-- `.process/` — 内部流程文档。
-- `.github/progress/` — 项目进度跟踪记录（历史对话摘要、VI覆盖度追踪等）。
+- `.process/` — 内部流程文档、历史记录及技术设计说明。
 - `_pages/` — 顶级 Jekyll 页面。
 - `_config.yml` — Jekyll 站点配置，包含 callout 类型定义。
 
@@ -139,7 +138,7 @@ grep -r "> - Ref:" docs/reference/
 
 ## 项目当前状态
 
-> 详细进度记录保存在 `.github/progress/` 目录，阅读该目录下的文件可了解完整历史。
+> 详细进度记录保存在 `.process/history/` 目录，阅读该目录下的文件可了解完整历史。
 
 **总体进度**：主要文档已完成（约167,000字，13个文档）。参考资料覆盖度90%+。
 
@@ -244,7 +243,7 @@ grep -r "> - Ref:" docs/reference/
 
 1. **Callout 格式**：检查被修改的文件中是否存在 GitHub callout 格式（`> [!NOTE]` 等），如有则立即转换为 Just the Docs 格式（`{: .note }` 等）。对于 `docs/reference/` 目录下的文件，还需确保所有 callout 包含 `.callout-hover` 类。
 
-2. **进度更新**：如果本次修改涉及文档内容的新增或完善，同步更新 `.github/copilot-instructions.md` 中"项目当前状态"对应文件的完成度，并更新 `.github/progress/vi-description-tracking.md`。
+2. **进度更新**：如果本次修改涉及文档内容的新增或完善，同步更新 `.github/copilot-instructions.md` 中"项目当前状态"对应文件的完成度。
 
 3. **页面标题中文检查**：检查被新建或修改文件的 frontmatter `title` 和 H1 主标题（`# ...`），确保符合以下规则：
    - **`title` 字段**（左侧导航）：必须以中文开头，技术英文词汇可以附在括号中（如 `循环状态支持(Loop Support)`），不能以纯英文作为标题（如 `Addon API String`、`JKI State Machine` 均不合格）。

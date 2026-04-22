@@ -109,7 +109,7 @@ bundle exec jekyll serve
 
 访问 `http://localhost:4000/CSM-Wiki/` 预览效果。
 
-更多详情请参考 [Just the Docs 文档](https://just-the-docs.com/) 或查看 [`.github/progress/theme-migration.md`](.github/progress/theme-migration.md)。
+更多详情请参考 [Just the Docs 文档](https://just-the-docs.com/) 或查看 [`.process/history/theme-migration.md`](.process/history/theme-migration.md)。
 
 ---
 
