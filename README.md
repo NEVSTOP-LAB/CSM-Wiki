@@ -17,5 +17,3 @@ _**本仓库使用了以下的开源项目或服务**_：
 ---
 
 想要贡献内容？请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
-
-想了解文档完成进度与规划？请查看 [ROADMAP.md](ROADMAP.md)。

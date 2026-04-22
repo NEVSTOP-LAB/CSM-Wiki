@@ -1,6 +1,6 @@
 # CSM-Wiki 路线图
 
-本文件记录 CSM-Wiki 的内容规划与完成进度。详细的历史进度记录请参阅 [`.github/progress/documentation-progress.md`](.github/progress/documentation-progress.md)。
+本文件记录 CSM-Wiki 的内容规划与完成进度。详细的历史进度记录请参阅 [`.process/history/documentation-progress.md`](.process/history/documentation-progress.md)。
 
 ---
 

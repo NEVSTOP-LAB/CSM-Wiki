@@ -180,7 +180,8 @@ has_children: false
 
 - [Just the Docs 官网](https://just-the-docs.com/)
 - [Just the Docs GitHub](https://github.com/just-the-docs/just-the-docs)
-- [MIGRATION_SUMMARY.md](../MIGRATION_SUMMARY.md) - 详细迁移说明
+- [主题迁移总结](../../.process/theme-migration-summary.md) - 详细迁移说明
+- [明暗主题实现说明](../../.process/dark-mode-implementation.md) - 主题切换设计与实现细节
 
 ---
 
