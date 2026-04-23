@@ -131,11 +131,9 @@ pre code {
   color: var(--code-text-color);
 }
 
-// Cap very long code blocks so they don't dominate the page.
-.main-content pre {
-  max-height: 32rem;
-  overflow: auto;
-}
+// Code blocks expand to their natural height (no inner scrollbar) — same
+// for Mermaid diagrams. Long blocks just push the page down rather than
+// trapping content inside a fixed-height scroller.
 
 // ---------------------------------------------------------------------------
 // Tables

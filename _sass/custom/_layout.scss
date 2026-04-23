@@ -8,6 +8,13 @@
 // ============================================================================
 
 // Base body / surface colours so a `data-theme` switch updates everywhere.
+// The base `body` rule from Just the Docs bakes in `#fff`; we override it
+// here so dark mode flips the page background to the dark variable.
+body {
+  background-color: var(--body-background-color);
+  color: var(--body-text-color);
+}
+
 .side-bar {
   background-color: var(--sidebar-color);
   border-right-color: var(--border-color);

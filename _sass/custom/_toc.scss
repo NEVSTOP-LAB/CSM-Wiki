@@ -3,24 +3,30 @@
 // ----------------------------------------------------------------------------
 // The floating TOC width is fixed by CSS `clamp()` to avoid layout shift on
 // first paint (the previous JS-measured approach caused a brief FOUC).
-// `--page-toc-width` is set in CSS (no JS-measurement at runtime), but only
-// when toc.js has actually rendered a floating TOC — it adds the
-// `.has-page-toc` class to <html>. Pages without a TOC keep the default
-// `--page-toc-width: 0px` from _variables.scss so `.main` does not reserve
-// dead space and `#back-to-top` does not shift left for nothing.
+// `--page-toc-width` is the TOTAL space reserved on the right edge of `.main`
+// (TOC width + breathing room) and is set in CSS only when toc.js has actually
+// rendered a floating TOC — it adds the `.has-page-toc` class to <html>.
+// Pages without a TOC keep the default `--page-toc-width: 0px` from
+// `_variables.scss` so `.main` does not reserve dead space and `#back-to-top`
+// does not shift left for nothing. The floating panel itself is sized from
+// the same variable so the panel's left edge always sits inside the reserved
+// padding (it cannot overlap content).
 // ============================================================================
 
 // ---------------------------------------------------------------------------
 // Default TOC width — only applied when a floating TOC is actually rendered.
-// `_layout.scss` reads --page-toc-width; we set it here so first paint after
-// JS runs (which adds .has-page-toc) reserves the right amount of space.
+// `_layout.scss` reads --page-toc-width to set `.main { padding-right: … }`.
+// The clamp's lower bound is large enough that even at the breakpoint
+// (`$bp-three-col`) `--page-toc-width` is wider than the floating panel
+// (`$toc-max-width`) plus `right: 1rem`, so content never sits under the TOC.
 // ---------------------------------------------------------------------------
 @media (min-width: $bp-three-col) {
   html.has-page-toc {
-    // 14 rem floor → fits short Chinese headings comfortably.
-    // 18 vw scales smoothly with viewport.
-    // 22 rem ceiling → keeps proportion on ultra-wide displays.
-    --page-toc-width: clamp(#{$toc-min-width + 1.5rem}, 18vw, #{$toc-max-width + 1.5rem});
+    // Floor: $toc-max-width + 2rem → guarantees the reserved column is wider
+    //        than the floating panel + its right gutter (1rem).
+    // 20vw : grows gently with the viewport.
+    // Ceil : $toc-max-width + 4rem → keeps proportion on ultra-wide displays.
+    --page-toc-width: clamp(#{$toc-max-width + 2rem}, 20vw, #{$toc-max-width + 4rem});
   }
 }
 

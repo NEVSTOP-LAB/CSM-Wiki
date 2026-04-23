@@ -96,4 +96,68 @@
     .nn { color: #d29922 !important; }
     .si { color: #8b949e !important; }
   }
+
+  // ==========================================================================
+  // Surface-level overrides — Just the Docs bakes a number of light colours
+  // (`#fff`, `#f7f7f7`, `#f5f6fa`) directly into its compiled CSS, so they
+  // can't be flipped via CSS variables alone. These rules raise the
+  // specificity (`[data-theme=dark]` prefix) so the dark surfaces win.
+  // ==========================================================================
+
+  // Default `.btn` (secondary / unstyled). Our `_components.scss` already
+  // styles secondary buttons via a long `:not(...)` chain in light mode,
+  // but JTD's `.btn { background-color: #f7f7f7 }` still bleeds through on
+  // the coloured variants below.
+  .btn {
+    background-color: transparent;
+    color: var(--body-text-color);
+  }
+
+  // Coloured button variants — soften them so they read as dark surfaces
+  // with their accent colour, rather than blinding light chips.
+  .btn-purple { background-color: #2d2356; color: #d2bcff; }
+  .btn-blue   { background-color: #0c2d6b; color: #79c0ff; }
+  .btn-green  { background-color: #0d2f1d; color: #56d364; }
+
+  // Label chips — same treatment.
+  .label,
+  .label-blue   { background-color: #0c2d6b; color: #79c0ff; }
+  .label-green  { background-color: #0d2f1d; color: #56d364; }
+  .label-purple { background-color: #2d2356; color: #d2bcff; }
+  .label-red    { background-color: #2d1212; color: #ff7b72; }
+  .label-yellow { background-color: #2e2410; color: #e8b449; }
+
+  // Search input + dropdown panel + icon button.
+  .search-input,
+  .search-active .search-input {
+    background-color: var(--search-background-color);
+    color: var(--body-text-color);
+  }
+  .search-results {
+    background-color: var(--sidebar-color);
+    color: var(--body-text-color);
+  }
+  .search-result:hover,
+  .search-result.active {
+    background-color: rgba(var(--brand-color-rgb), 0.12);
+  }
+  .search-button {
+    background-color: var(--sidebar-color);
+    border-color: var(--border-color);
+    color: var(--body-text-color);
+  }
+
+  // Top-of-content header bar (md+).
+  .main-header,
+  .main-header.nav-open {
+    background-color: var(--sidebar-color);
+    border-bottom-color: var(--border-color);
+  }
+
+  // Skip-to-main accessibility link (only visible on focus).
+  a.skip-to-main:focus,
+  a.skip-to-main:active {
+    background-color: var(--sidebar-color);
+    color: var(--link-color);
+  }
 }
