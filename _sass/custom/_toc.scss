@@ -2,19 +2,21 @@
 // Table of Contents — floating (desktop, ≥ $bp-three-col) + inline (mobile)
 // ----------------------------------------------------------------------------
 // The floating TOC width is fixed by CSS `clamp()` to avoid layout shift on
-// first paint (the previous JS-measured approach caused a brief FOUC). The
-// JS in toc.js is still allowed to refine the value by setting
-// `--page-toc-width`, but the default clamp value is enough for layout to
-// settle before JS runs.
+// first paint (the previous JS-measured approach caused a brief FOUC).
+// `--page-toc-width` is set in CSS (no JS-measurement at runtime), but only
+// when toc.js has actually rendered a floating TOC — it adds the
+// `.has-page-toc` class to <html>. Pages without a TOC keep the default
+// `--page-toc-width: 0px` from _variables.scss so `.main` does not reserve
+// dead space and `#back-to-top` does not shift left for nothing.
 // ============================================================================
 
 // ---------------------------------------------------------------------------
-// Default TOC width — used on the desktop breakpoint to reserve space.
-// `_layout.scss` reads --page-toc-width; we pre-seed it here so first paint
-// already accounts for the panel.
+// Default TOC width — only applied when a floating TOC is actually rendered.
+// `_layout.scss` reads --page-toc-width; we set it here so first paint after
+// JS runs (which adds .has-page-toc) reserves the right amount of space.
 // ---------------------------------------------------------------------------
 @media (min-width: $bp-three-col) {
-  :root {
+  html.has-page-toc {
     // 14 rem floor → fits short Chinese headings comfortably.
     // 18 vw scales smoothly with viewport.
     // 22 rem ceiling → keeps proportion on ultra-wide displays.

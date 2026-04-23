@@ -28,14 +28,13 @@ permalink: /
 <strong>⚠️ 文档更新中</strong> · 本 Wiki 当前正在使用 AI 辅助批量更新，如发现内容偏差请通过 [Issue](https://github.com/NEVSTOP-LAB/CSM-Wiki/issues) 反馈。
 </div>
 
-<ul class="badge-bar" markdown="1">
 - [![VIPM Installs](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=installs){: .no-invert }](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)
 - [![VIPM Stars](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/badge.svg?metric=stars){: .no-invert }](https://www.vipm.io/package/nevstop_lib_communicable_state_machine/)
 - [![License](https://img.shields.io/badge/License-MIT-blue.svg){: .no-invert }](https://opensource.org/licenses/MIT)
 - [![GitHub all releases](https://img.shields.io/github/downloads/NEVSTOP-LAB/Communicable-State-Machine/total){: .no-invert }](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/releases)
 - [![Build_VIPM_Library](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml/badge.svg?branch=main){: .no-invert }](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml)
 - [![Check_Broken_VIs](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Check_Broken_VIs.yml/badge.svg?branch=main){: .no-invert }](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Check_Broken_VIs.yml)
-</ul>
+{: .badge-bar }
 
 ## 可通信状态机（CSM）简介
 

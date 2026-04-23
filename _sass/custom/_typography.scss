@@ -16,9 +16,11 @@
 // dark theme only needs to override variable values, never selectors.
 
 html {
-  // 17 px base — a touch larger than browser default (16 px). Stays in `rem`
-  // units throughout the stylesheet so users who override their browser font
-  // size still get a proportional layout.
+  // Intentional override of the browser default (typically 16 px). 17 px
+  // gives Chinese glyphs a touch more breathing room while still being a
+  // small, considered bump — small enough that users who rely on browser
+  // zoom or a custom default size still get a proportional layout via
+  // `rem` units throughout the rest of the stylesheet.
   font-size: 17px;
 
   // Mixed CJK + Latin punctuation tightening. Falls back gracefully when the

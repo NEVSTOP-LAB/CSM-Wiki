@@ -6,7 +6,7 @@
   Theme bootstrap — runs synchronously in <head> so the `data-theme`
   attribute is set BEFORE the first paint. This avoids the brief flash
   of light theme that would otherwise appear before theme-switcher.js
-  loads at the bottom of <body>.
+  (which is loaded with `defer` from the head, below) has a chance to run.
 {%- endcomment -%}
 <script>
   (function () {

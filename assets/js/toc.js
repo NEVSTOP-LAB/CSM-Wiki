@@ -320,6 +320,10 @@
     var items = buildTocItems();
 
     if (items.length > 1) {
+      // Signal to CSS that a floating TOC is present, so layout reserves
+      // right-side space (--page-toc-width) only when there's actually a
+      // panel to fit. Pages without a TOC keep the default 0px.
+      document.documentElement.classList.add('has-page-toc');
       renderFloatingToc(items);
       renderInlineToc(items);
       initScrollspy(items);
