@@ -36,11 +36,14 @@
 // Primary action — solid brand fill
 .btn-primary {
   background-color: var(--brand-color);
+  // Reset the theme's gradient so our flat brand colour is visible.
+  background-image: none;
   color: #ffffff;
 
   &:hover,
   &:focus {
     background-color: var(--brand-color-hover);
+    background-image: none;
     color: #ffffff;
   }
 }
