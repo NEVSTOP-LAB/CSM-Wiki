@@ -49,16 +49,20 @@
   }
 
   function updateThemeSelector(preference) {
-    const select = document.getElementById('theme-select');
-    if (!select) return;
-
     const normalized = (preference === LIGHT_THEME || preference === DARK_THEME)
       ? preference
       : SYSTEM_PREFERENCE;
 
-    if (select.value !== normalized) {
+    const select = document.getElementById('theme-select');
+    if (select && select.value !== normalized) {
       select.value = normalized;
     }
+
+    const buttons = document.querySelectorAll('.theme-switcher__btn[data-theme-pref]');
+    buttons.forEach(function(btn) {
+      const isActive = btn.getAttribute('data-theme-pref') === normalized;
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
   }
 
   // Apply theme to document (without saving to localStorage)
@@ -105,15 +109,25 @@
 
   // Set up toggle button after DOM is ready
   document.addEventListener('DOMContentLoaded', function() {
+    updateThemeSelector(initialPreference);
+
     const themeSelect = document.getElementById('theme-select');
     if (themeSelect) {
-      updateThemeSelector(initialPreference);
       themeSelect.addEventListener('change', function(event) {
         const preference = event.target.value;
         const themeToApply = resolveTheme(preference);
         applyTheme(themeToApply, true, preference);
       });
     }
+
+    const themeButtons = document.querySelectorAll('.theme-switcher__btn[data-theme-pref]');
+    themeButtons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const preference = btn.getAttribute('data-theme-pref');
+        const themeToApply = resolveTheme(preference);
+        applyTheme(themeToApply, true, preference);
+      });
+    });
 
     // Listen for system theme changes (with Safari compatibility)
     if (window.matchMedia) {

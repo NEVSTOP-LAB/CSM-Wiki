@@ -11,9 +11,11 @@
 // ---------------------------------------------------------------------------
 
 // Sidebar (navigation) width — wider than default for better readability of
-// long Chinese chapter titles. Default: $nav-width: 16.5rem, $nav-width-md: 15.5rem
-$nav-width:    20rem;
-$nav-width-md: 18rem;
+// long Chinese chapter titles, but trimmed back from the previous 20rem
+// because the original allotment felt visually heavy on the page.
+// Default: $nav-width: 16.5rem, $nav-width-md: 15.5rem
+$nav-width:    17rem;
+$nav-width-md: 15.5rem;
 
 // Outer container width for `.main`. Default: $content-width: 50rem.
 // We expand the container, then constrain prose to a comfortable measure via
