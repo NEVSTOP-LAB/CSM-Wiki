@@ -1,0 +1,213 @@
+// ============================================================================
+// Table of Contents — floating (desktop, ≥ $bp-three-col) + inline (mobile)
+// ----------------------------------------------------------------------------
+// The floating TOC width is fixed by CSS `clamp()` to avoid layout shift on
+// first paint (the previous JS-measured approach caused a brief FOUC).
+// `--page-toc-width` is the TOTAL space reserved on the right edge of `.main`
+// (TOC width + breathing room) and is set in CSS only when toc.js has actually
+// rendered a floating TOC — it adds the `.has-page-toc` class to <html>.
+// Pages without a TOC keep the default `--page-toc-width: 0px` from
+// `_variables.scss` so `.main` does not reserve dead space and `#back-to-top`
+// does not shift left for nothing. The floating panel itself is sized from
+// the same variable so the panel's left edge always sits inside the reserved
+// padding (it cannot overlap content).
+// ============================================================================
+
+// ---------------------------------------------------------------------------
+// Default TOC width — only applied when a floating TOC is actually rendered.
+// `_layout.scss` reads --page-toc-width to set `.main { padding-right: … }`.
+// The clamp's lower bound is large enough that even at the breakpoint
+// (`$bp-three-col`) `--page-toc-width` is wider than the floating panel
+// (`$toc-max-width`) plus `right: 1rem`, so content never sits under the TOC.
+// ---------------------------------------------------------------------------
+@media (min-width: $bp-three-col) {
+  html.has-page-toc {
+    // Floor: $toc-max-width + 2rem → guarantees the reserved column is wider
+    //        than the floating panel + its right gutter (1rem).
+    // 20vw : grows gently with the viewport.
+    // Ceil : $toc-max-width + 4rem → keeps proportion on ultra-wide displays.
+    --page-toc-width: clamp(#{$toc-max-width + 2rem}, 20vw, #{$toc-max-width + 4rem});
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Floating TOC (desktop)
+// ---------------------------------------------------------------------------
+#page-toc-float {
+  display: none;            // shown only on the desktop breakpoint
+  position: fixed;
+  top: 4.5rem;
+  right: 1rem;
+  width: max-content;
+  min-width: $toc-min-width;
+  max-width: $toc-max-width;
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+  padding: 0.875rem 1rem;
+  background: var(--code-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  z-index: 100;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+#page-toc-float::-webkit-scrollbar { width: 4px; }
+#page-toc-float::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+
+.toc-float-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--body-heading-color);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.toc-float-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    line-height: 1.7;
+    margin: 0.15rem 0;
+    list-style: none;
+
+    &::marker { content: none; }
+  }
+
+  a {
+    display: block;
+    color: var(--muted-color);
+    text-decoration: none;
+    padding: 0.2rem 0.4rem;
+    border-left: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    border-radius: 2px;
+
+    &:hover {
+      color: var(--body-heading-color);
+      background: rgba(var(--brand-color-rgb), 0.04);
+    }
+
+    &.active {
+      color: var(--brand-color);
+      font-weight: 600;
+      border-left-color: var(--brand-color);
+      background: rgba(var(--brand-color-rgb), 0.08);
+    }
+  }
+
+  // Indentation by heading level
+  li.toc-level-2 > a { padding-left: 0.4rem;  font-size: 0.9rem; }
+  li.toc-level-3 > a { padding-left: 1.1rem;  font-size: 0.85rem; }
+  li.toc-level-4 > a { padding-left: 1.85rem; font-size: 0.8rem; color: var(--muted-color); }
+}
+
+// Show floating TOC only on wide screens; hide the mobile inline TOC there.
+@media (min-width: $bp-three-col) {
+  #page-toc-float  { display: block; }
+  #page-toc-inline { display: none; }
+}
+
+// ---------------------------------------------------------------------------
+// Inline TOC (mobile + two-column)
+// ---------------------------------------------------------------------------
+#page-toc-inline {
+  margin: 0 0 1.5rem 0;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--code-background-color);
+  overflow: hidden;
+  max-width: var(--content-max-width);
+}
+
+.toc-inline-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--body-heading-color);
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0;
+  background: var(--code-background-color);
+  text-align: left;
+  transition: background-color 0.2s ease;
+
+  &:hover { background: rgba(var(--brand-color-rgb), 0.06); }
+  &:focus-visible {
+    background: rgba(var(--brand-color-rgb), 0.08);
+    outline: 2px solid var(--brand-color);
+    outline-offset: -2px;
+  }
+}
+
+.toc-inline-arrow {
+  font-size: 0.7rem;
+  transition: transform 0.2s;
+}
+
+#page-toc-inline.collapsed {
+  .toc-inline-list { display: none; }
+  .toc-inline-header { border-bottom: none; }
+}
+
+#page-toc-inline .toc-inline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0 0.4rem 0.875rem;
+
+  li {
+    line-height: 1.6;
+    list-style: none;
+    margin: 0;
+
+    &::marker { content: none; }
+  }
+
+  a {
+    display: block;
+    color: var(--muted-color);
+    text-decoration: none;
+    padding: 0.2rem 0.4rem;
+    border-left: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    border-radius: 2px;
+
+    &:hover {
+      color: var(--body-heading-color);
+      background: rgba(var(--brand-color-rgb), 0.04);
+    }
+
+    &.active {
+      color: var(--brand-color);
+      font-weight: 600;
+      border-left-color: var(--brand-color);
+      background: rgba(var(--brand-color-rgb), 0.08);
+    }
+  }
+
+  li.toc-level-2 > a { padding-left: 0.4rem;  font-size: 0.9rem; }
+  li.toc-level-3 > a { padding-left: 1.1rem;  font-size: 0.85rem; }
+  li.toc-level-4 > a { padding-left: 1.85rem; font-size: 0.8rem; color: var(--muted-color); }
+}

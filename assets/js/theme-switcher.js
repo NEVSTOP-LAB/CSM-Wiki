@@ -49,16 +49,20 @@
   }
 
   function updateThemeSelector(preference) {
-    const select = document.getElementById('theme-select');
-    if (!select) return;
-
     const normalized = (preference === LIGHT_THEME || preference === DARK_THEME)
       ? preference
       : SYSTEM_PREFERENCE;
 
-    if (select.value !== normalized) {
+    const select = document.getElementById('theme-select');
+    if (select && select.value !== normalized) {
       select.value = normalized;
     }
+
+    const buttons = document.querySelectorAll('.theme-switcher__btn[data-theme-pref]');
+    buttons.forEach(function(btn) {
+      const isActive = btn.getAttribute('data-theme-pref') === normalized;
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
   }
 
   // Apply theme to document (without saving to localStorage)
@@ -82,14 +86,16 @@
         } : {}
       });
 
-      // Re-render existing Mermaid diagrams using the modern API
-      // Prefer the modern `run` API if available, fall back to `init` otherwise
+      // Re-render existing Mermaid diagrams using the modern API.
+      // Mermaid wraps `code.language-mermaid` blocks, so we re-target that
+      // selector (the original render in components/mermaid.html also uses
+      // `.language-mermaid`, not `.mermaid`).
       if (typeof window.mermaid.run === 'function') {
-        // Modern API: re-render all .mermaid elements
-        window.mermaid.run({ querySelector: '.mermaid' });
+        // Modern API: re-render all .language-mermaid elements
+        window.mermaid.run({ querySelector: '.language-mermaid' });
       } else if (typeof window.mermaid.init === 'function') {
         // Legacy API: re-initialize Mermaid diagrams
-        window.mermaid.init(undefined, '.mermaid');
+        window.mermaid.init(undefined, '.language-mermaid');
       }
     }
   }
@@ -103,15 +109,25 @@
 
   // Set up toggle button after DOM is ready
   document.addEventListener('DOMContentLoaded', function() {
+    updateThemeSelector(initialPreference);
+
     const themeSelect = document.getElementById('theme-select');
     if (themeSelect) {
-      updateThemeSelector(initialPreference);
       themeSelect.addEventListener('change', function(event) {
         const preference = event.target.value;
         const themeToApply = resolveTheme(preference);
         applyTheme(themeToApply, true, preference);
       });
     }
+
+    const themeButtons = document.querySelectorAll('.theme-switcher__btn[data-theme-pref]');
+    themeButtons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const preference = btn.getAttribute('data-theme-pref');
+        const themeToApply = resolveTheme(preference);
+        applyTheme(themeToApply, true, preference);
+      });
+    });
 
     // Listen for system theme changes (with Safari compatibility)
     if (window.matchMedia) {

@@ -1,0 +1,203 @@
+// ============================================================================
+// Dark theme — overrides ONLY CSS variables (and a couple of effects that
+// genuinely need different rules in dark mode, like image filters and
+// syntax-highlighting tints). All element selectors live in their respective
+// partials (typography, layout, components, callouts, …) and consume these
+// variables via `var(--...)`, so simply flipping the variable values is
+// enough to repaint the entire site.
+// ============================================================================
+
+[data-theme="dark"] {
+  // ----- Brand ------------------------------------------------------------
+  --brand-color:       #8b6ce8;          // lightened tint for AA on dark bg
+  --brand-color-rgb:   139, 108, 232;
+  --brand-color-hover: #a48cf0;
+
+  // ----- Surfaces & text --------------------------------------------------
+  --body-background-color:       #0d1117;
+  --body-text-color:             #c9d1d9;
+  --body-heading-color:          #e6edf3;
+  --muted-color:                 #8b949e;
+  --nav-background-color:        #161b22;
+  --sidebar-color:               #161b22;
+  --nav-link-color:              #c9d1d9;
+  --border-color:                #3d444d;
+  --code-background-color:       #161b22;
+  --code-text-color:             #c9d1d9;
+  --table-background-color:      #0d1117;
+  --search-background-color:     #0d1117;
+  --search-result-preview-color: #8b949e;
+
+  // ----- Links ------------------------------------------------------------
+  --link-color:        #58a6ff;
+  --link-hover-color:  #79c0ff;
+
+  // ----- Callouts (dark) – low-saturation deep backgrounds ----------------
+  --callout-note-color:      #6cb6ff;
+  --callout-note-bg:         #0c2d6b;
+  --callout-tip-color:       #4ac267;
+  --callout-tip-bg:          #0d2f1d;
+  --callout-warning-color:   #e8b449;
+  --callout-warning-bg:      #2e2410;
+  --callout-important-color: #b08aed;
+  --callout-important-bg:    #21193b;
+  --callout-caution-color:   #ff7b72;
+  --callout-caution-bg:      #2d1212;
+
+  // ----- Floating-TOC popup shadow tweak ----------------------------------
+  --callout-hover-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+// ===========================================================================
+// Selector-level overrides that go BEYOND simple colour swaps
+// ===========================================================================
+
+[data-theme="dark"] {
+  // Image handling — limit the brightness / opacity tweak to in-content
+  // figures and inline paragraph images. Icons, badges, QR codes, etc. should
+  // render at full fidelity. Any image can opt out via `class="no-invert"`.
+  .main-content figure img,
+  .main-content p > img {
+    opacity: 0.9;
+    filter: brightness(0.92);
+    border: 1px solid var(--border-color);
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    transition: opacity 0.2s ease, filter 0.2s ease;
+
+    &:hover { opacity: 1; filter: brightness(1); }
+  }
+
+  // Escape hatch — annotate any image with class="no-invert" to skip the
+  // dark-mode treatment entirely.
+  img.no-invert {
+    opacity: 1 !important;
+    filter: none !important;
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  // Syntax highlighting — Rouge classes (general code, not CSM)
+  .highlight {
+    background-color: var(--code-background-color);
+
+    .c, .cm, .c1, .cs        { color: #8b949e; } // Comments
+    .k, .kd, .kn, .kp, .kr, .kt { color: #ff7b72; } // Keywords
+    .s, .s1, .s2, .sh, .sr   { color: #a5d6ff; } // Strings
+    .m, .mi, .mf, .mh, .il   { color: #79c0ff; } // Numbers
+    .na, .nb, .nc, .nf, .nn  { color: #d2a8ff; } // Names
+    .o, .ow                  { color: #ff7b72; } // Operators
+  }
+
+  // CSM-specific overrides for dark theme readability
+  .language-csm {
+    .c1 { color: #3fb950 !important; }
+    .sd { color: #8b949e !important; }
+    .nn { color: #d29922 !important; }
+    .si { color: #8b949e !important; }
+  }
+
+  // ==========================================================================
+  // Surface-level overrides — Just the Docs bakes a number of light colours
+  // (`#fff`, `#f7f7f7`, `#f5f6fa`) directly into its compiled CSS, so they
+  // can't be flipped via CSS variables alone. These rules raise the
+  // specificity (`[data-theme=dark]` prefix) so the dark surfaces win.
+  // ==========================================================================
+
+  // Default `.btn` (secondary / unstyled). Our `_components.scss` already
+  // styles secondary buttons via a long `:not(...)` chain in light mode,
+  // but JTD's `.btn { background-color: #f7f7f7 }` still bleeds through on
+  // the coloured variants below.
+  .btn {
+    background-color: transparent;
+    color: var(--body-text-color);
+  }
+
+  // Coloured button variants — soften them so they read as dark surfaces
+  // with their accent colour, rather than blinding light chips.
+  .btn-purple { background-color: #2d2356; color: #d2bcff; }
+  .btn-blue   { background-color: #0c2d6b; color: #79c0ff; }
+  .btn-green  { background-color: #0d2f1d; color: #56d364; }
+
+  // Label chips — same treatment.
+  .label,
+  .label-blue   { background-color: #0c2d6b; color: #79c0ff; }
+  .label-green  { background-color: #0d2f1d; color: #56d364; }
+  .label-purple { background-color: #2d2356; color: #d2bcff; }
+  .label-red    { background-color: #2d1212; color: #ff7b72; }
+  .label-yellow { background-color: #2e2410; color: #e8b449; }
+
+  // Search input + dropdown panel + icon button.
+  .search-input,
+  .search-active .search-input {
+    background-color: var(--search-background-color);
+    color: var(--body-text-color);
+  }
+  .search-results {
+    background-color: var(--sidebar-color);
+    color: var(--body-text-color);
+  }
+  .search-result:hover,
+  .search-result.active {
+    background-color: rgba(var(--brand-color-rgb), 0.12);
+  }
+  .search-button {
+    background-color: var(--sidebar-color);
+    border-color: var(--border-color);
+    color: var(--body-text-color);
+  }
+
+  // Top-of-content header bar (md+).
+  .main-header,
+  .main-header.nav-open {
+    background-color: var(--sidebar-color);
+    border-bottom-color: var(--border-color);
+  }
+
+  // Skip-to-main accessibility link (only visible on focus).
+  a.skip-to-main:focus,
+  a.skip-to-main:active {
+    background-color: var(--sidebar-color);
+    color: var(--link-color);
+  }
+
+  // Inline `code` — Just the Docs bakes `background-color: #f5f6fa`
+  // (light) + `border: 1px solid #eeebee` into the compiled CSS, so
+  // dark-mode CSS vars don't reach here without a selector-level override.
+  :not(pre, figure) > code {
+    background-color: var(--code-background-color);
+    color: var(--code-text-color);
+    border-color: var(--border-color);
+  }
+
+  // Highlighted code-block surfaces — theme bakes `background: #f9f9f9`
+  // / `#f5f6fa` directly into `.highlight` and `pre.highlight`.
+  .highlight,
+  pre.highlight,
+  figure.highlight {
+    background-color: var(--code-background-color);
+    color: var(--code-text-color);
+  }
+  pre.highlight code,
+  figure.highlight pre {
+    background-color: var(--code-background-color);
+    color: var(--code-text-color);
+  }
+
+  // Tables — JTD sets `th, td { background-color: #fff }` literally, and
+  // that's a more specific selector than our `table { ... }` rule, so the
+  // cells stay blinding white without this override.
+  .main-content table th,
+  .main-content table td {
+    background-color: var(--table-background-color);
+    color: var(--body-text-color);
+    border-color: var(--border-color);
+  }
+  .main-content table thead th {
+    background-color: var(--code-background-color);
+    border-bottom-color: var(--border-color);
+  }
+
+  // hr — theme uses grey-lt-100 which is baked
+  hr { background-color: var(--border-color); }
+}

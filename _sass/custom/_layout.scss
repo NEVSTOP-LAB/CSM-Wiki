@@ -1,0 +1,74 @@
+// ============================================================================
+// Layout — three-tier responsive layout
+// ----------------------------------------------------------------------------
+// Breakpoints (declared in setup.scss):
+//   < $bp-two-col          : single column (mobile / narrow tablet)
+//   $bp-two-col – $bp-three-col : two columns (sidebar + main, inline TOC)
+//   ≥ $bp-three-col        : three columns (sidebar + main + sticky TOC)
+// ============================================================================
+
+// Base body / surface colours so a `data-theme` switch updates everywhere.
+// The base `body` rule from Just the Docs bakes in `#fff`; we override it
+// here so dark mode flips the page background to the dark variable.
+body {
+  background-color: var(--body-background-color);
+  color: var(--body-text-color);
+}
+
+.side-bar {
+  background-color: var(--sidebar-color);
+  border-right-color: var(--border-color);
+}
+
+.main-content {
+  background-color: var(--body-background-color);
+  color: var(--body-text-color);
+}
+
+.site-header,
+.main-header {
+  background-color: var(--sidebar-color);
+  border-bottom-color: var(--border-color);
+}
+
+.site-footer {
+  background-color: var(--sidebar-color);
+  border-top-color: var(--border-color);
+  color: var(--body-text-color);
+}
+
+// ---------------------------------------------------------------------------
+// Two-column breakpoint (≥ $bp-two-col)
+// Remove the theme's max-width cap on `.main` so we control the width
+// ourselves via the partials below (and so wide screens use the full area).
+// ---------------------------------------------------------------------------
+@media (min-width: $bp-two-col) {
+  .main {
+    // Higher specificity (.js .main) avoids needing `!important`.
+    max-width: none;
+  }
+
+  // .js is added to <html> by Just the Docs at runtime.
+  .js .main { max-width: none; }
+}
+
+// ---------------------------------------------------------------------------
+// Wide-sidebar breakpoint
+// Replace Just the Docs' growing-sidebar formula with a fixed $nav-width.
+// ---------------------------------------------------------------------------
+@media (min-width: #{$content-width + $nav-width}) {
+  .js .side-bar { width: $nav-width; }
+  .js .main     { margin-left: $nav-width; }
+}
+
+// ---------------------------------------------------------------------------
+// Three-column breakpoint (≥ $bp-three-col)
+// Reserve space on the right of `.main` for the sticky TOC. The width is
+// controlled by `--page-toc-width` (set in _toc.scss to a CSS clamp value
+// when the TOC is present, otherwise 0).
+// ---------------------------------------------------------------------------
+@media (min-width: $bp-three-col) {
+  .main {
+    padding-right: var(--page-toc-width, 0px);
+  }
+}

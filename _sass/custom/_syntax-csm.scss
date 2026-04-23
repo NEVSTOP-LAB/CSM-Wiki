@@ -1,0 +1,45 @@
+// ============================================================================
+// CSM (Communicable State Machine) syntax highlighting
+// Scoped to .language-csm so it does not affect other languages.
+// Dark-mode overrides live in _dark-theme.scss.
+// ============================================================================
+
+$csm-comment-color:  #22863a; // green (C-style comment colour)
+$csm-argument-color: #6a737d; // medium grey (slightly lighter than default text)
+$csm-target-color:   #ca7601; // amber/dark-yellow (standalone target module name)
+
+// Comments (// ...) — green, italic
+.language-csm .c1 {
+  color: $csm-comment-color !important;
+  font-style: italic;
+}
+
+// Arguments (after >> separator) — lighter colour, italic, underline
+.language-csm .sd {
+  color: $csm-argument-color !important;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+// Send separators (-@, ->, ->|) — keep theme keyword colour but bold
+.language-csm .k { font-weight: bold; }
+
+// >> operator
+.language-csm .o { font-weight: bold; }
+
+// @target embedded in a command (Name::Label) — bold only, same colour as command text
+.language-csm .nl {
+  font-weight: bold;
+  color: inherit !important;
+}
+
+// Standalone target module name after send separator (Name::Namespace) — amber/dark-yellow
+.language-csm .nn { color: $csm-target-color !important; }
+
+// @target embedded in an argument (Literal::String::Interpol) — bold, grey, italic, underline
+.language-csm .si {
+  color: $csm-argument-color !important;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+}

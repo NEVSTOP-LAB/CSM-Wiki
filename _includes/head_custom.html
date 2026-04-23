@@ -1,6 +1,27 @@
 {% if page.has_toc == false %}
 <meta name="has-toc" content="false">
 {% endif %}
+
+{%- comment -%}
+  Theme bootstrap — runs synchronously in <head> so the `data-theme`
+  attribute is set BEFORE the first paint. This avoids the brief flash
+  of light theme that would otherwise appear before theme-switcher.js
+  (which is loaded with `defer` from the head, below) has a chance to run.
+{%- endcomment -%}
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('csm-wiki-theme');
+      var theme = (saved === 'light' || saved === 'dark')
+        ? saved
+        : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) { /* localStorage blocked — fall back to default light theme */ }
+  })();
+</script>
+
 <script defer src="{{ '/assets/js/toc.js' | relative_url }}"></script>
 <script defer src="{{ '/assets/js/callout-hover.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/theme-switcher.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/js/theme-switcher.js' | relative_url }}"></script>

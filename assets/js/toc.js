@@ -151,47 +151,15 @@
   }
 
   // -----------------------------------------------------------------------
-  // Track TOC panel width → CSS custom property --page-toc-width on :root
-  // This allows .main to reserve the exact right-padding needed without
-  // hard-coding a fixed value.  Falls back gracefully when ResizeObserver
-  // is unavailable or when no TOC is rendered (var defaults to 0px in CSS).
+  // (No JS-driven TOC width tracking.)
+  //
+  // Earlier versions used ResizeObserver to measure the panel and write a
+  // `--page-toc-width` CSS variable. That approach caused a visible layout
+  // shift on first paint because the variable started at 0 and only filled
+  // in after JS ran. The width is now expressed in pure CSS via `clamp()`
+  // inside _toc.scss, which stabilises the layout immediately and survives
+  // JS being disabled or slow to load.
   // -----------------------------------------------------------------------
-
-  function trackTocWidth(panel) {
-    function applyWidth() {
-      // offsetWidth reads the layout box including border/padding — exactly
-      // what we want so that .main's padding-right matches the rendered size.
-      var w = panel.offsetWidth + 50; // add some extra spacing for visual comfort
-      document.documentElement.style.setProperty('--page-toc-width', (w || 0) + 'px');
-    }
-
-    applyWidth(); // set immediately after first render
-
-    // Keep the variable in sync when the TOC resizes (e.g. on window resize).
-    // Store the observer/listener on the panel element itself so it could be
-    // disconnected in the future should the panel ever be removed.
-    if (typeof ResizeObserver !== 'undefined') {
-      var ro = new ResizeObserver(applyWidth);
-      ro.observe(panel);
-      panel._tocResizeObserver = ro; // store reference for potential cleanup
-    } else if (typeof window !== 'undefined' && window.addEventListener) {
-      // Fallback for browsers without ResizeObserver: update on window resize.
-      // This also handles the case where the panel is display:none on load
-      // (narrow viewport) and the user later widens into the desktop breakpoint.
-      var resizeHandler = function () {
-        applyWidth();
-      };
-
-      try {
-        window.addEventListener('resize', resizeHandler, { passive: true });
-      } catch (e) {
-        // Older browsers may not support the options object; fall back silently.
-        window.addEventListener('resize', resizeHandler);
-      }
-
-      panel._tocResizeHandler = resizeHandler; // store reference for potential cleanup
-    }
-  }
 
   // -----------------------------------------------------------------------
   // Render inline TOC (mobile - top of content)
@@ -352,8 +320,11 @@
     var items = buildTocItems();
 
     if (items.length > 1) {
-      var panel = renderFloatingToc(items);
-      trackTocWidth(panel);
+      // Signal to CSS that a floating TOC is present, so layout reserves
+      // right-side space (--page-toc-width) only when there's actually a
+      // panel to fit. Pages without a TOC keep the default 0px.
+      document.documentElement.classList.add('has-page-toc');
+      renderFloatingToc(items);
       renderInlineToc(items);
       initScrollspy(items);
     }

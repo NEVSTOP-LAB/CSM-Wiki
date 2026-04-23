@@ -1,6 +1,15 @@
-<div class="theme-switcher">
-  <label for="theme-select">主题</label>
-  <select id="theme-select" aria-label="选择主题模式">
+<div class="theme-switcher" role="group" aria-label="主题模式">
+  <button type="button" class="theme-switcher__btn" data-theme-pref="system" aria-label="跟随系统" title="跟随系统">
+    <span aria-hidden="true">⌂</span>
+  </button>
+  <button type="button" class="theme-switcher__btn" data-theme-pref="light" aria-label="浅色" title="浅色">
+    <span aria-hidden="true">☀</span>
+  </button>
+  <button type="button" class="theme-switcher__btn" data-theme-pref="dark" aria-label="深色" title="深色">
+    <span aria-hidden="true">☾</span>
+  </button>
+  <!-- Hidden select kept for backward compatibility / no-JS fallback -->
+  <select id="theme-select" aria-label="选择主题模式" hidden>
     <option value="system">跟随系统</option>
     <option value="light">浅色</option>
     <option value="dark">深色</option>
@@ -11,46 +20,44 @@
   .theme-switcher {
     width: 100%;
     box-sizing: border-box;
-    padding: 1rem;
+    padding: 0.45rem 0.75rem;
     border-top: 1px solid var(--border-color);
     background: var(--sidebar-color);
     display: flex;
     flex-direction: row;
-    align-items: center;
-    gap: 0.75rem;
+    align-items: stretch;
+    justify-content: stretch;
+    gap: 0.25rem;
   }
 
-  .theme-switcher label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--body-heading-color);
-    white-space: nowrap;
-  }
-
-  .theme-switcher select {
-    flex: 1;
-    padding: 0.5rem 0.65rem;
-    border-radius: 0.375rem;
+  .theme-switcher__btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.3rem 0.25rem;
     border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
     background: var(--body-background-color);
     color: var(--body-text-color);
-    font-size: 0.875rem;
+    font-size: 0.95rem;
+    line-height: 1;
     cursor: pointer;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
   }
 
-  .theme-switcher select:hover {
-    border-color: var(--btn-primary-color);
+  .theme-switcher__btn:hover {
+    border-color: var(--brand-color);
+    color: var(--brand-color);
   }
 
-  .theme-switcher select:focus {
-    outline: 2px solid var(--btn-primary-color);
-    outline-offset: 2px;
+  .theme-switcher__btn:focus-visible {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 1px;
   }
 
-  @media (max-width: 50rem) {
-    .theme-switcher {
-      padding: 0.75rem;
-    }
+  .theme-switcher__btn[aria-pressed="true"] {
+    background: rgba(var(--brand-color-rgb), 0.12);
+    border-color: var(--brand-color);
+    color: var(--brand-color);
+    font-weight: 600;
   }
 </style>
