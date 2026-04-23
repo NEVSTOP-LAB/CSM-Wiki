@@ -160,4 +160,44 @@
     background-color: var(--sidebar-color);
     color: var(--link-color);
   }
+
+  // Inline `code` — Just the Docs bakes `background-color: #f5f6fa`
+  // (light) + `border: 1px solid #eeebee` into the compiled CSS, so
+  // dark-mode CSS vars don't reach here without a selector-level override.
+  :not(pre, figure) > code {
+    background-color: var(--code-background-color);
+    color: var(--code-text-color);
+    border-color: var(--border-color);
+  }
+
+  // Highlighted code-block surfaces — theme bakes `background: #f9f9f9`
+  // / `#f5f6fa` directly into `.highlight` and `pre.highlight`.
+  .highlight,
+  pre.highlight,
+  figure.highlight {
+    background-color: var(--code-background-color);
+    color: var(--code-text-color);
+  }
+  pre.highlight code,
+  figure.highlight pre {
+    background-color: var(--code-background-color);
+    color: var(--code-text-color);
+  }
+
+  // Tables — JTD sets `th, td { background-color: #fff }` literally, and
+  // that's a more specific selector than our `table { ... }` rule, so the
+  // cells stay blinding white without this override.
+  .main-content table th,
+  .main-content table td {
+    background-color: var(--table-background-color);
+    color: var(--body-text-color);
+    border-color: var(--border-color);
+  }
+  .main-content table thead th {
+    background-color: var(--code-background-color);
+    border-bottom-color: var(--border-color);
+  }
+
+  // hr — theme uses grey-lt-100 which is baked
+  hr { background-color: var(--border-color); }
 }

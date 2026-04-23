@@ -82,14 +82,16 @@
         } : {}
       });
 
-      // Re-render existing Mermaid diagrams using the modern API
-      // Prefer the modern `run` API if available, fall back to `init` otherwise
+      // Re-render existing Mermaid diagrams using the modern API.
+      // Mermaid wraps `code.language-mermaid` blocks, so we re-target that
+      // selector (the original render in components/mermaid.html also uses
+      // `.language-mermaid`, not `.mermaid`).
       if (typeof window.mermaid.run === 'function') {
-        // Modern API: re-render all .mermaid elements
-        window.mermaid.run({ querySelector: '.mermaid' });
+        // Modern API: re-render all .language-mermaid elements
+        window.mermaid.run({ querySelector: '.language-mermaid' });
       } else if (typeof window.mermaid.init === 'function') {
         // Legacy API: re-initialize Mermaid diagrams
-        window.mermaid.init(undefined, '.mermaid');
+        window.mermaid.init(undefined, '.language-mermaid');
       }
     }
   }
