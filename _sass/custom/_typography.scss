@@ -1,0 +1,138 @@
+// ============================================================================
+// Typography — base font sizing, headings, links
+// ============================================================================
+//
+// Goals:
+//  - Respect the user's browser default font-size (no `body { font-size: 16px }`).
+//  - Comfortable Chinese reading: line-height 1.7, palt feature, mixed-script
+//    letter-spacing.
+//  - Modular scale 1.25 for headings; only h1 retains a visual divider, but
+//    in the form of a 4 px brand-colour left bar (more "assertive" than an
+//    underline and aligns with our brand palette).
+//  - h6 stays at body size but is differentiated via uppercase + tracking
+//    + muted colour so it is not mistaken for body text.
+//
+// All colour values use CSS custom properties from _variables.scss so the
+// dark theme only needs to override variable values, never selectors.
+
+html {
+  // 17 px base — a touch larger than browser default (16 px). Stays in `rem`
+  // units throughout the stylesheet so users who override their browser font
+  // size still get a proportional layout.
+  font-size: 17px;
+
+  // Mixed CJK + Latin punctuation tightening. Falls back gracefully when the
+  // OS font has no `palt` table.
+  font-feature-settings: "palt";
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  color: var(--body-text-color);
+  background-color: var(--body-background-color);
+}
+
+// Headings ------------------------------------------------------------------
+.main-content {
+  h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    color: var(--body-heading-color);
+    font-weight: 700;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    line-height: 1.3;
+  }
+
+  h1, .h1 {
+    font-size: 2.5rem;     // 42.5 px @ 17 px base
+    margin-top: 0;
+    padding-left: 0.85rem;
+    border-left: 4px solid var(--brand-color);
+    line-height: 1.2;
+  }
+
+  h2, .h2 {
+    font-size: 2rem;       // 34 px
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  h3, .h3 { font-size: 1.5rem; }    // 25.5 px
+  h4, .h4 { font-size: 1.25rem; }   // 21.25 px
+  h5, .h5 { font-size: 1.125rem; }  // 19.13 px
+
+  h6, .h6 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted-color);
+  }
+}
+
+// Comfortable line length for prose --------------------------------------
+// Cap the measure of paragraphs, lists and blockquotes to ~38–40 CJK
+// characters per line. Tables, code blocks, images and headings stay free
+// to use the full container width.
+.main-content {
+  > p,
+  > ul,
+  > ol,
+  > blockquote,
+  > dl,
+  > details {
+    max-width: var(--content-max-width);
+  }
+
+  // Spacing rhythm
+  p { margin-bottom: 1em; }
+  ul, ol { margin-bottom: 1em; }
+}
+
+// Heading anchors -----------------------------------------------------------
+// Show the `#` permalink to the LEFT of the heading on hover so the user
+// can find/share it without overflowing into the right margin.
+.main-content {
+  h1, h2, h3, h4, h5, h6 {
+    position: relative;
+  }
+
+  .anchor-heading {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  h1:hover .anchor-heading,
+  h2:hover .anchor-heading,
+  h3:hover .anchor-heading,
+  h4:hover .anchor-heading,
+  h5:hover .anchor-heading,
+  h6:hover .anchor-heading,
+  .anchor-heading:focus-visible {
+    opacity: 1;
+  }
+}
+
+// Links ---------------------------------------------------------------------
+a {
+  color: var(--link-color);
+
+  &:hover,
+  &:focus {
+    color: var(--link-hover-color);
+  }
+}
+
+// Sitewide focus ring for keyboard users (accessibility).
+:focus-visible {
+  outline: 2px solid var(--brand-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+// Sidebar site title --------------------------------------------------------
+.side-bar .site-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--body-heading-color);
+}

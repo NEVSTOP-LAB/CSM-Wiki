@@ -1,0 +1,99 @@
+// ============================================================================
+// Dark theme — overrides ONLY CSS variables (and a couple of effects that
+// genuinely need different rules in dark mode, like image filters and
+// syntax-highlighting tints). All element selectors live in their respective
+// partials (typography, layout, components, callouts, …) and consume these
+// variables via `var(--...)`, so simply flipping the variable values is
+// enough to repaint the entire site.
+// ============================================================================
+
+[data-theme="dark"] {
+  // ----- Brand ------------------------------------------------------------
+  --brand-color:       #8b6ce8;          // lightened tint for AA on dark bg
+  --brand-color-rgb:   139, 108, 232;
+  --brand-color-hover: #a48cf0;
+
+  // ----- Surfaces & text --------------------------------------------------
+  --body-background-color:       #0d1117;
+  --body-text-color:             #c9d1d9;
+  --body-heading-color:          #e6edf3;
+  --muted-color:                 #8b949e;
+  --nav-background-color:        #161b22;
+  --sidebar-color:               #161b22;
+  --nav-link-color:              #c9d1d9;
+  --border-color:                #3d444d;
+  --code-background-color:       #161b22;
+  --code-text-color:             #c9d1d9;
+  --table-background-color:      #0d1117;
+  --search-background-color:     #0d1117;
+  --search-result-preview-color: #8b949e;
+
+  // ----- Links ------------------------------------------------------------
+  --link-color:        #58a6ff;
+  --link-hover-color:  #79c0ff;
+
+  // ----- Callouts (dark) – low-saturation deep backgrounds ----------------
+  --callout-note-color:      #6cb6ff;
+  --callout-note-bg:         #0c2d6b;
+  --callout-tip-color:       #4ac267;
+  --callout-tip-bg:          #0d2f1d;
+  --callout-warning-color:   #e8b449;
+  --callout-warning-bg:      #2e2410;
+  --callout-important-color: #b08aed;
+  --callout-important-bg:    #21193b;
+  --callout-caution-color:   #ff7b72;
+  --callout-caution-bg:      #2d1212;
+
+  // ----- Floating-TOC popup shadow tweak ----------------------------------
+  --callout-hover-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+// ===========================================================================
+// Selector-level overrides that go BEYOND simple colour swaps
+// ===========================================================================
+
+[data-theme="dark"] {
+  // Image handling — limit the brightness / opacity tweak to in-content
+  // figures and inline paragraph images. Icons, badges, QR codes, etc. should
+  // render at full fidelity. Any image can opt out via `class="no-invert"`.
+  .main-content figure img,
+  .main-content p > img {
+    opacity: 0.9;
+    filter: brightness(0.92);
+    border: 1px solid var(--border-color);
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    transition: opacity 0.2s ease, filter 0.2s ease;
+
+    &:hover { opacity: 1; filter: brightness(1); }
+  }
+
+  // Escape hatch — annotate any image with class="no-invert" to skip the
+  // dark-mode treatment entirely.
+  img.no-invert {
+    opacity: 1 !important;
+    filter: none !important;
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  // Syntax highlighting — Rouge classes (general code, not CSM)
+  .highlight {
+    background-color: var(--code-background-color);
+
+    .c, .cm, .c1, .cs        { color: #8b949e; } // Comments
+    .k, .kd, .kn, .kp, .kr, .kt { color: #ff7b72; } // Keywords
+    .s, .s1, .s2, .sh, .sr   { color: #a5d6ff; } // Strings
+    .m, .mi, .mf, .mh, .il   { color: #79c0ff; } // Numbers
+    .na, .nb, .nc, .nf, .nn  { color: #d2a8ff; } // Names
+    .o, .ow                  { color: #ff7b72; } // Operators
+  }
+
+  // CSM-specific overrides for dark theme readability
+  .language-csm {
+    .c1 { color: #3fb950 !important; }
+    .sd { color: #8b949e !important; }
+    .nn { color: #d29922 !important; }
+    .si { color: #8b949e !important; }
+  }
+}

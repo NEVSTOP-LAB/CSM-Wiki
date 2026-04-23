@@ -1,180 +1,41 @@
-// Custom CSS - loaded after all theme styles
-// Use this file for custom styling that overrides the theme
+// ============================================================================
+// custom.scss — main aggregator for CSM-Wiki custom styles.
+// ----------------------------------------------------------------------------
+// Just the Docs auto-imports this file AFTER the theme is compiled, so any
+// rule here can override the theme defaults without `!important`.
+//
+// Import order matters:
+//   1. _variables  — design tokens consumed by every later partial
+//   2. _typography — base body / heading rules
+//   3. _layout     — page chrome, breakpoints, sidebar/main grid
+//   4. _navigation — left-side nav active/hover states
+//   5. _toc        — floating + inline TOC
+//   6. _callouts   — note/tip/warning/important/caution + callout-hover
+//   7. _components — buttons, back-to-top, code blocks, tables, hero
+//   8. _syntax-csm — CSM language highlighting
+//   9. _dark-theme — last so its variable overrides win on `[data-theme=dark]`
+// ============================================================================
 
-// Import theme colors for dark/light mode support
-@import "./theme-colors";
+@import "./variables";
+@import "./typography";
+@import "./layout";
+@import "./navigation";
+@import "./toc";
+@import "./callouts";
+@import "./components";
+@import "./syntax-csm";
+@import "./dark-theme";
 
-// Make nav gradients theme-aware so dark mode doesn't reuse light values
-.site-nav ul li a {
-  background-image: linear-gradient(
-    -90deg,
-    var(--nav-background-color) 0%,
-    color-mix(in srgb, var(--nav-background-color) 85%, transparent) 80%,
-    transparent 100%
-  ) !important;
-}
-
-[data-theme="dark"] {
-  .nav-list .nav-list-item {
-    > .nav-list-link:hover,
-    > .nav-list-link.active,
-    > .nav-list-link.active:hover {
-      background-image: none !important;
-    }
-
-    .nav-list-expander:hover {
-      background-image: none !important;
-    }
-  }
-}
-
-// Light theme navigation enhancements
-.nav-list .nav-list-item > .nav-list-link.active {
-  background-color: rgba(94, 65, 208, 0.08);
-  font-weight: 600;
-  border-left: 3px solid var(--btn-primary-color, #5e41d0);
-  padding-left: calc(1rem - 3px);
-}
-
-.nav-list .nav-list-item > .nav-list-link:hover {
-  background-color: rgba(94, 65, 208, 0.04);
-}
-
-.nav-list .nav-list-item > .nav-list-link.active:hover {
-  background-color: rgba(94, 65, 208, 0.12);
-}
-
-// Responsive images: never exceed natural size, shrink to fit smaller viewports
-.main-content img {
-  max-width: 100%;
-  height: auto;
-}
-
-// Ensure sidebar nav doesn't overflow with wider sidebar
-@media (min-width: 50rem) {
-  .site-nav {
-    // Allow more space for navigation items with wider sidebar
-    padding-right: 1rem;
-  }
-
-  // Adjust nav list items to use the full width
-  .nav-list-link {
-    // Ensure text doesn't wrap unnecessarily
-    word-break: normal;
-    overflow-wrap: normal;
-  }
-}
-
-// Fine-tune main content positioning with new widths
-@media (min-width: 87.5rem) {
-  .main-content-wrap {
-    // Ensure content uses the available space well
-    max-width: 100%;
-  }
-}
-
-// ============================================================
-// Callout hover tooltip styles
-// Usage: {: .note .callout-hover } to make a callout collapsible
-// ============================================================
-
-.callout-hover-wrapper {
-  position: relative;
-  margin: 0.75rem 0;
-}
-
-.callout-hover-trigger {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.15em;
-  cursor: pointer;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  text-decoration: underline dotted;
-  text-underline-offset: 3px;
-  transition: background-color 0.2s ease;
-  user-select: none;
-
-  &:hover,
-  &:focus-visible {
-    outline: none;
-  }
-
-  .callout-hover-label {
-    font-weight: 600;
-  }
-}
-
-// Type-specific trigger colors
-.callout-hover-type-note {
-  color: var(--callout-note-color);
-  text-decoration-color: var(--callout-note-color);
-  &:hover, &:focus-visible { background-color: var(--callout-note-bg); }
-}
-
-.callout-hover-type-tip {
-  color: var(--callout-tip-color);
-  text-decoration-color: var(--callout-tip-color);
-  &:hover, &:focus-visible { background-color: var(--callout-tip-bg); }
-}
-
-.callout-hover-type-warning {
-  color: var(--callout-warning-color);
-  text-decoration-color: var(--callout-warning-color);
-  &:hover, &:focus-visible { background-color: var(--callout-warning-bg); }
-}
-
-.callout-hover-type-important {
-  color: var(--callout-important-color);
-  text-decoration-color: var(--callout-important-color);
-  &:hover, &:focus-visible { background-color: var(--callout-important-bg); }
-}
-
-.callout-hover-type-caution {
-  color: var(--callout-caution-color);
-  text-decoration-color: var(--callout-caution-color);
-  &:hover, &:focus-visible { background-color: var(--callout-caution-bg); }
-}
-
-// Popup - the original callout content, shown on hover
-.callout-hover-popup {
-  display: none;
-  position: absolute;
-  z-index: 100;
-  top: calc(100% + 4px);
-  left: 0;
-  width: 100%;
-  box-shadow: var(--callout-hover-shadow, 0 4px 20px rgba(0, 0, 0, 0.15));
-  border-radius: 6px;
-  // Ensure popup is fully opaque so underlying content doesn't show through
-  &.note      { background-color: var(--callout-note-bg); }
-  &.tip       { background-color: var(--callout-tip-bg); }
-  &.warning   { background-color: var(--callout-warning-bg); }
-  &.important { background-color: var(--callout-important-bg); }
-  &.caution   { background-color: var(--callout-caution-bg); }
-
-  &.is-visible {
-    display: block;
-    animation: callout-hover-fadein 0.15s ease-out;
-  }
-}
-
-@keyframes callout-hover-fadein {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Dark mode shadow enhancement
-[data-theme="dark"] {
-  .callout-hover-popup {
-    --callout-hover-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
-  }
+// Smooth theme switching — applied only to large surfaces so the transition
+// doesn't ripple through every nested element on toggle.
+body,
+.side-bar,
+.main-content,
+.main-header,
+.site-header,
+.site-footer {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }

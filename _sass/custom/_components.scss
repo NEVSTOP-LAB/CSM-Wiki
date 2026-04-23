@@ -1,0 +1,279 @@
+// ============================================================================
+// Components — buttons, back-to-top, code blocks, tables, search, images, hero
+// ============================================================================
+
+// ---------------------------------------------------------------------------
+// Buttons
+// ---------------------------------------------------------------------------
+// Removed the `transform: translateY(-1px)` hover that caused adjacent
+// buttons to "jump" out of alignment. Hover feedback is now via shadow +
+// background colour only.
+.btn,
+.btn-primary {
+  border: 1px solid transparent;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  transition:
+    background-color 0.18s ease,
+    box-shadow 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+}
+
+// Primary action — solid brand fill
+.btn-primary {
+  background-color: var(--brand-color);
+  color: #ffffff;
+
+  &:hover,
+  &:focus {
+    background-color: var(--brand-color-hover);
+    color: #ffffff;
+  }
+}
+
+// Secondary actions — outline style (theme default `.btn` without modifier)
+.btn:not(.btn-primary):not(.btn-purple):not(.btn-blue):not(.btn-green):not(.btn-outline) {
+  background: transparent;
+  color: var(--body-text-color);
+  border-color: var(--border-color);
+
+  &:hover,
+  &:focus {
+    border-color: var(--brand-color);
+    color: var(--brand-color);
+    background: rgba(var(--brand-color-rgb), 0.04);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Back-to-top floating button (rendered by toc.js)
+// ---------------------------------------------------------------------------
+#back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 1.25rem;
+  z-index: 200;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--brand-color);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(1rem) scale(0.9);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+  pointer-events: none;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  &:hover {
+    background: var(--brand-color-hover);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active { transform: scale(0.96); }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 3px;
+  }
+}
+
+// On three-column layouts, slide the button left of the floating TOC.
+@media (min-width: $bp-three-col) {
+  #back-to-top {
+    right: calc(var(--page-toc-width, 0px) + 1.25rem);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Code blocks
+// ---------------------------------------------------------------------------
+code {
+  background-color: var(--code-background-color);
+  color: var(--code-text-color);
+  border-color: var(--border-color);
+}
+
+pre,
+pre code {
+  background-color: var(--code-background-color);
+  color: var(--code-text-color);
+}
+
+// Cap very long code blocks so they don't dominate the page.
+.main-content pre {
+  max-height: 32rem;
+  overflow: auto;
+}
+
+// ---------------------------------------------------------------------------
+// Tables
+// ---------------------------------------------------------------------------
+table {
+  background-color: var(--table-background-color);
+
+  th, td { border-color: var(--border-color); }
+  thead th { background-color: var(--code-background-color); }
+}
+
+// ---------------------------------------------------------------------------
+// Search
+// ---------------------------------------------------------------------------
+.search-input {
+  background-color: var(--search-background-color);
+  color: var(--body-text-color);
+  border-color: var(--border-color);
+}
+
+.search-results {
+  background-color: var(--sidebar-color);
+
+  .search-result-preview {
+    color: var(--search-result-preview-color);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Blockquotes & misc
+// ---------------------------------------------------------------------------
+blockquote {
+  border-left-color: var(--border-color);
+  color: var(--muted-color);
+}
+
+hr { border-color: var(--border-color); }
+
+.label,
+.label-blue, .label-green, .label-purple, .label-red, .label-yellow {
+  border-color: var(--border-color);
+}
+
+// ---------------------------------------------------------------------------
+// Images
+// ---------------------------------------------------------------------------
+// Responsive: never overflow the container, never enlarge above natural size.
+.main-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+// ---------------------------------------------------------------------------
+// Homepage hero region
+// ---------------------------------------------------------------------------
+.hero {
+  margin: 0 0 2rem 0;
+  padding: 2rem 1.75rem 1.75rem;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(var(--brand-color-rgb), 0.08) 0%,
+      rgba(var(--brand-color-rgb), 0.02) 100%
+    );
+  border: 1px solid rgba(var(--brand-color-rgb), 0.15);
+  border-radius: 10px;
+  max-width: none;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-color);
+  background: rgba(var(--brand-color-rgb), 0.1);
+  border-radius: 999px;
+}
+
+.main-content .hero h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  border-left: none;       // hero variant uses a chip "eyebrow" instead of a bar
+  padding-left: 0;
+  font-size: 2.75rem;
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  color: var(--muted-color);
+  margin: 0 0 1rem 0;
+  max-width: 42rem;
+}
+
+.hero-meta {
+  margin: 0.5rem 0 1.25rem 0;
+  font-size: 0.85rem;
+  color: var(--muted-color);
+
+  .hero-meta-sep {
+    margin: 0 0.6rem;
+    opacity: 0.6;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+
+  .btn {
+    margin: 0;
+  }
+}
+
+// Badge bar (shields.io / VIPM badges) – flex with consistent spacing.
+.badge-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  margin: 0 0 1.5rem 0;
+  padding: 0;
+  list-style: none;
+
+  img { vertical-align: middle; }
+}
+
+// Compact form of the AI-update notice on the home page.
+.site-banner {
+  margin: 0 0 1.25rem 0;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--callout-warning-color);
+  background: var(--callout-warning-bg);
+  color: var(--body-heading-color);
+  border-radius: 6px;
+  font-size: 0.9rem;
+
+  strong { color: var(--callout-warning-color); }
+}

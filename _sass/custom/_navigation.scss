@@ -1,0 +1,63 @@
+// ============================================================================
+// Left-side navigation
+// ----------------------------------------------------------------------------
+// Replaces the theme's gradient-stripe hover effect with a clean indicator:
+//   - Idle:   transparent background
+//   - Hover:  subtle brand-colour tint
+//   - Active: brand-colour tint + 3 px brand-colour left bar + bold weight
+// All previous `!important` declarations are removed by selecting the
+// theme's structural classes directly.
+// ============================================================================
+
+// Make navigation links a touch larger (default theme uses ~14 px → cramped
+// for Chinese characters with diacritics or full-width punctuation).
+.site-nav .nav-list .nav-list-item .nav-list-link {
+  font-size: 0.95rem;
+  color: var(--nav-link-color);
+
+  // Override the theme's default linear-gradient background image.
+  // (Used for the "fade-out" effect on the right edge of nav items.)
+  background-image: none;
+}
+
+// Hover & active states ------------------------------------------------------
+.nav-list .nav-list-item > .nav-list-link {
+  // Wrap target padding so the left-bar indicator does not shift content.
+  // Theme default padding-left is 1rem; we leave 3 px for the indicator and
+  // re-add 3 px so the text doesn't move on activation.
+  &:hover {
+    background-color: rgba(var(--brand-color-rgb), 0.06);
+    background-image: none;
+  }
+
+  &.active,
+  &.active:hover {
+    background-color: rgba(var(--brand-color-rgb), 0.10);
+    background-image: none;
+    font-weight: 600;
+    border-left: 3px solid var(--brand-color);
+    padding-left: calc(1rem - 3px);
+  }
+}
+
+// Expander button (▶ icon next to expandable nav items)
+.nav-list .nav-list-item .nav-list-expander {
+  &:hover {
+    background-color: rgba(var(--brand-color-rgb), 0.06);
+    background-image: none;
+  }
+}
+
+// Auxiliary nav (top-right "GitHub" link) ------------------------------------
+.aux-nav .aux-nav-list .aux-nav-list-item a {
+  color: var(--link-color);
+
+  &:hover {
+    color: var(--link-hover-color);
+  }
+}
+
+// Breadcrumb -----------------------------------------------------------------
+.breadcrumb-nav {
+  color: var(--muted-color);
+}

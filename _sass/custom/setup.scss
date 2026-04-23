@@ -1,11 +1,41 @@
-// Custom setup - override Just the Docs variables before they are used
-// This file is loaded before the theme's default variables
+// Custom setup - override Just the Docs SCSS variables before they are used
+// This file is auto-loaded by Just the Docs BEFORE its default variables.
+// Only put SCSS variables / placeholders here. Element styles and CSS custom
+// properties belong in the partials imported by `custom.scss` (which loads
+// AFTER the theme), so that they can override the compiled theme output.
+//
+// See _sass/custom/custom.scss for the partial import order.
 
-// Increase sidebar (navigation) width for better readability
-// Default: $nav-width: 16.5rem, $nav-width-md: 15.5rem
-$nav-width: 20rem;
+// ---------------------------------------------------------------------------
+// Layout dimensions
+// ---------------------------------------------------------------------------
+
+// Sidebar (navigation) width — wider than default for better readability of
+// long Chinese chapter titles. Default: $nav-width: 16.5rem, $nav-width-md: 15.5rem
+$nav-width:    20rem;
 $nav-width-md: 18rem;
 
-// Increase content width to utilize larger screens
-// Default: $content-width: 50rem
+// Outer container width for `.main`. Default: $content-width: 50rem.
+// We expand the container, then constrain prose to a comfortable measure via
+// `--content-max-width` (see _variables.scss / _typography.scss).
 $content-width: 60rem;
+
+// ---------------------------------------------------------------------------
+// Custom breakpoints (used by partials in custom/)
+// ---------------------------------------------------------------------------
+
+// Single-column → two-column (sidebar + main, no floating TOC) breakpoint.
+$bp-two-col:    60rem;  // 960 px
+
+// Two-column → three-column (sidebar + main + floating TOC) breakpoint.
+// Pulled in slightly from 86 rem so wide laptops (1366×) get the third column,
+// but kept high enough that 13" 1280-wide screens still use the two-column
+// layout where the inline TOC is more comfortable.
+$bp-three-col:  86rem;  // 1376 px
+
+// ---------------------------------------------------------------------------
+// TOC sizing (also referenced from _toc.scss via CSS variables)
+// ---------------------------------------------------------------------------
+
+$toc-min-width: 14rem;
+$toc-max-width: 22rem;

@@ -1,0 +1,60 @@
+// ============================================================================
+// CSS Custom Properties (design tokens)
+// ----------------------------------------------------------------------------
+// All colour / spacing / sizing tokens used by other partials live here.
+// Light theme is defined on `:root`; the dark theme overrides only the values
+// in `_dark-theme.scss`. Element styles in other partials must consume these
+// tokens via `var(--...)` so theme switching never misses a selector.
+// ============================================================================
+
+:root {
+  // ----- Brand ------------------------------------------------------------
+  // Single brand colour shared by both themes for identity consistency.
+  // The dark theme lightens the colour but keeps the same hue.
+  --brand-color:      #5e41d0;
+  --brand-color-rgb:  94, 65, 208;       // for rgba()
+  --brand-color-hover:#4c2fb3;
+
+  // ----- Surfaces & text --------------------------------------------------
+  --body-background-color:    #ffffff;
+  --body-text-color:          #24292f;
+  --body-heading-color:       #1f2328;
+  --muted-color:              #6e7781;   // secondary text, h6, captions
+  --nav-background-color:     #f6f8fa;
+  --sidebar-color:            #f6f8fa;
+  --nav-link-color:           #24292f;
+  --border-color:             #d0d7de;
+  --code-background-color:    #f6f8fa;
+  --code-text-color:          #24292f;
+  --table-background-color:   #ffffff;
+  --search-background-color:  #ffffff;
+  --search-result-preview-color: #6e7781;
+
+  // ----- Links & buttons --------------------------------------------------
+  --link-color:               #0969da;
+  --link-hover-color:         #0550ae;
+  --btn-primary-color:        var(--brand-color);
+  --btn-primary-hover-color:  var(--brand-color-hover);
+
+  // ----- Callouts (light) – GitHub Primer "muted" palette ------------------
+  --callout-note-color:       #0969da;
+  --callout-note-bg:          #ddf4ff;
+  --callout-tip-color:        #1a7f37;
+  --callout-tip-bg:           #dafbe1;
+  --callout-warning-color:    #9a6700;
+  --callout-warning-bg:       #fff8c5;
+  --callout-important-color:  #8250df;
+  --callout-important-bg:     #fbefff;
+  --callout-caution-color:    #cf222e;
+  --callout-caution-bg:       #ffebe9;
+
+  // ----- Layout tokens ----------------------------------------------------
+  // Width of the prose measure (paragraphs, lists, blockquotes). Headings,
+  // code blocks, tables and images are NOT capped — they may use the full
+  // .main container width.
+  --content-max-width:        48rem;
+
+  // Width reserved on the right of `.main` for the floating TOC.
+  // Defaulted to 0 so layouts without a TOC are unaffected.
+  --page-toc-width:           0px;
+}
