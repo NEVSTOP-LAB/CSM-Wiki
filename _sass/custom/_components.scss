@@ -187,6 +187,60 @@ hr { border-color: var(--border-color); }
 }
 
 // ---------------------------------------------------------------------------
+// Theme switcher (placed at the bottom of .site-nav)
+// ---------------------------------------------------------------------------
+// Rendered inside <nav class="site-nav"> via _includes/components/site_nav.html
+// so that its width is automatically constrained to $nav-width (matching the
+// rest of the nav content). position: sticky keeps it visible at the bottom
+// of the scrollable nav area.
+.theme-switcher {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.45rem 0.75rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--sidebar-color);
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: 0.25rem;
+}
+
+.theme-switcher__btn {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.3rem 0.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  background: var(--body-background-color);
+  color: var(--body-text-color);
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    border-color: var(--brand-color);
+    color: var(--brand-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 1px;
+  }
+
+  &[aria-pressed="true"] {
+    background: rgba(var(--brand-color-rgb), 0.12);
+    border-color: var(--brand-color);
+    color: var(--brand-color);
+    font-weight: 600;
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Homepage hero region
 // ---------------------------------------------------------------------------
 .hero {
