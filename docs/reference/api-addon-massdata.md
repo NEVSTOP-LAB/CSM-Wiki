@@ -117,3 +117,17 @@ nav_order: 25
 
 -- <b>输入控件(Controls)</b> --
 - <b>MassData Status Indicator</b>: Massdata缓存显示控件引用。
+
+## 调试工具
+
+### 查看CSM Massdata缓存状态(CSM-MassData Cache Status Viewer.vi)
+CSM Massdata 缓存状态查看工具，可以直观地查看Massdata缓存的使用情况，帮助调试和优化缓存配置。
+
+{: .note .callout-hover }
+> <b>CSM Massdata参数支持</b>
+>
+> CSM Massdata参数支持提供了一种高效的参数传递机制，用于在CSM中传递大量数据。通过使用内存高效的引用机制而非直接传输数据，从而提高了参数传递的效率和性能。
+> - CSM Massdata定义的参数类型为`<MassData>`，可以通过CSM - Argument Type VI获取。
+> - CSM Massdata数据传输是完全无损的，但不适合存储需要无限期持久化的数据。
+>
+> 注意: Massdata Support内部使用循环缓冲区机制，同一应用程序内的所有CSM模块共享相同的Massdata缓冲区空间。当缓冲区满时，新数据将从开始位置覆盖旧数据。因此需要设置合理的缓冲区大小，确保数据在使用完毕前未被覆盖，避免数据丢失。

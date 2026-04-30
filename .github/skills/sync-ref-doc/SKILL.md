@@ -26,46 +26,37 @@ user-invocable: true
 - 展开所有 `> - Ref: <标题>` 引用行，替换为实际内容。
 - 保留目标文件已有的 YAML frontmatter 不变。
 
-## 文档映射表
+## 路径规则（关系，不是绝对路径）
 
-`.ref/` 下的子目录由 `.github/workflows/sync-from-repos.yml` 工作流定时从对应源仓库同步，不要手工修改 `.ref/` 内容。
+`.ref/` 下各仓库子目录由 `.github/workflows/sync-from-repos.yml` 工作流定时从源仓库同步，目录结构可能随上游调整而变化，**不要硬编码具体路径**。源文件与目标文件的对应关系按以下规则推导（使用 glob 在 `.ref/` 下查找即可，不要假设固定的中间目录层级）。
 
-**核心 CSM 框架（`.ref/Communicable-State-Machine/`）**
+### 通用查找原则
 
-| `.ref/Communicable-State-Machine/VI Description/VI Description(zh-cn)/` 中的源文件 | `docs/reference/` 中的目标文件 |
-|--------------------------------------------------------------|------------------------------|
-| VI Description(zh-cn) - 01. Templates.md | api-01-templates.md |
-| VI Description(zh-cn) - 02. Core Functions.md | api-02-core-functions.md |
-| VI Description(zh-cn) - 03. Arguments.md | api-03-arguments.md |
-| VI Description(zh-cn) - 04 .Management API.md | api-04-management-api.md |
-| VI Description(zh-cn) - 05. Module Operation API.md | api-05-module-operation-api.md |
-| VI Description(zh-cn) - 06. Broadcast Registration.md | api-06-broadcast-registration.md |
-| VI Description(zh-cn) - 07. Global Log.md | api-07-global-log.md |
-| VI Description(zh-cn) - 08. Advanced Modes.md | api-08-advanced-modes.md |
-| VI Description(zh-cn) - 09. Build-in Addons.md | api-09-build-in-addons.md |
-| VI Description(zh-cn) - 10. Utility VIs.md | api-10-utility-vis.md |
-| VI Description(zh-cn) - 12. Debug,Doc,Tools.md | api-12-debugdoctools.md |
+- 源文件统一位于 `.ref/<repo>/**/VI Description(zh-cn)/<source-name>.md` 或 `.ref/<repo>/**/Examples/<source-name>.md`。需要时直接用 `find .ref -path '*/_internal' -prune -o -name '<filename>' -print` 或 glob `.ref/**/<filename>` 查找。
+- **必须忽略** 任意层级的 `_internal/` 子目录，凡是路径匹配 `.ref/**/_internal/**` 的内容都属于内部资料，不同步到 `docs/`。
+- 所有 `docs/reference/` 文件统一存放 API 参考；所有 `docs/examples/` 文件统一存放示例。
 
-**Addon 仓库**
+### 命名映射规则
 
-| 源文件 | `docs/reference/` 中的目标文件 |
-|--------|------------------------------|
-| `.ref/CSM-API-String-Arguments-Support/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - Addon API String.md` | api-addon-api-string.md |
-| `.ref/CSM-INI-Static-Variable-Support/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - Addon INI-Variable.md` | api-addon-ini-variable.md |
-| `.ref/CSM-MassData-Parameter-Support/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - Addon Massdata.md` | api-addon-massdata.md |
+按文件名前缀分组，规则如下（`<NN>` 为两位数字章节号，`<slug>` 为去掉空格、转小写、特殊字符替换为 `-` 后的标题）：
 
-**示例（`.ref/Communicable-State-Machine/Examples/`）**
+| 源文件名形态 | 目标文件位置 | 目标文件名规则 |
+|--------------|--------------|----------------|
+| `VI Description(zh-cn) - <NN>. <Title>.md`<br>（如 `VI Description(zh-cn) - 02. Core Functions.md`） | `docs/reference/` | `api-<NN>-<slug>.md`（slug 由 `<Title>` 取小写、移除空格/标点后用 `-` 连接，如 `core-functions`、`module-operation-api`、`debugdoctools`） |
+| `VI Description(zh-cn) - Addon <Name>.md`<br>（如 `VI Description(zh-cn) - Addon Massdata.md`） | `docs/reference/` | `api-addon-<slug>.md`（slug 由 `<Name>` 小写化得到，如 `api-string`、`ini-variable`、`massdata`） |
+| `<Name>(zh-cn).md`（位于任意 `Examples/` 下）<br>（如 `CSM Basic Example(zh-cn).md`） | `docs/examples/` | `example-<slug>.md`（slug 由 `<Name>` 小写化、空格转 `-`） |
 
-| 源文件 | `docs/examples/` 中的目标文件 |
-|--------|------------------------------|
-| CSM Basic Example(zh-cn).md | example-csm-basic-example.md |
-| CSM Advance Example(zh-cn).md | example-csm-advance-example.md |
+**反向查找**：拿到一个 `docs/reference/api-XX-yyy.md` 时，反推源文件名为 `VI Description(zh-cn) - XX. <Title>.md`（`<Title>` 由 `yyy` 还原），用 `find .ref -name 'VI Description(zh-cn) - XX*.md' -not -path '*/_internal/*'` 在 `.ref/` 中定位。
 
-**重要限制**：不要迁移 `.ref/` 下任何 `_internal/` 子目录中的文件。凡是路径匹配 `.ref/**/_internal/**` 的内容，都属于内部资料，不应同步到 `docs/` 发布文档中。
+### 例外/约定
+
+- 若同一文件名在多个仓库子目录中同时存在（多份副本），优先使用 `.ref/Communicable-State-Machine/**` 下的版本作为权威源；Addon 文件优先取自对应的 Addon 仓库目录（即包含 `Addon` 关键字的同步目录）。
+- 现有目标文件清单可以通过 `ls docs/reference/api-*.md docs/examples/example-*.md` 查看；新增文件按上述命名规则创建。
+- 章节号 `11` 在源端是 `Obselete VIs`，**不**同步到 `docs/`。
 
 ## 执行流程
 
-1. **定位文件**：根据文档映射表，找到 `.ref/` 源文件和 `docs/` 目标文件路径；如果源文件位于任意 `_internal/` 子目录（如 `.ref/**/_internal/**`），则立即停止，不进行同步。
+1. **定位文件**：根据上述"路径规则"，按文件名形态推导目标路径，并使用 `find .ref -name '<filename>' -not -path '*/_internal/*'` 在 `.ref/` 下定位源文件。如果命中多个，按"例外/约定"挑选权威版本；如果源文件位于任意 `_internal/` 子目录，则立即停止，不进行同步。
 
 2. **读取源文件**（注意编码处理）：
    - 部分 `.ref/` 文件（尤其是 `VI Description(zh-cn) - 12. Debug,Doc,Tools.md`）使用 GBK 编码。
@@ -77,7 +68,7 @@ user-invocable: true
 
 5. **展开 Ref 引用**：将所有 `> - Ref: <标题>` 行替换为对应标题的 NOTE/WARNING 块实际内容。
    - **重要**：`> - Ref:` 行必须被完全展开，不能保留在最终的 `docs/` 文件中。
-   - 从 `.ref/Communicable-State-Machine/VI Description/VI Description(zh-cn)/VI Description(zh-cn).md` 和对应的各个源文件中查找标题匹配的 NOTE/WARNING 块。
+   - 从 `.ref/**/VI Description(zh-cn).md`（CSM 框架的总目录文件，包含全部 NOTE/WARNING 块）和当前正在同步的源文件中查找标题匹配的 NOTE/WARNING 块。用 `find .ref -name 'VI Description(zh-cn).md' -not -path '*/_internal/*'` 定位。
    - 标题匹配时需要忽略：空格、括号及其内容、引号、冒号等标点符号。
    - 支持多种标题变体（如 `CSM 模块间通信类型`、`CSM模块间通信类型`、`模块间通信类型`、`模块间通信类型参数`）。
    - 特殊映射：`全局超时时间设置` → `CSM同步消息全局超时`。
