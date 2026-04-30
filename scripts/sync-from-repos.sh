@@ -44,7 +44,7 @@ fi
 
 # ── 依赖检查 ─────────────────────────────────────────────────────────────────
 
-for cmd in git jq; do
+for cmd in git jq realpath; do
   if ! command -v "$cmd" &>/dev/null; then
     echo "::error::缺少依赖命令：$cmd"
     exit 1
@@ -59,6 +59,45 @@ trap 'rm -rf "$WORK_DIR"' EXIT
 
 echo "Wiki 根目录：$WIKI_ROOT"
 echo "临时工作目录：$WORK_DIR"
+
+# ── 配置 git 凭据（写入临时凭据文件，避免 token 暴露在进程参数中）────────────
+
+GIT_CRED_FILE="$(mktemp --tmpdir="$WORK_DIR" git-creds.XXXXXX)"
+chmod 600 "$GIT_CRED_FILE"
+printf 'https://x-access-token:%s@github.com\n' "$CSM_WIKI_SYNC_TOKEN" > "$GIT_CRED_FILE"
+git config --global credential.helper "store --file=${GIT_CRED_FILE}"
+
+# ── 工具函数：校验路径安全性 ──────────────────────────────────────────────────
+
+# 确保路径为安全相对路径：不为空、不以 / 开头、不包含 .. 分量
+validate_relative_path() {
+  local path="$1" label="$2" rule_num="$3"
+  if [[ -z "$path" || "$path" == "null" ]]; then
+    echo "::error::规则 ${rule_num} 的 ${label} 为空，跳过。"
+    return 1
+  fi
+  if [[ "$path" == /* ]]; then
+    echo "::error::规则 ${rule_num} 的 ${label} 不允许为绝对路径：'${path}'，跳过。"
+    return 1
+  fi
+  if [[ "$path" =~ (^|/)\.\.(/|$) ]]; then
+    echo "::error::规则 ${rule_num} 的 ${label} 包含路径遍历 '..'：'${path}'，跳过。"
+    return 1
+  fi
+  return 0
+}
+
+# 确认解析后的绝对路径仍在指定根目录下
+assert_within_root() {
+  local full_path="$1" root="$2" label="$3" rule_num="$4"
+  local resolved
+  resolved="$(realpath -m "$full_path")"
+  if [[ "$resolved" != "${root}"/* && "$resolved" != "$root" ]]; then
+    echo "::error::规则 ${rule_num} 的 ${label} 路径 '${full_path}' 解析后逃逸出根目录 '${root}'，跳过。"
+    return 1
+  fi
+  return 0
+}
 
 # ── 解析 CSM_WIKI_SYNC_CONFIG ────────────────────────────────────────────────
 
@@ -108,14 +147,13 @@ for i in $(seq 0 $((ENTRY_COUNT - 1))); do
     echo "::error::规则 $((i+1)) 缺少 source_repo 字段，跳过。"
     continue
   fi
-  if [[ -z "$SOURCE_PATH" || "$SOURCE_PATH" == "null" ]]; then
-    echo "::error::规则 $((i+1)) 缺少 source_path 字段，跳过。"
-    continue
-  fi
 
-  # 克隆目录（sparse checkout 节省流量）
+  # 路径安全校验
+  validate_relative_path "$SOURCE_PATH" "source_path" "$((i+1))" || continue
+  validate_relative_path "$DEST_PATH"   "dest_path"   "$((i+1))" || continue
+
+  # 克隆目录（sparse checkout 节省流量，token 通过凭据文件传入）
   CLONE_DIR="$WORK_DIR/repo_$i"
-  CLONE_URL="https://x-access-token:${CSM_WIKI_SYNC_TOKEN}@github.com/${SOURCE_REPO}.git"
 
   echo "正在 sparse-clone $SOURCE_REPO ($SOURCE_BRANCH)..."
   git clone \
@@ -123,7 +161,7 @@ for i in $(seq 0 $((ENTRY_COUNT - 1))); do
     --filter=blob:none \
     --sparse \
     --branch "$SOURCE_BRANCH" \
-    "$CLONE_URL" \
+    "https://github.com/${SOURCE_REPO}.git" \
     "$CLONE_DIR" 2>&1
 
   # 仅 checkout 需要的子目录
@@ -132,15 +170,19 @@ for i in $(seq 0 $((ENTRY_COUNT - 1))); do
   SRC_FULL="$CLONE_DIR/$SOURCE_PATH"
   DEST_FULL="$WIKI_ROOT/$DEST_PATH"
 
+  # 确认解析后的路径不逃逸出各自根目录
+  assert_within_root "$SRC_FULL"  "$CLONE_DIR" "source_path" "$((i+1))" || continue
+  assert_within_root "$DEST_FULL" "$WIKI_ROOT"  "dest_path"   "$((i+1))" || continue
+
   if [[ ! -e "$SRC_FULL" ]]; then
     echo "::warning::源路径 '$SOURCE_PATH' 在 $SOURCE_REPO 中不存在，跳过。"
     continue
   fi
 
-  # 清空目标目录后同步（完全替换策略）
+  # 完全替换目标目录（删除重建，确保 dotfiles 也被清除）
   echo "正在同步到 $DEST_FULL ..."
+  rm -rf "${DEST_FULL:?}"
   mkdir -p "$DEST_FULL"
-  rm -rf "${DEST_FULL:?}/"*
 
   if [[ -d "$SRC_FULL" ]]; then
     # 源是目录：将目录内容复制到目标目录

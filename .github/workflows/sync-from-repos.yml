@@ -18,8 +18,7 @@ jobs:
     steps:
       - name: Checkout wiki repo
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.CSM_WIKI_SYNC_TOKEN }}
+        # 使用默认 GITHUB_TOKEN（已有 contents: write），无需 PAT
 
       - name: Run sync script
         env:
