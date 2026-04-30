@@ -4,27 +4,27 @@
 # 从多个源 repo 的指定目录同步文件到本 wiki repo 的目标目录。
 #
 # 必需环境变量：
-#   SYNC_CONFIG   - JSON 数组，定义同步规则（见下方格式说明）
-#   SYNC_TOKEN    - 具有源 repo 读权限的 GitHub Personal Access Token
+#   CSM_WIKI_SYNC_CONFIG   - JSON 数组，定义同步规则（见下方格式说明）
+#   CSM_WIKI_SYNC_TOKEN    - 具有源 repo 读权限的 GitHub Personal Access Token
 #
-# SYNC_CONFIG 格式示例：
+# CSM_WIKI_SYNC_CONFIG 格式示例：
 #   [
 #     {
 #       "source_repo":   "OWNER/REPO",
 #       "source_branch": "main",
 #       "source_path":   "docs/images",
-#       "dest_path":     "assets/img/external"
+#       "dest_path":     "assets/img/external"   ← 可选，默认 .ref/<reponame>
 #     },
 #     {
 #       "source_repo":   "OWNER2/REPO2",
 #       "source_branch": "main",
-#       "source_path":   "wiki",
-#       "dest_path":     "docs/external/repo2"
+#       "source_path":   "wiki"
 #     }
 #   ]
 #
 # 说明：
-#   - source_path 和 dest_path 均为相对路径（不以 / 开头）。
+#   - source_path 为必填相对路径（不以 / 开头）。
+#   - dest_path 可选，省略时默认为 .ref/<reponame>（reponame 为 source_repo 的仓库名部分）。
 #   - 目标目录会被完全替换为源目录的最新内容。
 #   - 脚本执行后不自动 commit，commit 由 workflow 负责。
 
@@ -32,13 +32,13 @@ set -euo pipefail
 
 # ── 参数校验 ─────────────────────────────────────────────────────────────────
 
-if [[ -z "${SYNC_CONFIG:-}" ]]; then
-  echo "::error::环境变量 SYNC_CONFIG 未设置或为空。"
+if [[ -z "${CSM_WIKI_SYNC_CONFIG:-}" ]]; then
+  echo "::error::环境变量 CSM_WIKI_SYNC_CONFIG 未设置或为空。"
   exit 1
 fi
 
-if [[ -z "${SYNC_TOKEN:-}" ]]; then
-  echo "::error::环境变量 SYNC_TOKEN 未设置或为空。"
+if [[ -z "${CSM_WIKI_SYNC_TOKEN:-}" ]]; then
+  echo "::error::环境变量 CSM_WIKI_SYNC_TOKEN 未设置或为空。"
   exit 1
 fi
 
@@ -60,23 +60,39 @@ trap 'rm -rf "$WORK_DIR"' EXIT
 echo "Wiki 根目录：$WIKI_ROOT"
 echo "临时工作目录：$WORK_DIR"
 
-# ── 解析 SYNC_CONFIG ─────────────────────────────────────────────────────────
+# ── 解析 CSM_WIKI_SYNC_CONFIG ────────────────────────────────────────────────
 
-ENTRY_COUNT=$(echo "$SYNC_CONFIG" | jq 'length')
-echo "共解析到 $ENTRY_COUNT 条同步规则。"
+ENTRY_COUNT=$(echo "$CSM_WIKI_SYNC_CONFIG" | jq 'length')
+
+# 打印完整配置（隐藏 token）
+echo ""
+echo "════════════════════════════════════════════════════════════════"
+echo "  CSM_WIKI_SYNC_CONFIG（共 $ENTRY_COUNT 条规则）"
+echo "════════════════════════════════════════════════════════════════"
+echo "$CSM_WIKI_SYNC_CONFIG" | jq '.'
+echo "════════════════════════════════════════════════════════════════"
+echo ""
 
 if [[ "$ENTRY_COUNT" -eq 0 ]]; then
-  echo "SYNC_CONFIG 为空数组，无需同步。"
+  echo "CSM_WIKI_SYNC_CONFIG 为空数组，无需同步。"
   exit 0
 fi
 
 # ── 主循环：逐条处理同步规则 ─────────────────────────────────────────────────
 
 for i in $(seq 0 $((ENTRY_COUNT - 1))); do
-  SOURCE_REPO=$(echo   "$SYNC_CONFIG" | jq -r ".[$i].source_repo")
-  SOURCE_BRANCH=$(echo "$SYNC_CONFIG" | jq -r ".[$i].source_branch // \"main\"")
-  SOURCE_PATH=$(echo   "$SYNC_CONFIG" | jq -r ".[$i].source_path")
-  DEST_PATH=$(echo     "$SYNC_CONFIG" | jq -r ".[$i].dest_path")
+  SOURCE_REPO=$(echo   "$CSM_WIKI_SYNC_CONFIG" | jq -r ".[$i].source_repo")
+  SOURCE_BRANCH=$(echo "$CSM_WIKI_SYNC_CONFIG" | jq -r ".[$i].source_branch // \"main\"")
+  SOURCE_PATH=$(echo   "$CSM_WIKI_SYNC_CONFIG" | jq -r ".[$i].source_path")
+  DEST_PATH_RAW=$(echo "$CSM_WIKI_SYNC_CONFIG" | jq -r ".[$i].dest_path // \"null\"")
+
+  # dest_path 可选：未填写时默认为 .ref/<reponame>
+  REPO_NAME="${SOURCE_REPO##*/}"
+  if [[ -z "$DEST_PATH_RAW" || "$DEST_PATH_RAW" == "null" ]]; then
+    DEST_PATH=".ref/${REPO_NAME}"
+  else
+    DEST_PATH="$DEST_PATH_RAW"
+  fi
 
   echo ""
   echo "─────────────────────────────────────────────────────────────"
@@ -96,14 +112,10 @@ for i in $(seq 0 $((ENTRY_COUNT - 1))); do
     echo "::error::规则 $((i+1)) 缺少 source_path 字段，跳过。"
     continue
   fi
-  if [[ -z "$DEST_PATH" || "$DEST_PATH" == "null" ]]; then
-    echo "::error::规则 $((i+1)) 缺少 dest_path 字段，跳过。"
-    continue
-  fi
 
   # 克隆目录（sparse checkout 节省流量）
   CLONE_DIR="$WORK_DIR/repo_$i"
-  CLONE_URL="https://x-access-token:${SYNC_TOKEN}@github.com/${SOURCE_REPO}.git"
+  CLONE_URL="https://x-access-token:${CSM_WIKI_SYNC_TOKEN}@github.com/${SOURCE_REPO}.git"
 
   echo "正在 sparse-clone $SOURCE_REPO ($SOURCE_BRANCH)..."
   git clone \

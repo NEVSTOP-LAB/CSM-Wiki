@@ -1,9 +1,9 @@
 name: Sync Directories from External Repos
 
 on:
-  # 定时执行（每天 UTC 02:00，可按需修改 cron 表达式）
+  # 定时执行：每周一北京时间 02:00（UTC 周日 18:00）
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 18 * * 0'
 
   # 支持手动触发
   workflow_dispatch:
@@ -19,12 +19,12 @@ jobs:
       - name: Checkout wiki repo
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.SYNC_TOKEN }}
+          token: ${{ secrets.CSM_WIKI_SYNC_TOKEN }}
 
       - name: Run sync script
         env:
-          SYNC_CONFIG: ${{ secrets.SYNC_CONFIG }}
-          SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
+          CSM_WIKI_SYNC_CONFIG: ${{ secrets.CSM_WIKI_SYNC_CONFIG }}
+          CSM_WIKI_SYNC_TOKEN: ${{ secrets.CSM_WIKI_SYNC_TOKEN }}
         run: |
           chmod +x scripts/sync-from-repos.sh
           bash scripts/sync-from-repos.sh
