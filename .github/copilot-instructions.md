@@ -14,9 +14,11 @@
 
 ## 文档映射：`.ref/` → `docs/`
 
-从 `.ref/` 源文件更新发布文档时，使用以下映射关系：
+从 `.ref/` 源文件更新发布文档时，使用以下映射关系。`.ref/` 下各子目录由 `.github/workflows/sync-from-repos.yml` 工作流定时从对应的源仓库同步，不要手工修改。
 
-| `.ref/VI Description/VI Description(zh-cn)/` 中的源文件 | `docs/reference/` 中的目标文件 |
+**核心 CSM 框架（`.ref/Communicable-State-Machine/`）**
+
+| `.ref/Communicable-State-Machine/VI Description/VI Description(zh-cn)/` 中的源文件 | `docs/reference/` 中的目标文件 |
 |--------------------------------------------------------------|------------------------------|
 | VI Description(zh-cn) - 01. Templates.md | api-01-templates.md |
 | VI Description(zh-cn) - 02. Core Functions.md | api-02-core-functions.md |
@@ -29,12 +31,19 @@
 | VI Description(zh-cn) - 09. Build-in Addons.md | api-09-build-in-addons.md |
 | VI Description(zh-cn) - 10. Utility VIs.md | api-10-utility-vis.md |
 | VI Description(zh-cn) - 12. Debug,Doc,Tools.md | api-12-debugdoctools.md |
-| VI Description(zh-cn) - Addon API String.md | api-addon-api-string.md |
-| VI Description(zh-cn) - Addon INI-Variable.md | api-addon-ini-variable.md |
-| VI Description(zh-cn) - Addon Massdata.md | api-addon-massdata.md |
 
-| `.ref/Examples/` 中的源文件 | `docs/examples/` 中的目标文件 |
-|----------------------------------|------------------------------|
+**Addon 仓库（每个 Addon 一个独立同步目录）**
+
+| 源文件 | `docs/reference/` 中的目标文件 |
+|--------|------------------------------|
+| `.ref/CSM-API-String-Arguments-Support/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - Addon API String.md` | api-addon-api-string.md |
+| `.ref/CSM-INI-Static-Variable-Support/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - Addon INI-Variable.md` | api-addon-ini-variable.md |
+| `.ref/CSM-MassData-Parameter-Support/VI Description/VI Description(zh-cn)/VI Description(zh-cn) - Addon Massdata.md` | api-addon-massdata.md |
+
+**示例（`.ref/Communicable-State-Machine/Examples/`）**
+
+| 源文件 | `docs/examples/` 中的目标文件 |
+|--------|------------------------------|
 | CSM Basic Example(zh-cn).md | example-csm-basic-example.md |
 | CSM Advance Example(zh-cn).md | example-csm-advance-example.md |
 
@@ -100,7 +109,7 @@
 1. **移除 NOTE/WARNING 块**：从源文件中移除所有 `> [!NOTE]` / `> [!WARNING]` 块（这些块来自 `VI Description(zh-cn).md`，由其他文件引用，不直接复制）。
 2. **替换引用行**：将所有 `> - Ref: <标题>` 行替换为对应标题的 NOTE/WARNING 块实际内容。
    - **重要**：`> - Ref:` 行必须被完全展开，不能保留在最终的 `docs/` 文件中
-   - 从 `.ref/VI Description/VI Description(zh-cn)/VI Description(zh-cn).md` 和对应的各个源文件中查找标题匹配的 NOTE/WARNING 块
+   - 从 `.ref/Communicable-State-Machine/VI Description/VI Description(zh-cn)/VI Description(zh-cn).md` 和对应的各个源文件中查找标题匹配的 NOTE/WARNING 块
    - 标题匹配时需要忽略：空格、括号及其内容、引号、冒号等标点符号
    - 支持多种标题变体（如 `CSM 模块间通信类型`、`CSM模块间通信类型`、`模块间通信类型`、`模块间通信类型参数`）
    - 特殊映射：`全局超时时间设置` → `CSM同步消息全局超时`
