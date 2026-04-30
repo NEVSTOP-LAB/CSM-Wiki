@@ -22,7 +22,7 @@ jobs:
 
       - name: Run sync script
         env:
-          CSM_WIKI_SYNC_CONFIG: ${{ secrets.CSM_WIKI_SYNC_CONFIG }}
+          CSM_WIKI_SYNC_CONFIG: ${{ vars.CSM_WIKI_SYNC_CONFIG }}
           CSM_WIKI_SYNC_TOKEN: ${{ secrets.CSM_WIKI_SYNC_TOKEN }}
         run: |
           chmod +x scripts/sync-from-repos.sh

@@ -17,3 +17,48 @@ _**本仓库使用了以下的开源项目或服务**_：
 ---
 
 想要贡献内容？请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+---
+
+## 外部仓库同步 Workflow
+
+本仓库包含一个 GitHub Actions Workflow（[`.github/workflows/sync-from-repos.yml`](.github/workflows/sync-from-repos.yml)），可定期将外部仓库的指定目录同步到本 Wiki 仓库。
+
+**触发方式**：
+
+- 定时执行：每周一北京时间 02:00（UTC 周日 18:00）自动运行
+- 手动触发：在 GitHub Actions 页面点击 **Run workflow**
+
+**配置说明**：
+
+需要在仓库的 **Settings → Secrets and variables → Actions** 中设置以下内容：
+
+| 名称 | 类型 | 说明 |
+|------|------|------|
+| `CSM_WIKI_SYNC_CONFIG` | **Variable**（变量） | JSON 数组，定义同步规则（见下方格式） |
+| `CSM_WIKI_SYNC_TOKEN` | **Secret**（密钥） | 具有源仓库读取权限的 GitHub Personal Access Token |
+
+**`CSM_WIKI_SYNC_CONFIG` 格式**：
+
+```json
+[
+  {
+    "source_repo":   "OWNER/REPO",
+    "source_branch": "main",
+    "source_path":   "docs/images",
+    "dest_path":     "assets/img/external"
+  },
+  {
+    "source_repo":   "OWNER2/REPO2",
+    "source_branch": "main",
+    "source_path":   "wiki"
+  }
+]
+```
+
+字段说明：
+
+- `source_repo`（必填）：源仓库，格式为 `OWNER/REPO`
+- `source_branch`（可选）：源分支，默认为 `main`
+- `source_path`（必填）：源仓库中要同步的目录路径（相对路径，不以 `/` 开头）
+- `dest_path`（可选）：同步到本仓库的目标路径，省略时默认为 `.ref/<reponame>`

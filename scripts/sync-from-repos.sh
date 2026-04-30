@@ -5,7 +5,9 @@
 #
 # 必需环境变量：
 #   CSM_WIKI_SYNC_CONFIG   - JSON 数组，定义同步规则（见下方格式说明）
+#                            通过 GitHub Actions Variable（vars.CSM_WIKI_SYNC_CONFIG）传入
 #   CSM_WIKI_SYNC_TOKEN    - 具有源 repo 读权限的 GitHub Personal Access Token
+#                            通过 GitHub Actions Secret（secrets.CSM_WIKI_SYNC_TOKEN）传入
 #
 # CSM_WIKI_SYNC_CONFIG 格式示例：
 #   [
