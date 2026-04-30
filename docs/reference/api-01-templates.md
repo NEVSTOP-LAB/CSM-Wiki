@@ -34,6 +34,11 @@ nav_order: 11
 > - 默认值与JKISM状态机保持一致，为"Macro：Exit"。
 > - 该状态用于退出CSM模块的状态机，CSM模块进入该状态后，将不会再处理外部发送的消息。
 
+{: .warning .callout-hover }
+> <b>在单个VI中放置多个CSM</b>
+>
+> - 不建议在一个VI中以平铺的形式放置多个（≥2）CSM。该写法不会导致程序的逻辑问题，但是将会导致调试工具CSM Debug Console无法加载该VI中全部平铺的CSM的内外接口，有且仅加载其中一个。
+
 -- <b>输入控件(Controls)</b> --
 - <b>Name ("" to use UUID)</b>：CSM模块名称。请参考<b>CSM名称规则</b>。
 
@@ -61,6 +66,11 @@ nav_order: 11
 >
 > - 默认值与JKISM状态机保持一致，为"Macro：Exit"。
 > - 该状态用于退出CSM模块的状态机，CSM模块进入该状态后，将不会再处理外部发送的消息。
+
+{: .warning .callout-hover }
+> <b>在单个VI中放置多个CSM</b>
+>
+> - 不建议在一个VI中以平铺的形式放置多个（≥2）CSM。该写法不会导致程序的逻辑问题，但是将会导致调试工具CSM Debug Console无法加载该VI中全部平铺的CSM的内外接口，有且仅加载其中一个。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Name ("" to use UUID)</b>：CSM模块名称。请参考<b>CSM名称规则</b>。
@@ -90,6 +100,11 @@ nav_order: 11
 > - 默认值与JKISM状态机保持一致，为"Macro：Exit"。
 > - 该状态用于退出CSM模块的状态机，CSM模块进入该状态后，将不会再处理外部发送的消息。
 
+{: .warning .callout-hover }
+> <b>在单个VI中放置多个CSM</b>
+>
+> - 不建议在一个VI中以平铺的形式放置多个（≥2）CSM。该写法不会导致程序的逻辑问题，但是将会导致调试工具CSM Debug Console无法加载该VI中全部平铺的CSM的内外接口，有且仅加载其中一个。
+
 -- <b>输入控件(Controls)</b> --
 - <b>Name ("" to use UUID)</b>：CSM模块名称。请参考<b>CSM名称规则</b>。
 
@@ -117,6 +132,11 @@ nav_order: 11
 >
 > - 默认值与JKISM状态机保持一致，为"Macro：Exit"。
 > - 该状态用于退出CSM模块的状态机，CSM模块进入该状态后，将不会再处理外部发送的消息。
+
+{: .warning .callout-hover }
+> <b>在单个VI中放置多个CSM</b>
+>
+> - 不建议在一个VI中以平铺的形式放置多个（≥2）CSM。该写法不会导致程序的逻辑问题，但是将会导致调试工具CSM Debug Console无法加载该VI中全部平铺的CSM的内外接口，有且仅加载其中一个。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Name ("" to use UUID)</b>：CSM模块名称。请参考<b>CSM名称规则</b>。
@@ -151,6 +171,11 @@ nav_order: 11
 >
 > - 默认值与JKISM状态机保持一致，为"Macro：Exit"。
 > - 该状态用于退出CSM模块的状态机，CSM模块进入该状态后，将不会再处理外部发送的消息。
+
+{: .warning .callout-hover }
+> <b>在单个VI中放置多个CSM</b>
+>
+> - 不建议在一个VI中以平铺的形式放置多个（≥2）CSM。该写法不会导致程序的逻辑问题，但是将会导致调试工具CSM Debug Console无法加载该VI中全部平铺的CSM的内外接口，有且仅加载其中一个。
 
 -- <b>输入控件(Controls)</b> --
 - <b>Name ("" to use UUID)</b>：CSM模块名称。请参考<b>CSM名称规则</b>。

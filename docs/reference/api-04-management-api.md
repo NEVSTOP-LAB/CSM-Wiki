@@ -80,6 +80,11 @@ VI逻辑:
 - 责任链模式: 返回责任链模式的CSM模块的第一个节点的VI引用。
 - 系统级模块: 与普通模式CSM相同，返回系统级模块的VI引用。
 
+{: .warning .callout-hover }
+> <b>在单个VI中放置多个CSM</b>
+>
+> - 不建议在一个VI中以平铺的形式放置多个（≥2）CSM。该写法不会导致程序的逻辑问题，但是将会导致调试工具CSM Debug Console无法加载该VI中全部平铺的CSM的内外接口，有且仅加载其中一个。
+
 -- <b>输入控件(Controls)</b> --
 - <b>Current Module ("" to Generate an ID)</b>: 查询CSM模块的标记，为空时将生成一个唯一的ID。
 - <b>CSM Name</b>: CSM模块名称。

@@ -331,6 +331,29 @@ nav_order: 24
 - <b>Configuration Path</b>: 配置文件路径。
 - <b>Section Postfix ("")</b>: 节名后缀。
 
+### CSM - Load Configuration Variables From String.vi
+从指定字符串加载配置变量。如果节名后缀不为空，载入的节名称会加上该后缀。
+
+<b>Section Postfix ("")</b>主要用于载入多个配置文件但具有相同节的情况。例如: 两个配置文件`Hardware1.ini`和`Hardware2.ini`，都有一个名为`Serial`的节且内部的Keys相同(表示串口配置)，那么后载入的文件中的配置会覆盖先载入的文件中的配置。使用<b>Section Postfix ("")</b>可以避免节名冲突。
+
+<b>参考范例</b>: `8. import Configuration From String.vi`。
+
+{: .note .callout-hover }
+> <b>CSM INI-Variable配置文件路径</b>
+>
+> - <b>开发状态</b>: Application Directory中找到的第一个INI配置文件。若不存在配置文件，则默认为`csm-app.ini`。
+> - <b>编译后</b>: 可执行文件所在目录中与可执行文件同名的INI配置文件。LabVIEW 编译后会自动生成此文件。
+> - 支持载入多个配置文件，后加载的文件会覆盖先前加载文件中的相同配置项。
+> - 配置文件中可以使用`[__include]`节引用其他配置文件
+>   - 可以使用相对路径，也可以使用绝对路径。
+>   - 使用相对路径时，相对于当前配置文件的路径。
+>   - `[__include]`节中的配置文件名称不重要，只需要确保路径正确即可。
+>   - 为了避免循环引用，同一个配置文件，第二次加载时会自动忽略。
+
+-- <b>输入控件(Controls)</b> --
+- <b>Configuration String</b>: 配置字符串。
+- <b>Section Postfix ("")</b>: 节名后缀。
+
 ### CSM - Unload Configuration Variable File.vi
 卸载配置变量文件。
 
@@ -432,3 +455,25 @@ nav_order: 24
 从配置中读取日志记录配置。此配置主要配合以下几个VI使用:
 
 - `addons\Logger\CSM - Start File Logger.vi`
+
+## 调试工具
+
+### 配置文件查看器(CSM-INI Variable Viewer - DebugTool.vi)
+
+CSM INI-Variable 是一个全局性的配置信息，此工具用于查看和调试当前内存中的配置信息。
+
+{: .note .callout-hover }
+> <b>CSM INI-Variable Addon</b>
+>
+> 配置文件是应用程序开发中不可或缺的组成部分。CSM INI-Variable Addon为CSM提供简单易用的配置文件支持功能，使用户能够配置应用程序而无需显式读写配置文件。
+>
+> CSM INI-Variable配置文件数据的格式使用CSM API String格式。
+>
+> 主要特点包括:
+> 1. <b>默认配置处理</b>: 首次调用库函数时自动加载默认配置文件，无需用户显式加载。
+> 2. <b>多文件支持</b>: 通过专用函数支持加载多个配置文件。
+> 3. <b>内存缓存</b>: 在内存中维护一个缓存副本，应用程序从该缓存中获取配置信息。
+> 4. <b>INI格式兼容</b>: 配置文件和内存副本均采用标准INI格式，支持节和键值对。
+> 5. <b>高效缓存机制</b>: 使用全局修改标记优化性能，仅在配置发生修改时才重新读取内存副本。
+>
+> 本库包含并使用了由[@rcpacini](https://github.com/rcpacini)开发的[LabVIEW-Config](https://github.com/rcpacini/LabVIEW-Config)的副本。
