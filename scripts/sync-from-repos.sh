@@ -103,6 +103,17 @@ assert_within_root() {
 
 # ── 解析 CSM_WIKI_SYNC_CONFIG ────────────────────────────────────────────────
 
+# 容错处理：jq 严格遵循 JSON 规范，不允许尾随逗号（trailing comma）。
+# 由于配置来源是 GitHub Actions Variable，人工编辑时容易遗留尾随逗号，
+# 因此此处先剥离 `]` 或 `}` 之前的尾随逗号，再交给 jq 解析。
+# 使用 sed 的 slurp 模式（:a;N;$!ba）一次性读取全部输入，以便跨行匹配。
+CSM_WIKI_SYNC_CONFIG="$(printf '%s' "$CSM_WIKI_SYNC_CONFIG" | sed -E ':a;N;$!ba; s/,([[:space:]]*[]}])/\1/g')"
+
+if ! echo "$CSM_WIKI_SYNC_CONFIG" | jq -e 'type == "array"' >/dev/null 2>&1; then
+  echo "::error::CSM_WIKI_SYNC_CONFIG 不是合法的 JSON 数组，请检查配置内容。"
+  exit 1
+fi
+
 ENTRY_COUNT=$(echo "$CSM_WIKI_SYNC_CONFIG" | jq 'length')
 
 # 打印完整配置（隐藏 token）
