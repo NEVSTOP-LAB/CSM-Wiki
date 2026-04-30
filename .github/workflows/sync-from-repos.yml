@@ -1,0 +1,43 @@
+name: Sync Directories from External Repos
+
+on:
+  # 定时执行（每天 UTC 02:00，可按需修改 cron 表达式）
+  schedule:
+    - cron: '0 2 * * *'
+
+  # 支持手动触发
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout wiki repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SYNC_TOKEN }}
+
+      - name: Run sync script
+        env:
+          SYNC_CONFIG: ${{ secrets.SYNC_CONFIG }}
+          SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
+        run: |
+          chmod +x scripts/sync-from-repos.sh
+          bash scripts/sync-from-repos.sh
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          if git diff --cached --quiet; then
+            echo "没有文件变更，无需提交。"
+          else
+            git commit -m "chore: sync external repo directories [skip ci]"
+            git push
+            echo "✅ 已推送同步变更。"
+          fi
