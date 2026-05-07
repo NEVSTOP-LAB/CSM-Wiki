@@ -13,6 +13,7 @@ _**本仓库使用了以下的开源项目或服务**_：
 - 通过 [GitHub Pages](https://pages.github.com/) 服务发布页面
 - 使用 [Jekyll](https://jekyllrb.com/) 静态网站生成器
 - 使用 [just-the-docs/just-the-docs](https://github.com/just-the-docs/just-the-docs) 主题
+- 使用 [translate.js](https://github.com/xnx3/translate) 提供多语言机器翻译
 
 ---
 

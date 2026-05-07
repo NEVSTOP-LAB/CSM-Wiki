@@ -8,53 +8,103 @@
 (function () {
   'use strict';
 
-  // Guard: translate.js might be unavailable (e.g. file missing from build
-  // or vendored version incompatible with this init script).
-  if (typeof translate === 'undefined') return;
+  // ── Guard: translate.js unavailable ──────────────────────────────────
+  if (typeof translate === 'undefined') {
+    console.warn(
+      '[CSM-Wiki] translate.js (translate.min.js) did not load or was blocked. ' +
+      'The language switcher will not function. ' +
+      'Check the Network tab for a 404 on translate.min.js, ' +
+      'or the Console for CSP errors.'
+    );
+    return;
+  }
 
-  // Set page source language (the wiki is written in Chinese Simplified).
+  console.debug('[CSM-Wiki] translate.js version:', translate.version);
+
+  // ── Source language ───────────────────────────────────────────────────
+  // The wiki is authored in Simplified Chinese.
   translate.language.setLocal('chinese_simplified');
 
-  // Use the free edge translation service (no API key required).
+  // ── Translation service ───────────────────────────────────────────────
+  // 'client.edge' uses Microsoft Edge's free translation API (no key required).
+  // If it fails, translate.js falls back to the default zvo.cn service.
   translate.service.use('client.edge');
 
-  // Listen for dynamic DOM changes (e.g. client-side nav updates).
+  // ── DOM listener (dynamic content) ────────────────────────────────────
   translate.listener.start();
 
-  // Disable the built-in language-selector UI; we provide our own.
+  // ── Disable built-in language-selector UI ─────────────────────────────
   translate.selectLanguageTag.show = false;
 
-  // Execute translation (applies any previously saved language preference).
+  // ── Execute initial translation ───────────────────────────────────────
+  // On first visit with no stored preference, this is a no-op (returns
+  // early because translate.to is null and autoDiscriminateLocalLanguage is
+  // false).  If the user already chose a language, it restores it.
   translate.execute();
 
-  // --- Connect custom language <select> -------------------------------------
+  // ── Connect custom language <select> ──────────────────────────────────
   var langSelect = document.getElementById('language-select');
-  if (!langSelect) return;
+  if (!langSelect) {
+    console.warn(
+      '[CSM-Wiki] #language-select element not found in the DOM. ' +
+      'Ensure _includes/components/site_nav.html is overriding the theme ' +
+      'correctly and that the site has been rebuilt after changes.'
+    );
+    return;
+  }
 
-  // Derive the set of valid language codes from the <select> options defined
-  // in _includes/components/site_nav.html — single source of truth, no duplication.
+  // Derive the set of valid language codes from the <select> options
+  // defined in _includes/components/site_nav.html — single source of truth.
   var validLangs = [];
   var options = langSelect.querySelectorAll('option');
   for (var i = 0; i < options.length; i++) {
     validLangs.push(options[i].value);
   }
+  console.debug('[CSM-Wiki] Valid language codes:', validLangs);
 
-  // Sync the selector to whatever language translate.js already restored.
+  // Sync the selector to whatever language translate.js restored.
   var currentLang = translate.language.getCurrent();
   if (currentLang && validLangs.indexOf(currentLang) !== -1) {
     langSelect.value = currentLang;
   }
 
+  // ── Language-change handler ───────────────────────────────────────────
   langSelect.addEventListener('change', function () {
     var lang = this.value;
-    // Guard against unexpected values (e.g. if options drift or DOM is modified).
-    if (validLangs.indexOf(lang) === -1) return;
-    if (typeof translate.changeLanguage === 'function') {
-      translate.changeLanguage(lang);
+
+    // Guard against unexpected values.
+    if (validLangs.indexOf(lang) === -1) {
+      console.warn('[CSM-Wiki] Unknown language code:', lang);
       return;
     }
+
+    console.debug('[CSM-Wiki] Switching language to:', lang);
+
+    if (typeof translate.changeLanguage === 'function') {
+      try {
+        translate.changeLanguage(lang);
+      } catch (err) {
+        console.error(
+          '[CSM-Wiki] translate.changeLanguage("' + lang + '") threw:',
+          err
+        );
+      }
+      return;
+    }
+
+    // Fallback: older translate.js API
     if (typeof translate.change === 'function') {
-      translate.change(lang);
+      try {
+        translate.change(lang);
+      } catch (err) {
+        console.error(
+          '[CSM-Wiki] translate.change("' + lang + '") threw:',
+          err
+        );
+      }
     }
   });
+
+  console.debug('[CSM-Wiki] Language switcher is active.');
+
 })();

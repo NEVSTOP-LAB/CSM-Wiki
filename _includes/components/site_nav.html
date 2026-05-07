@@ -63,21 +63,6 @@
   {% endif %}
 
   <div class="nav-bottom-bar">
-    <!-- Language switcher (requires translate.js CDN loaded in head_custom.html) -->
-    <div class="language-switcher" role="group" aria-label="语言切换">
-      <span class="language-switcher__icon" aria-hidden="true">🌐</span>
-      <select id="language-select" aria-label="选择语言">
-        <option value="chinese_simplified">中文</option>
-        <option value="english">English</option>
-        <option value="japanese">日本語</option>
-        <option value="korean">한국어</option>
-        <option value="french">Français</option>
-        <option value="german">Deutsch</option>
-        <option value="russian">Русский</option>
-        <option value="spanish">Español</option>
-      </select>
-    </div>
-
     <!-- Theme switcher (light / dark / system) -->
     <div class="theme-switcher" role="group" aria-label="主题模式">
       <button type="button" class="theme-switcher__btn" data-theme-pref="system" aria-label="跟随系统" title="跟随系统">
@@ -95,6 +80,22 @@
         <option value="light">浅色</option>
         <option value="dark">深色</option>
       </select>
+    </div>
+
+    <!-- Language switcher (requires translate.js CDN loaded in head_custom.html) -->
+    <div class="language-switcher" role="group" aria-label="语言切换">
+      <span class="language-switcher__icon" aria-hidden="true">🌐</span>
+      <select id="language-select" aria-label="选择语言">
+        <option value="chinese_simplified">中文</option>
+        <option value="english">English</option>
+        <option value="japanese">日本語</option>
+        <option value="korean">한국어</option>
+        <option value="french">Français</option>
+        <option value="deutsch">Deutsch</option>
+        <option value="russian">Русский</option>
+        <option value="spanish">Español</option>
+      </select>
+      <span class="language-switcher__note">⚡ 机器翻译 · Machine Translation</span>
     </div>
   </div>
 </nav>
