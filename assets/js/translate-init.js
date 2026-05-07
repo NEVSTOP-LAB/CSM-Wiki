@@ -49,7 +49,12 @@
     var lang = this.value;
     // Guard against unexpected values (e.g. if options drift or DOM is modified).
     if (validLangs.indexOf(lang) === -1) return;
-    translate.change(lang);
+    if (typeof translate.changeLanguage === 'function') {
+      translate.changeLanguage(lang);
+      return;
+    }
+    if (typeof translate.change === 'function') {
+      translate.change(lang);
+    }
   });
 })();
-
