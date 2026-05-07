@@ -3,20 +3,14 @@
 // Supports automatic page-language detection and persists the user's choice.
 //
 // This script is loaded with `defer`, so it executes after the DOM is fully
-// parsed and after the translate.js CDN script (which precedes it) has run.
+// parsed and after translate.min.js (which precedes it in head_custom.html) has run.
 
 (function () {
   'use strict';
 
-  // Guard: translate.js CDN might be unavailable (e.g. network error).
+  // Guard: translate.js might be unavailable (e.g. file missing from build
+  // or vendored version incompatible with this init script).
   if (typeof translate === 'undefined') return;
-
-  // Valid target-language codes — must stay in sync with the <select> options
-  // in _includes/components/site_nav.html.
-  var VALID_LANGS = [
-    'chinese_simplified', 'english', 'japanese', 'korean',
-    'french', 'german', 'russian', 'spanish'
-  ];
 
   // Set page source language (the wiki is written in Chinese Simplified).
   translate.language.setLocal('chinese_simplified');
@@ -37,15 +31,25 @@
   var langSelect = document.getElementById('language-select');
   if (!langSelect) return;
 
-  // Sync the <select> to whatever language translate.js already restored.
-  // Validate against the static whitelist before setting the value.
+  // Derive the set of valid language codes from the <select> options defined
+  // in _includes/components/site_nav.html — single source of truth, no duplication.
+  var validLangs = [];
+  var options = langSelect.querySelectorAll('option');
+  for (var i = 0; i < options.length; i++) {
+    validLangs.push(options[i].value);
+  }
+
+  // Sync the selector to whatever language translate.js already restored.
   var currentLang = translate.language.getCurrent();
-  if (currentLang && VALID_LANGS.indexOf(currentLang) !== -1) {
+  if (currentLang && validLangs.indexOf(currentLang) !== -1) {
     langSelect.value = currentLang;
   }
 
   langSelect.addEventListener('change', function () {
-    translate.change(this.value);
+    var lang = this.value;
+    // Guard against unexpected values (e.g. if options drift or DOM is modified).
+    if (validLangs.indexOf(lang) === -1) return;
+    translate.change(lang);
   });
 })();
 

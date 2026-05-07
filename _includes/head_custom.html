@@ -27,8 +27,7 @@
 <script defer src="{{ '/assets/js/theme-switcher.js' | relative_url }}"></script>
 
 <!-- translate.js: free, no-API-key multilingual translation (https://translate.zvo.cn).
-     Note: loaded from external CDN, same pattern as the mermaid diagram library.
-     To add Subresource Integrity (SRI), compute sha384/sha512 of the pinned file and
-     add integrity="sha384-..." crossorigin="anonymous" attributes. -->
-<script defer src="https://cdn.staticfile.net/translate.js/3.18.75/translate.js"></script>
+     Vendored from https://github.com/xnx3/translate (MIT licence). Update by replacing
+     assets/js/translate.min.js with a newer build from the upstream repository. -->
+<script defer src="{{ '/assets/js/translate.min.js' | relative_url }}"></script>
 <script defer src="{{ '/assets/js/translate-init.js' | relative_url }}"></script>
