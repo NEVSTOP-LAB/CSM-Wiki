@@ -315,23 +315,29 @@ hr { border-color: var(--border-color); }
 .qa-shortcut-bar {
   width: 100%;
   box-sizing: border-box;
-  padding: 0.45rem 0.75rem;
-  border-bottom: 1px solid var(--border-color);
-  background: var(--sidebar-color);
+  padding: 0.65rem 0.75rem;
+  border-bottom: 2px solid rgba(var(--brand-color-rgb), 0.3);
+  background: rgba(var(--brand-color-rgb), 0.06);
   display: flex;
   align-items: center;
+  transition: background-color 0.15s ease;
+
+  &:has(.qa-shortcut__link:hover) {
+    background: rgba(var(--brand-color-rgb), 0.11);
+  }
 }
 
 .qa-shortcut__link {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
   text-decoration: none;
   color: var(--body-text-color);
   width: 100%;
 
   &:hover {
     .qa-shortcut__label { color: var(--brand-color); }
+    .qa-shortcut__icon { transform: scale(1.12); }
   }
 
   &:focus-visible {
@@ -342,14 +348,16 @@ hr { border-color: var(--border-color); }
 }
 
 .qa-shortcut__icon {
-  font-size: 1.3rem;
+  font-size: 1.65rem;
   line-height: 1;
   flex-shrink: 0;
+  transition: transform 0.15s ease;
 }
 
 .qa-shortcut__label {
-  font-size: 0.8rem;
-  color: var(--muted-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--body-text-color);
   transition: color 0.15s ease;
   white-space: nowrap;
   overflow: hidden;
