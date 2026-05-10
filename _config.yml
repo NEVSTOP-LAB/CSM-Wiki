@@ -111,6 +111,9 @@ mermaid:
   # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
   version: "10.9.1"
 
+# Q&A shortcut — links to GitHub Discussions Q&A category (AI bot lives there)
+qa_discussion_url: "https://github.com/NEVSTOP-LAB/CSM-Wiki/discussions/categories/q-a"
+
 # Callouts configuration
 # Define callout types for use in markdown with {: .callout-type }
 # See https://just-the-docs.com/docs/ui-components/callouts/ for details

@@ -310,8 +310,82 @@ hr { border-color: var(--border-color); }
 }
 
 // ---------------------------------------------------------------------------
-// Homepage hero region
+// Q&A shortcut bar (AI bot link at bottom of sidebar)
 // ---------------------------------------------------------------------------
+.qa-shortcut-bar {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--sidebar-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qa-shortcut__link {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--body-text-color);
+
+  &:hover {
+    .qa-shortcut__label { color: var(--brand-color); }
+  }
+}
+
+.qa-shortcut__avatar {
+  font-size: 1.3rem;
+  line-height: 1;
+  flex-shrink: 0;
+
+  img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1.5px solid var(--border-color);
+    display: block;
+  }
+}
+
+.qa-shortcut__label {
+  font-size: 0.8rem;
+  color: var(--muted-color);
+  transition: color 0.15s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qa-shortcut__set-user {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted-color);
+  font-size: 0.85rem;
+  padding: 0.2rem 0.3rem;
+  border-radius: 0.25rem;
+  line-height: 1;
+  transition: color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    color: var(--brand-color);
+    // --brand-color-rgb is defined as comma-separated R,G,B values in _variables.scss
+    background: rgba(var(--brand-color-rgb), 0.06);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 1px;
+  }
+}
+
+
 .hero {
   margin: 0 0 2rem 0;
   padding: 2rem 1.75rem 1.75rem;
