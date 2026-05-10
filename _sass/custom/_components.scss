@@ -310,8 +310,53 @@ hr { border-color: var(--border-color); }
 }
 
 // ---------------------------------------------------------------------------
-// Homepage hero region
+// Q&A shortcut bar (AI bot link at bottom of sidebar)
 // ---------------------------------------------------------------------------
+.qa-shortcut-bar {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--sidebar-color);
+  display: flex;
+  align-items: center;
+}
+
+.qa-shortcut__link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--body-text-color);
+  width: 100%;
+
+  &:hover {
+    .qa-shortcut__label { color: var(--brand-color); }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+}
+
+.qa-shortcut__icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.qa-shortcut__label {
+  font-size: 0.8rem;
+  color: var(--muted-color);
+  transition: color 0.15s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
 .hero {
   margin: 0 0 2rem 0;
   padding: 2rem 1.75rem 1.75rem;
