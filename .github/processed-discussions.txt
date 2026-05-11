@@ -1,0 +1,3 @@
+# 已处理的 GitHub Discussion node ID 列表
+# 每行一个 ID，由 .github/workflows/collect-discussion-faq.yml 自动维护
+# 请勿手动修改此文件

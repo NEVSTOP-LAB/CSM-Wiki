@@ -1,0 +1,210 @@
+name: 收集 Discussion Q&A 并创建 FAQ Issue
+
+on:
+  # 每周一北京时间 10:00（UTC+8，UTC 周一 02:00）自动运行
+  schedule:
+    - cron: '0 2 * * 1'
+
+  # 支持手动触发
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: write
+
+jobs:
+  collect-qa:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── 步骤 1：查询组织 Q&A Discussion ────────────────────────────────────
+      - name: 查询已解答的 Q&A Discussion
+        id: fetch
+        env:
+          # 使用 CSM_WIKI_SYNC_TOKEN（需有 read:org 和 read:discussion 权限）
+          # 若该 Token 不存在，回退到 GITHUB_TOKEN（可能无法读取 org 级 Discussion）
+          GH_TOKEN: ${{ secrets.CSM_WIKI_SYNC_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          gh api graphql -f query='
+            query {
+              organization(login: "NEVSTOP-LAB") {
+                discussions(first: 50, categorySlug: "q-a") {
+                  nodes {
+                    id
+                    number
+                    title
+                    body
+                    url
+                    isAnswered
+                    answer {
+                      body
+                      author { login }
+                    }
+                    createdAt
+                    updatedAt
+                  }
+                }
+              }
+            }
+          ' > /tmp/discussions_raw.json
+          EXIT_CODE=$?
+
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "ERROR: GraphQL API 请求失败（exit code ${EXIT_CODE}），请检查 GH_TOKEN 是否具有 read:org 权限。" >&2
+            echo "API 响应内容：" >&2
+            cat /tmp/discussions_raw.json >&2
+            exit 1
+          fi
+
+          # 过滤出已解答的 Discussion，写入 /tmp/answered.json
+          python3 - <<'PYEOF'
+          import json, sys
+
+          try:
+              with open('/tmp/discussions_raw.json') as f:
+                  data = json.load(f)
+          except Exception as e:
+              print(f"ERROR: 无法解析 API 响应: {e}", file=sys.stderr)
+              sys.exit(1)
+
+          # GraphQL 可能以 HTTP 200 返回 errors（如权限不足），需显式检查
+          if 'errors' in data:
+              for err in data['errors']:
+                  print(f"ERROR: GraphQL 错误: {err.get('message', err)}", file=sys.stderr)
+              sys.exit(1)
+
+          nodes = (
+              data.get('data', {})
+                  .get('organization', {})
+                  .get('discussions', {})
+                  .get('nodes', [])
+          )
+
+          answered = [d for d in nodes if d.get('isAnswered')]
+          print(f"共获取 {len(nodes)} 条 Discussion，其中已解答 {len(answered)} 条。")
+
+          with open('/tmp/answered.json', 'w', encoding='utf-8') as f:
+              json.dump(answered, f, ensure_ascii=False, indent=2)
+          PYEOF
+
+      # ── 步骤 2：读取追踪文件 ────────────────────────────────────────────────
+      - name: 读取已处理 Discussion 记录
+        run: |
+          if [ -f .github/processed-discussions.txt ]; then
+            cp .github/processed-discussions.txt /tmp/processed.txt
+          else
+            touch /tmp/processed.txt
+          fi
+          echo "当前已处理条数：$(wc -l < /tmp/processed.txt)"
+
+      # ── 步骤 3：为新 Discussion 创建 Issue ──────────────────────────────────
+      - name: 为未处理的已解答 Discussion 创建 FAQ Issue
+        id: create_issues
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          python3 - <<'PYEOF'
+          import json, subprocess, os, sys, textwrap
+
+          with open('/tmp/answered.json', encoding='utf-8') as f:
+              discussions = json.load(f)
+
+          with open('/tmp/processed.txt', encoding='utf-8') as f:
+              processed = {line.strip() for line in f if line.strip() and not line.startswith('#')}
+
+          repo = os.environ['REPO']
+          new_ids = []
+          created = 0
+
+          for disc in discussions:
+              disc_id = disc.get('id', '')
+              if not disc_id or disc_id in processed:
+                  print(f"  跳过（已处理）：#{disc.get('number')} {disc.get('title', '')[:40]}")
+                  continue
+
+              # 构建 Issue 内容
+              answer = disc.get('answer') or {}
+              answer_body = answer.get('body', '（无解答内容）').strip()
+              answer_author = (answer.get('author') or {}).get('login', 'unknown')
+
+              disc_body = (disc.get('body') or '').strip()
+              if len(disc_body) > 1500:
+                  disc_body = disc_body[:1500] + '\n\n…（内容已截断，请查看原帖）'
+              if len(answer_body) > 1500:
+                  answer_body = answer_body[:1500] + '\n\n…（内容已截断，请查看原帖）'
+
+              issue_title = f"[FAQ from Discussion #{disc['number']}] {disc['title']}"
+              issue_body = textwrap.dedent(f"""\
+                  ## 来源
+
+                  GitHub Discussion: {disc['url']}
+
+                  ---
+
+                  ## 问题内容
+
+                  {disc_body}
+
+                  ---
+
+                  ## 已接受的解答（by @{answer_author}）
+
+                  {answer_body}
+
+                  ---
+
+                  > 此 Issue 由自动化工作流创建。请 AI 助手（`collect-discussion-faq` 技能）根据以上内容，
+                  > 将问题解答整理后添加到对应 FAQ 子页面（`docs/faq/*.md`），并将 Discussion node ID `{disc_id}` 追加到
+                  > `.github/processed-discussions.txt`。
+                  """)
+
+              # 优先带 faq label 创建；若 label 不存在则不带 label 重试
+              cmd_base = ['gh', 'issue', 'create', '--repo', repo,
+                          '--title', issue_title, '--body', issue_body]
+              result = subprocess.run(cmd_base + ['--label', 'faq'],
+                                      capture_output=True, text=True)
+              if result.returncode != 0:
+                  result = subprocess.run(cmd_base, capture_output=True, text=True)
+
+              if result.returncode == 0:
+                  print(f"  ✅ 已创建 Issue：{result.stdout.strip()}")
+                  new_ids.append(disc_id)
+                  created += 1
+              else:
+                  print(f"  ❌ 创建 Issue 失败：{result.stderr.strip()}", file=sys.stderr)
+
+          print(f"\n本次新建 Issue：{created} 条。")
+
+          # 将新 ID 写入追踪文件
+          if new_ids:
+              with open('/tmp/processed.txt', 'a', encoding='utf-8') as f:
+                  for disc_id in new_ids:
+                      f.write(disc_id + '\n')
+          PYEOF
+
+      # ── 步骤 4：更新追踪文件并提交 ──────────────────────────────────────────
+      - name: 更新已处理 Discussion 追踪文件
+        run: |
+          mkdir -p .github
+          # 保留注释头（# 开头），仅对 ID 行去重排序后写回
+          {
+            grep '^#' /tmp/processed.txt || true
+            grep -v '^#' /tmp/processed.txt | grep -v '^$' | sort -u
+          } > .github/processed-discussions.txt
+
+      - name: 提交追踪文件更新
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/processed-discussions.txt
+          if git diff --cached --quiet; then
+            echo "追踪文件无变更，无需提交。"
+          else
+            git commit -m "chore: 更新已处理 Discussion 记录 [skip ci]"
+            git push
+            echo "✅ 已推送追踪文件更新。"
+          fi

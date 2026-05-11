@@ -250,6 +250,25 @@ grep -r "> - Ref:" docs/reference/
 
 ---
 
+### Skill 4：收集 Discussion Q&A（collect-discussion-faq）
+
+详见 `.github/skills/collect-discussion-faq/SKILL.md`。
+
+**触发提示词**：
+```
+收集最近已解答的 Discussion
+```
+或针对单条：
+```
+收集 Discussion #<编号>
+```
+
+**自动触发**：`.github/workflows/collect-discussion-faq.yml` 每周一自动运行，将新的已解答 Discussion 创建为 Issue，由 AI 助手处理后更新 `docs/faq(zh-cn).md`。
+
+**追踪文件**：已处理的 Discussion node ID 记录于 `.github/processed-discussions.txt`，避免重复添加。
+
+---
+
 ## Wiki 修改后自动检查
 
 每次修改 `docs/` 目录下的文件后，**自动执行**以下检查，无需用户显式触发：
