@@ -17,7 +17,7 @@ CSM 提供了完整的调试和开发工具套件，通过 `Tools` → `Communic
 - **Debug Console**：交互式测试模块 API，可手动发送消息并查看结果
 
 > 📓
-> 更多信息，请参考 [调试工具](https://nevstop-lab.github.io/CSM-Wiki/docs/plugins/tools)。
+> 更多信息，请参考 [调试工具]({% link docs/plugins/tools.md %})。
 >
 
 ## :question: 如何查看 CSM 运行时的消息流和日志？
@@ -30,7 +30,7 @@ CSM 内置了**全局日志系统**，可以记录所有模块的状态变化、
 - **`CSM - Global Log Event.vi`**：以用户事件方式获取日志（适合与 UI 事件混合处理）
 
 > 📓
-> 更多信息，请参考 [全局日志系统](https://nevstop-lab.github.io/CSM-Wiki/docs/basic/global-log) 和 [调试工具](https://nevstop-lab.github.io/CSM-Wiki/docs/plugins/tools)。
+> 更多信息，请参考 [全局日志系统]({% link docs/basic/global-log.md %}) 和 [调试工具]({% link docs/plugins/tools.md %})。
 >
 
 ## :question: 如何单独测试 CSM 模块的 API？
@@ -43,5 +43,5 @@ CSM 内置了**全局日志系统**，可以记录所有模块的状态变化、
 4. 选择 API、填写参数后发送消息，查看返回结果
 
 > 📓
-> 更多信息，请参考 [调试工具 - Debug Console](https://nevstop-lab.github.io/CSM-Wiki/docs/plugins/tools#debug-console调试控制台)。
+> 更多信息，请参考 [调试工具 - Debug Console]({% link docs/plugins/tools.md %}#debug-console调试控制台)。
 >

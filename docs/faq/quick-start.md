@@ -23,7 +23,7 @@ CSM 通过 VIPM Library 的形式发布，您可以通过以下方式下载：
     [NEVSTOP-LAB/Communicable-State-Machine 的 Action 页面](https://github.com/NEVSTOP-LAB/Communicable-State-Machine/actions/workflows/Build_VIPM_Library.yml?query=branch%3Amain)
 
 > 📓
-> 更多信息，请参考页面 [下载](https://nevstop-lab.github.io/CSM-Wiki/download-and-install)。
+> 更多信息，请参考页面 [下载]({% link docs/download-and-install.md %})。
 >
 
 ## :question: 在使用 VIPM 安装时弹出的编译对话框是什么?
@@ -37,7 +37,7 @@ CSM 是基于 JKISM 开发的程序框架，JKISM 提供了 JKI State Machine Ed
 CSM 提供了标准模板，在 LabVIEW 中通过模板创建 VI 即可开始使用。创建好的模块包含 CSM 核心解析 VI、消息队列和标准的 Case 结构，可以直接开始编写业务逻辑。
 
 > 📓
-> 详细步骤，请参考 [创建 CSM 模块](https://nevstop-lab.github.io/CSM-Wiki/docs/basic/usage)。
+> 详细步骤，请参考 [创建 CSM 模块]({% link docs/basic/usage.md %})。
 >
 
 ## :question: 如何退出 CSM 模块?
@@ -72,5 +72,5 @@ CSM 提供了专用 API 供非 CSM 代码调用 CSM 模块：
 - **`CSM - Register Broadcast.vi`**：订阅 CSM 模块的状态广播，通过用户事件接收通知。
 
 > 📓
-> 更多信息，请参考 [创建 CSM 模块 - 在其他框架中调用 CSM 模块](https://nevstop-lab.github.io/CSM-Wiki/docs/basic/usage#step3-在其他框架中调用csm模块)。
+> 更多信息，请参考 [创建 CSM 模块 - 在其他框架中调用 CSM 模块]({% link docs/basic/usage.md %}#step3-在其他框架中调用csm模块)。
 >
