@@ -34,6 +34,7 @@ jobs:
                 search(
                   query: \"org:NEVSTOP-LAB category:\\\"Q&A\\\" is:${state} sort:updated-desc\"
                   type: DISCUSSION
+                  # 每个状态最多取最新 50 条；若后续数据量持续增大可再引入分页
                   first: 50
                 ) {
                   nodes {
@@ -95,8 +96,11 @@ jobs:
 
           unique_nodes = {}
           for d in nodes:
-              if d.get('id'):
-                  unique_nodes[d['id']] = d
+              disc_id = d.get('id')
+              if not disc_id:
+                  print(f"WARNING: 跳过缺少 id 的 Discussion 节点: {d.get('number')}")
+                  continue
+              unique_nodes[disc_id] = d
 
           answered = [d for d in unique_nodes.values() if d.get('isAnswered')]
           print(f"共获取 {len(unique_nodes)} 条 Discussion（open+closed 去重后），其中已解答 {len(answered)} 条。")
