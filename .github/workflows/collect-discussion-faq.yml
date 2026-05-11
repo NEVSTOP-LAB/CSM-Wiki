@@ -28,66 +28,78 @@ jobs:
           # 若该 Token 不存在，回退到 GITHUB_TOKEN（可能无法读取 org 级 Discussion）
           GH_TOKEN: ${{ secrets.CSM_WIKI_SYNC_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
-          gh api graphql -f query='
-            query {
-              search(
-                query: "org:NEVSTOP-LAB category:q-a is:answered sort:updated-desc"
-                type: DISCUSSION
-                first: 50
-              ) {
-                nodes {
-                  ... on Discussion {
-                    id
-                    number
-                    title
-                    body
-                    url
-                    isAnswered
-                    answer {
+          for state in open closed; do
+            gh api graphql -f query="
+              query {
+                search(
+                  query: \"org:NEVSTOP-LAB category:\\\"Q&A\\\" is:${state} sort:updated-desc\"
+                  type: DISCUSSION
+                  first: 50
+                ) {
+                  nodes {
+                    ... on Discussion {
+                      id
+                      number
+                      title
                       body
-                      author { login }
+                      url
+                      isAnswered
+                      answer {
+                        body
+                        author { login }
+                      }
+                      createdAt
+                      updatedAt
                     }
-                    createdAt
-                    updatedAt
                   }
                 }
               }
-            }
-          ' > /tmp/discussions_raw.json
-          EXIT_CODE=$?
+            " > "/tmp/discussions_${state}_raw.json"
+            EXIT_CODE=$?
 
-          if [ $EXIT_CODE -ne 0 ]; then
-            echo "ERROR: GraphQL API 请求失败（exit code ${EXIT_CODE}），请检查 GH_TOKEN 是否具有 read:org 权限。" >&2
-            echo "API 响应内容：" >&2
-            cat /tmp/discussions_raw.json >&2
-            exit 1
-          fi
+            if [ $EXIT_CODE -ne 0 ]; then
+              echo "ERROR: GraphQL API 请求失败（state=${state}, exit code ${EXIT_CODE}），请检查 GH_TOKEN 是否具有 read:org 权限。" >&2
+              echo "API 响应内容：" >&2
+              cat "/tmp/discussions_${state}_raw.json" >&2
+              exit 1
+            fi
+          done
 
           # 过滤出已解答的 Discussion，写入 /tmp/answered.json
           python3 - <<'PYEOF'
           import json, sys
 
           try:
-              with open('/tmp/discussions_raw.json') as f:
-                  data = json.load(f)
+              datasets = []
+              for state in ('open', 'closed'):
+                  with open(f'/tmp/discussions_{state}_raw.json') as f:
+                      datasets.append(json.load(f))
           except Exception as e:
               print(f"ERROR: 无法解析 API 响应: {e}", file=sys.stderr)
               sys.exit(1)
 
           # GraphQL 可能以 HTTP 200 返回 errors（如权限不足），需显式检查
-          if 'errors' in data:
-              for err in data['errors']:
-                  print(f"ERROR: GraphQL 错误: {err.get('message', err)}", file=sys.stderr)
-              sys.exit(1)
+          for data in datasets:
+              if 'errors' in data:
+                  for err in data['errors']:
+                      print(f"ERROR: GraphQL 错误: {err.get('message', err)}", file=sys.stderr)
+                  sys.exit(1)
 
-          nodes = (
-              data.get('data', {})
-                  .get('search', {})
-                  .get('nodes', [])
-          )
+          nodes = []
+          for data in datasets:
+              nodes.extend(
+                  data.get('data', {})
+                      .get('search', {})
+                      .get('nodes', [])
+              )
 
-          answered = [d for d in nodes if d.get('isAnswered')]
-          print(f"共获取 {len(nodes)} 条 Discussion，其中已解答 {len(answered)} 条。")
+          unique_nodes = {}
+          for d in nodes:
+              if d.get('id'):
+                  unique_nodes[d['id']] = d
+
+          answered = [d for d in unique_nodes.values() if d.get('isAnswered')]
+          print(f"共获取 {len(unique_nodes)} 条 Discussion（open+closed 去重后），其中已解答 {len(answered)} 条。")
 
           with open('/tmp/answered.json', 'w', encoding='utf-8') as f:
               json.dump(answered, f, ensure_ascii=False, indent=2)
