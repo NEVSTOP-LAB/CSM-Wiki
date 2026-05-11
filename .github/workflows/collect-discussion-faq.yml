@@ -158,7 +158,7 @@ jobs:
                   ---
 
                   > 此 Issue 由自动化工作流创建。请 AI 助手（`collect-discussion-faq` 技能）根据以上内容，
-                  > 将问题解答整理后添加到 `docs/faq(zh-cn).md`，并将 Discussion node ID `{disc_id}` 追加到
+                  > 将问题解答整理后添加到对应 FAQ 子页面（`docs/faq/*.md`），并将 Discussion node ID `{disc_id}` 追加到
                   > `.github/processed-discussions.txt`。
                   """)
 

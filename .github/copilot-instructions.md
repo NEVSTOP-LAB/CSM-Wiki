@@ -192,6 +192,18 @@ grep -r "> - Ref:" docs/reference/
 | csm-gweb-development.md | （新增）G-Web-Development-with-CSM 应用说明 | ✅ 完成 |
 | csm-script-lite.md | （新增）CSMScript-Lite 脚本化自动测试应用说明 | ✅ 完成 |
 
+### `docs/faq/` 文件完成情况
+
+| 文件 | 内容 | 状态 |
+|------|------|------|
+| faq(zh-cn).md | FAQ 顶级导航页（用户旅程索引） | ✅ 完成 (100%) |
+| faq/quick-start.md | 快速上手 FAQ | ✅ 完成 (100%) |
+| faq/messaging.md | 消息通信 FAQ | ✅ 完成 (100%) |
+| faq/data-transfer.md | 数据传递 FAQ | ✅ 完成 (100%) |
+| faq/advanced-patterns.md | 高级模式 FAQ | ✅ 完成 (100%) |
+| faq/debugging.md | 调试排查 FAQ | ✅ 完成 (100%) |
+| faq/framework-selection.md | 框架选型 FAQ | ✅ 完成 (100%) |
+
 ### `docs/release/` 文件完成情况
 
 | 文件 | 内容 | 状态 |
@@ -234,6 +246,7 @@ grep -r "> - Ref:" docs/reference/
 详见 `.github/skills/add-faq/SKILL.md`。
 
 **触发条件**：Issue 被分配给 AI 助手后，判断该 Issue 属于常见问题记录类型时触发。
+**作用范围**：将问题合并到对应 FAQ 子页面（`docs/faq/*.md`），必要时更新 `docs/faq(zh-cn).md` 索引页。
 
 ---
 

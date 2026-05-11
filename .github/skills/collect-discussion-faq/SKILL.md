@@ -1,6 +1,6 @@
 ---
 name: collect-discussion-faq
-description: '从 GitHub Discussions Q&A 分类中收集已解答的问题，并将其整理后添加到 docs/faq(zh-cn).md。适用于定期将社区讨论中的高质量问答沉淀为 Wiki FAQ 条目。'
+description: '从 GitHub Discussions Q&A 分类中收集已解答的问题，并将其整理后添加到对应 FAQ 子页面（docs/faq/*.md）。适用于定期将社区讨论中的高质量问答沉淀为 Wiki FAQ 条目。'
 argument-hint: 'Discussion 编号、Discussion URL，或直接输入"收集最近已解答的 Discussion"'
 user-invocable: true
 ---
@@ -16,7 +16,7 @@ user-invocable: true
 ## 本技能产出
 
 - 从指定的 GitHub Discussion（或批量已解答 Discussion）中提取 Q&A 内容。
-- 在 `docs/faq(zh-cn).md` 中新增或合并对应的常见问题解答条目。
+- 在对应 FAQ 子页面（`docs/faq/*.md`）中新增或合并对应的常见问题解答条目。
 - 将处理结果记录到 `.github/processed-discussions.txt`，避免重复处理。
 
 ## 执行流程
@@ -29,7 +29,7 @@ user-invocable: true
    - 问题：Discussion 标题 + 正文（简化后）。
    - 解答：优先使用"已接受答案"（`isAnswered` 为 true 对应的评论），其次使用 `@nevstop` 的回复，最后综合其他高赞回复。
 
-3. **更新 FAQ 文件**：调用 `add-faq` 技能的逻辑（见 `.github/skills/add-faq/SKILL.md`），将提取的 Q&A 写入 `docs/faq(zh-cn).md`。
+3. **更新 FAQ 文件**：调用 `add-faq` 技能的逻辑（见 `.github/skills/add-faq/SKILL.md`），将提取的 Q&A 写入对应 FAQ 子页面（`docs/faq/*.md`）。
 
 4. **记录已处理**：在 `.github/processed-discussions.txt` 追加该 Discussion 的 node ID（每行一个），防止后续重复收录。
 
@@ -65,7 +65,7 @@ user-invocable: true
 
 4. **逐条处理**：对每条未处理的已解答 Discussion，执行模式一的步骤 2-4。
 
-5. **提交更新**：确认 `docs/faq(zh-cn).md` 和 `.github/processed-discussions.txt` 均已更新。
+5. **提交更新**：确认对应 FAQ 子页面（`docs/faq/*.md`）和 `.github/processed-discussions.txt` 均已更新。
 
 ## FAQ 文件格式规范
 
@@ -81,27 +81,26 @@ user-invocable: true
 
 ## 问题分类判断
 
-将问题归入以下分类之一（参考现有 FAQ 分类）：
-- 下载/安装
-- 基本概念
-- 应用场景/框架比较
-- 使用方法
-- 高级功能
-- 调试工具
-- 其他
+将问题归入以下分类之一（对应 FAQ 子页面）：
+- 快速上手（`docs/faq/quick-start.md`）
+- 消息通信（`docs/faq/messaging.md`）
+- 数据传递（`docs/faq/data-transfer.md`）
+- 高级模式（`docs/faq/advanced-patterns.md`）
+- 调试排查（`docs/faq/debugging.md`）
+- 框架选型（`docs/faq/framework-selection.md`）
 
 ## 注意事项
 
 - 若 Discussion 正文或解答内容过长，应精简后写入 FAQ，保持 FAQ 条目简洁易读。
 - 若 FAQ 中已有与该 Discussion 相似的问题，合并内容而非重复添加，并更新参考链接。
 - 处理过的 Discussion node ID **必须**写入 `.github/processed-discussions.txt`，格式为每行一个 ID。
-- 只修改 `docs/faq(zh-cn).md` 和 `.github/processed-discussions.txt`，不修改其他文件。
+- 只修改 FAQ 子页面（`docs/faq/*.md`）和 `.github/processed-discussions.txt`，不修改其他文件。
 
 ## 完成检查清单
 
 - [ ] 已获取目标 Discussion 的标题、正文和已接受答案。
-- [ ] 已判断问题分类并定位 FAQ 对应章节。
+- [ ] 已判断问题分类并定位对应 FAQ 子页面（`docs/faq/*.md`）。
 - [ ] FAQ 中无重复问题（相似问题已合并）。
-- [ ] 已按 `### :question: 问题标题` 格式写入 `docs/faq(zh-cn).md`。
+- [ ] 已按 `### :question: 问题标题` 格式写入对应 FAQ 子页面。
 - [ ] 已将 Discussion node ID 追加到 `.github/processed-discussions.txt`。
-- [ ] 只修改了 `docs/faq(zh-cn).md` 和 `.github/processed-discussions.txt`，无其他文件改动。
+- [ ] 只修改了 FAQ 子页面（`docs/faq/*.md`）和 `.github/processed-discussions.txt`，无其他文件改动。
