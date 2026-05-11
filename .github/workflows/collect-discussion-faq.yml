@@ -32,9 +32,9 @@ jobs:
             gh api graphql -f query="
               query {
                 search(
-                  query: \"org:NEVSTOP-LAB is:${state} sort:updated-desc\"
+                  query: \"org:NEVSTOP-LAB category:q-a is:${state} sort:updated-desc\"
                   type: DISCUSSION
-                  # 每个状态最多取最新 50 条；若后续数据量持续增大可再引入分页
+                  # 每个状态最多取最新 50 条（open+closed 合计上限 100 条）；若后续数据量持续增大可再引入分页
                   first: 50
                 ) {
                   nodes {
@@ -110,10 +110,13 @@ jobs:
               unique_nodes[disc_id] = d
 
           def is_qa_category(disc):
+              # 当前组织 Q&A 分类预期 slug 为 q-a，名称为 Q&A
+              qa_slug = 'q-a'
+              qa_names = {'q&a', 'q & a'}
               category = disc.get('category') or {}
               slug = (category.get('slug') or '').strip().lower()
               name = (category.get('name') or '').strip().lower()
-              return slug == 'q-a' or name in {'q&a', 'q & a'}
+              return slug == qa_slug or name in qa_names
 
           answered = [d for d in unique_nodes.values() if d.get('isAnswered') and is_qa_category(d)]
           print(f"共获取 {len(unique_nodes)} 条 Discussion（open+closed 去重后），Q&A 分类中已解答 {len(answered)} 条。")
