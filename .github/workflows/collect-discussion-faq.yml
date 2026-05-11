@@ -30,9 +30,13 @@ jobs:
         run: |
           gh api graphql -f query='
             query {
-              organization(login: "NEVSTOP-LAB") {
-                discussions(first: 50, categorySlug: "q-a") {
-                  nodes {
+              search(
+                query: "org:NEVSTOP-LAB category:q-a is:answered sort:updated-desc"
+                type: DISCUSSION
+                first: 50
+              ) {
+                nodes {
+                  ... on Discussion {
                     id
                     number
                     title
@@ -78,8 +82,7 @@ jobs:
 
           nodes = (
               data.get('data', {})
-                  .get('organization', {})
-                  .get('discussions', {})
+                  .get('search', {})
                   .get('nodes', [])
           )
 
