@@ -70,6 +70,12 @@ jobs:
               print(f"ERROR: 无法解析 API 响应: {e}", file=sys.stderr)
               sys.exit(1)
 
+          # GraphQL 可能以 HTTP 200 返回 errors（如权限不足），需显式检查
+          if 'errors' in data:
+              for err in data['errors']:
+                  print(f"ERROR: GraphQL 错误: {err.get('message', err)}", file=sys.stderr)
+              sys.exit(1)
+
           nodes = (
               data.get('data', {})
                   .get('organization', {})
@@ -102,7 +108,7 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           python3 - <<'PYEOF'
-          import json, subprocess, os, sys
+          import json, subprocess, os, sys, textwrap
 
           with open('/tmp/answered.json', encoding='utf-8') as f:
               discussions = json.load(f)
@@ -132,29 +138,29 @@ jobs:
                   answer_body = answer_body[:1500] + '\n\n…（内容已截断，请查看原帖）'
 
               issue_title = f"[FAQ from Discussion #{disc['number']}] {disc['title']}"
-              issue_body = f"""\
-          ## 来源
+              issue_body = textwrap.dedent(f"""\
+                  ## 来源
 
-          GitHub Discussion: {disc['url']}
+                  GitHub Discussion: {disc['url']}
 
-          ---
+                  ---
 
-          ## 问题内容
+                  ## 问题内容
 
-          {disc_body}
+                  {disc_body}
 
-          ---
+                  ---
 
-          ## 已接受的解答（by @{answer_author}）
+                  ## 已接受的解答（by @{answer_author}）
 
-          {answer_body}
+                  {answer_body}
 
-          ---
+                  ---
 
-          > 此 Issue 由自动化工作流创建。请 AI 助手（`collect-discussion-faq` 技能）根据以上内容，
-          > 将问题解答整理后添加到 `docs/faq(zh-cn).md`，并将 Discussion node ID `{disc_id}` 追加到
-          > `.github/processed-discussions.txt`。
-          """
+                  > 此 Issue 由自动化工作流创建。请 AI 助手（`collect-discussion-faq` 技能）根据以上内容，
+                  > 将问题解答整理后添加到 `docs/faq(zh-cn).md`，并将 Discussion node ID `{disc_id}` 追加到
+                  > `.github/processed-discussions.txt`。
+                  """)
 
               # 优先带 faq label 创建；若 label 不存在则不带 label 重试
               cmd_base = ['gh', 'issue', 'create', '--repo', repo,
@@ -184,8 +190,11 @@ jobs:
       - name: 更新已处理 Discussion 追踪文件
         run: |
           mkdir -p .github
-          # 去重排序后写回
-          sort -u /tmp/processed.txt > .github/processed-discussions.txt
+          # 保留注释头（# 开头），仅对 ID 行去重排序后写回
+          {
+            grep '^#' /tmp/processed.txt || true
+            grep -v '^#' /tmp/processed.txt | grep -v '^$' | sort -u
+          } > .github/processed-discussions.txt
 
       - name: 提交追踪文件更新
         run: |

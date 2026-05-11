@@ -9,7 +9,8 @@ user-invocable: true
 
 ## 触发条件
 
-- 用户明确要求"收集 Discussion 到 FAQ"时触发。
+- 用户发送 `收集最近已解答的 Discussion` 时触发（批量模式）。
+- 用户发送 `收集 Discussion #<编号>` 时触发（单条模式）。
 - 定时工作流（`.github/workflows/collect-discussion-faq.yml`）自动创建 Issue 后，Issue 被分配给 AI 助手时触发。
 
 ## 本技能产出
