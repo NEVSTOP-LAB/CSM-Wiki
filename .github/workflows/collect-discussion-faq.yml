@@ -32,7 +32,7 @@ jobs:
             gh api graphql -f query="
               query {
                 search(
-                  query: \"org:NEVSTOP-LAB category:\\\"Q&A\\\" is:${state} sort:updated-desc\"
+                  query: \"org:NEVSTOP-LAB is:${state} sort:updated-desc\"
                   type: DISCUSSION
                   # 每个状态最多取最新 50 条；若后续数据量持续增大可再引入分页
                   first: 50
@@ -44,6 +44,10 @@ jobs:
                       title
                       body
                       url
+                      category {
+                        name
+                        slug
+                      }
                       isAnswered
                       answer {
                         body
@@ -98,12 +102,21 @@ jobs:
           for d in nodes:
               disc_id = d.get('id')
               if not disc_id:
-                  print(f"WARNING: 跳过缺少 id 的 Discussion 节点: {d.get('number')}")
+                  print(
+                      f"WARNING: 跳过缺少 id 的 Discussion 节点: "
+                      f"#{d.get('number', 'unknown')} - {d.get('title', 'no title')} ({d.get('url', 'no url')})"
+                  )
                   continue
               unique_nodes[disc_id] = d
 
-          answered = [d for d in unique_nodes.values() if d.get('isAnswered')]
-          print(f"共获取 {len(unique_nodes)} 条 Discussion（open+closed 去重后），其中已解答 {len(answered)} 条。")
+          def is_qa_category(disc):
+              category = disc.get('category') or {}
+              slug = (category.get('slug') or '').strip().lower()
+              name = (category.get('name') or '').strip().lower()
+              return slug == 'q-a' or name in {'q&a', 'q & a'}
+
+          answered = [d for d in unique_nodes.values() if d.get('isAnswered') and is_qa_category(d)]
+          print(f"共获取 {len(unique_nodes)} 条 Discussion（open+closed 去重后），Q&A 分类中已解答 {len(answered)} 条。")
 
           with open('/tmp/answered.json', 'w', encoding='utf-8') as f:
               json.dump(answered, f, ensure_ascii=False, indent=2)
