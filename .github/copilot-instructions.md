@@ -246,6 +246,7 @@ grep -r "> - Ref:" docs/reference/
 详见 `.github/skills/add-faq/SKILL.md`。
 
 **触发条件**：Issue 被分配给 AI 助手后，判断该 Issue 属于常见问题记录类型时触发。
+**作用范围**：将问题合并到对应 FAQ 子页面（`docs/faq/*.md`），必要时更新 `docs/faq(zh-cn).md` 索引页。
 
 ---
 
