@@ -44,6 +44,22 @@ CSM 的广播（Broadcast）机制是**无损的**，不会丢失数据。广播
 > 更多信息，请参考 [模块间通讯 - 状态订阅]({% link docs/basic/communication.md %}#状态订阅)。
 >
 
+## :question: 同步调用等待期间，能否同时发出异步消息？
+
+**不能**——在同一个状态队列中，消息是**顺序执行**的。同步消息（`-@`）会阻塞队列的继续执行，后续的异步消息必须等到同步调用返回后才会被处理，不会在等待期间"同时"发出。
+
+```csm
+API: GetData >> params -@ Database        // 同步调用，阻塞等待返回
+API: UpdateProgress >> 50% ->| UI         // 必须等上一条同步消息返回后才执行
+```
+
+如果确实需要在同步等待期间同时发出异步消息，必须从**不同模块或线程**发送：
+
+- **独立 CSM 模块**：让两个模块并行运行，彼此不互相阻塞
+- **外部线程**：在独立线程中通过 `CSM - Post Message.vi` 发送，不受其他同步调用影响
+
+📓 参考链接：[Discussion 原帖](https://github.com/orgs/NEVSTOP-LAB/discussions/53)，[模块间通讯 - 混合消息场景]({% link docs/basic/communication.md %}#混合消息场景)
+
 ## :question: 什么是 CSM 模块的 Response 和 Async Response？
 
 - **Response**：处理同步消息（`-@`）后的回调状态。目标模块处理完消息后，调用方会进入此状态，携带返回的参数和来源模块名。
