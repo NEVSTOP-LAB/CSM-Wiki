@@ -46,8 +46,17 @@ CSM 的广播（Broadcast）机制是**无损的**，不会丢失数据。广播
 
 ## :question: 什么是 CSM 模块的 Response 和 Async Response？
 
-- **Response**：处理同步消息（`-@`）后的回调状态。目标模块处理完消息后，调用方会进入此状态，携带返回的参数和来源模块名。
+- **Response**：处理同步消息（`-@`）后的回调状态。目标模块处理完消息后，调用方会进入此状态。
 - **Async Response**：处理异步消息（`->`）后的回调状态。目标模块处理完毕后，调用方在此状态接收返回值。
+
+在这两个状态中，参数分为两部分：
+
+| 参数 | 含义 |
+|------|------|
+| CASE `Argument`（状态参数） | 被调用方返回的结果数据 |
+| `Response Info.Argument` | **原始请求参数**（发送消息时携带的参数） |
+
+这一设计让响应处理时具备完整上下文。例如发送 `Query ID >> 李梅 -@ database` 后，`Response` 状态中 CASE `Argument` 是返回的证件号码，而 `Response Info.Argument` 是原始查询参数 `李梅`。对于异步消息（`->`）尤为有用，因为多个异步请求可能同时在途，`Response Info.Argument` 帮助区分各请求的上下文。
 
 > 📓
 > 更多信息，请参考 [模块间通讯]({% link docs/basic/communication.md %})。

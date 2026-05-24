@@ -82,6 +82,9 @@ end
 在 "Response" 状态处理响应：
 ![Alt text](../../assets/img/Response@MainModule2.png)
 
+{: .note }
+> 在 `Response` 状态中，**CASE `Argument`** 是被调用方的返回值，**`Response Info.Argument`** 是发送请求时携带的原始参数。两者同时可用，让响应处理逻辑具备完整上下文。
+
 运行效果（先启动 SubModule，再启动 MainModule）：
 ![Alt text](https://nevstop-lab.github.io/CSM-Wiki/assets/img/SyncCall%20by%20CSM%20result.png)
 
@@ -157,6 +160,9 @@ End
 
 在 "Async Response" 状态处理响应：
 ![Alt text](../../assets/img/Response@MainModule2.png)
+
+{: .note }
+> 在 `Async Response` 状态中，**CASE `Argument`** 是被调用方的返回值，**`Response Info.Argument`** 是发送请求时携带的原始参数。对于异步调用尤为重要——由于返回时间不确定，多个异步请求可能同时在途，携带原始参数让响应处理逻辑更加清晰。
 
 **无返回的异步消息 (->|)**
 
