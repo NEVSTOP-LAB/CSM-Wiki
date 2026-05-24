@@ -130,7 +130,7 @@ CSM 的预置状态以 JKISM 为基础扩展。JKISM 提供了状态机生命周
 
 ### 信号广播(Status Broadcast)
 
-信号广播（`<status>` 或 `<broadcast>`）是普通优先级的广播，通过**低优先级队列**传递，行为类似异步消息。模块需要显式调用才能发出：
+信号广播（`<status>`、`<broadcast>` 或 `<all>`，三者完全等价）是普通优先级的广播，通过**低优先级队列**传递，行为类似异步消息。模块需要显式调用才能发出：
 
 ```csm
 ModuleStatus >> Arguments -> <status>
