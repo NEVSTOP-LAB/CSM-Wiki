@@ -69,7 +69,7 @@ CSM 提供了专用 API 供非 CSM 代码调用 CSM 模块：
 
 - **`CSM - Post Message.vi`**：向 CSM 模块发送异步消息（无返回），适合单向通知。
 - **`CSM - Send Message and Wait for Reply.vi`**：向 CSM 模块发送同步消息并等待返回，适合需要获取结果的场景。
-- **`CSM - Register Broadcast.vi`**：订阅 CSM 模块的状态广播，通过用户事件接收通知。
+- **`CSM - Broadcast Event.vi`** + **`CSM - Destroy Broadcast Event.vi`**：获取 CSM 模块的状态更改事件句柄，在标准 LabVIEW 事件结构中直接接收 CSM 广播（Status 和 Interrupt 均支持），使用完毕后释放句柄。
 
 > 📓
 > 更多信息，请参考 [创建 CSM 模块 - 在其他框架中调用 CSM 模块]({% link docs/basic/usage.md %}#step3-在其他框架中调用csm模块)。

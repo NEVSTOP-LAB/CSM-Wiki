@@ -44,6 +44,15 @@ CSM 的广播（Broadcast）机制是**无损的**，不会丢失数据。广播
 > 更多信息，请参考 [模块间通讯 - 状态订阅]({% link docs/basic/communication.md %}#状态订阅)。
 >
 
+## :question: 非 CSM 模块是否可以接收 CSM 广播数据？
+
+可以。CSM 提供了 LabVIEW User Event 接口，非 CSM 模块可以通过 [`CSM - Broadcast Event.vi`]({% link docs/reference/api-05-module-operation-api.md %}#csm---broadcast-eventvi) 获取指定 CSM 模块的状态更改事件句柄，然后在标准 LabVIEW 事件结构中监听 CSM 广播。Status（信号广播）和 Interrupt（中断广播）均可接收。使用完毕后，需调用 [`CSM - Destroy Broadcast Event.vi`]({% link docs/reference/api-05-module-operation-api.md %}#csm---destroy-broadcast-eventvi) 释放句柄。
+
+> 📓
+> 参考示例：`4. Advance Examples\6. Global Log Handling Capability\`，更多信息请参考[模块间通讯 - 非 CSM 代码接收广播]({% link docs/basic/communication.md %}#非-csm-代码接收广播)。
+> 原帖：[Discussion #39](https://github.com/orgs/NEVSTOP-LAB/discussions/39)
+>
+
 ## :question: 什么是 CSM 模块的 Response 和 Async Response？
 
 - **Response**：处理同步消息（`-@`）后的回调状态。目标模块处理完消息后，调用方会进入此状态，携带返回的参数和来源模块名。
