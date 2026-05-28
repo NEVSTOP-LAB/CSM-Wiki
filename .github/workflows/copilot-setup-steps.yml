@@ -33,6 +33,10 @@ jobs:
         id: csm-sha
         run: |
           SHA=$(git ls-remote https://github.com/NEVSTOP-LAB/CSM-LLM-QA.git refs/heads/main | cut -f1)
+          if [ -z "$SHA" ]; then
+            echo "ERROR: 无法获取 CSM-LLM-QA main 分支的 SHA，请检查网络或仓库地址。" >&2
+            exit 1
+          fi
           echo "sha=$SHA" >> "$GITHUB_OUTPUT"
           echo "CSM-LLM-QA@main SHA: $SHA"
 
