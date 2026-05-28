@@ -12,6 +12,13 @@ nav_order: 11
 ## CSM User Interface(UI) Module Template.vi
 用于创建带用户界面的CSM模块的模板，该模板包含用于响应用户操作的用户事件结构。
 
+{: .important .callout-hover }
+> <b>前面板自动打开行为</b>
+>
+> 该模板在 `Macro: Initialize` 初始化阶段会自动调用 `UI: Initialize`，**主动打开前面板**。这是 UI 模块的预期行为，适用于需要向用户展示界面的场景。
+>
+> 若将此模板用于仪器控制等后台模块，前面板会在模块启动时自动弹出。对于不需要常驻界面的后台模块，应改用 `CSM Module Template`（无 UI）。
+
 {: .note .callout-hover }
 > <b>CSM名称规则</b>
 >
@@ -110,6 +117,13 @@ nav_order: 11
 
 ## CSM User Interface(UI) Module Template - Tiny.vi
 用于创建带用户界面的CSM模块的紧凑代码模板，该模板包含用于响应用户操作的用户事件结构。该模板功能与CSM User Interface(UI) Module Template VI完全相同，区别仅在于代码更加紧凑.
+
+{: .important .callout-hover }
+> <b>前面板自动打开行为</b>
+>
+> 该模板在 `Macro: Initialize` 初始化阶段会自动调用 `UI: Initialize`，**主动打开前面板**。这是 UI 模块的预期行为，适用于需要向用户展示界面的场景。
+>
+> 若将此模板用于仪器控制等后台模块，前面板会在模块启动时自动弹出。对于不需要常驻界面的后台模块，应改用 `CSM Module Template`（无 UI）。
 
 {: .note .callout-hover }
 > <b>CSM名称规则</b>

@@ -74,3 +74,20 @@ CSM 提供了专用 API 供非 CSM 代码调用 CSM 模块：
 > 📓
 > 更多信息，请参考 [创建 CSM 模块 - 在其他框架中调用 CSM 模块]({% link docs/basic/usage.md %}#step3-在其他框架中调用csm模块)。
 >
+
+## :question: 为什么使用 `CSM User Interface(UI) Module Template` 时，模块启动就自动打开了前面板？
+
+`CSM User Interface(UI) Module Template` 是专为**需要展示用户界面的 UI 模块**设计的，它在 `Macro: Initialize` 初始化阶段会自动调用 `UI: Initialize` 打开前面板。这是该模板的预期行为。
+
+**如果你的模块是仪器控制、数据采集等后台模块**，应使用无 UI 的 **`CSM Module Template`**，它不会打开任何前面板，完全通过消息驱动、在后台静默运行。
+
+推荐的架构是将 UI 逻辑与仪器逻辑分离：
+
+- **仪器模块**：使用 `CSM Module Template`，专注于硬件通信和数据处理。
+- **UI 模块**：单独创建一个 `CSM User Interface(UI) Module Template` 或 `CSM DQMH-Style Template` 模块，通过 CSM 消息与仪器模块通信，负责参数显示和用户输入。
+
+如果确实需要仪器模块偶尔显示前面板（如调试用途），可以使用 `CSM Module Template`，然后通过自定义消息（如 `"UI: Front Panel State >> Open"`）按需控制前面板显示。
+
+> 📓
+> 参考链接：[Discussion 原帖](https://github.com/orgs/NEVSTOP-LAB/discussions/41)，[模板参考文档]({% link docs/reference/api-01-templates.md %})。
+>
