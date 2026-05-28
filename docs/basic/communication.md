@@ -241,6 +241,14 @@ Status@SourceModule >> API@TargetModule -><register as interrupt>
 - 指定了目标模块名（如 `API@TargetModule`）：**外部规则**，全局生效，模块退出后不会自动删除
 - 未指定目标模块名（如仅 `API`）：**内部规则**，模块退出时自动删除
 
+### 非 CSM 代码接收广播
+
+非 CSM 模块可以通过 LabVIEW User Event 接口直接接收 CSM 广播。调用 [`CSM - Broadcast Event.vi`]({% link docs/reference/api-05-module-operation-api.md %}#csm---broadcast-eventvi)，可以获取指定 CSM 模块的状态更改事件句柄（Status Change Event）。获得句柄后，即可在标准 LabVIEW 事件结构中监听该模块的广播，包括 Status 信号广播和 Interrupt 中断广播两种类型。使用完毕后，调用 [`CSM - Destroy Broadcast Event.vi`]({% link docs/reference/api-05-module-operation-api.md %}#csm---destroy-broadcast-eventvi) 释放句柄，避免资源泄漏。
+
+> 📓
+> 参考示例：`4. Advance Examples\6. Global Log Handling Capability\`。
+>
+
 ## 状态订阅
 
 状态订阅是 CSM 中最常用的解耦方式，下面通过一个完整示例展示用法。
