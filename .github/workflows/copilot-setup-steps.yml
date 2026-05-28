@@ -1,0 +1,52 @@
+name: "Copilot Setup Steps"
+
+# 当此文件本身发生变更时自动运行以验证配置，也支持手动触发
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  # 此 job 名称必须为 copilot-setup-steps，否则 Copilot 无法识别
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 通过 git ls-remote 获取 CSM-LLM-QA main 分支的最新 commit SHA，
+      # 作为 pip cache key，确保 main 有新提交时 cache 自动失效
+      - name: Get CSM-LLM-QA latest main SHA
+        id: csm-sha
+        run: |
+          SHA=$(git ls-remote https://github.com/NEVSTOP-LAB/CSM-LLM-QA.git refs/heads/main | cut -f1)
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "CSM-LLM-QA@main SHA: $SHA"
+
+      # 以 CSM-LLM-QA 的 commit SHA 为精确 key 缓存 pip 目录；
+      # restore-keys 保证 SHA 变更时仍能复用旧缓存中已安装的其他依赖（openai、chromadb 等）
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-csm-llm-qa-${{ steps.csm-sha.outputs.sha }}
+          restore-keys: |
+            pip-csm-llm-qa-
+
+      # 安装 CSM-LLM-QA main 分支的最新版本（固定到 SHA 使 pip 能复用 wheel 缓存）
+      - name: Install CSM-LLM-QA from main
+        run: |
+          pip install "git+https://github.com/NEVSTOP-LAB/CSM-LLM-QA.git@${{ steps.csm-sha.outputs.sha }}"
