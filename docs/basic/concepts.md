@@ -110,12 +110,12 @@ TCP Connected@TCPModule >> UpdateLED@UI -><register>
 
 | 参数 | 含义 |
 |------|------|
-| CASE `Argument`（状态参数） | 被调用方返回的结果数据 |
-| `Response Info` 簇中的 `Argument` | **原始请求的参数**（发送消息时携带的参数） |
+| `Parse State Queue++.vi` 的 `Argument` | 被调用方返回的结果数据 |
+| `Parse State Queue++.vi` 的 `Response Info.Argument` | **原始请求的参数**（发送消息时携带的参数） |
 
 这一设计的目的是在处理响应时具备完整的上下文信息。例如发送 `Query ID >> 李梅 -@ database` 后，进入 `Response` 状态时：
-- CASE `Argument` = `12345678`（被调用方返回的证件号码）
-- `Response Info.Argument` = `李梅`（原始请求中的查询参数）
+- `Parse State Queue++.vi` 的 `Argument` = `12345678`（被调用方返回的证件号码）
+- `Parse State Queue++.vi` 的 `Response Info.Argument` = `李梅`（原始请求中的查询参数）
 
 对于异步消息（`->`）尤为重要——由于异步消息的返回时间不确定，调用方可能同时有多个异步请求在途，携带原始请求参数让响应处理逻辑更加清晰。
 
@@ -135,7 +135,7 @@ CSM 的预置状态以 JKISM 为基础扩展。JKISM 提供了状态机生命周
 | `Target Error` | CSM 扩展 | 目标模块不存在时进入 |
 | `Critical Error` | CSM 扩展 | 框架级严重错误（如模块名重复）时进入，模块将停止运行 |
 
-在同步/异步消息的 `Response` / `Async Response` 状态中，可以从 `Additional Information` 获取被调用方的错误信息，也可以通过 `Source CSM` 输出得知返回值来自哪个模块。`Response Info` 簇中的 `Argument` 字段携带的是**原始请求参数**，而非调用返回值；调用返回值位于 CASE 的 `Argument` 输出中。
+在同步/异步消息的 `Response` / `Async Response` 状态中，可以从 `Additional Information` 获取被调用方的错误信息，也可以通过 `Source CSM` 输出得知返回值来自哪个模块。`Parse State Queue++.vi` 的 `Response Info.Argument` 携带的是**原始请求参数**，而非调用返回值；调用返回值位于 `Parse State Queue++.vi` 的 `Argument` 输出中。
 
 ## 广播(Broadcast)
 

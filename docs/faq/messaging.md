@@ -53,10 +53,10 @@ CSM 的广播（Broadcast）机制是**无损的**，不会丢失数据。广播
 
 | 参数 | 含义 |
 |------|------|
-| CASE `Argument`（状态参数） | 被调用方返回的结果数据 |
-| `Response Info.Argument` | **原始请求参数**（发送消息时携带的参数） |
+| `Parse State Queue++.vi` 的 `Argument` | 被调用方返回的结果数据 |
+| `Parse State Queue++.vi` 的 `Response Info.Argument` | **原始请求参数**（发送消息时携带的参数） |
 
-这一设计让响应处理时具备完整上下文。例如发送 `Query ID >> 李梅 -@ database` 后，`Response` 状态中 CASE `Argument` 是返回的证件号码，而 `Response Info.Argument` 是原始查询参数 `李梅`。对于异步消息（`->`）尤为有用，因为多个异步请求可能同时在途，`Response Info.Argument` 帮助区分各请求的上下文。
+这一设计让响应处理时具备完整上下文。例如发送 `Query ID >> 李梅 -@ database` 后，`Response` 状态中 `Parse State Queue++.vi` 的 `Argument` 是返回的证件号码，而 `Parse State Queue++.vi` 的 `Response Info.Argument` 是原始查询参数 `李梅`。对于异步消息（`->`）尤为有用，因为多个异步请求可能同时在途，`Parse State Queue++.vi` 的 `Response Info.Argument` 帮助区分各请求的上下文。
 
 > 📓
 > 更多信息，请参考 [模块间通讯]({% link docs/basic/communication.md %})。
