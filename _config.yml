@@ -112,7 +112,7 @@ mermaid:
   version: "10.9.1"
 
 # Q&A shortcut — links to GitHub Discussions Q&A category (AI bot lives there)
-qa_discussion_url: "https://github.com/orgs/NEVSTOP-LAB/discussions/categories/q-a"
+qa_discussion_url: "https://github.com/orgs/NEVSTOP-LAB/discussions/categories/q-a?discussions_q="
 
 # Callouts configuration
 # Define callout types for use in markdown with {: .callout-type }
