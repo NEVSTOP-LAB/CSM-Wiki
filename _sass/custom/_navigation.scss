@@ -24,6 +24,8 @@
 
 // Hover & active states ------------------------------------------------------
 .nav-list .nav-list-item > .nav-list-link {
+  // Hover is intentionally lighter (0.08) than the active state (0.12 below)
+  // so the current page always reads as the strongest highlight.
   &:hover {
     background-color: rgba(var(--brand-color-rgb), 0.08);
     background-image: none;

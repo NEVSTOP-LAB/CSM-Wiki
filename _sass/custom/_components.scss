@@ -147,14 +147,18 @@ pre.highlight {
 // ---------------------------------------------------------------------------
 // Tables
 // ---------------------------------------------------------------------------
-// Doks-style: rounded outer border via border-collapse separate + radius.
-table {
-  background-color: var(--table-background-color);
+// Doks-style rounded card. Just the Docs wraps every table in
+// `.table-wrapper` (which provides horizontal `overflow-x: auto` scrolling),
+// so we put the border + radius on the wrapper. This rounds the corners
+// without clipping or hiding any wide table content — the wrapper still
+// scrolls horizontally as before.
+.table-wrapper {
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  border-collapse: separate;
-  border-spacing: 0;
-  overflow: hidden;
+}
+
+table {
+  background-color: var(--table-background-color);
 
   th, td { border-color: var(--border-color); }
   thead th { background-color: var(--code-background-color); }
