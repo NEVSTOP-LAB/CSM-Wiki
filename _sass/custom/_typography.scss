@@ -34,6 +34,10 @@ body {
   letter-spacing: 0.01em;
   color: var(--body-text-color);
   background-color: var(--body-background-color);
+
+  // Crisp Inter rendering, matching Doks' typographic feel.
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 // Headings ------------------------------------------------------------------
@@ -44,6 +48,9 @@ body {
     margin-top: 1.5em;
     margin-bottom: 0.75em;
     line-height: 1.3;
+    // Slightly tightened tracking on Latin headings, Doks-style. CJK glyphs
+    // are unaffected by small negative letter-spacing at heading sizes.
+    letter-spacing: -0.011em;
   }
 
   h1, .h1 {

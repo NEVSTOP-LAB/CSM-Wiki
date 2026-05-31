@@ -5,6 +5,16 @@
 <link rel="icon" type="image/bmp" href="{{ '/assets/img/favicon.bmp' | relative_url }}">
 
 {%- comment -%}
+  Inter webfont (Doks-style typography). Loaded from jsDelivr, which is also
+  used for Mermaid below and is reliably reachable in mainland China (unlike
+  Google Fonts). The variable build ships all weights in a single woff2.
+  The CSS stack in _sass/custom/setup.scss falls back to system + CJK fonts
+  gracefully if this fails to load.
+{%- endcomment -%}
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
+
+{%- comment -%}
   Theme bootstrap — runs synchronously in <head> so the `data-theme`
   attribute is set BEFORE the first paint. This avoids the brief flash
   of light theme that would otherwise appear before theme-switcher.js
