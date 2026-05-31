@@ -9,9 +9,9 @@
 
 [data-theme="dark"] {
   // ----- Brand ------------------------------------------------------------
-  --brand-color:       #8b6ce8;          // lightened tint for AA on dark bg
-  --brand-color-rgb:   139, 108, 232;
-  --brand-color-hover: #a48cf0;
+  --brand-color:       #5b9bff;          // lightened Doks blue for AA on dark bg
+  --brand-color-rgb:   91, 155, 255;
+  --brand-color-hover: #7db0ff;
 
   // ----- Surfaces & text --------------------------------------------------
   --body-background-color:       #0d1117;
@@ -29,8 +29,8 @@
   --search-result-preview-color: #8b949e;
 
   // ----- Links ------------------------------------------------------------
-  --link-color:        #58a6ff;
-  --link-hover-color:  #79c0ff;
+  --link-color:        #5b9bff;
+  --link-hover-color:  #7db0ff;
 
   // ----- Callouts (dark) – low-saturation deep backgrounds ----------------
   --callout-note-color:      #6cb6ff;

@@ -10,10 +10,11 @@
 :root {
   // ----- Brand ------------------------------------------------------------
   // Single brand colour shared by both themes for identity consistency.
-  // The dark theme lightens the colour but keeps the same hue.
-  --brand-color:      #5e41d0;
-  --brand-color-rgb:  94, 65, 208;       // for rgba()
-  --brand-color-hover:#4c2fb3;
+  // Doks-style blue accent. The dark theme lightens the colour but keeps the
+  // same hue (see _dark-theme.scss).
+  --brand-color:      #3578e5;
+  --brand-color-rgb:  53, 120, 229;      // for rgba()
+  --brand-color-hover:#2563c9;
 
   // ----- Surfaces & text --------------------------------------------------
   --body-background-color:    #ffffff;
@@ -31,8 +32,9 @@
   --search-result-preview-color: #6e7781;
 
   // ----- Links & buttons --------------------------------------------------
-  --link-color:               #0969da;
-  --link-hover-color:         #0550ae;
+  // Links share the Doks blue accent for a single, cohesive accent colour.
+  --link-color:               #3578e5;
+  --link-hover-color:         #2563c9;
   --btn-primary-color:        var(--brand-color);
   --btn-primary-hover-color:  var(--brand-color-hover);
 
