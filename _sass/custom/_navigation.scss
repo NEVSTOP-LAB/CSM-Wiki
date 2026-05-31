@@ -11,9 +11,11 @@
 
 // Make navigation links a touch larger (default theme uses ~14 px → cramped
 // for Chinese characters with diacritics or full-width punctuation).
+// Rounded corners give the hover/active highlight the Doks "pill" look.
 .site-nav .nav-list .nav-list-item .nav-list-link {
   font-size: 0.95rem;
   color: var(--nav-link-color);
+  border-radius: 6px;
 
   // Override the theme's default linear-gradient background image.
   // (Used for the "fade-out" effect on the right edge of nav items.)
@@ -22,21 +24,21 @@
 
 // Hover & active states ------------------------------------------------------
 .nav-list .nav-list-item > .nav-list-link {
-  // Wrap target padding so the left-bar indicator does not shift content.
-  // Theme default padding-left is 1rem; we leave 3 px for the indicator and
-  // re-add 3 px so the text doesn't move on activation.
   &:hover {
-    background-color: rgba(var(--brand-color-rgb), 0.06);
+    background-color: rgba(var(--brand-color-rgb), 0.08);
     background-image: none;
+    border-radius: 6px;
   }
 
+  // Doks-style active item: rounded blue-tinted highlight + blue bold text,
+  // no heavy left bar.
   &.active,
   &.active:hover {
-    background-color: rgba(var(--brand-color-rgb), 0.10);
+    background-color: rgba(var(--brand-color-rgb), 0.12);
     background-image: none;
+    color: var(--brand-color);
     font-weight: 600;
-    border-left: 3px solid var(--brand-color);
-    padding-left: calc(1rem - 3px);
+    border-radius: 6px;
   }
 }
 
@@ -60,4 +62,12 @@
 // Breadcrumb -----------------------------------------------------------------
 .breadcrumb-nav {
   color: var(--muted-color);
+
+  .breadcrumb-nav-list-item a {
+    color: var(--muted-color);
+
+    &:hover {
+      color: var(--brand-color);
+    }
+  }
 }
