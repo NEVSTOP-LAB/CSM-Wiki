@@ -21,11 +21,18 @@ $csm-target-color:   #ca7601; // amber/dark-yellow (standalone target module nam
   text-decoration: underline;
 }
 
-// Send separators (-@, ->, ->|) — keep theme keyword colour but bold
-.language-csm .k { font-weight: bold; }
+// Send separators (-@, ->, ->|) — echo the Doks blue accent, bold. Using the
+// brand token keeps them harmonised in both light and dark themes.
+.language-csm .k {
+  font-weight: bold;
+  color: var(--brand-color) !important;
+}
 
-// >> operator
-.language-csm .o { font-weight: bold; }
+// >> operator — same accent treatment as the send separators.
+.language-csm .o {
+  font-weight: bold;
+  color: var(--brand-color) !important;
+}
 
 // @target embedded in a command (Name::Label) — bold only, same colour as command text
 .language-csm .nl {
