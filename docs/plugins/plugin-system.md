@@ -40,7 +40,7 @@ Addon是CSM的核心扩展接口，让你能添加新的参数类型、API功能
 
 **使用方法**：
 
-在主程序启动后调用[`CSM - Start Watchdog to Ensure All Modules Exit.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csm-start-watchdog-to-ensure-all-modules-exitvi)，保持返回的Watchdog Queue引用直到程序结束。程序退出时队列自动释放，WatchDog就会通知所有模块退出。
+在主程序启动后调用[`CSM - Start Watchdog to Ensure All Modules Exit.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csm---start-watchdog-to-ensure-all-modules-exitvi)，保持返回的Watchdog Queue引用直到程序结束。程序退出时队列自动释放，WatchDog就会通知所有模块退出。
 
 ```labview
 // 主程序初始化
@@ -66,7 +66,7 @@ CSM - Start Watchdog to Ensure All Modules Exit.vi
 
 **使用方法**：
 
-[`CSM - Start File Logger.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csm-start-file-loggervi)启动日志记录线程。
+[`CSM - Start File Logger.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csm---start-file-loggervi)启动日志记录线程。
 
 主要参数：
 - **Log File Path**：日志文件路径
@@ -153,13 +153,13 @@ Template让你快速创建标准化的CSM模块，提高开发效率和代码一
 
 模板应保持简洁，不包含业务逻辑，并提供充分的注释指导使用者修改。需要包含标准的初始化和退出流程，遵循CSM命名规范。
 
-更多详情参考[CSM模板文档](../reference/templates)。
+更多详情参考[CSM模板文档]({% link docs/reference/api-01-templates.md %})。
 
 # Tools 接口
 
 Tools是CSM的调试工具接口，所有工具都基于全局日志机制，通过订阅日志获取系统运行信息。
 
-CSM内置了多种工具，包括运行时监控（Running Log Window、State Dashboard、Table Log Window）、开发调试（Debug Console、Interface Browser、Example Browser）和数据查看（MassData Cache Viewer、INI-Variable Viewer）等。详细使用说明参见[CSM调试与开发工具](./tools)。
+CSM内置了多种工具，包括运行时监控（Running Log Window、State Dashboard、Table Log Window）、开发调试（Debug Console、Interface Browser、Example Browser）和数据查看（MassData Cache Viewer、INI-Variable Viewer）等。详细使用说明参见[CSM调试与开发工具]({% link docs/plugins/tools.md %})。
 
 ## 开发自定义工具
 

@@ -11,7 +11,7 @@ nav_order: 3
 
 API String参数支持是CSM框架的参数传递插件，以纯文本格式传递各种数据类型，特别适合调试控制台中手动输入和多参数API调用。
 
-API String不使用参数类型标记（[`CSM - Argument Type.vi`]({% link docs/reference/api-03-arguments.md %}#csm-argument-typevi)返回空，在默认分支处理），而是根据参考数据类型（Prototype）自动将纯文本字符串解析转换为目标数据类型，支持部分参数输入（缺失部分使用默认值）。
+API String不使用参数类型标记（[`CSM - Argument Type.vi`]({% link docs/reference/api-03-arguments.md %}#csm---argument-typevi)返回空，在默认分支处理），而是根据参考数据类型（Prototype）自动将纯文本字符串解析转换为目标数据类型，支持部分参数输入（缺失部分使用默认值）。
 
 ### 与其他参数方式对比
 

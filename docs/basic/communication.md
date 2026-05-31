@@ -389,4 +389,4 @@ API: Log >> info ->| LogModule    // 异步日志
 - **订阅未触发**：确认订阅关系已建立，广播是否正确发送
 - **消息追踪**：用全局日志、State Dashboard 查看消息流
 
-更多调试工具请参考 [CSM调试与开发工具](../plugins/tools) 和 [CSM全局日志系统](./global-log)。
+更多调试工具请参考 [CSM调试与开发工具]({% link docs/plugins/tools.md %}) 和 [CSM全局日志系统]({% link docs/basic/global-log.md %})。
