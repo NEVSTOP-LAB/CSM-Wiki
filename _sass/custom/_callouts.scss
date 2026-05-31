@@ -6,6 +6,19 @@
 // ============================================================================
 
 // Base callout colour bindings -----------------------------------------------
+// Doks-style alert shape: rounded corners + a soft full border in addition to
+// the theme's coloured left bar. Applied to all five callout types at once.
+.note,
+.tip,
+.warning,
+.important,
+.caution {
+  border-radius: 8px;
+  border-top: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
 .note {
   border-left-color: var(--callout-note-color);
   background-color: var(--callout-note-bg);
