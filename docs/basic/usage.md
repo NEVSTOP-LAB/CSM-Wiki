@@ -69,17 +69,17 @@ nav_order: 4
 
 CSM模块名称不能包含这些特殊字符: `~!@%^&*()\[\]{}+=|\\/?'"<>,.\t\r\n`，这些是CSM框架的保留字符。
 
-详细规则见[CSM基本概念](./concepts#csm模块命名规则)。
+详细规则见[CSM基本概念]({% link docs/basic/concepts.md %}#模块命名规则)。
 
 ### 系统级模块
 
 系统级模块名字前面加个"."，比如 `.SchedulerModule`。它们不会出现在活动模块列表中，只能通过显式消息调用，一般用来做全局后台功能。
 
-更多信息见[CSM高级模式与特性](./advance#系统级模块)。
+更多信息见[CSM高级模式与特性]({% link docs/basic/advance.md %}#系统级模块)。
 
 ### CSM Attribute
 
-Attribute 用于存储模块配置和跨模式共享数据，详见[CSM基本概念](./concepts#csm属性csm-attribute)。
+Attribute 用于存储模块配置和跨模式共享数据，详见[CSM基本概念]({% link docs/basic/concepts.md %}#参数arguments-和-属性attribute)。
 
 ## Step2. 在CSM框架中调用模块
 
@@ -237,8 +237,8 @@ API: SetSampleRate >> 1000 -@ DAQModule
 把CSM关键字转成安全格式，比如 `->` 转成 `%3E%3E`。
 
 **API**：
-- 编码：[`CSM - Make String Arguments Safe.vi`]({% link docs/reference/api-03-arguments.md %}#csm-make-string-arguments-safevi)
-- 解码：[`CSM - Revert Arguments-Safe String.vi`]({% link docs/reference/api-03-arguments.md %}#csm-revert-arguments-safe-stringvi)
+- 编码：[`CSM - Make String Arguments Safe.vi`]({% link docs/reference/api-03-arguments.md %}#csm---make-string-arguments-safevi)
+- 解码：[`CSM - Revert Arguments-Safe String.vi`]({% link docs/reference/api-03-arguments.md %}#csm---revert-arguments-safe-stringvi)
 
 ```labview
 输入: "Value -> Target"
@@ -251,8 +251,8 @@ API: SetSampleRate >> 1000 -@ DAQModule
 把任意 LabVIEW 数据转成十六进制字符串，支持数组、簇、波形等。
 
 **API**：
-- 编码：[`CSM - Convert Data to HexStr.vi`]({% link docs/reference/api-03-arguments.md %}#csm-convert-data-to-hexstrvi)
-- 解码：[`CSM - Convert HexStr to Data.vi`]({% link docs/reference/api-03-arguments.md %}#csm-convert-hexstr-to-datavi)
+- 编码：[`CSM - Convert Data to HexStr.vi`]({% link docs/reference/api-03-arguments.md %}#csm---convert-data-to-hexstrvi)
+- 解码：[`CSM - Convert HexStr to Data.vi`]({% link docs/reference/api-03-arguments.md %}#csm---convert-hexstr-to-datavi)
 
 ```labview
 输入: [1.0, 2.5, 3.7] (DBL Array)
@@ -266,8 +266,8 @@ API: SetSampleRate >> 1000 -@ DAQModule
 专门传 LabVIEW 错误簇。
 
 **API**：
-- 编码：[`CSM - Convert Error to Argument.vi`]({% link docs/reference/api-03-arguments.md %}#csm-convert-error-to-argumentvi)
-- 解码：[`CSM - Convert Argument to Error.vi`]({% link docs/reference/api-03-arguments.md %}#csm-convert-argument-to-errorvi)
+- 编码：[`CSM - Convert Error to Argument.vi`]({% link docs/reference/api-03-arguments.md %}#csm---convert-error-to-argumentvi)
+- 解码：[`CSM - Convert Argument to Error.vi`]({% link docs/reference/api-03-arguments.md %}#csm---convert-argument-to-errorvi)
 
 ```labview
 输入: Error 1 - "File not found"
@@ -280,8 +280,8 @@ API: SetSampleRate >> 1000 -@ DAQModule
 
 ![table](../../assets/img/slides/Baisic-4.Arguments(CN).png)
 
-- [`CSM - Argument Type.vi`]({% link docs/reference/api-03-arguments.md %}#csm-argument-typevi)：识别参数类型
-- [`CSM - Keywords.vi`]({% link docs/reference/api-10-utility-vis.md %}#csm-keywordsvi)：列出CSM关键字
+- [`CSM - Argument Type.vi`]({% link docs/reference/api-03-arguments.md %}#csm---argument-typevi)：识别参数类型
+- [`CSM - Keywords.vi`]({% link docs/reference/api-03-arguments.md %}#csm---keywordsvi)：列出CSM关键字
 - Safe/HexStr/ErrStr 编解码 VI 各一对
 
 ### 使用场景
@@ -351,6 +351,6 @@ API: LoadFile >> <SAFESTR>... -@ Module
 
 ## 相关文档
 
-- [CSM高级模式与特性](./advance)
-- [CSM模块间通讯](./communication)
-- [CSM调试与开发工具](../plugins/tools)
+- [CSM高级模式与特性]({% link docs/basic/advance.md %})
+- [CSM模块间通讯]({% link docs/basic/communication.md %})
+- [CSM调试与开发工具]({% link docs/plugins/tools.md %})

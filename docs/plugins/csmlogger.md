@@ -71,8 +71,8 @@ graph TD
 | 函数 | 说明 |
 |------|------|
 | [`CSM - Start File Logger.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csm-file-logger-addon) | 启动文件记录后台线程，是唯一需要主动调用的API |
-| [`CSM - Convert Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm-convert-filter-rulesvi) | 将过滤规则簇转换为类实例，用于配置Filter Rules参数 |
-| [`CSM - Set Log Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm-set-log-filter-rulesvi) | 设置全局源端过滤，减少无需记录的日志产生 |
+| [`CSM - Convert Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm---convert-filter-rulesvi) | 将过滤规则簇转换为类实例，用于配置Filter Rules参数 |
+| [`CSM - Set Log Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm---set-log-filter-rulesvi) | 设置全局源端过滤，减少无需记录的日志产生 |
 
 ### [`CSM - Start File Logger.vi`]({% link docs/reference/api-09-build-in-addons.md %}#csm---start-file-loggervi) 参数详解
 
@@ -149,7 +149,7 @@ sequenceDiagram
 **常见配置变体**：
 
 - **生产/调试切换**：将 `Enable?` 绑定到配置项，发布时设为 FALSE 即可完全禁用，无需修改代码结构
-- **源端过滤**：在调用 File Logger 前用 [`CSM - Set Log Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm-set-log-filter-rulesvi) 设置全局过滤，日志在源头就不产生，对所有工具生效
+- **源端过滤**：在调用 File Logger 前用 [`CSM - Set Log Filter Rules.vi`]({% link docs/reference/api-07-global-log.md %}#csm---set-log-filter-rulesvi) 设置全局过滤，日志在源头就不产生，对所有工具生效
 - **非CSM主程序**：主程序本身不是CSM模块时，可设 `Exit When All Module Exist? = TRUE`，所有CSM模块退出后记录自动停止
 
 **参考范例**：[CSM应用日志记录示例]({% link docs/examples/example-csm-advance-example.md %}#全局日志过滤示例) - `Addons - Logger\CSM Application Running Log Example.vi`

@@ -112,7 +112,7 @@ JKI State Machine自带的状态编辑器，CSM完全兼容。在状态字符串
 基于[全局日志系统]({% link docs/basic/global-log.md %})可以开发自己的调试工具。
 
 **开发流程**：
-1. 通过[`CSM - Global Log Queue.vi`]({% link docs/reference/api-07-global-log.md %}#csm-global-log-queuevi)或[`CSM - Global Log Event.vi`]({% link docs/reference/api-07-global-log.md %}#csm-global-log-eventvi)获取全局日志
+1. 通过[`CSM - Global Log Queue.vi`]({% link docs/reference/api-07-global-log.md %}#csm---global-log-queuevi)或[`CSM - Global Log Event.vi`]({% link docs/reference/api-07-global-log.md %}#csm---global-log-eventvi)获取全局日志
 2. 解析日志数据，实现自定义逻辑
 3. 显示或保存结果
 
