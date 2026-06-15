@@ -27,12 +27,15 @@ nav_order: 23
 > - 时间戳(Timestamp)
 > - 枚举(Enum)
 > - 数组(Array)
-> - 簇(Cluster)
-> - 其他类型(使用 CSM-Hexstr 表示)
+> - 簇(Cluster) —— 包括嵌套簇、簇数组等任意复杂结构，均完全支持
+> - 其他不可文本化的类型（如句柄、引用等非值类型）—— 内部自动使用 CSM-Hexstr 兜底
 >
 > 更多详细信息请访问: https://github.com/NEVSTOP-LAB/CSM-API-String-Arguments-Support
 >
 > 或参考范例，所有数据类型均有详细说明和示例。
+
+{: .note .callout-hover }
+> **关于 Cluster 支持的澄清**：API String 对 Cluster 类型完全支持，无论嵌套多深、结构多复杂（嵌套簇、簇内嵌数组、簇数组等）均可通过纯文本表示。**仅句柄（Handle）、引用（Refnum）等无法文本化的内存格式需要 HEXSTR 兜底。**
 
 {: .note .callout-hover }
 > <b>CSM HEXSTR格式参数</b>
@@ -67,8 +70,8 @@ nav_order: 23
 > - 时间戳(Timestamp)
 > - 枚举(Enum)
 > - 数组(Array)
-> - 簇(Cluster)
-> - 其他类型(使用 CSM-Hexstr 表示)
+> - 簇(Cluster) —— 包括嵌套簇、簇数组等任意复杂结构，均完全支持
+> - 其他不可文本化的类型（如句柄、引用等非值类型）—— 内部自动使用 CSM-Hexstr 兜底
 >
 > 更多详细信息请访问: https://github.com/NEVSTOP-LAB/CSM-API-String-Arguments-Support
 >
@@ -100,8 +103,8 @@ nav_order: 23
 > - 时间戳(Timestamp)
 > - 枚举(Enum)
 > - 数组(Array)
-> - 簇(Cluster)
-> - 其他类型(使用 CSM-Hexstr 表示)
+> - 簇(Cluster) —— 包括嵌套簇、簇数组等任意复杂结构，均完全支持
+> - 其他不可文本化的类型（如句柄、引用等非值类型）—— 内部自动使用 CSM-Hexstr 兜底
 >
 > 更多详细信息请访问: https://github.com/NEVSTOP-LAB/CSM-API-String-Arguments-Support
 >
