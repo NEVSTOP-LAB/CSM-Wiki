@@ -37,8 +37,11 @@ API String不使用参数类型标记（[`CSM - Argument Type.vi`]({% link docs/
 - 时间戳(Timestamp)
 - 枚举(Enum)
 - 数组(Array)
-- 簇(Cluster)
-- 其他类型(使用 CSM-Hexstr 表示)
+- 簇(Cluster) —— 包括嵌套簇、簇数组等任意复杂结构，均完全支持
+- 其他不可文本化的类型（如句柄、引用等非值类型）—— 内部自动使用 CSM-Hexstr 兜底
+
+{: .note }
+> **关于 Cluster 支持的澄清**：API String 对 Cluster 类型的支持是完整且无限制的，无论多么复杂的嵌套结构（嵌套簇、簇内嵌数组、簇数组等）均通过标签-数据对或无序模式的纯文本表示。**唯一需要 HEXSTR 兜底的场景是句柄（Handle）、引用（Refnum）等无法用纯文本表达的内存格式类型。**
 
 ### Boolean值的字符串表示
 
