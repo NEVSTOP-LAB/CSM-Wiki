@@ -7,3 +7,5 @@ _draft/
 */_internal/
 .bundle/
 vendor/
+.reasonix/
+tmp/
