@@ -32,7 +32,7 @@ nav_order: 12
 - <b>Remaining States</b>: 拼接后的所有状态及参数。
 - <b>Current State</b>: 将执行的下一个当前状态。
 - <b>Arguments</b>: 返回可能在当前状态字符串中使用的任何参数，这些参数位于`>>`字符之后。<b>注意: </b>参数变量不得包含任何不可打印的字符，如换行符或回车符。
-- <b>Additional Information</b>: 额外的补充信息。广播触发的状态中，该信息包含广播的名称、参数。在 `Response` / `Async Response` 状态中，该信息包含原消息名称（State）、原消息参数（Arguments）以及被调用方发生的错误（Error）。
+- <b>Additional Information</b>: 额外的补充信息。广播触发的状态中，该信息包含广播的名称、参数。
 - <b>Source CSM</b>: 如果<b>Current State</b>由外部发送，则这是源CSM模块名称。
 
 ## Build State String with Arguments++.vi
