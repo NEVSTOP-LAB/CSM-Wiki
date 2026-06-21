@@ -83,7 +83,7 @@ end
 ![Alt text](../../assets/img/Response@MainModule2.png)
 
 {: .note }
-> 在 `Response` 状态中，**`Parse State Queue++.vi` 的 `Argument`** 是被调用方的返回值，**`Parse State Queue++.vi` 的 `Response Info.Argument`** 是发送请求时携带的原始参数。两者同时可用，让响应处理逻辑具备完整上下文。此外，**`Additional Information`** 还包含原消息名称（State）和原消息参数（Arguments），**`Source CSM`** 指示返回响应的来源模块。
+> 在 `Response` 状态中，**`Parse State Queue++.vi` 的 `Argument`** 是被调用方的返回值，**`Parse State Queue++.vi` 的 `Response Info.Argument`** 是发送请求时携带的原始参数。两者同时可用，让响应处理逻辑具备完整上下文。此外，**`Additional Information`** 还包含原消息名称（State）、原消息参数（Arguments）以及被调用方的错误信息，**`Source CSM`** 指示返回响应的来源模块。
 
 运行效果（先启动 SubModule，再启动 MainModule）：
 ![Alt text](https://nevstop-lab.github.io/CSM-Wiki/assets/img/SyncCall%20by%20CSM%20result.png)
