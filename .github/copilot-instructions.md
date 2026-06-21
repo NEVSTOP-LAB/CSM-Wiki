@@ -121,11 +121,6 @@ grep -r "> - Ref:" docs/reference/
 - **不应**手动编辑 `docs/reference/api-*.md` 中的 VI 描述、参数说明等内容——它们在下一次 `.ref/` 同步时会被还原。
 - **正确做法**：如果发现 API 文档描述有误或不完整，应将修正写入 `docs/basic/`（概念文档）或 `docs/faq/`（常见问题），这些文件不会被 `.ref/` 同步覆盖。
 
-**已知需注意的知识点**（供未来 AI 助手参考）：
-
-- **`Parse State Queue++.vi` 的 `Additional Information`**：在 `Response` / `Async Response` 状态中，该输出包含三个字段——**State**（原消息名称，即发起请求的 API 名称）、**Arguments**（原消息参数）、**Error**（被调用方发生的错误）。同时 `Source CSM` 输出指示返回响应的来源模块名称。详见 `docs/basic/concepts.md#响应response` 和 `docs/faq/messaging.md`。
-- 上述信息已使得区分异步请求来源成为框架原生能力，**无需**像某些错误回答所说的「手动在 Arguments 中携带标识」。纠正来源：Discussion #96 / Issue #155。
-
 ## 编码处理
 
 部分 `.ref/` 文件（尤其是 `VI Description(zh-cn) - 12. Debug,Doc,Tools.md`）使用 **GBK 编码**。读取 `.ref/` 文件时，按以下顺序尝试编码：`gbk`、`gb2312`、`gb18030`、`utf-8`、`latin-1`。
