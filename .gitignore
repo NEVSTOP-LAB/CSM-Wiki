@@ -8,4 +8,5 @@ _draft/
 .bundle/
 vendor/
 .reasonix/
+reasonix.toml
 tmp/
