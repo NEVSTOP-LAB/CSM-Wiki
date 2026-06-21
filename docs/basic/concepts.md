@@ -106,18 +106,22 @@ TCP Connected@TCPModule >> UpdateLED@UI -><register>
 - 同步消息在"Response"状态处理响应
 - 异步消息在"Async Response"状态处理响应
 
-在 `Response` / `Async Response` 状态中，CSM 同时提供两类参数供调用方使用：
+在 `Response` / `Async Response` 状态中，CSM 同时提供以下信息供调用方使用：
 
 | 参数 | 含义 |
 |------|------|
 | `Parse State Queue++.vi` 的 `Argument` | 被调用方返回的结果数据 |
 | `Parse State Queue++.vi` 的 `Response Info.Argument` | **原始请求的参数**（发送消息时携带的参数） |
+| `Additional Information` | 包含原消息名称（State）、原消息参数（Arguments）、被调用方错误（Error） |
+| `Source CSM` | 返回响应的来源模块名称 |
 
 这一设计的目的是在处理响应时具备完整的上下文信息。例如发送 `Query ID >> 李梅 -@ database` 后，进入 `Response` 状态时：
 - `Parse State Queue++.vi` 的 `Argument` = `12345678`（被调用方返回的证件号码）
 - `Parse State Queue++.vi` 的 `Response Info.Argument` = `李梅`（原始请求中的查询参数）
+- `Additional Information/State` = `Query ID`（原始消息名称）
+- `Source CSM` = `database`（返回数据的模块）
 
-对于异步消息（`->`）尤为重要——由于异步消息的返回时间不确定，调用方可能同时有多个异步请求在途，携带原始请求参数让响应处理逻辑更加清晰。
+对于异步消息（`->`）尤为重要——由于异步消息的返回时间不确定，调用方可能同时有多个异步请求在途。当同一模块的不同状态都向同一目标发送异步请求时，可以通过 `Additional Information/State`（原消息名称）区分是哪个状态发起的请求，无需手动在参数中携带标识。
 
 ## 系统预置状态
 
