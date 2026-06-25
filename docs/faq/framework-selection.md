@@ -76,11 +76,13 @@ ATE 测试本质上是一个有限状态机——每个测试步骤（等待 Han
 **核心优势**：
 
 1. **模块化复用**：CSM 良好的模块化设计可复用底层模块，不同项目的积累直接共享
-2. **CSMScript 替代 TestStand**：CSMScript full 版本可完整替代 TestStand 的功能，与任何 CSM 模块结合使用
+2. **CSMScript 测试脚本化**：CSMScript 可替代 TestStand 的部分典型测试流程，与任何 CSM 模块结合使用（参考 [CSMScript-Lite 示例]({% link docs/examples/csm-script-lite.md %})）
 3. **高级模式支持**：工作者模式（Worker Mode）实现测试任务并发，责任链模式（Chain Mode）实现测试项的顺序执行与提前终止
 4. **内建调试工具**：调试控制台可在运行中向模块发送消息、观察状态，方便问题排查
 5. **模块独立测试**：CSM 模块接口清晰，可先单独测试各模块再集成，降低调试难度
-6. **多语言 + AI 未来**：CSM 目标成为多语言框架，打通后可用 AI 生成模块，AI 也能辅助 CSMScript 脚本生成
+
+> 📓
+> **未来展望**：CSM 路线图中还包括多语言框架支持——打通后可用 AI 生成模块，AI 也能辅助 CSMScript 脚本生成。目前该方向仍在研究中。
 
 **常见坑**：
 
@@ -92,4 +94,5 @@ ATE 测试本质上是一个有限状态机——每个测试步骤（等待 Han
 > 如果 ATE 系统需要长期维护、多设备协同或未来扩展，CSM 是值得投入的选择。如果只是简单的单步测试，CSM 可能显得"重"，但模块化设计仍能带来结构清晰的好处。
 
 > 📓
-> 参考讨论：[Discussion #104](https://github.com/orgs/NEVSTOP-LAB/discussions/104)
+> 参考链接：[Discussion #104](https://github.com/orgs/NEVSTOP-LAB/discussions/104)
+>
