@@ -49,24 +49,23 @@ CSM 仅支持字符串类型参数，但可以通过以下方式传递各种数�
 
 ## :question: 子类通过 API String 传递后，用基类 Reference Type 能转回子类吗？
 
-**可以。** 子类对象通过 `Convert Data To API String` 编码后，在接收端使用基类作为 Reference Type 调用 `Convert API String to Data`，**可以正确还原为原始子类对象，不会丢失子类特有的属性和数据**。
+**可以。** 子类对象通过 `Convert Data To API String` 编码后，在接收端使用基类作为 Reference Type 调用 `Convert API String Arguments to Data`，**可以正确还原为原始子类对象，不会丢失子类特有的属性和数据**。
 
 ### 原理
 
-`Convert Data To API String` 在编码时会按照输入的**运行时类型**（即实际传入的子类）遍历所有公开属性（包括继承自基类的和子类新增的），将其序列化为纯文本字符串。解码时，`Convert API String to Data` 虽然使用基类作为 Reference Type 模板，但 LabVIEW 的变体（variant）机制会保留完整的运行时类型信息——从字符串解析出的数据包含了子类的全部字段，使用基类引用进行 "Variant to Data" 转换时，只要数据布局兼容（子类包含基类的所有字段），就能正确还原。
+`Convert Data To API String` 在编码时会按照输入的**运行时类型**（即实际传入的子类）遍历所有公开属性（包括继承自基类的和子类新增的），将完整数据序列化为纯文本字符串。解码时，`Convert API String Arguments to Data` 会从字符串中读取编码时记录的运行时类型信息，直接重建原始子类对象。Reference Type 仅作为结构与标签验证的参考，不影响最终的运行时类型恢复。
 
 ### 示例
 
 ```
 CSM A: 子类对象 → Convert Data To API String → 发送消息
-CSM B: 接收消息 → Convert API String to Data (Reference Type = 基类) → 得到完整子类对象 ✓
+CSM B: 接收消息 → Convert API String Arguments to Data (Reference Type = 基类) → 得到完整子类对象 ✓
 ```
 
 ### 注意事项
 
 - 发送方和接收方使用的**类层次结构必须一致**（基类和子类的定义版本匹配）
-- 这与 LabVIEW 原生的 "Variant to Data" 行为一致——类继承结构在变体中被保留
 - CSM 的 API String 在这一点上比 HEXSTR 更灵活：HEXSTR 解码时要求类型完全匹配，而 API String 允许使用基类作为 Reference Type
 
 > 📓
-> 参考讨论：[Discussion #113](https://github.com/orgs/NEVSTOP-LAB/discussions/113)（此回答纠正了 CSM-QA-Robot 在讨论中的错误回复——机器人曾错误地认为"不能转回子类"，经 nevstop 实际验证确认**可以**）
+> 参考链接：[Discussion #113](https://github.com/orgs/NEVSTOP-LAB/discussions/113)（此回答纠正了 CSM-QA-Robot 在讨论中的错误回复——机器人曾错误地认为"不能转回子类"，经 nevstop 实际验证确认**可以**）
