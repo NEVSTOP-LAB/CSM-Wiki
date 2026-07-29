@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # ── 步骤 1：查询组织 Q&A Discussion ────────────────────────────────────
       - name: 查询已解答的 Q&A Discussion
