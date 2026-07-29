@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout wiki repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         # 使用默认 GITHUB_TOKEN（已有 contents: write），无需 PAT
 
       - name: Run sync script
